@@ -1,0 +1,9 @@
+[Unit]
+Description=Run delete_vim_tags weekly
+
+[Timer]
+OnBootSec=43min
+OnUnitActiveSec=3M 
+ 
+[Install]
+WantedBy=timers.target

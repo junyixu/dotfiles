@@ -1,0 +1,9 @@
+[Unit]
+Description=Run backup_ehforwarderbot weekly
+
+[Timer]
+OnBootSec=33min
+OnUnitActiveSec=1w 
+ 
+[Install]
+WantedBy=timers.target

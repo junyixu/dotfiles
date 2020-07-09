@@ -1,0 +1,26 @@
+#snippet main "main() (main)"
+#int main(int argc, char *argv[])
+#{
+#	${VISUAL}$0
+#
+#	return 0;
+#}
+#endsnippet
+
+snippet filer "file" b
+FILE *${1:fp} = fopen("${2:./test.txt}","${3:r}");
+if(${1:fp}==NULL)
+	printf("Fail to open the file!\n");
+else
+	fscanf(${1:fp},${4:"%d",&a[i][j]});
+fclose(fp);
+	$0
+endsnippet
+
+snippet file "file" b
+char buf[] = "This is a test\n";
+FILE *${1:fp} = fopen("${2:./test.txt}","${3:w+}");
+	fputs(buf, fp);
+fclose(fp);
+	$0
+endsnippet

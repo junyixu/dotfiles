@@ -1,0 +1,9 @@
+[Unit]
+Description=Run delete_vim_undo_dir weekly
+
+[Timer]
+OnBootSec=47min
+OnUnitActiveSec=7w 
+ 
+[Install]
+WantedBy=timers.target

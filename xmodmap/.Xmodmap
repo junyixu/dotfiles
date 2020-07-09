@@ -1,0 +1,19 @@
+! Swap caps lock and escape
+! 方案一
+!clear Lock
+!keysym Caps_Lock = Escape
+!keysym Escape = Caps_Lock
+!add Lock = Caps_Lock
+
+! 方案二
+!remove Lock = Caps_Lock
+!keysym Escape = Caps_Lock
+!keysym Caps_Lock = Escape
+!add Lock = Caps_Lock
+!
+!方案三
+
+remove Lock = Caps_Lock
+keycode  9 = Caps_Lock NoSymbol Caps_Lock
+keycode  66 = Escape NoSymbol Escape
+add Lock = Caps_Lock

@@ -1,0 +1,10 @@
+[Unit]
+Description=delete_vim_undo_dir Service
+Type=oneshot
+RemainAfterExit=yes
+
+[Service]
+ExecStart=/bin/find %h/.cache/tags -type f -mtime +120 -delete
+
+[Install]
+WantedBy=default.target

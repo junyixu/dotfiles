@@ -1,0 +1,26 @@
+# 关闭 tg 托盘计数
+# export TDESKTOP_DISABLE_TRAY_COUNTER=1
+
+xrandr --dpi 120
+# xrandr --output eDP-1  --gamma 0.85:1.10:1.05 --brightness 1.0
+# xrandr --output eDP-1  --gamma 0.90:1.05:1.10 --brightness 1.0
+# xrandr --output eDP-1  --gamma 0.90:1.10:1.00 --brightness 1.0
+# xrandr --output eDP-1  --gamma 0.85:1.15:1.00 --brightness 1.0
+xrandr --output eDP-1  --gamma 0.85:1.10:1.00 --brightness 1.0
+# xrandr --output eDP-1  --gamma 0.85:0.95:1.05 --brightness 1.0
+# xrandr --output eDP-1  --gamma 0.85:1.10:1.00 --brightness 1.0
+export LANG=zh_CN.UTF-8
+# export LC_ALL=zh_CN.UTF-8
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+
+# for Hardware video acceleration using Nvidia
+export LIBVA_DRIVER_NAME=iHD
+export LIBVA_DRIVERS_PATH=/usr/lib/dri/
+export VDPAU_DRIVER=va_gl
+
+# https://forum.manjaro.org/t/xorg-session-log-becomes-huge/115336/5
+QT_LOGGING_RULES='*=false'
+export QT_LOGGING_RULES

@@ -1,0 +1,24 @@
+[user]
+	name = Junyi Xu
+	email = junyixu0@gmail.com
+	signingkey = D275031A139EE901
+[color]
+	ui = auto
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[http]
+	proxy = http://127.0.0.1:1081
+[https]
+	proxy = http://127.0.0.1:1081
+[commit]
+	gpgsign = true
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -

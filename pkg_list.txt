@@ -1,0 +1,17 @@
+cmake
+ctags
+pip
+tmux
+git
+ranger # pip install --user ranger-fm 
+GNU stow
+
+lsd
+grc
+ripgrep
+zsh
+htop
+mosh
+global gtags
+
+tar

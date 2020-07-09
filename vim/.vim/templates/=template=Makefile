@@ -1,0 +1,29 @@
+#
+# %FFILE%
+# %USER%, %FDATE%
+#
+
+#vpath %.h ./inc
+HEADER_DIR = -I. -I./inc
+CC=gcc
+CFLAGS=-lm -Wall
+
+all: main
+	%HERE%@echo "%FFILE% needs your attention"
+
+main: grep.o strindex.o mygetline.o
+	$(CC) $(HEADER_DIR) grep.o strindex.o mygetline.o -o grep
+
+grep.o: grep.c mygetline.h strindex.h
+	$(CC) $(HEADER_DIR) -c grep.c
+mygetline.o: mygetline.c mygetline.h
+	$(CC) $(HEADER_DIR) -c mygetline.c
+strindex.o: strindex.c strindex.h
+	$(CC) $(HEADER_DIR) -c strindex.c
+
+clean:
+	rm *.o grep
+
+
+# vim:ft=make
+#

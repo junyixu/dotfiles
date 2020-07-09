@@ -1,0 +1,15 @@
+[Unit]
+Description=EFB instance for profile qq
+Documentation=https://github.com/blueset/ehForwarderBot
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+PrivateTmp=true
+ExecStart=/usr/bin/python3 -m ehforwarderbot -p qq
+Environment=EFB_DATA_PATH=%h/.ehforwarderbot LANGUAGE=zh_CN.UTF-8 LC_ALL=zh_CN.UTF-8 LC_MESSAGES=zh_CN.UTF-8 LANG=zh_CN.UTF-8
+TimeoutStopSec=10
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

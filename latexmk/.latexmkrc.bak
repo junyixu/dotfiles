@@ -1,0 +1,2 @@
+$pdf_mode = 1;
+$pdflatex = "xelatex -file-line-error --shell-escape -src-specials -synctex=1 -interaction=nonstopmode %O %S;cp %D %R.pdf";

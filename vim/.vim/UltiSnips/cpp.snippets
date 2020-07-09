@@ -1,0 +1,13 @@
+snippet std "using namespace std" b
+using namespace std;
+$0
+endsnippet
+
+snippet srand "Seed the random number generator with the given number. 初始化随机数发生器, 重新设置随机数种子" b
+srand(time(NULL));
+$0
+endsnippet
+
+snippet rand01 "生成0~1的随机数" 
+rand()%100/100.0
+endsnippet
