@@ -9,17 +9,16 @@ Here are some of my config files for linux, controlled by GNU Stow following [th
 * rsync
 * fzf
 * cmake
-* exa
-* ctags
+* exa or lsd
+* ctags and gtags
 * ripgrep
-* autojump
 * tmux
 * git
 * mosh
 * zsh
 * htop
 
-You may need vim8.2 or above to use pop windows.
+You may need vim8.2+ to use pop windows.
 
 ## License
 MIT
