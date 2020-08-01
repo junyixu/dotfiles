@@ -3,7 +3,7 @@
 Here are some of my config files for linux, controlled by GNU Stow following [this way](https://farseerfc.me/using-gnu-stow-to-manage-your-dotfiles.html).  
 
 ## Tricks
-[exchange Esc and Caps_Lock for Linux](https://junyixu.github.io/2019/02/22/Map-caps_lock-to-escape-in-XWindows/)
+[Exchange Esc and Caps_Lock for Linux]( https://github.com/qsdrqs/caps2esc_autoinstall)
 
 # requirements
 * rsync
