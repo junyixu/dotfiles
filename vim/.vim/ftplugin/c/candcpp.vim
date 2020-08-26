@@ -1,5 +1,5 @@
 "---------------------c language---------------------------------"
-inoremap {<CR> {<CR>}<ESC>O
+inoremap <buffer> {<CR> {<CR>}<ESC>O
 
 "c 文件的编译运行
 "BufNewFile,BufRead

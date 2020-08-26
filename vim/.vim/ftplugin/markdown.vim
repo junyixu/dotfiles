@@ -3,7 +3,7 @@
 setlocal spell spelllang=en_us,cjk		"忽略中文对英文进行拼写检查
 
 "markdown-preview.nvim
-map <Leader>vm :MarkdownPreview<cr>
+map <buffer> <Leader>vm :MarkdownPreview<cr>
 
 "句首字母大写
 for char in split('abcdefghijklmnopqrstuvwxyz', '\zs')

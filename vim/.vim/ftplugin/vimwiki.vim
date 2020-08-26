@@ -12,9 +12,9 @@ map <Leader>vm :MarkdownPreview<cr>
 " Author:       lilydjwg <lilydjwg@gmail.com>
 
 let g:vimwiki_table_mappins = 0
-nmap <Leader>gt <Plug>VimwikiTabnewLink
-nmap <Leader>vsp <Plug>VimwikiVSplitLink
-nmap <Leader>sp <Plug>VimwikiSplitLink
+nmap <buffer> <Leader>gt <Plug>VimwikiTabnewLink
+nmap <buffer> <Leader>vsp <Plug>VimwikiVSplitLink
+nmap <buffer> <Leader>sp <Plug>VimwikiSplitLink
 
 nnoremap <buffer> <C-F> :VimwikiSearch  
 nnoremap <buffer> <leader>n :lnext<cr>

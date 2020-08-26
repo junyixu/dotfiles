@@ -1,4 +1,4 @@
-nnoremap <silent> <leader>vh :! chromium http://wuli.wiki/online/%:r.html<cr>
+noremap <silent> <leader>vh :! chromium http://wuli.wiki/online/%:r.html<cr>
 nnoremap <silent> <S-CR> :! chromium http://wuli.wiki/online/<cfile>.html<cr>
 set rtp+=/home/junyi/Desktop/PhysWiki/
 set encoding=utf8

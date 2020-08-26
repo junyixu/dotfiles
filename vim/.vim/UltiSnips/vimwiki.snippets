@@ -118,14 +118,17 @@ endsnippet
 #$0
 #endsnippet
 priority 100
+context "math()"
 snippet ... "ldots" iA
 \ldots
 endsnippet
 
+context "math()"
 snippet => "implies" Ai
 \implies
 endsnippet
 
+context "math()"
 snippet =< "implied by" Ai
 \impliedby
 endsnippet
@@ -237,14 +240,17 @@ snip.rv = subprocess.check_output(['wolframscript', '-code', code])
 `
 endsnippet
 
+context "math()"
 snippet == "equals" iA
 &= $1 \\\\
 endsnippet
 
+context "math()"
 snippet != "not equals" iA
 \neq 
 endsnippet
 
+context "math()"
 snippet eqv "equals" iA
 \equiv 
 endsnippet
@@ -259,14 +265,17 @@ snippet floor "floor" iA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
+context "math()"
 snippet pmat "pmat" iA
 \pmat{$1} $0
 endsnippet
 
+context "math()"
 snippet bmat "bmat" iA
 \bmat{$1} $0
 endsnippet
 
+context "math()"
 snippet det "vmat" i
 \begin{vmatrix}
 	$1
@@ -302,6 +311,7 @@ snippet vmat "vmat" iA
 $0
 endsnippet
 
+context "math()"
 snippet Bmat "Bmat" iA
 \begin{Bmatrix}
 	$1

@@ -8,6 +8,7 @@ set nocompatible						"We want the latest Vim settings/options.
 let mapleader = ','						"The default leader is \, but a comma is much better. 尽量减少小指的负担
 " 替换查找（f 或 t) 上一个为 \
 noremap \ ,
+noremap g\ g,
 
 set mouse=a								"在所有模式开启鼠标
 "set mouse=v								"用鼠标选中 string. 用了它就不能在 gvim 中用鼠标调整窗口了
@@ -179,6 +180,10 @@ nnoremap S :w<cr>
 nmap <M-s> :w !sudo tee % > /dev/null<CR>
 nnoremap cd :tcd %:h<cr>
 
+" 自动展开，就像输入 %:h 一样
+cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
+
+
 nnoremap s <C-w>
 
 " nnoremap <silent><tab> <nop>
@@ -192,6 +197,7 @@ nnoremap s <C-w>
 "nnoremap =ae mzgg=G`z
 " 复制整篇 cope all the passge
 nmap yaa mzggVG"+y`z
+nmap daa mzggVG"+dZ
 
 " 打开标签列表
 " noremap  <C-]> g<C-]>
@@ -211,6 +217,21 @@ nmap Y y$
 
 " For copying to both the Clipboard and primary selection
 vnoremap <C-c> "*y :let @+=@*<CR>
+
+function! IsTmpMarkdown()
+	if expand("%:p") == "/home/junyi/tmp/test.md"
+		return 1
+	else 
+		return 0
+	endif
+endfunc
+
+" nnoremap <expr> Z IsTmpMarkdown() ? "ggVG"+dZZ" : "ZZ"
+if IsTmpMarkdown()
+	nnoremap Z  ggVG"+dZZ
+endif
+
+" autocmd filetype markdown nmap <silent> <expr> <C-c> IsTmpMarkdown() ? "mzggVG"+dZ" : "<C-c>"
 
 " 插入模式时使用 emacs 键位
 "inoremap <C-K> <ESC>lC
