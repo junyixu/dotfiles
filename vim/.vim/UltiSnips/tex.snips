@@ -1,4 +1,0 @@
-snippet leftgroup "leftgroup" b
-\leftgroup{
-${1:${VISUAL:code}}
-}

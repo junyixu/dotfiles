@@ -1,15 +1,13 @@
-noremap <silent> <leader>vh :! chromium http://wuli.wiki/online/%:r.html<cr>
-nnoremap <silent> <S-CR> :! chromium http://wuli.wiki/online/<cfile>.html<cr>
-set rtp+=/home/junyi/Desktop/PhysWiki/
+" runtimepath
+" set rtp+=/home/junyi/Desktop/PhysWiki/ 
 set encoding=utf8
 set fileencodings=utf8,cp936,gb18030,big5
 " Let's save undo info!
 " And don't forget to create a cron to delete it
-" if !isdirectory($HOME."/.cache/vim")
-"     call mkdir($HOME."/.vim", "", 0770)
-" endif
+"如果目录已存在且传递了 "p" 标志位，不报错 (从补丁 8.0.1708
+"起)。如果没有 "p" 位就会失败。
 if !isdirectory($HOME."/.cache/vim/undo")
-    call mkdir($HOME."/.cache/vim/undo", "", 0700)
+    call mkdir($HOME."/.cache/vim/undo", "p", 0700)
 endif
 set undodir=~/.cache/vim/undo
 set undofile
@@ -38,6 +36,7 @@ set guioptions-=t
 set guioptions-=T
 set guioptions-=r
 set guifont=FiraCodeNerdFontMono\ 11
+" set guifont=MesloLGSNF\ 11
 " set guifont=OperatorMonoLight\ 13
 "-------------------end gvimrc-------------------------------"
 
@@ -56,6 +55,7 @@ else
     " Make it easy to edit the tex snips
     nmap <Leader>ets :tabedit ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets<cr>
 endif
+
 " ocr
 command! Ocr :r! ocr ~/Downloads/test.png
 " vnoremap <C-h> :s/

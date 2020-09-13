@@ -11,6 +11,7 @@ noremap \ ,
 noremap g\ g,
 
 set mouse=a								"在所有模式开启鼠标
+
 "set mouse=v								"用鼠标选中 string. 用了它就不能在 gvim 中用鼠标调整窗口了
 "set t_ti= t_te=						"退出 vim 后，内容显示在终端屏幕，可以用于查看和复制好处：误删什么的，如果以前屏幕打开，可以找回
 
@@ -29,6 +30,7 @@ syntax on								" 开启文件类型侦测
 
 "set nrformats=								"把 vim 中所有的数字都当成十进制
 set smarttab
+set foldcolumn=2
 
 " 设置格式化时制表符占用空格数
 set shiftwidth=4
@@ -76,8 +78,8 @@ set foldmethod=marker
 nnoremap <leader>z @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "---------------------tex---------------------------------"
 "autocmd BufReadPost *.md setlocal spell spelllang=en_us,cjk		"忽略中文对英文进行拼写检查
-" 更改拼写错误
-inoremap <M-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+" 语法检查 更改拼写错误
+inoremap <M-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 "set spell spelllang=en_us				"打开英语单词的拼写检查
 "set 和 setlocal 的区别：set 可以对新开的窗口和标签生效？
 "---------------------------------------------------------"
@@ -97,12 +99,33 @@ set splitright
 " for windows
 set t_ut=""
 
+
+" 让 vim 在 tmux 中也能使用鼠标调整窗口大小
+" 具体看 :h ttymouse 或者自行谷歌
+if !has('nvim')
+	set ttymouse=sgr
+	set balloonevalterm
+endif
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
 " 暂时没找到好的调整窗口大小的方法
+" 用鼠标调整窗口最自然
 nnoremap <M-K> <C-w>+
 nnoremap <M-J> <C-w>-
-nnoremap <M-H> <C-w><
-nnoremap <M-L> <C-w>>
-nnoremap sz <C-w>|
+nnoremap <M-H> <C-w>>
+nnoremap <M-L> <C-w><
+nnoremap <M-+> <C-w>+
+nnoremap <M-_> <C-w>-
+nnoremap <M-<> <C-w><
+nnoremap <M->> <C-w>>
 " nnoremap <C-w>\ <C-w><C-v>
 " nnoremap <C-w>- <C-w><C-s>
 "---------------------vim Functions-------------------------------"
@@ -149,42 +172,116 @@ augroup END
 "---------------------Visual---------------------------------"
 " set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
 " " Enable true color 启用终端24位色
-if exists('+termguicolors')
+" if exists('+termguicolors')
   set termguicolors
-endif
-if &term =~# '^screen'
+  set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
+" endif
+" if &term =~# '^screen'
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
+" endif
 
 " https://github.com/microsoft/terminal/issues/832
 " if (&term =~ '^xterm')
 "       set t_ut= | set ttyscroll=1
 "   endif
 set cursorline							"显示当前行
-set relativenumber   "显示相对行号
+" set relativenumber   "显示相对行号
 set number								"Let's activate line numbers.
 " 按 F2 快速打开(或关闭)显示行号
-"nnoremap <F2> :set nu! nu?<CR>
+nnoremap <F2> :set nu! nu?<CR>:set relativenumber! relativenumber?<CR>
+nnoremap <F3> :set spell! spell?<CR>
 "----------------------ab----------------------------------------"
 ab mymail junyixu0@gmail.com
 "---------------------Mappings------------------------"
-"Add simple highlight removal.
-nmap <Leader><space> :nohlsearch<cr>
 
-nnoremap <leader>ex Q
-noremap <silent>Q :confirm qall<cr>
-nnoremap Z ZZ
-nnoremap S :w<cr>
+" change current word (like ciw) but repeatable with dot . for the same next
+" " word
+nnoremap <silent> c<Tab> *Ncgn
+" nnoremap <silent> c<Tab> :let @/=expand('<cword>')<cr>cgn
+
+inoremap <expr><C-e> pumvisible()? "<C-E>":"\<ESC>A"
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [g :cprevious<CR>
+nnoremap ]g :cnext<CR>
+nnoremap [l :lprevious<CR>
+nnoremap ]l :lnext<CR>
+
+nnoremap s] <C-W>}
+nnoremap sz <C-W><C-Z>
+nnoremap s} <C-W>]
+" 打开预览窗口
+nnoremap sg] <C-W>g}
+
+"Add simple highlight removal.
+" nmap <Leader><space> :nohlsearch<cr>
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
+" for tmux
+map <C-g> <Nop>
+
+" ex 编辑模式
+nnoremap _ex Q
+
+" inoremap <M-q>      <ESC>l
+" xnoremap <M-q>      <ESC>
+" nnoremap <M-q>      :bd!<Cr>
+nnoremap ,q         :qa!<Cr>
+nnoremap <leader>Q  :xall<Cr>
+nnoremap <leader>q  :confirm qall<Cr>
+nnoremap <leader>tq :tabclose<Cr>
+nnoremap <M-z> ZZ
+nnoremap <M-s> :w<cr>
+nnoremap <M-q> :confirm q<Cr>
+nnoremap <M-Q> :qall!<cr>
+nnoremap Q q
+
 "忘记 sudo vim 时
-nmap <M-s> :w !sudo tee % > /dev/null<CR>
+nmap <M-S> :w !sudo tee % > /dev/null<CR>
+nmap <M-Z> :wqall<CR>
+
 nnoremap cd :tcd %:h<cr>
 
 " 自动展开，就像输入 %:h 一样
 cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
 
-
+" split window
 nnoremap s <C-w>
+nnoremap S <C-w>w
+" s 表示 select 或者 split
+" eg:
+" 1sw 或 s1w 表示选择第一个窗口
+" ss 表示 split
+" sv 表示 vsplit
+
+" 把 tab 键作为 leader 键 之一
+" nmap <C-O> <Nop>
+" nmap <C-i> <Nop>
+" nnoremap <tab>i <C-i>
+" nnoremap <tab>o <C-o>
+
+" nnoremap <A-j> <C-W><C-J>
+" nnoremap <A-k> <C-W><C-K>
+" nnoremap <A-l> <C-W><C-L>
+" nnoremap <A-h> <C-W><C-H>
+" tnoremap <A-h> <C-\><C-N><C-w>h
+" tnoremap <A-j> <C-\><C-N><C-w>j
+" tnoremap <A-k> <C-\><C-N><C-w>k
+" tnoremap <A-l> <C-\><C-N><C-w>l
+tnoremap <A-q> <C-\><C-n>
+" 
+" 我希望 ctrl w 是删除一个单词，就像平时终端一样，但是做不到
+" tnoremap <C-w> <ESC>ciw
+
+" 我需要 term 的时候一定是没开 tmux 的时候，<C-g> 是 tmux 的前缀
+tnoremap <C-g> <C-w>
+nnoremap <C-g> <C-w>
+
+" inoremap <A-h> <C-\><C-N><C-w>h
+" inoremap <A-j> <C-\><C-N><C-w>j
+" inoremap <A-k> <C-\><C-N><C-w>k
+" inoremap <A-l> <C-\><C-N><C-w>l
 
 " nnoremap <silent><tab> <nop>
 	
@@ -216,7 +313,7 @@ nmap Y y$
 "map tp "+P
 
 " For copying to both the Clipboard and primary selection
-vnoremap <C-c> "*y :let @+=@*<CR>
+" vnoremap <C-c> "*y :let @+=@*<CR>
 
 function! IsTmpMarkdown()
 	if expand("%:p") == "/home/junyi/tmp/test.md"
@@ -228,7 +325,7 @@ endfunc
 
 " nnoremap <expr> Z IsTmpMarkdown() ? "ggVG"+dZZ" : "ZZ"
 if IsTmpMarkdown()
-	nnoremap Z  ggVG"+dZZ
+	nnoremap <M-z>  ggVG"+dZZ
 endif
 
 " autocmd filetype markdown nmap <silent> <expr> <C-c> IsTmpMarkdown() ? "mzggVG"+dZ" : "<C-c>"
@@ -241,9 +338,8 @@ endif
 "inoremap <C-f> <Right>
 "inoremap <C-b> <Left>
 
-inoremap <C-e> <ESC>A
+" inoremap <C-e> <ESC>A
 "退出 补全
-inoremap <C-c> <C-e>
 
 " Paren
 "inoremap {<CR> {<CR>}<ESC>O
@@ -256,7 +352,9 @@ inoremap <C-c> <C-e>
 " 翻页
 "nnoremap <M-f> <C-f>
 "nnoremap <M-b> <C-b>
-nnoremap <space> <c-f>
+" nnoremap <space> <c-f>
+let maplocalleader = "\<Space>"
+" let maplocalleader = "_"
 
 " choose buffer
 " map <leader>1 :w<CR>:b1<CR>
@@ -269,14 +367,32 @@ nnoremap <space> <c-f>
 " map <leader>8 :w<CR>:b8<CR>
 " map <leader>9 :w<CR>:b9<CR>
 "关于切换 buffer 的快捷键
-map H :bp<cr>
-map L :bn<cr>
+" map H :bp<cr>
+" map L :bn<cr>
 
-nnoremap <backspace> :b1<cr>
+" Keep search results at the center of screen
+
+" 浏览源码时候相当多余
+" nmap n nzz
+" nmap N Nzz
+
+" nmap * *zz
+" nmap # #zz
+" nmap g* g*zz
+" nmap g# g#zz
+" nnoremap * *N
+
+" Select all text
+noremap vA ggVG
+
+" nnoremap <backspace> :b1<cr>
 " choose tab but it may not work in terminal 后来装了依云的插件就好了
 " ~/.vim/plugin/
 nnoremap <M-h> gT
 nnoremap <M-l> gt
+nnoremap <M-H> :tabmove -1<CR>
+nnoremap <M-L> :tabmove +1<CR>
+
 nnoremap <M-1> 1gt
 nnoremap <M-2> 2gt
 nnoremap <M-3> 3gt
@@ -297,10 +413,24 @@ map <M-7> <C-O>7gt
 map <M-8> <C-O>8gt
 map <M-9> <C-O>9gt
 
+" alacritty
+" Map Control-([1-9]|[0;']) to Control-[F1-F12] (F25-F36)
+nnoremap <C-F6> <C-^>
+
 " 正向遍历同名标签
 nmap <C-n> :tnext<CR>
 " 反向遍历同名标签
 nmap <C-p> :tprevious<CR>
+
+function! g:CopyFileEntryToClipBoard() "for syntax/index.vim
+let @+ = expand("%:p").'|'.line(".")
+endfunction
+silent! command -nargs=0 CopyEntry call g:CopyFileEntryToClipBoard()
+
+function! g:CopyFilePathToClipBoard() "for syntax/index.vim
+let @+ = expand("%:p")
+endfunction
+silent! command -nargs=0 CopyPath call g:CopyFilePathToClipBoard()
 
 " VIM的has()属于系统级查询，效率极低，拖慢速度。尽可能减少使用。
 if has('Unix')

@@ -139,9 +139,9 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-xmap <M-c><M-c> <Plug>SlimeRegionSend
-nmap <M-c><M-c> <Plug>SlimeParagraphSend
-nmap <M-c>v <Plug>SlimeConfig
+autocmd filetype python,matlab xmap <silent><buffer> <S-CR> <Plug>SlimeRegionSend
+autocmd filetype python,matlab nmap <silent><buffer> <S-CR> <Plug>SlimeParagraphSend
+autocmd filetype python,matlab nmap <silent><buffer> <localleader>c <Plug>SlimeConfig
 
 Plug 'wellle/tmux-complete.vim'
 	" let g:tmuxcomplete#trigger = 'omnifunc'
@@ -161,7 +161,7 @@ Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
     "}}}
 
 " 侧栏显示 git 标识
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
     " let g:gitgutter_max_signs=700
 
 " 确定插件仓库中的分支或者 tag
@@ -380,8 +380,9 @@ Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 " Plug 'dstein64/vim-startuptime'
 
 " ----------------- ctags and gtags ------------------{{{
-Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda', 'julia', 'tex', 'python', 'cmake', 'go', 'matlab']}
-Plug 'skywind3000/gutentags_plus'
+" Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda', 'julia', 'tex', 'python', 'cmake', 'go', 'matlab']}
+" Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda']}
+" Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab']}
     "{{{
     autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
@@ -533,6 +534,7 @@ Plug 'joshdick/onedark.vim' "colorscheme
 
 "Plugin 'lyokha/vim-xkbswitch'
 Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
+    let g:jupyter_mapkeys = 0
 
 Plug 'vimwiki/vimwiki'
 "=============== Markdown ==============={{{
@@ -758,6 +760,7 @@ endif
 " 原来是没有 l 选项的,TODO 这个 l 选项是干嘛的
 let g:gutentags_ctags_extra_args = ['--fields=+nliazS', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+" ctags识别很多元素，但未必全都记录，例如“函数声明”这一语法元素默认是不记录的，可以控制ctags记录的语法元素的种类。如下命令要求ctags记录c++文件中的函数声明和各种外部和前向声明
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " let g:gutentags_exclude_project_root = [ '/home/junyi/.local/share/nvim' ]
 " let g:gutentags_exclude_project_root = [ '/home/junyi/.vim' ]
@@ -780,7 +783,7 @@ nnoremap <leader>gss :Gdiffsplit<cr>
 "set completeopt=menu,menuone
 
 " 错误标记
- let g:ycm_log_level = 'info'
+ " let g:ycm_log_level = 'debug'
 " let g:ycm_error_symbol = '✗'  "set error or warning signs
 " let g:ycm_error_symbol = '⨉'  "set error or warning signs
 let g:ycm_error_symbol = "\ue009\ue009"  "set error or warning signs
@@ -823,6 +826,7 @@ let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
 let g:ycm_cache_omnifunc                                = 0  " 禁止缓存匹配项，每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语义补全
 let g:ycm_complete_in_comments                          = 1  "在注释输入中也能补全
+let g:ycm_always_populate_location_list = 1
 
 " let g:ycm_filetype_whitelist = {
 " 			\ "c":1,
@@ -840,19 +844,25 @@ let g:ycm_complete_in_comments                          = 1  "在注释输入中
 " 			\ }
 
 let g:ycm_filetype_blacklist = {
-			\ 'coc-explorer' : 1,
-			\ 'tagbar'       : 1,
-			\ 'vista'        : 1,
-			\ 'leaderf'      : 1,
-			\ 'fzf'          : 1,
-			\ 'gitcommit'    : 1,
-			\ 'markdown'     : 1,
-			\ 'vimwiki'      : 1,
-			\ 'text'         : 1,
-			\ }
+            \ 'notes': 1,
+            \ 'netrw': 1,
+            \ 'unite': 1,
+            \ 'pandoc': 1,
+            \ 'infolog': 1,
+            \ 'mail': 1,
+            \ 'coc-explorer' : 1,
+            \ 'tagbar'       : 1,
+            \ 'vista'        : 1,
+            \ 'leaderf'      : 1,
+            \ 'fzf'          : 1,
+            \ 'gitcommit'    : 1,
+            \ 'markdown'     : 1,
+            \ 'vimwiki'      : 1,
+            \ 'text'         : 1,
+            \ }
 
 let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,cuda': ['re!\w{3}'],
+			\ 'c,cpp,cuda': ['re!\w{4}'],
 			\ 'python': ['re!\w{2}'],
             \ 'java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
@@ -890,6 +900,18 @@ nnoremap <leader>gf :YcmCompleter GotoInclude<CR>
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gi :YcmCompleter GoToImplementation<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+let g:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-e', '
+			\       using LanguageServer;
+			\       using Pkg;
+			\       import StaticLint;
+			\       import SymbolServer;
+			\       env_path = dirname(Pkg.Types.Context().env.project_file);
+			\       
+			\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
+			\       server.runlinter = true;
+			\       run(server);
+\   ']
+
 
 let s:lsp = '/home/junyi/.vim/plugged/lsp-examples'
 let g:ycm_language_server = [
@@ -924,18 +946,7 @@ let g:ycm_language_server = [
 			\     'name': 'julia',
 			\     'filetypes': [ 'julia' ],
 			\     'project_root_files': [ 'Project.toml' ],
-			\	'cmdline': ['julia', '--startup-file=no', '--history-file=no', '-e', '
-			\       using LanguageServer;
-			\       using Pkg;
-			\       import StaticLint;
-			\       import SymbolServer;
-			\       env_path = dirname(Pkg.Types.Context().env.project_file);
-			\       debug = false;
-			\
-			\       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());
-			\       server.runlinter = true;
-			\       run(server);
-			\   ']
+			\	'cmdline': g:julia_cmdline
 			\  },
 			\ ]
 
@@ -980,9 +991,11 @@ let g:airline#extensions#ale#enabled = 1
 "hi! SpellCap gui=undercurl guisp=blue
 "hi! SpellRare gui=undercurl guisp=magenta
 
-"普通模式下，sp 前往上一个错误或警告，sn 前往下一个错误或警告
-nmap [e <Plug>(ale_previous_wrap)
-nmap ]e  <Plug>(ale_next_wrap)
+" 暂时没想到好办法使 YCM 的跳转到下一页错误 :ll 和 ale 的相容
+nmap [e :ll<cr>
+nmap ]e :ll<cr>
+au filetype python,matlab nmap <buffer> [e <Plug>(ale_previous_wrap)
+au filetype python,matlab nmap <buffer> ]e  <Plug>(ale_next_wrap)
 
 " c/c++ 的设置
 "let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
@@ -1163,9 +1176,9 @@ nmap <Leader>wp <Plug>VimwikiPrevLink
 
 "================= VimTex ==============================={{{
 " au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-au filetype tex let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+autocmd Filetype tex let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
-au filetype tex call vimtex#imaps#add_map({
+autocmd Filetype tex call vimtex#imaps#add_map({
   \ 'lhs' : '<CR>',
   \ 'rhs' : '\item ',
   \ 'leader' : '',
@@ -1354,9 +1367,40 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " let GtagsCscope_Quiet = 1
 
-nnoremap g<space> :Gtags<space>
-nnoremap ga<space> :Gtagsa<space>
 nnoremap <space>/<space> :cs find<space>
+    " Gtags 映射 {{{
+    " 查找C语言符号，即查找函数名、宏、枚举值等出现的地方 symbol
+	nmap g<space> :Gtags<space>
+
+	nmap ga<space> :Gtagsa<space>
+	nmap gr<space> :Gtags -r<space>
+	nmap gar<space> :Gtagsa -r<space>
+	nmap t<space> :tjump<space>
+    nmap g} :GtagsCursor<CR>
+
+    nmap gss :Gtags <C-R>=expand("<cword>")<CR>
+    " 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能 def
+    nmap gsd :Gtags -d <C-R>=expand("<cword>")<CR>
+    " 查找调用本函数的函数 ref
+    nmap gsr :Gtags -r <C-R>=expand("<cword>")<CR>
+    " 查找指定的字符串 string
+    nmap gst :Gtags -s <C-R>=expand("<cword>")<CR>
+    " 查找egrep模式，相当于egrep功能，但查找速度快多了
+    nmap gse :Gtags -e <C-R>=expand("<cword>")<CR>
+    " 查找并打开文件，类似vim的find功能
+    nmap gsf :Gtags -P <C-R>=expand("<cfile>")<CR>
+    " 查找包含本文件的文件 include
+    nmap gsi :Gtags -i ^<C-R>=expand("<cfile>")<CR>$
+	" 查找此符号被赋值的位置, a: arguments
+    nmap gsa :Gtags -a <C-R>=expand("<cword>")<CR>
+    " 自己来输入命令
+    nmap gs<Space> :Gtags find<Space>
+
+	" # 水平分屏
+	" :scs find f block_builder.cc
+	" " # 垂直分屏
+	" " :vert scs find f table_builder.cc
+	" }}}
 
 " 定义
 nnoremap <space>/d :cscope find g<space> 
@@ -1383,7 +1427,7 @@ nnoremap <space>t :tjump<space>
 " autocmd BufWritePost * call system("ctags -R")
 
 "=================== Gtags ===============================}}}
-"
+
 " ========================= tagbar ==================================={{{
 let g:tagbar_type_julia = {
     \ 'ctagstype' : 'julia',
@@ -1393,10 +1437,15 @@ let g:tagbar_type_julia = {
 " ========================= tagbar ===================================}}}
 
 " 注释显示斜体
-highlight Comment cterm=italic
-highlight Comment gui=italic
+" highlight Comment cterm=italic
+" highlight Comment gui=italic
 "
 " let g:indentLine_color_term="8"
 " hi clear Conceal
 " highlight Conceal ctermfg=darkgray
 " hi Conceal ctermbg=none
+" 高亮当前行号, 不高亮当前行
+" if has('nvim') == 0 && has('patch-8.1.2020')
+" 	set cursorlineopt=number
+" 	" set cursorlineopt=number cursorline
+" endif

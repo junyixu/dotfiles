@@ -16,19 +16,19 @@ nmap <buffer> <Leader>gt <Plug>VimwikiTabnewLink
 nmap <buffer> <Leader>vsp <Plug>VimwikiVSplitLink
 nmap <buffer> <Leader>sp <Plug>VimwikiSplitLink
 
-nnoremap <buffer> <C-F> :VimwikiSearch  
+" nnoremap <buffer> <C-F> :VimwikiSearch  
 nnoremap <buffer> <leader>n :lnext<cr>
 nnoremap <buffer> <leader>p :lprevious<cr>
 
 "vmap <F9> :call UltiSnips#SaveLastVisualSelection()<CR>gvs
 "imap <F9> <C-R>=UltiSnips#ExpandSnippet()<CR>
-"nnoremap <M-Up> :VimwikiDiaryPrevDay<cr>
-"nnoremap <M-Down> :VimwikiDiaryNextDay<cr>
+nnoremap <C-p> :VimwikiDiaryPrevDay<cr>
+nnoremap <C-n> :VimwikiDiaryNextDay<cr>
 "nnoremap <M-p> :VimwikiDiaryPrevDay<cr>
 "nnoremap <M-n> :VimwikiDiaryNextDay<cr>
 " nnoremap <leader>p <Plug>VimwikiDiaryPrevDay
 " nnoremap <leader>n <Plug>VimwikiDiaryNextDay
-nnoremap <buffer> <leader>p :lprevious<cr>
+" nnoremap <buffer> <leader>p :lprevious<cr>
 nnoremap <buffer> <F7> :highlight Conceal ctermfg=81<cr>
 
 " highlight Conceal clear

@@ -13,3 +13,6 @@ endfor
 for char in split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '\zs')
     exe printf("inoremap <expr> %s search('[.!?]\\_s\\+\\%%#', 'bcnW') ? '%s' : '%s'", char, tolower(char), char)
 endfor
+
+" 有了 tpope/vim-apathy 插件不需要了
+" setlocal  suffixesadd+=.md
