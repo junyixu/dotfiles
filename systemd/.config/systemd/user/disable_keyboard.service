@@ -1,9 +1,0 @@
-[Unit]
-Description=disable_keyboard Service
-After=network.target
-
-[Service]
-ExecStart=/home/junyi/.local/bin/disable_keyboard.sh
-
-[Install]
-WantedBy=default.target

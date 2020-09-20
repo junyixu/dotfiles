@@ -1,8 +1,0 @@
-[Unit]
-Description=delete_vim_undo_dir Service
-
-[Service]
-ExecStart=/bin/find /home/junyi/.cache/vim/undo -type f -mtime +90 -delete
-
-[Install]
-WantedBy=default.target
