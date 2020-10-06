@@ -7,8 +7,8 @@
 #
 
 if hash tesseract 2> /dev/null; then
-#    tesseract $1 stdout -l chi_sim -c preserve_interword_spaces=1 --oem 0 --psm 6 
-    tesseract $1 stdout 
+   tesseract $1 stdout -l chi_sim -c preserve_interword_spaces=1 --oem 0 --psm 6 
+    # tesseract $1 stdout 
 else
     echo "OCR not found"
 fi
