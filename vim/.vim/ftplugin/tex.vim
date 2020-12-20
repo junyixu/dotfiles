@@ -2,7 +2,7 @@
 " 小时物理百科
 noremap <silent><buffer> <leader>vh :! chromium http://wuli.wiki/online/%:r.html<cr>
 nnoremap <silent><buffer> <S-CR> :! chromium http://wuli.wiki/online/<cfile>.html<cr>
-
+inoremap <silent><buffer> <S-CR> \\<CR>
 map <localleader>l :VimtexCompile<CR>
 map <localleader>e :VimtexError<CR>
 map <localleader>s :VimtexStatus<CR>

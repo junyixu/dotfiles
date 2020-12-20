@@ -3,6 +3,7 @@ if &cp
 endif
 
 augroup filetypedetect
+  au BufNewFile,BufRead *.asm				setf masm
   au BufNewFile,BufRead frp?.ini				setf systemd
   au BufNewFile,BufRead hg-editor-*.txt			setf hgcommit
   au BufNewFile,BufRead *openvpn*/*.conf,*.ovpn		setf openvpn
@@ -22,7 +23,9 @@ augroup filetypedetect
   au BufRead		lilydjwg.is-programmer.com_edit*		setf html
   au BufNewFile,BufRead	*.mw,*wpTextbox*.txt,*wiki__text*.txt		setf wiki
   au BufRead		/tmp/segmentfault.com_*-input*	setf markdown
-  autocmd BufEnter localhost_lab_*.txt set filetype=markdown
+  " autocmd BufEnter localhost_lab_*.txt set filetype=markdown
+" http://localhost:8888/lab
+  autocmd BufEnter *localhost* set filetype=python
   " autocmd BufEnter localhost_lab_*.txt set filetype=python.sage
   autocmd BufEnter mail.google.com_mail-u*.txt set filetype=markdown
   autocmd BufEnter chaoli.club_index-php-*.txt set filetype=markdown

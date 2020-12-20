@@ -16,14 +16,18 @@ nmap <buffer> <Leader>gt <Plug>VimwikiTabnewLink
 nmap <buffer> <Leader>vsp <Plug>VimwikiVSplitLink
 nmap <buffer> <Leader>sp <Plug>VimwikiSplitLink
 
+" 没有-regex 选项时候，只有空格用加 `\` 括号不用加, CtrlSF 真奇怪
+nnoremap <buffer> <localleader>todo :CtrlSF \ [\ ]\ <CR>
+" nnoremap <buffer> <localleader>todo :CtrlSF -R -- [\*\-]\ \[\ \]\ <CR>
+
 " nnoremap <buffer> <C-F> :VimwikiSearch  
 nnoremap <buffer> <leader>n :lnext<cr>
 nnoremap <buffer> <leader>p :lprevious<cr>
 
 "vmap <F9> :call UltiSnips#SaveLastVisualSelection()<CR>gvs
 "imap <F9> <C-R>=UltiSnips#ExpandSnippet()<CR>
-nnoremap <C-p> :VimwikiDiaryPrevDay<cr>
-nnoremap <C-n> :VimwikiDiaryNextDay<cr>
+nnoremap <localleader>p :VimwikiDiaryPrevDay<cr>
+nnoremap <localleader>n :VimwikiDiaryNextDay<cr>
 "nnoremap <M-p> :VimwikiDiaryPrevDay<cr>
 "nnoremap <M-n> :VimwikiDiaryNextDay<cr>
 " nnoremap <leader>p <Plug>VimwikiDiaryPrevDay

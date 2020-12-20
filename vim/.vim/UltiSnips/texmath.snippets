@@ -59,11 +59,6 @@ snippet iff "iff" i
 \iff
 endsnippet
 
-context "math()"
-snippet ~ "tilde 弯弯 波浪线" Ai
-\tilde
-endsnippet
-
 # mk 表示 make Ketax
 snippet mk "Math" wA
 $${1}$`!p
@@ -292,12 +287,8 @@ snippet 'z "zeta" wA
 \zeta
 endsnippet
 
-# snippet sum "sum" w
-# \sum_{n=${1:0}}^{${3:\infty}} ${4:${VISUAL}} $0
-# endsnippet
-
 snippet sum "sum" w
-\sum_{${1:k=1}}^{${2:n}} ${3:a_{i}}
+\sum_{n=${1:0}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
 snippet taylor "taylor" w
@@ -334,20 +325,24 @@ endsnippet
 
 # 微分 
 context "math()" 
-snippet '(\s)d([A-CF-Zf-z])' "dx" rwA
-`!p snip.rv = match.group(1)`\dd `!p snip.rv = match.group(2)`
+snippet '\bd([A-CF-Zf-z](?:\t|\s)|\\\S+\s)' "dx" rwA
+\dd `!p snip.rv = match.group(1)`
 endsnippet
 
 # 几阶微分
 # TODO 我希望有\在前面的时候不展开，但这又不能和 \b 词界连用
 context "math()" 
-snippet '\b(\d)d([A-CF-Zf-z])' "d3x " rwA
+snippet '\b(\d)d([A-CF-Zf-z])' "dx " rwA
 \dd[`!p snip.rv = match.group(1)`]{`!p snip.rv = match.group(2)`}
 endsnippet
 
 priority 10
 context "math()" 
-snippet dd "d/dx" Aw
+snippet '(\s)dd ' "d/dx" rAw
+`!p snip.rv = match.group(1)`\dd 
+endsnippet
+
+snippet dd "d/dx" w
 \dd
 endsnippet
 
@@ -651,6 +646,11 @@ snippet DD "delta" iA
 \Delta 
 endsnippet
 
+context "math()"
+snippet ~ "tilde 弯弯 波浪线" i
+\tilde
+endsnippet
+
 
 snippet ~~ "~" iA
 \sim 
@@ -768,8 +768,13 @@ endsnippet
 # endsnippet
 
 priority 100
+# context "math()"
+# snippet "([a-zA-Z])bar" "bar" ri
+# \overline{`!p snip.rv=match.group(1)`}
+# endsnippet
+
 context "math()"
-snippet "([a-zA-Z])bar" "bar" riA
+snippet "(\S+)bar" "bar" ri
 \overline{`!p snip.rv=match.group(1)`}
 endsnippet
 

@@ -4,6 +4,7 @@ let $GTAGSLABEL = 'native-pygments'
 " 下面还有个 nvim light
 set background=dark
 
+
 "=========== begin vim-plug ============={{{
 if has("nvim")
     call plug#begin('~/.local/share/nvim/plugged')
@@ -11,56 +12,94 @@ if has("nvim")
     "{{{
         nnoremap <leader>i :set lines=20<cr>i
         set background=light
-        set laststatus=0
+		if exists('g:started_by_firenvim')
+		  set laststatus=0
+	  else
+		set background=dark
+		  Plug 'vim-airline/vim-airline', {'on': []}
+		  Plug 'vim-airline/vim-airline-themes'
+		  " {{{  airline
+		  " let g:airline_theme='deus'
+		  " let g:airline_theme='quantum'
+		  " let g:airline_theme='distinguished'
+		  " let g:airline_theme='gruvbox'
+		  " let g:airline_theme='onedark'
+		  " let g:airline_theme='base16'
+		  " let g:airline_theme='base16_classic'
+		  " let g:airline_theme='base16_nord'
+		  let g:airline_theme='base16_oceanicnext'
+		  let g:airline#extensions#tabline#enabled = 1
+		  let g:airline_powerline_fonts = 1
+		  let g:airline#extensions#vimtex#enabled = 1
+		  function LazyLoadAirline(timer) abort
+			  call plug#load('vim-airline')
+			  call plug#load('vim-devicons')
+			  execute 'AirlineInit'
+			  " execute 'AirlineToggle'
+		  endfunction
+		  " https://github.com/vim-airline/vim-airline/issues/2047
+		  " autocmd VimEnter * call timer_start(50, 'LazyLoadAirline')
+		  autocmd VimEnter * ++once call timer_start(50, 'LazyLoadAirline')
+		  "}}}
+	  endif
     "}}}
 else
     call plug#begin('~/.vim/plugged')
 
-" Plug 'vim-airline/vim-airline', {'on': [], 'frozen': 1}
 Plug 'vim-airline/vim-airline', {'on': []}
 Plug 'vim-airline/vim-airline-themes'
-Plug 'itchyny/vim-cursorword'
-" {{{
-    " let g:airline_theme='deus'
-    " let g:airline_theme='quantum'
-    " let g:airline_theme='distinguished'
-    " let g:airline_theme='gruvbox'
-    " let g:airline_theme='onedark'
-    " let g:airline_theme='base16'
-    " let g:airline_theme='base16_classic'
-    " let g:airline_theme='base16_nord'
-    let g:airline_theme='base16_oceanicnext'
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline_powerline_fonts = 1
+" {{{  airline
+" let g:airline_theme='deus'
+" let g:airline_theme='quantum'
+" let g:airline_theme='distinguished'
+" let g:airline_theme='gruvbox'
+" let g:airline_theme='onedark'
+" let g:airline_theme='base16'
+" let g:airline_theme='base16_classic'
+" let g:airline_theme='base16_nord'
+let g:airline_theme='base16_oceanicnext'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 function LazyLoadAirline(timer) abort
-    call plug#load('vim-airline')
-    call plug#load('vim-devicons')
-    execute 'AirlineInit'
-    " execute 'AirlineToggle'
+  call plug#load('vim-airline')
+  call plug#load('vim-devicons')
+  execute 'AirlineInit'
+  " execute 'AirlineToggle'
 endfunction
 " https://github.com/vim-airline/vim-airline/issues/2047
 " autocmd VimEnter * call timer_start(50, 'LazyLoadAirline')
 autocmd VimEnter * ++once call timer_start(50, 'LazyLoadAirline')
 "}}}
 
+endif
+
+Plug 'itchyny/vim-cursorword'
+Plug 'tyru/open-browser.vim'
+
+
 if version < 800
-	echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
+echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
 else
-    Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'yaml', 'javascript'] }
-    " Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'javascript'] }
 endif
+
+if version < 800
+echom '您的 vim 版本低于 8.2，你需要通过升级才能正常使用 skywind3000/quickui 等插件'
+else
+Plug 'skywind3000/vim-quickui'
 endif
-Plug 'chuling/ci_dark'
 
-" optional
-Plug 'luochen1990/rainbow'
+Plug 'gcmt/wildfire.vim'
+" --------------- wildfire config --------------{{{
+" This selects the next closest text object.
+map <leader><space> <Plug>(wildfire-fuel)
 
-" set fillchars+=vert:│
+" This selects the previous closest text object.
+" vmap <S-SPACE> <Plug>(wildfire-water)
 
-" let g:airline_theme = 'ci_dark'
-" let g:lightline = {
-"   \ 'colorscheme': 'ci_dark',
-" }
+" By default, Wildfire selects any of the text objects i', i", i), i], i}, ip and it. You can decide the ones to consider with the following option:
+let g:wildfire_objects = ["i'", 'i"', "i)", "i]", "i}", "ip", "it", "i,", "iv"]
+" --------------- wildfire --------------}}}
 
 "=========== textobj-user 全家桶 ============={{{
 " Plug 'jeetsukumaran/vim-pythonsense'
@@ -72,7 +111,6 @@ Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-fold'
 Plug 'kana/vim-textobj-lastpat'
 Plug 'kana/vim-textobj-line'
-" Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java'] }
 Plug 'sgur/vim-textobj-parameter'
 Plug 'julian/vim-textobj-variable-segment'
@@ -80,12 +118,16 @@ Plug 'coachshea/vim-textobj-markdown', {'for': 'markdown'}
 Plug 'bps/vim-textobj-python', {'for':'python'}
 "=========== end textobj-user 全家桶 =============}}}
 
-Plug 'petRUShka/vim-sage'
+Plug 'petRUShka/vim-sage', {'for': 'sage'}
 
 Plug 'majutsushi/tagbar'
 nmap <leader>tb :TagbarToggle<CR>
 
+" Plug 'tpope/vim-unimpaired'
+" impaired 受损的
+
 Plug 'dyng/ctrlsf.vim'
+""{{{
 highlight link ctrlsfFilename Underlined
 let g:ctrlsf_ackprg = 'rg'
 let g:ctrlsf_auto_focus = {'at': 'start'}
@@ -109,6 +151,7 @@ let g:ctrlsf_mapping = {
             \ 'chgmode': '<M-m>',
             \ 'stop': '<C-c>',
             \ }
+let g:ctrlsf_extra_root_markers = ['.root']
 nmap     <leader>/f <Plug>CtrlSFPrompt
 vmap     <leader>/f <Plug>CtrlSFVwordPath
 nmap     <leader>/n <Plug>CtrlSFCwordPath
@@ -118,17 +161,23 @@ nnoremap <leader>/v :CtrlSFToggle<CR>
 nnoremap <leader>/<space> :CtrlSF<space>
 nnoremap <leader>/r :CtrlSF<Space>-R<space>
 nnoremap <leader>// :CtrlSF
-let g:ctrlsf_confirm_save=0
-inoremap <silent> <leader>/v <Esc>:CtrlSFToggle<CR>
+let g:ctrlsf_confirm_save=1
+nnoremap <silent> <leader>/v <Esc>:CtrlSFToggle<CR>
 nmap <leader>* <Plug>CtrlSFCwordExec
 xmap <leader>* <Plug>CtrlSFVwordExec
 vmap <leader>* <Plug>CtrlSFVwordExec
+
+" 没有-regex 选项时候，只有空格用加 `\` 括号不用加, CtrlSF 真奇怪
+nnoremap <localleader>todo :CtrlSF TODO<CR>
+
 " cabbrev rg CtrlSF
 " cabbrev rgt CtrlSF -T
 " cabbrev rgr CtrlSF -R
+""}}}
 
 Plug 'jpalardy/vim-slime', {'on': ['<Plug>SlimeRegionSend',
             \ '<Plug>SlimeParagraphSend', '<Plug>SlimeConfig']}
+" {{{
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
 let g:slime_python_ipython = 0
 let g:slime_target = 'tmux'
@@ -142,11 +191,12 @@ let g:slime_no_mappings = 1
 autocmd filetype python,matlab xmap <silent><buffer> <S-CR> <Plug>SlimeRegionSend
 autocmd filetype python,matlab nmap <silent><buffer> <S-CR> <Plug>SlimeParagraphSend
 autocmd filetype python,matlab nmap <silent><buffer> <localleader>c <Plug>SlimeConfig
+" }}}
 
-Plug 'wellle/tmux-complete.vim'
-	" let g:tmuxcomplete#trigger = 'omnifunc'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 "===========  git ============={{{
@@ -201,6 +251,7 @@ omap q/ <Plug>(easymotion-tn)
 " different highlight method and have some other features )
 map  qn <Plug>(easymotion-next)
 map  qN <Plug>(easymotion-prev)
+map  qp <Plug>(easymotion-prev)
 
 " jk motions: line motions
 " map <Leader>j <Plug>(easymotion-j)
@@ -240,6 +291,7 @@ augroup autoformat_settings
   autocmd FileType go AutoFormatBuffer gofmt
   autocmd FileType gn AutoFormatBuffer gn
   autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType fortran AutoFormatBuffer fprettify
   autocmd FileType java AutoFormatBuffer google-java-format
   autocmd FileType python AutoFormatBuffer yapf
   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
@@ -248,7 +300,7 @@ augroup autoformat_settings
 augroup END
 "========================= format ================================}}}
 
-"===========  词典 ============={{{
+" ===========  词典 ============={{{
 " doc: apc
 " Plug 'skywind3000/vim-auto-popmenu' 
 	" enable this plugin for filetypes, '*' for all files.
@@ -271,6 +323,16 @@ augroup END
 Plug 'skywind3000/vim-dict'
 "===========  词典 =============}}}
 
+" ===========  tmux ============={{{
+Plug 'tmux-plugins/vim-tmux'
+if executable("tmux") && strlen($TMUX)
+    Plug 'tmux-plugins/vim-tmux-focus-events'
+    Plug 'roxma/vim-tmux-clipboard'
+
+    Plug 'wellle/tmux-complete.vim'
+        " let g:tmuxcomplete#trigger = 'omnifunc'
+endif
+" ===========  tmux =============}}}
 
 Plug 'tpope/vim-abolish'
 Plug 'skywind3000/asyncrun.vim'
@@ -294,85 +356,10 @@ Plug 'skywind3000/asyncrun.vim'
 
 
 
-if has('nvim')
-if 0
-	" Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-	Plug 'ncm2/ncm2'
-	Plug 'roxma/nvim-yarp'
-
-	" enable ncm2 for all buffers
-	autocmd BufEnter * call ncm2#enable_for_buffer()
-
-	" IMPORTANT: :help Ncm2PopupOpen for more information
-	set completeopt=noinsert,menuone,noselect
-
-	" NOTE: you need to install completion sources to get completions. Check
-	" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-	Plug 'ncm2/ncm2-bufword'
-	Plug 'ncm2/ncm2-path'
-	" julia
-	let g:default_julia_version = '1.0'
-
-	" language server
-	let g:LanguageClient_autoStart = 1
-	let g:LanguageClient_serverCommands = {
-	\   'julia': ['julia', '--startup-file=no', '--history-file=no', '-e', '
-	\       using LanguageServer;
-	\       using Pkg;
-	\       import StaticLint;
-	\       import SymbolServer;
-	\       env_path = dirname(Pkg.Types.Context().env.project_file);
-	\       debug = false;
-	\
-	\       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "");
-	\       server.runlinter = true;
-	\       run(server);
-	\   ']
-	\ }
-
-	nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-	nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-	nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
- " suppress the annoying 'match x of y', 'The only match' and 'Pattern not
-    " found' messages
-    " set shortmess+=c
-
-    " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-    inoremap <c-c> <ESC>
-
-    " When the <Enter> key is pressed while the popup menu is visible, it only
-    " hides the menu. Use this mapping to close the menu and also start a new
-    " line.
-    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-
-    " Use <TAB> to select the popup menu:
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-    " wrap existing omnifunc
-    " Note that omnifunc does not run in background and may probably block the
-    " editor. If you don't want to be blocked by omnifunc too often, you could
-    " add 180ms delay before the omni wrapper:
-    "  'on_complete': ['ncm2#on_complete#delay', 180,
-    "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-    au User Ncm2Plugin call ncm2#register_source({
-            \ 'name' : 'css',
-            \ 'priority': 9,
-            \ 'subscope_enable': 1,
-            \ 'scope': ['css','scss'],
-            \ 'mark': 'css',
-            \ 'word_pattern': '[\w\-]+',
-            \ 'complete_pattern': ':\s*',
-            \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-            \ })
-
-endif
-else
 	" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer', 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab', 'fortran']}
 	Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 	Plug 'ycm-core/lsp-examples'
 	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
-endif
 
 Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 
@@ -380,10 +367,10 @@ Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 " Plug 'dstein64/vim-startuptime'
 
 " ----------------- ctags and gtags ------------------{{{
-" Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda', 'julia', 'tex', 'python', 'cmake', 'go', 'matlab']}
+Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda', 'julia', 'tex', 'python', 'cmake', 'go', 'matlab']}
 " Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda']}
 " Plug 'skywind3000/gutentags_plus'
-Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab']}
+Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab', 'fortran']}
     "{{{
     autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
@@ -410,6 +397,9 @@ Plug 'liuchengxu/vista.vim'
 " ----------------- tags ------------------}}}
 
 Plug 'lilydjwg/fcitx.vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['markdown', 'vimwiki', 'tex']}
+" au FileType tex,vimwiki,markdown nmap <silent> w <Plug>(coc-ci-w)
+" au FileType tex,vimwiki,markdown nmap <silent> b <Plug>(coc-ci-b)
 
 " Plug 'xolox/vim-session'
 	" let g:session_autosave=0
@@ -418,6 +408,7 @@ Plug 'lilydjwg/fcitx.vim'
 
 " -----------------begin 美观 ------------------{{{
 " 缩进插件
+" Plug 'Yggdroot/indentLine', {'for': ['python', 'fortran']}
 Plug 'Yggdroot/indentLine', {'for': ['python']}
     "{{{
     nnoremap <leader>tt :Vista!!<CR>
@@ -448,12 +439,13 @@ Plug 'mhinz/vim-startify'
     " noremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " -----------------end 美观 ------------------}}}
-
-Plug 'farmergreg/vim-lastplace'  "打开 vim 到上次编辑的位置
+" 打开 vim 到上次编辑的位置
+Plug 'farmergreg/vim-lastplace'  
 
 Plug 'tpope/vim-surround'
 
-Plug 'Raimondi/delimitMate'  " 自动补全括号
+  " 自动补全括号
+Plug 'Raimondi/delimitMate'
     "{{{
     nnoremap <leader>tt :Vista!!<CR>
 	" For Python docstring.
@@ -464,10 +456,13 @@ Plug 'Raimondi/delimitMate'  " 自动补全括号
     "}}}
 
 Plug 'luochen1990/rainbow', {'on': 'RainbowToggle'}
-Plug 'tpope/vim-commentary' " 注释插件
+
+" 注释插件
+Plug 'tpope/vim-commentary' 
     "{{{
     nnoremap <leader>tt :Vista!!<CR>
     autocmd FileType apache setlocal commentstring=#\ %s
+    autocmd FileType nginx setlocal commentstring=#\ %s
     autocmd FileType matlab setlocal commentstring=%\ %s
     autocmd FileType systemd setlocal commentstring=#\ %s
     autocmd FileType dosini setlocal commentstring=#\ %s
@@ -476,13 +471,21 @@ Plug 'tpope/vim-commentary' " 注释插件
     "}}}
 
 
+
 " 匹配增强
-" Plug 'andymass/vim-matchup', { 'for': ['julia', 'python', 'cmake', 'matlab', 'sh', 'vim', 'fortran']}
 Plug 'andymass/vim-matchup'
 
 " matlab
-Plug 'yinflying/matlab.vim', {'for': 'matlab'}
-Plug 'yinflying/matlab-screen', {'for': 'matlab'}
+" Plug 'yinflying/matlab.vim', {'for': 'matlab'}
+" Plug 'yinflying/matlab-screen', {'for': 'matlab'}
+
+function! DoRemote(arg)
+	  UpdateRemotePlugins
+  endfunction
+
+Plug 'daeyun/vim-matlab', { 'do': function('DoRemote'), 'for': 'matlab' }
+	let g:matlab_server_launcher = 'tmux' "launch the server in a tmux split
+	let g:matlab_auto_mappings=0
 
 " vim 中文文档
 Plug 'yianwillis/vimcdoc'
@@ -507,32 +510,10 @@ Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
 "================== begin colorscheme ======================{{{
 Plug 'morhetz/gruvbox' "colorscheme
-Plug 'chriskempson/base16-vim'
+
 Plug 'joshdick/onedark.vim' "colorscheme
 
-" Plug 'kevinhwang91/vim-one'
-" let g:one_termcolors = 0
-" let g:one_allow_italics = 1
 
-" augroup ColorTheme
-"     autocmd!
-"     autocmd ColorScheme * call s:color_scheme()
-" augroup end
-
-" function s:color_scheme() abort
-"     highlight! link TermCursor Cursor
-"     if g:colors_name ==# 'one'
-"         highlight CurrentWord cterm=bold ctermbg=238 gui=bold guibg=#314365
-"     endif
-" endfunction
-"
-" Plug 'tyrannicaltoucan/vim-quantum'
-" Plug 'ayu-theme/ayu-vim'
-"Plug 'rakr/vim-one' "colorscheme
-"================== end colorscheme ======================}}}
-
-
-"Plugin 'lyokha/vim-xkbswitch'
 Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
     let g:jupyter_mapkeys = 0
 
@@ -540,9 +521,9 @@ Plug 'vimwiki/vimwiki'
 "=============== Markdown ==============={{{
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
 Plug 'hotoo/pangu.vim', {'for': 'markdown'}
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 	let g:vim_markdown_folding_disabled = 1
-	let g:tex_conceal = ""
+	" let g:tex_conceal = ""
 	let g:vim_markdown_math = 1
 	" 代码块不 conceal
 	let g:vim_markdown_conceal_code_blocks = 0
@@ -559,9 +540,31 @@ Plug 'ferrine/md-img-paste.vim', {'for': 'markdown'}
 Plug 'lervag/vimtex', {'for': 'tex'}
 " Plug 'lervag/vimtex'
 	let g:vimtex_fold_enabled=1
-Plug 'PietroPate/vim-tex-conceal', {'for': 'tex'}
-	set conceallevel=2
-	let g:tex_conceal="abdgm"
+    let  g:vimtex_fold_types = {
+           \ 'preamble' : {'enabled' : 1},
+           \ 'envs' : {
+		   \	'whitelist' : ['figure', 'table'],
+		   \},
+		   \ 'sections' : {
+		   \   'parse_levels' : 0,
+		   \   'sections' : [      
+		   \     'part',
+		   \     'chapter',
+		   \     'section',
+		   \     'subsection',
+		   \     'subsubsection',
+		   \   ],
+		   \   'parts' : [     
+		   \     'appendix',
+		   \     'frontmatter',
+		   \     'mainmatter',
+		   \     'backmatter',
+		   \   ],
+		   \ },
+		   \}
+" Plug 'PietroPate/vim-tex-conceal', {'for': 'tex'}
+	set conceallevel=0
+	" let g:tex_conceal="abdgm"
 "=============== end LaTeX ===============}}}
 
 " ============== 补全 ==============={{{
@@ -574,8 +577,7 @@ if has("nvim") || version < 802
 endif
 
 Plug 'Linfee/ultisnips-zh-doc'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 "============== =====================}}}
 
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -617,6 +619,7 @@ vmap <silent> <c-x> <Plug>CyclePrev
 "----------------------------------------------------------------------
 let g:cycle_default_groups = [
 			\   [['true', 'false']],
+			\   [['dark', 'light']],
 			\   [['yes', 'no']],
 			\   [['error', 'warning', 'info', 'debug']],
 			\   [['on', 'off']],
@@ -741,7 +744,7 @@ let g:gutentags_project_root = ['.root', '.project']
 let g:gitgutter_max_signs=1200
 
 " change focus to quickfix window after search (optional).
-let g:gutentags_plus_switch = 1
+let g:gutentags_plus_switch = 0
 
 " 同时开启 ctags 和 gtags 支持：
 let g:gutentags_modules = []
@@ -752,21 +755,21 @@ if executable('gtags-cscope') && executable('gtags')
 	let g:gutentags_modules += ['gtags_cscope']
 endif
 
-" 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-" 通过 setlocal tags+=... 添加到局部 tags 搜索列表中。
-" let g:gutentags_cache_dir = expand('~/.cache/tags')
+" 配置 ctags 的参数，
+" extra=+q 表示强制要求ctags对同一个语法元素 再记一行(如果某个语法元素是类的一个成员，ctags默认会给其记录一行)，这样可以保证在Vim中多个同名函数可以通过路径不同来区分
+" 老的 Exuberant-ctags 不能有 --extra=+q，注意
 
-" 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
-" 原来是没有 l 选项的,TODO 这个 l 选项是干嘛的
-let g:gutentags_ctags_extra_args = ['--fields=+nliazS', '--extras=+q']
+" notes:
+" l        局部变量(local variables)，默认不提取
+" S 表示如果是函数，则生成的tag文件要标识函数的原型(Signature)
+
+" let g:gutentags_ctags_extra_args = ['--fields=+nliazS', '--extras=+q']
+let g:gutentags_ctags_extra_args = ['--fields=+niaz', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 " ctags识别很多元素，但未必全都记录，例如“函数声明”这一语法元素默认是不记录的，可以控制ctags记录的语法元素的种类。如下命令要求ctags记录c++文件中的函数声明和各种外部和前向声明
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " let g:gutentags_exclude_project_root = [ '/home/junyi/.local/share/nvim' ]
 " let g:gutentags_exclude_project_root = [ '/home/junyi/.vim' ]
-
-" windows 下需要, 否则会有路径名等问题，垃圾 windows
-" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为, 由于我一个 vim
 " 只打开一个工程，用 tmux 和 vim 结合的方式，所以这里不需要了.
@@ -827,7 +830,7 @@ let g:ycm_cache_omnifunc                                = 0  " 禁止缓存匹�
 let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语义补全
 let g:ycm_complete_in_comments                          = 1  "在注释输入中也能补全
 let g:ycm_always_populate_location_list = 1
-
+let g:ycm_python_sys_path = ['/usr/lib/python3.8/site-packages/numpy']
 " let g:ycm_filetype_whitelist = {
 " 			\ "c":1,
 " 			\ "cpp":1,
@@ -1023,17 +1026,14 @@ let g:ale_linters = {
             \   '*': ['remove_trailing_lines', 'trim_whitespace'],
             \   'asm': ['gcc'],
             \   'nasm': ['nasm'],
-            \   'c': ['cppcheck', 'clang'],
-            \   'cpp': ['cppcheck', 'clang++'],
             \   'cmake': ['cmakeformat', 'cmakelint'],
             \   'python': ['pyflakes'],
-            \   'cuda': ['nvcc'],
             \   'go': ['gofmt'],
             \   'java': ['javac'],
             \   'javascript': ['eslint'],
+            \   'matlab': ['mlint'],
             \   'shell': ['shell -n flag'],
             \   'yaml': ['prettier'],
-            \   'matlab': ['mlint'],
             \   'tex': ['alex', 'chktex', 'lacheck'],
             \   'sh': ['language_server', 'shell', 'shellcheck'],
             \   'bash': ['language_server', 'shell', 'shellcheck'],
@@ -1174,7 +1174,7 @@ nmap <Leader>wp <Plug>VimwikiPrevLink
 
 "=================== end vimwiki ===============================}}}
 
-"================= VimTex ==============================={{{
+"================= VimTeX ==============================={{{
 " au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 autocmd Filetype tex let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
@@ -1219,7 +1219,6 @@ endif
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=1
 
-autocmd filetype tex inoremap <S-CR> \\<CR>
 " 待解决
 "call vimtex#imaps#add_map({
 "  \ 'lhs' : '<S-CR>',
@@ -1234,7 +1233,6 @@ let g:vimtex_compiler_latexmk = {'callback' : 0}
 "=================== fzf ==============================={{{
 nnoremap <leader>ft :BTags<space>
 nnoremap <leader>fT :Tags<space>
-nnoremap <leader>fr :Rg<space>
 nnoremap <leader>f* :<C-U><C-R>=printf("Rg %s ", expand("<cword>"))<CR>
 nnoremap <silent> <leader>fh :History<cr>
 nnoremap <silent> <leader>f: :History:<cr>
@@ -1258,9 +1256,16 @@ function s:gtags_search(line)
      let l:file = split(a:line)[2]
      execute 'edit +'.l:line l:file
 endfunction
- nnoremap <silent> <Leader>fg :call fzf#run(fzf#wrap({'source':'global -x .', 'sink':function('<sid>gtags_search'),
+ nnoremap <silent> <Leader>fr :call fzf#run(fzf#wrap({'source':'global -x .', 'sink':function('<sid>gtags_search'),
              \ 'options': ['-m', '-d', '\t', '--with-nth', '1,2', '-n', '1', '--prompt', 'Tags> ']}))<CR>
 
+" command -nargs=1 FZFfindref call fzf#run(fzf#wrap({'source':'global ' . shellescape(<args>) . 'sink':function('<sid>gtags_search'), 
+" 			\ 'options': ['-m', '-d', '\t', '--with-nth', '1,2', '-n', '1', '--prompt', 'Tags> ']}))
+
+" command! -bang -nargs=* FindRef
+"   \ call fzf#vim#grep(
+"   \   'global '.shellescape(<q-args>), 0,
+"   \ 'options': ['-m', '-d', '\t', '--with-nth', '1,2', '-n', '1', '--prompt', 'Tags> ']})
 
 " An action can be a reference to a function that processes selected lines
 function! s:build_quickfix_list(lines)
@@ -1278,7 +1283,7 @@ let g:fzf_action = {
 " Default fzf layout
 " - down / up / left / right
 	" echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 fzf 的 pop windows'
-if version < 802
+if version < 802 && !has('nvim')
 	let g:fzf_layout = { 'down': '~40%' }
 else
     let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
@@ -1334,25 +1339,25 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 
     " 映射 {{{
     " 查找C语言符号，即查找函数名、宏、枚举值等出现的地方 symbol
-    nmap css :cscope find s <C-R>=expand("<cword>")<CR>
-    " 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能 def
-    nmap csd :cscope find g <C-R>=expand("<cword>")<CR>
-    " 查找本函数调用的函数 ref
-    nmap csR :cscope find d <C-R>=expand("<cword>")<CR>
-    " 查找调用本函数的函数 ref
-    nmap csr :cscope find c <C-R>=expand("<cword>")<CR>
-    " 查找指定的字符串 string
-    nmap cst :cscope find t <C-R>=expand("<cword>")<CR>
-    " 查找egrep模式，相当于egrep功能，但查找速度快多了
-    nmap cse :cscope find e <C-R>=expand("<cword>")<CR>
-    " 查找并打开文件，类似vim的find功能
-    nmap csf :cscope find f <C-R>=expand("<cfile>")<CR>
-    " 查找包含本文件的文件 include
-    nmap csi :cscope find i ^<C-R>=expand("<cfile>")<CR>$
-	" 查找此符号被赋值的位置, a: arguments
-    nmap csa :cscope find a <C-R>=expand("<cword>")<CR>
-    " 自己来输入命令
-    nmap cs<Space> :cscope find<Space>
+    " nmap css :cscope find s <C-R>=expand("<cword>")<CR>
+    " " 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能 def
+    " nmap csd :cscope find g <C-R>=expand("<cword>")<CR>
+    " " 查找本函数调用的函数 ref
+    " nmap csR :cscope find d <C-R>=expand("<cword>")<CR>
+    " " 查找调用本函数的函数 ref
+    " nmap csr :cscope find c <C-R>=expand("<cword>")<CR>
+    " " 查找指定的字符串 string
+    " nmap cst :cscope find t <C-R>=expand("<cword>")<CR>
+    " " 查找egrep模式，相当于egrep功能，但查找速度快多了
+    " nmap cse :cscope find e <C-R>=expand("<cword>")<CR>
+    " " 查找并打开文件，类似vim的find功能
+    " nmap csf :cscope find f <C-R>=expand("<cfile>")<CR>
+    " " 查找包含本文件的文件 include
+    " nmap csi :cscope find i ^<C-R>=expand("<cfile>")<CR>$
+	" " 查找此符号被赋值的位置, a: arguments
+    " nmap csa :cscope find a <C-R>=expand("<cword>")<CR>
+    " " 自己来输入命令
+    " nmap cs<Space> :cscope find<Space>
 
 	" # 水平分屏
 	" :scs find f block_builder.cc
@@ -1420,9 +1425,6 @@ nnoremap <space>/a :cscope find a<space>
 
 nnoremap <space>/* :<C-U><C-R>=printf("cscope find g %s ", expand("<cword>"))<CR>
 
-nnoremap <space>f :tags<space>
-nnoremap <space>t :tjump<space>
-
 " 在写入的时候自动刷新 ctags
 " autocmd BufWritePost * call system("ctags -R")
 
@@ -1435,6 +1437,7 @@ let g:tagbar_type_julia = {
         \ 't:struct', 'f:function', 'm:macro', 'c:const']
     \ }
 " ========================= tagbar ===================================}}}
+
 
 " 注释显示斜体
 " highlight Comment cterm=italic

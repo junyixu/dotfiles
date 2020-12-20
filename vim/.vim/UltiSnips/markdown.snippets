@@ -60,14 +60,26 @@ snippet math "my blog | Jekyll post math environment" b
 ${0}
 endsnippet
 
-snippet ** "bold" iA
-**${1:${VISUAL}}**$0
+# snippet "\w* " "bold" iAr
+# **${1:${VISUAL}}**$0
+# endsnippet
+
+# snippet * "italics" 
+# *${1:${VISUAL}}*$0
+# endsnippet
+
+
+snippet blue "blue font"
+<span style="color:blue">$1</span>$0
 endsnippet
 
-snippet * "italics" 
-*${1:${VISUAL}}*$0
+snippet red "red font"
+<span style="color:red">$1</span>$0
 endsnippet
 
+snippet pred "red paragraph"
+<p style="color:red">$1</p>$0
+endsnippet
 
 snippet beamer "beamer" b
 ---
@@ -84,17 +96,19 @@ theme:
 
 endsnippet
 
+
+
 snippet fig "Image"
 ![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
 endsnippet
 
 # 使用两个 `` 展开 代码块
-snippet '\`\`' "Codeblock" brA
-\`\`\`
-${1:${VISUAL}}
-\`\`\`
-$0
-endsnippet
+# snippet '\`\`' "Codeblock" brA
+# \`\`\`
+# ${1:${VISUAL}}
+# \`\`\`
+# $0
+# endsnippet
 # for chaoli.club 超理论坛
 snippet md "markdown" bA
 [markdown]
@@ -113,7 +127,7 @@ priority 1000
 snippet dm "Math" wA
 $$
 	${1:${VISUAL}}
-.$$
+$$
 $0
 endsnippet
 

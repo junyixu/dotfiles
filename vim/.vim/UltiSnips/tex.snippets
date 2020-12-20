@@ -3,6 +3,13 @@
 #\item \textbf{定义类}：definition，conjecture，example；
 #\item \textbf{备注类}：remark，note，case；
 #\item \textbf{证明类}：proof。
+snippet sec "Section"
+\section{${1:${VISUAL:section name}}}%
+endsnippet
+
+snippet sub "Subsection"
+\subsection{${1:${VISUAL:subsection name}}}%
+endsnippet
 
 snippet "lab(el?)" "label" ir
 \label{$1}
@@ -24,7 +31,7 @@ snippet ref "ref" w
 \ref{${1:reference}} $0
 endsnippet
 
-snippet eqr "eqref" iA
+snippet eqr "eqref" i
 \eqref{eq:${1:equation}} $0
 endsnippet
 
@@ -45,11 +52,20 @@ snippet ct "colortext"
 {\color{${1:red}}${2:text}} $0
 endsnippet
 
+# 注解
 snippet remark "remark" bA
 \begin{remark}
 	$0
 \end{remark}
 endsnippet
+
+# 注解
+snippet '[Rr][Kk]' "remark" br
+\begin{remark}
+	$0
+\end{remark}
+endsnippet
+
 snippet note "note" b
 \begin{note}
 	$0
@@ -62,12 +78,34 @@ snippet eg "example" b
 \end{example}
 endsnippet
 
-snippet '[Tt]h' "theorem" br
+# 定理
+snippet '[Tt]hm?' "theorem 定理" br
 \begin{theorem}[$1]
 	$2
 \end{theorem}
 $0
 endsnippet
+
+snippet prop "proposition 命题" b
+\begin{proposition}[$1]
+	$2
+\end{proposition}
+$0
+endsnippet
+
+snippet Prop "proposition 命题" bA
+\begin{proposition}[$1]
+	$2
+\end{proposition}
+$0
+endsnippet
+
+# snippet Th "theorem" b
+# \begin{theorem}[$1]
+# 	$2
+# \end{theorem}
+# $0
+# endsnippet
 
 snippet lm "lemma" b
 \begin{lemma}[$1]
@@ -88,6 +126,18 @@ snippet def "definition" b
 	$2
 \end{definition}
 $0
+endsnippet
+
+snippet pf "proof" b
+\begin{proof}
+	$0
+\end{proof}
+endsnippet
+
+snippet Pf "proof" bA
+\begin{proof}
+	$0
+\end{proof}
 endsnippet
 
 snippet proof "proof" b
