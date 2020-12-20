@@ -1,3 +1,14 @@
+GPATH
+GTAGS
+GRTAGS
+tags
+.ctags
+
+.o
+
+.root
+.project
+
 build
 .repoproject/
 *.swp

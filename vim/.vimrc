@@ -51,6 +51,7 @@ set autoindent "自动缩进"
 
 set noautochdir							"在打开多个文件的时候不要自动切换目录
 
+" set previewpopup=height:10
 set wildmenu
 set wildmode=longest:list,full
 "命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
@@ -80,6 +81,7 @@ nnoremap <leader>z @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "autocmd BufReadPost *.md setlocal spell spelllang=en_us,cjk		"忽略中文对英文进行拼写检查
 " 语法检查 更改拼写错误
 inoremap <M-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+
 "set spell spelllang=en_us				"打开英语单词的拼写检查
 "set 和 setlocal 的区别：set 可以对新开的窗口和标签生效？
 "---------------------------------------------------------"
@@ -170,11 +172,14 @@ augroup END
 " 如果是 neovim 只要把 .vimrc 改成 init.vim 就可以了
 
 "---------------------Visual---------------------------------"
-" set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
+set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
 " " Enable true color 启用终端24位色
+" if exists('+termguicolors') && $SSH_CONNECTION == ''
 " if exists('+termguicolors')
   set termguicolors
   set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
+" else
+	" set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
 " endif
 " if &term =~# '^screen'
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

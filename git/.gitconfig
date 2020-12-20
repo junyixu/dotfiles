@@ -22,3 +22,22 @@
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	type = cat-file -t
 	dump = cat-file -
+[pull]
+	ff = only
+
+[diff]
+    tool = vim
+    ignoreSubmodules = dirty
+
+[merge]
+    tool = vim
+
+[mergetool]
+    keepBackup = false
+
+[difftool "vim"]
+    cmd = vim -d $LOCAL $REMOTE
+
+[mergetool "vim"]
+    cmd = vim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+

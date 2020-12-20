@@ -17,6 +17,9 @@ web
 # or
 --glob
 !git/*
+# !latex.out/*
+# !tags
+# !G*
 
 
 # Set the colors.

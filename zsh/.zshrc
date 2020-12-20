@@ -1,3 +1,4 @@
+# export PATH="$PATH:/bin"
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
 if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
     SESSION_NAME="test"
@@ -22,6 +23,7 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
+# export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 #export INCLUDE=$HOME/.local/mpich/include:$INCLUDE
 #export INCLUDE=$HOME/.local/mpich/include
 export GPG_TTY=$TTY
@@ -98,18 +100,19 @@ plugins=(
 	extract
 	z
 	colored-man-pages
-    systemd
-    git-auto-fetch
+	systemd
+	git-auto-fetch
 	zsh-autosuggestions
 	fast-syntax-highlighting
-    mosh
-    gcloud
-    fd
-    ripgrep
-    rsync
-    alias-finder
+	mosh
+	gcloud
+	fd
+	ripgrep
+	rsync
+	alias-finder
 	git
 	fzf-tab
+	# dotbare
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -144,76 +147,127 @@ export LANG=zh_CN.UTF-8
 #
 # Example aliases
 alias zshcfg="$EDITOR ~/.zshrc"
+alias tmuxcfg="$EDITOR ~/.tmux.conf"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cpuf='cat /proc/cpuinfo | grep MHz | cut -f2 -d: | uniq -'
 
-# alias matlab='screen -S matlab -m sh -c "/opt/MATLAB/R2018a/bin/matlab -nodesktop -nosplash"'
-
-# for GNOME's bug
-alias matlab='unset GTK_MODULES && matlab'
 # alias okular='XDG_CONFIG_HOME=/home/junyi/okularconfig okular'
 # alias inkscape='XDG_CONFIG_HOME=/home/junyi/ankiconfig inkscape'
-alias nvrun="__NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia"
+
+# matlab
+# for GNOME's bug
+alias matlab='unset GTK_MODULES && matlab'
+# alias matlab='screen -S matlab -m sh -c "/opt/MATLAB/R2018a/bin/matlab -nodesktop -nosplash"'
 alias mrun="matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -r"
-alias ctl='systemctl'
-alias weather='curl wttr.in'
+
 alias clc='clear'
-alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
+
+alias Syu='sudo pacman -Syu'
+alias S='sudo pacman -S'
+alias Si='pacman -Si'
+alias Ss='pacman -Ss'
+alias Qi='pacman -Qi'
+alias Ql='pacman -Ql'
+alias Qs='pacman -Qs'
+alias Qo='pacman -Qo'
+alias F='pacman -F'
+
+# 查询 ip
 alias myip='curl https://ip.cn'
-alias proxyip='proxychains4 -q curl https://ip.cn'
+alias proxyip='proxychains -q curl https://ip.cn'
+
+alias cpuf='cat /proc/cpuinfo | grep MHz | cut -f2 -d: | uniq -'
 alias psmem="ps axch -o cmd:15,%mem --sort=-%mem | head"
 alias pscpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
-alias wget="proxychains -q wget --quiet --show-progress"
+
+alias weather='curl wttr.in'
+alias wget="wget --quiet --show-progress"
+# youtube-dl and you-get
 alias yd='youtube-dl --write-auto-sub --sub-lang en'
 alias yden='youtube-dl --write-sub --sub-lang en'
-# alias j='z'
 alias ydcn='youtube-dl --write-sub --sub-lang zh-CN'
-alias yg='you-get'
-alias tmuxcfg='$EDITOR ~/.tmux.conf'
-alias todo='$EDITOR ~/Notes/todolist.wiki'
-alias lacate='lacate --ignore-case'
-alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex makefile.md'
+
 alias mkcd='foo(){ mkdir -p "$1"; cd "$1"  }; foo '
-alias sagenotes='cd /home/junyi/Desktop/learning/learning_python3/sage_files && jupyter lab'
-alias svi='sudo vim'
-alias sys='sudo systemctl'
-alias sus='systemctl --user'
 alias u='ffsend upload --copy'
 
-# 判断是否有 lsd， hash 在大部分系统下等价于 which
-if hash lsd 2> /dev/null; then
-	alias ls='lsd'
-	alias l='ls -l'
-	alias la='ls -a'
-	alias lla='ls -la'
-	alias lt='ls --tree'
-fi
+alias sagenotes='cd /home/junyi/Desktop/learning/learning_python3/sage_files && jupyter lab --no-browser'
+
+alias ctl='systemctl'
+alias sys='sudo systemctl'
+alias user='systemctl --user'
 
 alias start="sudo systemctl start"
 alias stop="sudo systemctl stop"
 alias status="systemctl status"
-alias restart="sudo systemctl restart"
-alias gtar="tar -Ipigz czfv"
-alias btar="tar -Ilbzip2 cjfv"
-alias 7tar="7z a -mmt"
-# alias la='exa -a'
-# alias ll='exa -l'
-alias cat='bat'
-alias e='$EDITOR'
+
+alias reboot='systemctl reboot'
+alias poweroff='systemctl poweroff'
+alias shutdown='systemctl shutdown'
+
+alias open='xdg-open'
+alias o='xdg-open'
+alias screenshot='flameshot gui -r'
+
 alias vi='$EDITOR'
 alias nvi='nvim'
+alias wiki='vim -c "cd %:h" ~/Notes/index.md'
+alias diary='vim -c "cd %:h" ~/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
+
+alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex makefile.md'
+
+alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
+alias todo='$EDITOR ~/Notes/todolist.md'
+
+alias svi='sudo -E vim'
+# 打开到 上一次 打开的地方
+alias lvi='vim -c "normal '\''0"'
+# 打开 jupyter qtconsole
+alias jvi="vim -c JupyterConnect"
+# alias jvi="jupyter qtconsole& ; vim -c JupyterConnect"
+
+# Show open ports
+alias ports='netstat -tulanp'
+alias ssh='ssh -Y'
+
+# 判断是否有 lsd， hash 在大部分系统下等价于 which
+if hash lsd 2> /dev/null; then
+	alias ls='lsd'
+	alias lt='ls --tree'
+fi
+
+# note
+# find -name *.java -print0 | xargs -0 p4 add
+# 它的工作原理是，find 命令在目录树下找到所有的以 ".java" 结尾的文件，把它们用NULL字符隔开做成一个字符串，然后交给 xargs。
+#
+# 比如我要删除所有 *.java
+# find -name *.java -print0 | xargs -0 rm
+
+
+# tar flag 打包并压缩
+# gtar 包.tar.gz  打包对象1 打包对象2 ...
+alias gtar="tar -Ipigz czvf"
+# btar 包.tar.bz2  打包对象1 打包对象2 ...
+# alias btar="tar -Ilbzip2 cjvf"
+alias btar="tar cjvf"
+# ztar 包.tar.zst  打包对象1 打包对象2 ...
+# --no-same-owner 解压时不保留用户信息
+alias ztar='tar -I zstd -cvf'
+alias unztar='tar -I zstd -xvf'
+alias 7tar="7z a -mmt"
+
+alias copy='xclip -selection clipboard -in'
 
 #alias rsync='myrsync.sh'
+alias vicmake='$EDITOR CMakeLists.txt'
 alias vimcmake='$EDITOR CMakeLists.txt'
-(( $+commands[you-get] )) && alias you-getp="you-get -p baka-mplayer"
+
+(( $+commands[you-get] )) && alias you-getp="you-get -p vlc"
 #alias cat='bat'
 alias turbo='sudo sh -c "echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
 alias no_turbo='sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
 alias top='htop'
 alias anki='XDG_CONFIG_HOME=/home/junyi/ankiconfig anki'
-alias sudo='sudo -E'
+# alias sudo='sudo -E'
 # alias pacman='powerpill'
-
 
 alias -s php=vim
 alias -s rb=vim
@@ -280,9 +334,13 @@ r() {
 
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "[[ $(file --mime {}) =~ binary ]] & echo {} is a binary file || (bat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview  "bat --style=numbers --color=always {} | head -33" '
-# export FZF_DEFAULT_OPTS='--layout=reverse --border --preview  "bat --style=numbers --color=always {} | head -33" '
+# export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --preview  "bat --style=numbers --color=always --line-range :500 {}" '
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline'
+# export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'
 export FZF_DEFAULT_OPTS='--layout=reverse --info=inline'
+# export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_ALT_C_COMMAND='fd --type d . --color=always'
 # export FZF_DEFAULT_OPTS='--height 40% --border'
 
 # vim 用 xargs 需要用 -o 选项 详情见
@@ -290,9 +348,31 @@ export FZF_DEFAULT_OPTS='--layout=reverse --info=inline'
 se() { du -a ~/bin/* ~/.config/* | awk '{ print $2 }'  | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
 etc() { du -a /etc/* | awk '{ print $2 }'  | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
 # system() { du -a ~/.config/systemd/user/* /etc/systemd/* /usr/lib/systemd/* | awk '{ print $2 }'  | fzf | xargs -ro $EDITOR; }
-sd() { du -a ~/.config/systemd/user/* /etc/systemd/* /usr/lib/systemd/* | awk '{ print $2 }'  | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
+# vim 用 xargs 必须要有 -o, 这是 vim 的 bug
+sd() { 
+	__sd_filename=$(find -H ~/.config/systemd /etc/systemd /usr/lib/systemd -type f \(  -name '*.timer' -o -name '*.service' \) | fzf --preview 'bat --style=numbers --color=always {} | head -33')
+	# if [[ $__sd_filename == $HOME* ]]; then  # 使用 $HOME 通配符, [[ ]] 里面可以使用字符串比较的高级特性
+	#    $EDITOR $__sd_filename
+	# else
+	# 	sudo -E $EDITOR $__sd_filename
+    # fi
+	[[ $__sd_filename != "" ]] &&	 ([[ $__sd_filename == $HOME* ]] && $EDITOR $__sd_filename || sudo -E $EDITOR $__sd_filename)  # 使用 $HOME 通配符, [[ ]] 里面可以使用字符串比较的高级特性
+    # __sd_filename 一旦设置，出了函数也还在，需要用 unset 消除
+	unset __sd_filename
+}
+
+# 更改 v2ray 配置
+v2ray() { 
+	cd /etc/v2ray
+	ls ./* | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro sudo -E $EDITOR; 
+}
+
+vimrc() { find -H ~/.vim -type d \( -path ~/.vim/doc -o -path  ~/.vim/plugged  \) -prune -false -o -type f -print| fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
+# vimrc() { find -L ~/.vim  \( -path ~/.vim/plugged -o -path ~/.vim/doc -o -path ~/.vim/cache \) -prune -o -type f -print | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
+config() { find ~/.dotfiles \( -path ~/.dotfiles/vim -o -path ~/.dotfiles/systemd -o -path ~/.dotfiles/.git \) -prune -false -o -type f -not -name '.gitignore' -print | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
 
 # fstart - start systemd unit
+#
 fstart() {
   unit=$(systemctl list-unit-files | grep disabled |
     awk '{print $1}' | grep service | fzf)
@@ -405,7 +485,8 @@ f() {
 # vf - fuzzy open with vim from anywhere
 # ex: vf word1 word2 ... (even part of a file name)
 # zsh autoload function
-vf() {
+# fuzzy vi
+fvi() {
   local files
 
   files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
@@ -418,10 +499,27 @@ vf() {
   fi
 }
 
+# 用 xdg-open 打开文件
+# fuzzy open
+fo() {
+  local files
+
+  files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
+
+  	# -n 检测字符串长度是否不为 0，不为 0 返回 true
+  if [[ -n $files ]]
+  then
+     xdg-open $files
+     print -l $files[1]
+  fi
+}
+
+
 # cf - fuzzy cd from anywhere
 # ex: cf word1 word2 ... (even part of a file name)
 # zsh autoload function
-cf() {
+# fuzzy cd
+fcd() {
   local file
 
   file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
@@ -489,17 +587,21 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/.ripgreprc
 # 不要自作聪明，我需要通配符
 unsetopt nomatch
 
+
 alias gtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ad)%Creset''
 alias gxtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ar)%Creset''
 alias greftree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=iso'
 alias grefxtree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=relative'
 alias gfetched-xtree='git xtree @{1}..'
 
+#
 # 与 Powerlevel10k instant prompt 一起使用会报错
 # '\e[2 q' 是光标方块，不闪烁
 # '\e[1 q' 是光标方块，闪烁
 # '\e[6 q' 是光标竖线，不闪烁
 # '\e[5 q' 是光标竖线，闪烁
+# if [ "$SSH_CONNECTION" == "" ]; then
+
 function zle-keymap-select {
     if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
         >$TTY echo -ne '\e[2 q'
@@ -527,6 +629,7 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 KEYTIMEOUT=1
+# fi
 
 # fzf-tab
 # https://github.com/Aloxaf/fzf-tab/blob/master/README_CN.md
@@ -570,6 +673,10 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
+export GTAGSLABEL=pygments
+
+# 让 gtags 把 *.h 视为 cpp 文件
+# export GTAGSFORCECPP=
 
 # http://www.crazylaw.cn/2018/11/15/linux-shell-huanhangbuchong/
 # oh-my-zsh 换行补偿
@@ -577,12 +684,21 @@ lg()
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+## pipenv
+
 export PIPENV_PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple
+eval "$(_PIPENV_COMPLETE=source-zsh pipenv)"
 
-# Load pyenv automatically by appending
+# 自动在项目目录的 .venv 目录创建虚拟环境
+# export PIPENV_VENV_IN_PROJECT=1
+
+
+ #Load pyenv automatically by appending
 # the following to ~/.zshrc:
-eval "$(pyenv init -)"
-
+# hash 为了判断 pyenv 是否存在
+if hash pyenv 2> /dev/null; then
+	eval "$(pyenv init -)"
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -599,5 +715,26 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+[ "$TERM" == alacritty ] && unset LSCOLORS && unset LS_COLORS && export TERM="xterm-256color"
 
+# 按空格键时自动进行历史扩展
+bindkey " " magic-space
+# 直接执行历史扩展的结果 (任何选项直接加 no 就是相反效果) (或者用 unsetopt)
+# setopt no_hist_verify
+unsetopt hist_verify
+setopt extendedglob
+
+# electron 电子
+export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
+export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
+
+export XDG_DATA_DIR="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# systemd-journal 格式, 折行
+export SYSTEMD_LESS=FRXMK journalctl
+
+# export TEXINPUTS="/usr/share/texmf//:"
+
+export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 export -U PATH
