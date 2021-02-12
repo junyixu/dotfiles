@@ -1,0 +1,10 @@
+#!/bin/sh
+# Program :
+#	粘贴一个文本文件，并输出网址
+#	详情：https://fars.ee
+# History:
+#	2018年 12月 17日 星期一 18:44:17 CST
+# Usage:
+#	post FILENAME
+# Author: junyi
+curl -F c=@- https://fars.ee/ < $1

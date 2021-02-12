@@ -1,0 +1,12 @@
+#!/bin/zsh
+# Program :
+#		This script search the string in file in ./
+#		include the names of the files
+# History:
+#	2018年 12月 15日 星期六 17:46:27 CST
+# Author: junyi
+
+echo "文件名查找结果:"
+find -iname "*$1*" >> /dev/null | grep -i --color=auto "$1"
+echo -e "\n文件内容查找结果:"
+grep -irn --color=auto "$1" *

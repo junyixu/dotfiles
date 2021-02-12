@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+# vim:fileencoding=utf-8
+
+# you may want change this
+dest_url = 'https://img.vim-cn.com/'
+
+import sys
+from subprocess import Popen, PIPE
+
+args = []
+for f in sys.argv[1:]:
+  if f == '-':
+    args.extend(['-F', 'name=@-;filename=-.png'])
+  else:
+    args.extend(['-F', 'name=@'+f])
+cmd = ['curl', '--compressed', dest_url] + args
+p = Popen(cmd, stdout=PIPE)
+ret = p.wait()
+url = p.stdout.read()
+sys.stdout.buffer.write(url)
+sys.exit(ret)

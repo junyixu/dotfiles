@@ -1,0 +1,10 @@
+#! /bin/sh
+#
+# rmpost.sh
+# Copyright (C) 2019 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+
+curl -X DELETE "https://fars.ee/$1"
