@@ -26,18 +26,17 @@
 	ff = only
 
 [diff]
-    tool = vim
+    tool = nvim
     ignoreSubmodules = dirty
-
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-    tool = vim
-
+    tool = nvimdiff
 [mergetool]
-    keepBackup = false
-
-[difftool "vim"]
-    cmd = vim -d $LOCAL $REMOTE
-
-[mergetool "vim"]
-    cmd = vim -f -c \"Gvdiffsplit!\" \"$MERGED\"
-
+    prompt = true
+[mergetool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c"

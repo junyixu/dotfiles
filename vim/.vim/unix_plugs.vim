@@ -76,6 +76,9 @@ endif
 Plug 'itchyny/vim-cursorword'
 Plug 'tyru/open-browser.vim'
 
+Plug 'voldikss/vim-mma'
+
+
 
 if version < 800
 echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
@@ -92,7 +95,7 @@ endif
 Plug 'gcmt/wildfire.vim'
 " --------------- wildfire config --------------{{{
 " This selects the next closest text object.
-map <leader><space> <Plug>(wildfire-fuel)
+map <leader>v <Plug>(wildfire-fuel)
 
 " This selects the previous closest text object.
 " vmap <S-SPACE> <Plug>(wildfire-water)
@@ -336,6 +339,10 @@ endif
 
 Plug 'tpope/vim-abolish'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.extra'
+Plug 'benmills/vimux'
+Plug 'voldikss/vim-floaterm'
+
     "{{{
     " 自动打开 quickfix window ，高度为 6
     let g:asyncrun_open = 6
@@ -356,8 +363,13 @@ Plug 'skywind3000/asyncrun.vim'
 
 
 
-	" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer', 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab', 'fortran']}
-	Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
+if has('nvim')
+	 Plug 'neoclide/coc.nvim'
+else
+	 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer', 'for': ['c', 'cpp', 'cuda', 'tex', 'python', 'cmake', 'go', 'matlab', 'fortran']}
+set completeopt+=popup
+endif
+	" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 	Plug 'ycm-core/lsp-examples'
 	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
 
@@ -367,10 +379,11 @@ Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 " Plug 'dstein64/vim-startuptime'
 
 " ----------------- ctags and gtags ------------------{{{
-Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda', 'julia', 'tex', 'python', 'cmake', 'go', 'matlab']}
-" Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda']}
+" Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda', 'julia', 'tex', 'python', 'cmake', 'go', 'matlab', 'tex', 'mma']}
+Plug 'ludovicchabant/vim-gutentags'
 " Plug 'skywind3000/gutentags_plus'
-Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab', 'fortran']}
+Plug 'skywind3000/vim-preview'
+" Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab', 'fortran', 'tex', 'mma']}
     "{{{
     autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
@@ -387,7 +400,7 @@ Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'p
 " Plug 'liuchengxu/vista.vim', {'on': 'Vista!!'}
 Plug 'liuchengxu/vista.vim'
     "{{{
-    nnoremap <leader>tt :Vista!!<CR>
+    nnoremap <leader>tt :Vista<CR>
      let g:vista_no_mappings=1
      autocmd FileType vista,vista_kind nnoremap <buffer> <silent> / :<c-u>call vista#finder#fzf#Run()<CR>
      autocmd FileType vista,vista_kind nnoremap <buffer> <silent> q    :close<CR>
@@ -397,7 +410,6 @@ Plug 'liuchengxu/vista.vim'
 " ----------------- tags ------------------}}}
 
 Plug 'lilydjwg/fcitx.vim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release', 'for': ['markdown', 'vimwiki', 'tex']}
 " au FileType tex,vimwiki,markdown nmap <silent> w <Plug>(coc-ci-w)
 " au FileType tex,vimwiki,markdown nmap <silent> b <Plug>(coc-ci-b)
 
@@ -466,6 +478,7 @@ Plug 'tpope/vim-commentary'
     autocmd FileType matlab setlocal commentstring=%\ %s
     autocmd FileType systemd setlocal commentstring=#\ %s
     autocmd FileType dosini setlocal commentstring=#\ %s
+    autocmd FileType mma setlocal commentstring=(*\ %s\ *)
     " 对 c 没有用
     " autocmd FileType c setlocal commentstring=%\ %s
     "}}}
@@ -539,14 +552,14 @@ Plug 'ferrine/md-img-paste.vim', {'for': 'markdown'}
 "=============== begin LaTeX ==============={{{
 Plug 'lervag/vimtex', {'for': 'tex'}
 " Plug 'lervag/vimtex'
-	let g:vimtex_fold_enabled=1
+	let g:vimtex_fold_enabled=0
     let  g:vimtex_fold_types = {
            \ 'preamble' : {'enabled' : 1},
            \ 'envs' : {
 		   \	'whitelist' : ['figure', 'table'],
 		   \},
 		   \ 'sections' : {
-		   \   'parse_levels' : 0,
+		   \   'parse_levels' : 2,
 		   \   'sections' : [      
 		   \     'part',
 		   \     'chapter',
@@ -562,7 +575,6 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 		   \   ],
 		   \ },
 		   \}
-" Plug 'PietroPate/vim-tex-conceal', {'for': 'tex'}
 	set conceallevel=0
 	" let g:tex_conceal="abdgm"
 "=============== end LaTeX ===============}}}
@@ -736,8 +748,10 @@ endtry
 " https://www.zhihu.com/question/47691414/answer/373700711
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件 / 目录名
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-let g:gutentags_project_root = ['.root', '.project']
-" 这里我把 .git 去掉了，如果我需要这个插件直接在项目顶层，touch .root
+let g:gutentags_project_root = ['.root', '.project', '.git']
+" note:
+" 不需要这个插件的项目 touch .notags
+" 如果我需要这个插件直接在项目顶层，touch .root
 
 
 
@@ -747,13 +761,13 @@ let g:gitgutter_max_signs=1200
 let g:gutentags_plus_switch = 0
 
 " 同时开启 ctags 和 gtags 支持：
-let g:gutentags_modules = []
-if executable('ctags')
-	let g:gutentags_modules += ['ctags']
-endif
-if executable('gtags-cscope') && executable('gtags')
-	let g:gutentags_modules += ['gtags_cscope']
-endif
+let g:gutentags_modules = ['ctags']
+" if executable('ctags')
+" 	let g:gutentags_modules += ['ctags']
+" endif
+" if executable('gtags-cscope') && executable('gtags')
+" 	let g:gutentags_modules += ['gtags_cscope']
+" endif
 
 " 配置 ctags 的参数，
 " extra=+q 表示强制要求ctags对同一个语法元素 再记一行(如果某个语法元素是类的一个成员，ctags默认会给其记录一行)，这样可以保证在Vim中多个同名函数可以通过路径不同来区分
@@ -774,6 +788,7 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " 禁用 gutentags 自动加载 gtags 数据库的行为, 由于我一个 vim
 " 只打开一个工程，用 tmux 和 vim 结合的方式，所以这里不需要了.
 let g:gutentags_auto_add_gtags_cscope = 0
+let g:gutentags_exclude_filetypes=['vim', 'sh']
 
 "====================== end ctags ==========================}}}
 
@@ -791,6 +806,7 @@ nnoremap <leader>gss :Gdiffsplit<cr>
 " let g:ycm_error_symbol = '⨉'  "set error or warning signs
 let g:ycm_error_symbol = "\ue009\ue009"  "set error or warning signs
 let g:ale_sign_error = "\ue009\ue009"
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 " let g:ale_sign_error = '⨉'
 " let g:ale_sign_error = '✗'
 " let g:ale_sign_warning = '⚡'
@@ -1200,11 +1216,25 @@ autocmd FileType tex nnoremap <buffer><silent> <C-n> o\input{lec_.tex}<Esc>F_a
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 " https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
+
+" 编译选项
 let g:vimtex_compiler_latexmk = {
-    \ 'options' : '-pdf -verbose -bibtex -file-line-error -synctex=1 --interaction=nonstopmode',
-    \}
+			\ 'callback' : 1,
+			\ 'continuous' : 0,
+			\ 'executable' : 'latexmk',
+			\ 'options' : [
+			\ '-pdf',
+			\ '-verbose',
+			\ '-bibtex',
+			\ '-file-line-error',
+			\ '-synctex=1',
+			\ '-interaction=nonstopmode',
+			\ ],
+			\}
+
+" 补全
 if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
+	let g:ycm_semantic_triggers = {}
 endif
 
 ""打开后前一个 call 函数就会消失
@@ -1227,7 +1257,6 @@ let g:vimtex_quickfix_mode=1
 "  \ 'wrapper' : 'vimtex#imaps#wrap_environment',
 "  \ 'context' : ["itemize", "enumerate"],
 "  \})
-let g:vimtex_compiler_latexmk = {'callback' : 0}
 "=================== end VimTex ===============================}}}
 
 "=================== fzf ==============================={{{
@@ -1437,6 +1466,42 @@ let g:tagbar_type_julia = {
         \ 't:struct', 'f:function', 'm:macro', 'c:const']
     \ }
 " ========================= tagbar ===================================}}}
+"
+
+" " 使用 wolfram 计算
+" " jobstart 和 jobwait 只有 nvim 可用
+" " vim 用 job_start 和 waittime 或 timeout
+" inoremap <CR> <C-R>=Caculate()<CR>
+" let s:caculate_dict={}
+" function s:callback(jd,data,event) dict
+" 	let msg=join(a:data)
+" 	let self.data .= msg
+" endfunction
+" let s:caculate_dict.on_stdout=function("s:callback")
+" function! Caculate()
+" 	let buf=getline(".")
+" 	let n=2
+" 	" 当前光标的位置之前一列
+" 	let ps=col(".")-1
+" 	if(ps<4 || buf[ps-1] isnot '=')
+" 		return "\<CR>"
+" 	endif
+" 	while(1)
+" 		if(ps-n<0||buf[ps-1] is "'")
+" 			break
+" 		endif
+" 		let n+=1
+" 	endwhile
+" 	let expr=buf[ps-n+2:ps-2]
+" 	let cmd="wolframscript -code "."'".expr."'"
+" 	let s:caculate_dict.data=""
+" 	let job_id=jobstart(cmd,s:caculate_dict)
+" 	let status=jobwait([job_id], 20000)[0]==-1
+" 	if status
+" 		return "timeout"
+" 	endif
+" 	return s:caculate_dict.data
+" endfunction
 
 
 " 注释显示斜体

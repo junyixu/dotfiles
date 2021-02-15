@@ -1,13 +1,14 @@
 "---------------------latex---------------------------------"
 " 小时物理百科
-noremap <silent><buffer> <leader>vh :! chromium http://wuli.wiki/online/%:r.html<cr>
-nnoremap <silent><buffer> <S-CR> :! chromium http://wuli.wiki/online/<cfile>.html<cr>
+noremap <silent><buffer> <leader>vh :! xdg-open http://wuli.wiki/online/%:r.html<cr>
+nnoremap <silent><buffer> <S-CR> :! xdg-open http://wuli.wiki/online/<cfile>.html<cr>
 inoremap <silent><buffer> <S-CR> \\<CR>
-map <localleader>l :VimtexCompile<CR>
-map <localleader>e :VimtexError<CR>
-map <localleader>s :VimtexStatus<CR>
-map <localleader>v :VimtexView<CR>
-nnoremap <buffer> <cr> gf
+nnoremap <buffer> <localleader>l :VimtexCompile<CR>
+nnoremap <buffer> <localleader>e :VimtexError<CR>
+nnoremap <buffer> <localleader>s :VimtexStatus<CR>
+nnoremap <buffer> <localleader>k :VimtexStop<CR>
+nnoremap <buffer> <localleader>v :VimtexView<CR>
+nnoremap <buffer> <localleader>c :VimtexClean<CR>
 " 设置格式化时制表符占用空格数
 setlocal shiftwidth=2
 " 让 vim 把连续数量的空格视为一个制表符

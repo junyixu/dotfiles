@@ -1,0 +1,29 @@
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+
+# Add my 'web' type.
+--type-add
+web:*.{html,css,js}
+# web:*.{html,css,js}*
+
+# -T, --type-not <TYPE>...  Do not search files matching TYPE.
+--type-not
+web
+
+# Using glob patterns to include/exclude files or folders
+--glob=!git/*
+
+# or
+--glob=!{tags,G*}
+# latex
+--glob=!*.{hd,nav,snm,synctex.gz,xdv,aux,cls,fls,log,bbl,fdb_latexmk}
+
+--glob=!*.svg
+
+# Set the colors.
+# --colors=line:none
+# --colors=line:style:bold
+
+# Because who cares about case!?
+--smart-case

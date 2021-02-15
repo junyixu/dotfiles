@@ -1,5 +1,5 @@
 " runtimepath
-" set rtp+=/home/junyi/Desktop/PhysWiki/ 
+set rtp+=./
 " set tags+=~/.vim/systags
 set encoding=utf8
 set fileencodings=utf8,cp936,gb18030,big5
@@ -38,7 +38,7 @@ set guioptions-=L
 set guioptions-=t
 set guioptions-=T
 set guioptions-=r
-set guifont=FiraCodeNerdFontMono\ 11
+set guifont=FiraCodeNerdFontMono\ 9
 " set guifont=MesloLGSNF\ 11
 " set guifont=OperatorMonoLight\ 13
 "-------------------end gvimrc-------------------------------}}}

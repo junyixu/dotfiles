@@ -237,14 +237,15 @@ nnoremap <leader>Q  :xall<Cr>
 nnoremap <leader>q  :confirm qall<Cr>
 nnoremap <leader>tq :tabclose<Cr>
 nnoremap <M-z> ZZ
-nnoremap <M-s> :w<cr>
+nnoremap <silent><M-s> :w<cr>
 nnoremap <M-q> :confirm q<Cr>
 nnoremap <M-Q> :qall!<cr>
 nnoremap Q q
+nnoremap <space>ya gg"+yG<C-O><C-O>
 
 "忘记 sudo vim 时
-nmap <M-S> :w !sudo tee % > /dev/null<CR>
-nmap <M-Z> :wqall<CR>
+nmap <M-S> <silent>:w !sudo tee % > /dev/null<CR>
+nmap <M-Z> <silent>:wqall<CR>
 
 nnoremap cd :tcd %:h<cr>
 

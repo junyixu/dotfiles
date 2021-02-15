@@ -170,6 +170,7 @@ alias Ql='pacman -Ql'
 alias Qs='pacman -Qs'
 alias Qo='pacman -Qo'
 alias F='pacman -F'
+alias Fl='pacman -Fl'
 
 # 查询 ip
 alias myip='curl https://ip.cn'
@@ -212,10 +213,15 @@ alias nvi='nvim'
 alias wiki='vim -c "cd %:h" ~/Notes/index.md'
 alias diary='vim -c "cd %:h" ~/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
 
+
+# plasmashell cpu占用过高，重启解决
+alias restartplasmashell='kquitapp5 plasmashell ; kstart5 plasmashell'
+alias plasmashellrestart='kquitapp5 plasmashell ; kstart5 plasmashell'
+
 alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex makefile.md'
 
 alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
-alias todo='$EDITOR ~/Notes/todolist.md'
+alias vitodo='$EDITOR ~/Notes/todolist.md'
 
 alias svi='sudo -E vim'
 # 打开到 上一次 打开的地方
@@ -227,12 +233,6 @@ alias jvi="vim -c JupyterConnect"
 # Show open ports
 alias ports='netstat -tulanp'
 alias ssh='ssh -Y'
-
-# 判断是否有 lsd， hash 在大部分系统下等价于 which
-if hash lsd 2> /dev/null; then
-	alias ls='lsd'
-	alias lt='ls --tree'
-fi
 
 # note
 # find -name *.java -print0 | xargs -0 p4 add
@@ -250,7 +250,7 @@ alias gtar="tar -Ipigz czvf"
 alias btar="tar cjvf"
 # ztar 包.tar.zst  打包对象1 打包对象2 ...
 # --no-same-owner 解压时不保留用户信息
-alias ztar='tar -I zstd -cvf'
+alias ztar='tar --no-same-owner -I zstd -cvf'
 alias unztar='tar -I zstd -xvf'
 alias 7tar="7z a -mmt"
 
@@ -311,8 +311,13 @@ export QT_LOGGING_RULES='*=false'
 #     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 # fi
 
+todo() {
+ echo "$2" | /usr/bin/mail -s "$1" todo+rvvckje44g0x@mail.dida365.com 2>/dev/null
+}
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
+alias ls='ls --color=auto'
 
 r() {
   if [ "$1" != "" ]; then
@@ -337,8 +342,11 @@ r() {
 # export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --preview  "bat --style=numbers --color=always --line-range :500 {}" '
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline'
 # export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'
-export FZF_DEFAULT_OPTS='--layout=reverse --info=inline'
+export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'  # --ansi 选项使 fzf 可以带有 fd 的彩色输出
 # export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
+# export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git *.log *.bbl *.pdf *.aux *.out *.xdv *.fdb*'
+# export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *.out --exclude *.svg'
+export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow --exclude .git'  # 遵循符号链接 --follow 并包含隐藏文件 --hidden (但不包括.git文件夹) :
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_ALT_C_COMMAND='fd --type d . --color=always'
 # export FZF_DEFAULT_OPTS='--height 40% --border'
@@ -582,7 +590,7 @@ fman() {
     man -k . | fzf --prompt='Man> ' | awk '{print $1}' | xargs -r man
 }
 
-export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/.ripgreprc
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 
 # 不要自作聪明，我需要通配符
 unsetopt nomatch
@@ -657,8 +665,8 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm,cmd
 zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
 
 # 补全 cd 时使用 exa 预览其中的内容
-if hash lsd 2> /dev/null; then
-	zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'lsd -1 --color=always $realpath'
+if hash exa 2> /dev/null; then
+	zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 fi
 
 # lazygit
@@ -683,11 +691,6 @@ export GTAGSLABEL=pygments
 # PROMPT_EOL_MARK=''
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-## pipenv
-
-export PIPENV_PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple
-eval "$(_PIPENV_COMPLETE=source-zsh pipenv)"
 
 # 自动在项目目录的 .venv 目录创建虚拟环境
 # export PIPENV_VENV_IN_PROJECT=1

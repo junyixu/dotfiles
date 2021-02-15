@@ -11,8 +11,21 @@ snippet sub "Subsection"
 \subsection{${1:${VISUAL:subsection name}}}%
 endsnippet
 
-snippet "lab(el?)" "label" ir
-\label{$1}
+snippet fontset "使用方正字体" b
+
+\setCJKmainfont[BoldFont={FZHei-B01}, ItalicFont={FZKai-Z03}]{FZNewShuSong-Z10S}
+\setCJKsansfont[BoldFont={FZHei-B01}, ItalicFont={FZHei-B01}]{FZHei-B01}
+\setCJKmonofont[BoldFont={FZHei-B01}, ItalicFont={FZHei-B01}]{FZFangSong-Z02}
+\setCJKfamilyfont{zhsong}{FZNewShuSong-Z10S}
+\setCJKfamilyfont{zhhei}{FZHei-B01}
+\setCJKfamilyfont{zhkai}{FZKai-Z03}
+\setCJKfamilyfont{zhfs}{FZFangSong-Z02}
+
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+\newcommand*{\fangsong}{\CJKfamily{zhfs}}
+
 endsnippet
 
 snippet ql "quad" iA
@@ -27,17 +40,37 @@ snippet ul "underline" i
 \uline{$1}$0
 endsnippet
 
-snippet ref "ref" w
-\ref{${1:reference}} $0
-endsnippet
+# snippet ref "ref" w
+# \ref{${1:reference}} $0
+# endsnippet
 
 snippet eqr "eqref" i
 \eqref{eq:${1:equation}} $0
 endsnippet
 
 snippet bib "bibliography" b
-\bibliography{~/Documents/BibTeX/mybibtex.bib}
+\bibliography{myLibrary}
 endsnippet
+
+snippet svg "Figure environment" b
+\begin{figure}[${2:htpb}]
+	\centering
+	\includesvg[width=0.8\linewidth]{${3:name.ext}}
+	\caption{${3/(\w+)\.\w+/\u$1/}$0}%
+	\label{fig:${3/(\w+)\.\w+/$1/}}
+\end{figure}
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${2:htpb}]
+	\centering
+	\includegraphics[width=0.8\linewidth]{${3:name.ext}}
+	\caption{${3/(\w+)\.\w+/\u$1/}$0}%
+	\label{fig:${3/\w+\/(\w+)\.\w+/$1/}}
+\end{figure}
+endsnippet
+
+# TODO subfig
 
 #snippet * "Individual item" bA
 #\item$0
@@ -159,7 +192,7 @@ $0
 endsnippet
 
 snippet template "Basic template" b
-\documentclass{ctexart}
+\documentclass[fontset=windows]{ctexart}
 \usepackage{amsmath,amssymb,amsthm} % 美国数学协会
 \usepackage{physics} % 物理
 \usepackage{graphicx} % 图片

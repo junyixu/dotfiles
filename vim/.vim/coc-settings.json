@@ -1,0 +1,5 @@
+{
+	"lsp-wl.enable":true,
+	"lsp-wl.wolframExecutablePath":"/opt/WolframEngine/12.1/Executables/wolfram",
+	"lsp-wl.wolframLanguageServerPath": "/home/junyi/tmp/lsp-wl"
+}

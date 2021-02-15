@@ -3,9 +3,12 @@ GTAGS
 GRTAGS
 tags
 .ctags
+.notags
 
 .o
 
+
+.venv
 .root
 .project
 

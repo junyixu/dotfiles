@@ -10,12 +10,14 @@
 snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
 \vec{`!p snip.rv=match.group(1)`}
 endsnippet 
-# 导数
-snippet "(\\?\w+)(\.\.)" "Vector postfix" ri
+
+# 导数(流数)
+context "math()"
+snippet "(\\?\w+)(\.\.)" "二阶导" ri
 \ddot{`!p snip.rv=match.group(1)`}
 endsnippet 
-
-snippet "(\\?\w+)(\.)" "Vector postfix" ri
+context "math()"
+snippet "(\\?\w+)(\.)" "一阶导" ri
 \dot{`!p snip.rv=match.group(1)`}
 endsnippet 
 
@@ -555,7 +557,7 @@ endsnippet
 
 context "math()"
 snippet xx "cross" iA
-\times 
+\cross 
 endsnippet
 
 context "math()"
@@ -740,7 +742,7 @@ endsnippet
 # endsnippet
 
 context "math()"
-snippet case "cases" Ab
+snippet cases "cases" 
 \begin{cases}
 	$1
 \end{cases}
