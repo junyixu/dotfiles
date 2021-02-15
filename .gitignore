@@ -1,6 +1,7 @@
 docs
 public/images
 vim/.vim/plugged
+cache
 sockets.target.wants
 timers.target.wants
 default.target.wants
