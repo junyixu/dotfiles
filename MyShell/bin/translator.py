@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 #======================================================================
 #
@@ -609,7 +609,7 @@ class BaiduTranslator(BasicTranslator):
         output = ''
         result = resp['trans_result']
         for item in result:
-            #output += '' + item['src'] + '\n'
+            #output += '' + item['src'] + '\n'  # 百度会在 dst 里面返回 src，所以不用把 src 输出
             output += '' + item['dst'] + '\n'
         return output
 
@@ -698,7 +698,7 @@ ENGINES = {
 def main(argv=None):
     if argv is None:
         argv = sys.argv
-    argv = [n for n in argv]
+    # argv = [n for n in argv] # 这里是否多余？ TODO
     options, args = getOpt(argv[1:])
     engine = options.get('engine')
     if not engine:
@@ -720,8 +720,10 @@ def main(argv=None):
         print('bad engine name: ' + engine)
         return -1
     translator = cls()
-    #----------------改动的地方------------------------确定是不是一个单词
-    if len(args) == 1 and translator.check_english(text):
+    #----------------改动的地方------------------------如果是一个单词那么不翻译，如果是两个以上英语单词才翻译
+    # 如果在 goldendict 里面使用，查询的单词会被转换为字符串，所以判断有没有空格
+    if translator.check_english(
+            text) and ' ' not in args[0] and len(args) <= 1:
         return 0
 #----------------改动结束--------------------------
     res = translator.translate(sl, tl, text)
