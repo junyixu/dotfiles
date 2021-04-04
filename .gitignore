@@ -1,6 +1,7 @@
 docs
 public/images
 vim/.vim/plugged
+vim/.vim/spell
 cache
 sockets.target.wants
 timers.target.wants

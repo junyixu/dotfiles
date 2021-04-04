@@ -1,0 +1,13 @@
+[project-build]
+command=vcvars32 > nul && msbuild build/StreamNet.vcxproj /property:Configuration=Debug /nologo /verbosity:quiet
+cwd=<root>
+errorformat=%f(%l):%m
+
+[project-run]
+command=build/Debug/StreamNet.exe
+cwd=<root>
+output=terminal
+
+
+
+# vim:ft=toml:

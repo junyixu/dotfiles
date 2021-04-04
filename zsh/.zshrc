@@ -22,7 +22,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
+# export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 # export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 #export INCLUDE=$HOME/.local/mpich/include:$INCLUDE
 #export INCLUDE=$HOME/.local/mpich/include
@@ -234,6 +234,7 @@ alias jvi="vim -c JupyterConnect"
 alias ports='netstat -tulanp'
 alias ssh='ssh -Y'
 
+alias tldr='https_proxy=http://127.0.0.1:1081 tldr'
 # note
 # find -name *.java -print0 | xargs -0 p4 add
 # 它的工作原理是，find 命令在目录树下找到所有的以 ".java" 结尾的文件，把它们用NULL字符隔开做成一个字符串，然后交给 xargs。
@@ -265,7 +266,7 @@ alias vimcmake='$EDITOR CMakeLists.txt'
 alias turbo='sudo sh -c "echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
 alias no_turbo='sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
 alias top='htop'
-alias anki='XDG_CONFIG_HOME=/home/junyi/ankiconfig anki'
+# alias anki='XDG_CONFIG_HOME=/home/junyi/ankiconfig anki'
 # alias sudo='sudo -E'
 # alias pacman='powerpill'
 
@@ -741,3 +742,8 @@ export SYSTEMD_LESS=FRXMK journalctl
 
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 export -U PATH
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+

@@ -77,8 +77,9 @@ Plug 'itchyny/vim-cursorword'
 Plug 'tyru/open-browser.vim'
 
 Plug 'voldikss/vim-mma'
-
-
+Plug 'fcpg/vim-osc52'
+	vmap <C-c> y:Oscyank<cr>
+	xmap <F7> y:Oscyank<cr>
 
 if version < 800
 echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
@@ -136,6 +137,7 @@ let g:ctrlsf_ackprg = 'rg'
 let g:ctrlsf_auto_focus = {'at': 'start'}
 let g:ctrlsf_auto_preview = 1
 let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_debug_mode = 0
 let g:ctrlsf_follow_symlinks = 1
 let g:ctrlsf_mapping = {
             \ 'open': ['<CR>', 'o'],
@@ -154,7 +156,7 @@ let g:ctrlsf_mapping = {
             \ 'chgmode': '<M-m>',
             \ 'stop': '<C-c>',
             \ }
-let g:ctrlsf_extra_root_markers = ['.root']
+let g:ctrlsf_extra_root_markers = ['.root', '.project']
 nmap     <leader>/f <Plug>CtrlSFPrompt
 vmap     <leader>/f <Plug>CtrlSFVwordPath
 nmap     <leader>/n <Plug>CtrlSFCwordPath
@@ -164,7 +166,7 @@ nnoremap <leader>/v :CtrlSFToggle<CR>
 nnoremap <leader>/<space> :CtrlSF<space>
 nnoremap <leader>/r :CtrlSF<Space>-R<space>
 nnoremap <leader>// :CtrlSF
-let g:ctrlsf_confirm_save=1
+let g:ctrlsf_confirm_save=0
 nnoremap <silent> <leader>/v <Esc>:CtrlSFToggle<CR>
 nmap <leader>* <Plug>CtrlSFCwordExec
 xmap <leader>* <Plug>CtrlSFVwordExec
@@ -182,7 +184,7 @@ Plug 'jpalardy/vim-slime', {'on': ['<Plug>SlimeRegionSend',
             \ '<Plug>SlimeParagraphSend', '<Plug>SlimeConfig']}
 " {{{
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
-let g:slime_python_ipython = 0
+let g:slime_python_ipython = 1
 let g:slime_target = 'tmux'
 " let g:slime_default_config = {
 "             \ 'socket_name': get(split($TMUX, ','), 0),
@@ -191,9 +193,12 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-autocmd filetype python,matlab xmap <silent><buffer> <S-CR> <Plug>SlimeRegionSend
-autocmd filetype python,matlab nmap <silent><buffer> <S-CR> <Plug>SlimeParagraphSend
+autocmd filetype python,matlab xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+autocmd filetype python,matlab nmap <silent><buffer> <C-CR> <Plug>SlimeParagraphSend
 autocmd filetype python,matlab nmap <silent><buffer> <localleader>c <Plug>SlimeConfig
+autocmd filetype python,matlab nmap <S-CR> <Plug>SlimeSendCell
+autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
+autocmd filetype python,matlab nmap <localleader><localleader> <Plug>SlimeLineSend
 " }}}
 
 
@@ -201,7 +206,9 @@ autocmd filetype python,matlab nmap <silent><buffer> <localleader>c <Plug>SlimeC
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
+Plug 'zackhsi/fzf-tags'
+nmap <C-]> <Plug>(fzf_tags)
+" noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
 "===========  git ============={{{
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-apathy'
@@ -221,13 +228,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 "=========== end git =============}}}
 
+" TODO
+" Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+
 Plug 'easymotion/vim-easymotion'
 " ================================= easymotion =============================={{{
 let g:EasyMotion_smartcase = 1 " turn on case insensitive feature
 " let g:EasyMotion_do_mapping = 0 " disable default malpings
 let g:EasyMotion_use_smartsign_us = 1 " 1 will match 1 and !
 " let g:EasyMotion_use_upper = 1
-let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+" let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyz'
+let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmfj;23456789'
 noremap q <Nop>
 let EasyMotion_leader_key = 'q'
 " let EasyMotion_leader_key = '<Space>'
@@ -276,6 +287,9 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     "}}}
 
 Plug 'tpope/vim-repeat'
+Plug 'fcpg/vim-osc52'
+	vnoremap <C-c> y:Oscyank<cr> 
+	xmap <F7> y:Oscyank<cr>
 
 "========================= format ==============================={{{
 
@@ -289,7 +303,7 @@ Plug 'google/vim-glaive'
 
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
-  " autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
   autocmd FileType dart AutoFormatBuffer dartfmt
   autocmd FileType go AutoFormatBuffer gofmt
   autocmd FileType gn AutoFormatBuffer gn
@@ -312,7 +326,7 @@ augroup END
 	let g:vim_dict_config = {'html':'html,javascript,css', 'markdown':'text', 'tex':'tex, latex, text'}
 	" source for dictionary, current or other loaded buffers, see ':help cpt'
 	" complete
-	set cpt=.,k,w,b,t
+	" set cpt=.,k,w,b,t
 	" set cpt=.,k,w,b
 	" set complete+=k
 
@@ -327,9 +341,9 @@ Plug 'skywind3000/vim-dict'
 "===========  词典 =============}}}
 
 " ===========  tmux ============={{{
-Plug 'tmux-plugins/vim-tmux'
+" Plug 'tmux-plugins/vim-tmux'
 if executable("tmux") && strlen($TMUX)
-    Plug 'tmux-plugins/vim-tmux-focus-events'
+    " Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'roxma/vim-tmux-clipboard'
 
     Plug 'wellle/tmux-complete.vim'
@@ -337,7 +351,13 @@ if executable("tmux") && strlen($TMUX)
 endif
 " ===========  tmux =============}}}
 
+Plug 'cespare/vim-toml'
 Plug 'tpope/vim-abolish'
+" lazy load
+" Plug 'skywind3000/asynctasks.vim', {'on': ['AsyncTask', 'AsyncTaskMacro', 'AsyncTaskList', 'AsyncTaskEdit'] }
+Plug 'skywind3000/asynctasks.vim'
+" Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop'] }
+	 let g:asynctasks_template = '~/.vim/template.ini'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asyncrun.extra'
 Plug 'benmills/vimux'
@@ -347,14 +367,22 @@ Plug 'voldikss/vim-floaterm'
     " 自动打开 quickfix window ，高度为 6
     let g:asyncrun_open = 6
 
-    " 任务结束时候响铃提醒
-    let g:asyncrun_bell = 1
+    " 任务结束时候是否响铃提醒
+    let g:asyncrun_bell = 0
 
-    let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
+    let g:asyncrun_rootmarks = ['.svn', '.git', '.root','.project', '_darcs', 'build.xml', '.tasks']
+	" let g:asynctasks_term_pos = 'tab' " vim, bottom
 
     nnoremap <silent> <F4> :AsyncRun -cwd=<root>/build cmake .. <cr>
-    nnoremap <silent> <F5> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
-    nnoremap <silent> <F6> :AsyncRun -cwd=<root>/build -raw make test <cr>
+
+	noremap <silent><f5> :AsyncTask file-run<cr>
+	noremap <silent><leader>r :AsyncTask file-run<cr>
+	noremap <silent><f9> :AsyncTask file-build<cr>
+	noremap <silent><S-f5> :AsyncTask project-run<cr>
+	noremap <silent><S-f9> :AsyncTask project-run<cr>
+	noremap <silent><S-f9> :AsyncTask project-build<cr>
+    nnoremap <silent> <S-F6> :AsyncTask project-test<cr>
+    nnoremap <silent> <C-f10> :AsyncTaskList<cr>
     nnoremap <silent> <F7> :AsyncRun -cwd=<root>/build make <cr>
     nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
     " 设置 F10 打开 / 关闭 Quickfix 窗口
@@ -367,11 +395,11 @@ if has('nvim')
 	 Plug 'neoclide/coc.nvim'
 else
 	 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer', 'for': ['c', 'cpp', 'cuda', 'tex', 'python', 'cmake', 'go', 'matlab', 'fortran']}
-set completeopt+=popup
-endif
-	" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
+" set completeopt+=popup
 	Plug 'ycm-core/lsp-examples'
 	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
+endif
+	" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 
 Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 
@@ -379,7 +407,6 @@ Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 " Plug 'dstein64/vim-startuptime'
 
 " ----------------- ctags and gtags ------------------{{{
-" Plug 'ludovicchabant/vim-gutentags', { 'for': ['c', 'cpp', 'cuda', 'julia', 'tex', 'python', 'cmake', 'go', 'matlab', 'tex', 'mma']}
 Plug 'ludovicchabant/vim-gutentags'
 " Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
@@ -489,16 +516,16 @@ Plug 'tpope/vim-commentary'
 Plug 'andymass/vim-matchup'
 
 " matlab
-" Plug 'yinflying/matlab.vim', {'for': 'matlab'}
-" Plug 'yinflying/matlab-screen', {'for': 'matlab'}
+Plug 'andymass/vim-matlab', {'for': 'matlab'}
+Plug 'yinflying/matlab-screen', {'for': 'matlab'}
 
 function! DoRemote(arg)
 	  UpdateRemotePlugins
   endfunction
 
-Plug 'daeyun/vim-matlab', { 'do': function('DoRemote'), 'for': 'matlab' }
-	let g:matlab_server_launcher = 'tmux' "launch the server in a tmux split
-	let g:matlab_auto_mappings=0
+" Plug 'daeyun/vim-matlab', { 'do': function('DoRemote'), 'for': 'matlab' }
+	" let g:matlab_server_launcher = 'tmux' "launch the server in a tmux split
+	" let g:matlab_auto_mappings=0
 
 " vim 中文文档
 Plug 'yianwillis/vimcdoc'
@@ -550,8 +577,7 @@ Plug 'ferrine/md-img-paste.vim', {'for': 'markdown'}
 "=============== End Markdown ===============}}}
 
 "=============== begin LaTeX ==============={{{
-Plug 'lervag/vimtex', {'for': 'tex'}
-" Plug 'lervag/vimtex'
+Plug 'lervag/vimtex'
 	let g:vimtex_fold_enabled=0
     let  g:vimtex_fold_types = {
            \ 'preamble' : {'enabled' : 1},
@@ -575,7 +601,7 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 		   \   ],
 		   \ },
 		   \}
-	set conceallevel=0
+	set conceallevel=2
 	" let g:tex_conceal="abdgm"
 "=============== end LaTeX ===============}}}
 
@@ -748,7 +774,7 @@ endtry
 " https://www.zhihu.com/question/47691414/answer/373700711
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件 / 目录名
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-let g:gutentags_project_root = ['.root', '.project', '.git']
+let g:gutentags_project_root = ['.root', '.project', '.git', '.tasks']
 " note:
 " 不需要这个插件的项目 touch .notags
 " 如果我需要这个插件直接在项目顶层，touch .root
@@ -762,12 +788,15 @@ let g:gutentags_plus_switch = 0
 
 " 同时开启 ctags 和 gtags 支持：
 let g:gutentags_modules = ['ctags']
-" if executable('ctags')
-" 	let g:gutentags_modules += ['ctags']
-" endif
-" if executable('gtags-cscope') && executable('gtags')
-" 	let g:gutentags_modules += ['gtags_cscope']
-" endif
+if executable('ctags')
+	let g:gutentags_modules += ['ctags']
+endif
+" TODO 不起作用，我想在 写 tex 的时候不用 gtags
+" if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
+
+if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
+	let g:gutentags_modules += ['gtags_cscope']
+endif
 
 " 配置 ctags 的参数，
 " extra=+q 表示强制要求ctags对同一个语法元素 再记一行(如果某个语法元素是类的一个成员，ctags默认会给其记录一行)，这样可以保证在Vim中多个同名函数可以通过路径不同来区分
@@ -778,18 +807,63 @@ let g:gutentags_modules = ['ctags']
 " S 表示如果是函数，则生成的tag文件要标识函数的原型(Signature)
 
 " let g:gutentags_ctags_extra_args = ['--fields=+nliazS', '--extras=+q']
-let g:gutentags_ctags_extra_args = ['--fields=+niaz', '--extras=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+" let g:gutentags_ctags_extra_args = ['--fields=+niaz', '--extras=+q']
+" let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 " ctags识别很多元素，但未必全都记录，例如“函数声明”这一语法元素默认是不记录的，可以控制ctags记录的语法元素的种类。如下命令要求ctags记录c++文件中的函数声明和各种外部和前向声明
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" let g:gutentags_exclude_project_root = [ '/home/junyi/.local/share/nvim' ]
-" let g:gutentags_exclude_project_root = [ '/home/junyi/.vim' ]
+" let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_exclude_project_root = [ '/home/junyi/.local/share/nvim', '/home/junyi/.vim', '/usr/local']
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为, 由于我一个 vim
 " 只打开一个工程，用 tmux 和 vim 结合的方式，所以这里不需要了.
 let g:gutentags_auto_add_gtags_cscope = 0
 let g:gutentags_exclude_filetypes=['vim', 'sh']
-
+let g:gutentags_ctags_exclude = [
+      \ '*.git', '*.svg', '*.hg',
+      \ '*/tests/*',
+      \ 'build',
+      \ 'dist',
+      \ '*sites/*/files/*',
+      \ 'bin',
+      \ 'node_modules',
+      \ 'bower_components',
+      \ 'cache',
+      \ 'compiled',
+      \ 'docs',
+      \ 'example',
+      \ 'bundle',
+      \ 'vendor',
+      \ '*.md',
+      \ '*-lock.json',
+      \ '*.lock',
+      \ '*bundle*.js',
+      \ '*build*.js',
+      \ '.*rc*',
+      \ '*.json',
+      \ '*.min.*',
+      \ '*.map',
+      \ '*.bak',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.class',
+      \ '*.sln',
+      \ '*.Master',
+      \ '*.csproj',
+      \ '*.tmp',
+      \ '*.csproj.user',
+      \ '*.cache',
+      \ '*.pdb',
+      \ 'tags*',
+      \ 'cscope.*',
+      \ '*.css',
+      \ '*.less',
+      \ '*.scss',
+      \ '*.exe', '*.dll',
+      \ '*.mp3', '*.ogg', '*.flac',
+      \ '*.swp', '*.swo',
+      \ '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz', '*.tar.bz2',
+      \ '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ ]
 "====================== end ctags ==========================}}}
 
 "================== git ============{{{
@@ -1065,7 +1139,7 @@ let g:ale_fixers = {'python': ['autopep8'], 'html': [], '*': ['remove_trailing_l
 " let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/Ultisnips']
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips', $HOME.'/.vim/plugged/vim-snippets/UltiSnips', './UltiSnips']
 nnoremap <leader>es :UltiSnipsEdit<cr>
 let g:UltiSnipsEditSplit="vertical"
 " ultisnips
@@ -1217,10 +1291,10 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 " https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
 
-" 编译选项
+" 编译选项 连续编译 preview
 let g:vimtex_compiler_latexmk = {
 			\ 'callback' : 1,
-			\ 'continuous' : 0,
+			\ 'continuous' : 1,
 			\ 'executable' : 'latexmk',
 			\ 'options' : [
 			\ '-pdf',
@@ -1297,6 +1371,9 @@ endfunction
 "   \ 'options': ['-m', '-d', '\t', '--with-nth', '1,2', '-n', '1', '--prompt', 'Tags> ']})
 
 " An action can be a reference to a function that processes selected lines
+
+command! -bar -bang Snippets call fzf#vim#snippets({'options': '-n ..'}, <bang>0)
+imap <silent> <M-k> <ESC>:Snippets<cr>
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
   copen
@@ -1465,6 +1542,8 @@ let g:tagbar_type_julia = {
     \ 'kinds'     : [
         \ 't:struct', 'f:function', 'm:macro', 'c:const']
     \ }
+let g:tagbar_map_togglesort='S'
+let g:tagbar_map_close='<M-q>'
 " ========================= tagbar ===================================}}}
 "
 

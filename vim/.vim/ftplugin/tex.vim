@@ -41,9 +41,9 @@ setlocal spellfile+=~/.vim/spell/latex.utf-8.add
 " https://github.com/gillescastel/inkscape-figures
 " 如果是 <C-i> 就会和 Ultisnips 的 tab 冲突
 " 后来得知 <C-i> 就是 tab <C-m> 就是 <cr>
-inoremap <buffer> <C-F> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
-" edit 功能不管用 python 报错
-nnoremap <buffer> <leader><C-F> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+
+inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+nnoremap <localleader>f : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
 
 " 句首字母大写
 " https://superuser.com/questions/737130/automatically-capitalize-the-first-letter-of-sentence-in-vim

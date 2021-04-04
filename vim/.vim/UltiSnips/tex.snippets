@@ -7,6 +7,10 @@ snippet sec "Section"
 \section{${1:${VISUAL:section name}}}%
 endsnippet
 
+snippet ! "%! TEX root = ./main.tex" b
+%! TEX root = ./main.tex
+endsnippet
+
 snippet sub "Subsection"
 \subsection{${1:${VISUAL:subsection name}}}%
 endsnippet
@@ -40,12 +44,30 @@ snippet ul "underline" i
 \uline{$1}$0
 endsnippet
 
+# mk 表示 make Ketax
+snippet mk "Math" wA
+$${1}$`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`$2
+endsnippet
+
+# dm 表示 Display math
+priority 100
+snippet dm "Math" wA
+\[
+	${1:${VISUAL}}
+\]
+$0
+endsnippet
 # snippet ref "ref" w
 # \ref{${1:reference}} $0
 # endsnippet
 
 snippet eqr "eqref" i
-\eqref{eq:${1:equation}} $0
+Eq~\eqref{eq:${1:equation}} $0
 endsnippet
 
 snippet bib "bibliography" b
@@ -69,8 +91,24 @@ snippet fig "Figure environment" b
 	\label{fig:${3/\w+\/(\w+)\.\w+/$1/}}
 \end{figure}
 endsnippet
-
+# t：top，表示排在页面顶部；
+# h：here，表示当前位置；将图形放置在 正文文本中给出该图形环境的地方。如果本页所剩的页面不够， 这一参数将不起作用；
+# b：bottom，将图形放置在页面的底部。
+# p：page，浮动页，将图形放置在只允许有浮动对象的页面上。
+# H：表示固定图片位置，需要加入\usepackage{float} ；
 # TODO subfig
+
+
+snippet subfig "\usepackage{subcation}" b
+\begin{figure}[${2:htpb}]
+\centering
+\subcaptionbox{${3/(\w+)\.\w+/\u$1/}\label{fig:${3/\w+\/(\w+)\.\w+/$1/}}}
+[.4\linewidth]{\includegraphics{${3:name.ext}}}
+\subcaptionbox{${5/(\w+)\.\w+/\u$4/}\label{elephant}}
+[.4\linewidth]{\includegraphics{elephant}}
+\caption{$0}\label{fig:${5/\w+\/(\w+)\.\w+/$1/}}
+\end{figure}
+endsnippet
 
 #snippet * "Individual item" bA
 #\item$0
@@ -191,32 +229,45 @@ ${2:${VISUAL:code}}
 $0
 endsnippet
 
+snippet columns "columns" b
+\begin{columns}
+	\column{.5\textwidth}
+	${1:${VISUAL:text}}
+	\column{.5\textwidth}
+	${2:${VISUAL:text}}
+\end{columns}
+endsnippet
+
 snippet template "Basic template" b
-\documentclass[fontset=windows]{ctexart}
-\usepackage{amsmath,amssymb,amsthm} % 美国数学协会
-\usepackage{physics} % 物理
-\usepackage{graphicx} % 图片
-\usepackage{hyperref} % \href{https://junyixu.github.io/}{徐均益}
-%\usepackage{xcolor} % 颜色控制
-%\usepackage[framemethod=TikZ]{mdframed} % 框
-%\usepackage[final]{pdfpages} % 页面插入 pdf
-\usepackage{listings} % 代码排版
+\documentclass[geye,fontset=windows,color=green,device=normal,lang=cn]{elegantnote}
+\graphicspath{{fig/}}
+\usepackage{ulem} 
+\usepackage{physics} 
+% \newcommand*{\Ham}{\hat{\mathcal{H}}} % \H 有定义了(居然是个"，是个 single letter command ，我要这有何用)，所以用 renewcommand
+\DeclareMathOperator{\Ham}{\hat{\mathcal{H}}}
 %\usepackage{ulem}
-%\graphicspath{{fig/}{logo/}}
-%\graphicspath{{fig/}}
-%\newcommand {\diff}{\,\mathrm{d}}
 
-\title{
-	Energy
-}
-
+\title{Energy}
+\author{Xu}
 \date{\today}
+
 \begin{document}
-\maketitle
-\tableofcontents
+%\maketitle
+%\tableofcontents
 	$0
 \end{document}
 endsnippet
+
+snippet elegantnote "elegantnote" b
+\documentclass[fontset=windows,color=green,device=normal,lang=cn]{elegantnote}
+endsnippet
+
+snippet gather "gahter" bA
+\begin{gather*}
+	${1:${VISUAL}}
+.\end{gather*}
+endsnippet
+
 
 ##代码
 #snippet "mint(ed)?( (\S+))?" "Minted code typeset" br

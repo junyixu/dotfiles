@@ -16,8 +16,8 @@ call quickui#menu#reset()
 call quickui#menu#install("&File", [
             \ [ "&New File\tCtrl+n", 'new' ],
             \ [ "&Open File\t,ff", 'Files %:h' ],
-            \ [ "&Close", 'q!' ],
-			\ [ "&Open\t(:w)", 'call feedkeys(":tabe ")'],
+            \ [ "&Close\tAlt+q", 'q!' ],
+			\ [ "&Open\t(:tabe )", 'call feedkeys(":tabe ")'],
 			\ [ "&Save\t(:w)", 'write'],
 			\ [ "--", ],
 			\ [ "LeaderF &File", 'Leaderf file', 'Open file with leaderf'],
@@ -90,7 +90,8 @@ call quickui#menu#install('&Move', [
 			\ ["Quickfix &Next\t:cnext", 'cnext', 'cursor next'],
 			\ ["Quickfix &Previous\t:cprev", 'cprev', 'quickfix cursor previous'],
 			\ ])
-
+" 格式
+" <提示> <命令>
 call quickui#menu#install("&Build", [
 			\ ["File &Execute\tF5", 'AsyncTask file-run'],
 			\ ["File &Compile\tF9", 'AsyncTask file-build'],
@@ -202,6 +203,7 @@ let g:quickui_show_tip = 1
 let g:context_menu_k = [
 			\ ["&Peek Definition\tAlt+;", 'call quickui#tools#preview_tag("")'],
 			\ ["S&earch in Project\t\\cx", 'exec "silent! GrepCode! " . expand("<cword>")'],
+			\ ["Tags\t\\cx", 'exec "silent! GrepCode! " . expand("<cword>")'],
 			\ [ "--", ],
 			\ [ "Find &Definition\t\\cg", 'call MenuHelp_Fscope("g")', 'GNU Global search g'],
 			\ [ "Find &Symbol\t\\cs", 'call MenuHelp_Fscope("s")', 'GNU Gloal search s'],

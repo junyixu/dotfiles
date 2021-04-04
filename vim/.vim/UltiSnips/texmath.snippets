@@ -6,39 +6,28 @@
 # 以下全部借鉴
 # https://castel.dev/post/lecture-notes-1/
 
-#向量 vector 匹配\零次或一次，或一个非贪婪限定, \w匹配字母、数字、下划线。等价于'[A-Za-z0-9_]'
-snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
-\vec{`!p snip.rv=match.group(1)`}
-endsnippet 
+# https://vi.stackexchange.com/questions/18490/ultisnips-context-and-tex
+global !p
+def math():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
 
 # 导数(流数)
 context "math()"
 snippet "(\\?\w+)(\.\.)" "二阶导" ri
 \ddot{`!p snip.rv=match.group(1)`}
 endsnippet 
+
 context "math()"
 snippet "(\\?\w+)(\.)" "一阶导" ri
 \dot{`!p snip.rv=match.group(1)`}
 endsnippet 
 
-global !p
-texMathZones = ['texMathZone'+x for x in ['A', 'AS', 'B', 'BS', 'C', 'CS', 'D', 'DS', 'E', 'ES', 'F', 'FS', 'G', 'GS', 'H', 'HS', 'I', 'IS', 'J', 'JS', 'K', 'KS', 'L', 'LS', 'DS', 'V', 'W', 'X', 'Y', 'Z']]
-
-texIgnoreMathZones = ['texMathText']
-
-texMathZoneIds = vim.eval('map('+str(texMathZones)+", 'hlID(v:val)')")
-texIgnoreMathZoneIds = vim.eval('map('+str(texIgnoreMathZones)+", 'hlID(v:val)')")
-
-ignore = texIgnoreMathZoneIds[0]
-
-def math():
-	synstackids = vim.eval("synstack(line('.'), col('.') - (col('.')>=2 ? 1 : 0))")
-	try:
-		first = next(i for i in reversed(synstackids) if i in texIgnoreMathZoneIds or i in texMathZoneIds)
-		return first != ignore
-	except StopIteration:
-		return False
-endglobal
+#向量 vector 匹配\零次或一次，或一个非贪婪限定, \w匹配字母、数字、下划线。等价于'[A-Za-z0-9_]'
+context "math()"
+snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
+\vectorbold{`!p snip.rv=match.group(1)`}
+endsnippet 
 
 context "math()"
 priority 100
@@ -61,25 +50,6 @@ snippet iff "iff" i
 \iff
 endsnippet
 
-# mk 表示 make Ketax
-snippet mk "Math" wA
-$${1}$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-	snip.rv = ' '
-else:
-	snip.rv = ''
-`$2
-endsnippet
-
-# dm 表示 Display math
-priority 100
-snippet dm "Math" wA
-\[
-	${1:${VISUAL}}
-\]
-$0
-endsnippet
-
 #snippet array "Align" i
 #\left\{\begin{array}
 #{l}{x=r(\theta) \cos \theta} \\ 
@@ -87,30 +57,19 @@ endsnippet
 #\end{array}\right. \theta \in[\alpha, \beta]
 #endsnippet
 
-snippet gather "gahter" bA
-\begin{gather*}
-	${1:${VISUAL}}
-.\end{gather*}
-endsnippet
-
 
 context "math()"
-snippet // "Fraction" iA
+snippet // "Fraction" i
 \\frac{$1}{$2}$0
 endsnippet
 
-snippet / "Fraction" 
-\\frac{${VISUAL}}{$1}$0
+context "math()"
+snippet '(\S+)' "Fraction" Ar
+\\frac{`!p snip.rv=match.group(1)`}{$1}
 endsnippet
 
-# 分式 frac
-context "math()"
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
-\\frac{`!p snip.rv = match.group(1)`}{$1}$0
-endsnippet
 
 # 分数
-priority 1000
 context "math()"
 snippet '^.*\)/' "() frac" wrA
 `!p
@@ -136,8 +95,6 @@ context "math()"
 snippet '([A-Za-z])_(\d\d)' "auto subscript2 角标" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
-
-
 
 context "math()"
 snippet == "equals" iA
@@ -419,13 +376,14 @@ endsnippet
 #endsnippet
 # end physics 宏包
 
-snippet sq "\sqrt{}" iA
+context "math()"
+snippet sr "\sqrt{}" iA
 \sqrt{${1:${VISUAL}}} $0
 endsnippet
 
 priority 10
 context "math()"
-snippet sr "^2" iA
+snippet sq "^2" iA
 ^2
 endsnippet
 
@@ -654,6 +612,7 @@ snippet ~ "tilde 弯弯 波浪线" i
 endsnippet
 
 
+context "math()"
 snippet ~~ "~" iA
 \sim 
 endsnippet

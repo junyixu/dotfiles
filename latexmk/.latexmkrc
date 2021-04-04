@@ -11,7 +11,7 @@ $xelatex = "xelatex -file-line-error -halt-on-error -interaction=nonstopmode -sh
 $xdvipdfmx = "xdvipdfmx -E -o %D %O %S";
 
 $bibtex_use = 1.5;
-# $out_dir = "latex.out";
+$out_dir = "latex.out";
 
 $clean_ext = "hd nav snm synctex.gz xdv";
 

@@ -219,6 +219,7 @@ nnoremap s} <C-W>]
 " 打开预览窗口
 nnoremap sg] <C-W>g}
 
+set termwinkey=<C-G>
 "Add simple highlight removal.
 " nmap <Leader><space> :nohlsearch<cr>
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
@@ -281,7 +282,6 @@ tnoremap <A-q> <C-\><C-n>
 " tnoremap <C-w> <ESC>ciw
 
 " 我需要 term 的时候一定是没开 tmux 的时候，<C-g> 是 tmux 的前缀
-tnoremap <C-g> <C-w>
 nnoremap <C-g> <C-w>
 
 " inoremap <A-h> <C-\><C-N><C-w>h
@@ -432,6 +432,8 @@ function! g:CopyFileEntryToClipBoard() "for syntax/index.vim
 let @+ = expand("%:p").'|'.line(".")
 endfunction
 silent! command -nargs=0 CopyEntry call g:CopyFileEntryToClipBoard()
+
+silent! command Pwd :echo expand('%:p')
 
 function! g:CopyFilePathToClipBoard() "for syntax/index.vim
 let @+ = expand("%:p")

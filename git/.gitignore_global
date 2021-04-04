@@ -4,8 +4,10 @@ GRTAGS
 tags
 .ctags
 .notags
+.tasks
+compile_commands.json
 
-.o
+*.o
 
 
 .venv
