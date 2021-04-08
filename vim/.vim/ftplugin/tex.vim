@@ -3,7 +3,7 @@
 noremap <silent><buffer> <leader>vh :! xdg-open http://wuli.wiki/online/%:r.html<cr>
 nnoremap <silent><buffer> <S-CR> :! xdg-open http://wuli.wiki/online/<cfile>.html<cr>
 inoremap <silent><buffer> <S-CR> \\<CR>
-nnoremap <buffer> <localleader>l :VimtexCompile<CR>
+nnoremap <buffer> <localleader>r :VimtexCompile<CR>
 nnoremap <buffer> <localleader>e :VimtexError<CR>
 nnoremap <buffer> <localleader>s :VimtexStatus<CR>
 nnoremap <buffer> <localleader>k :VimtexStop<CR>

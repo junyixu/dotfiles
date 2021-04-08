@@ -166,6 +166,8 @@ vnoremap <F7> :call ChineseCount()<cr>
 augroup autosourcing
 	autocmd!
 	autocmd BufWritePost .vimrc source %
+	autocmd BufWritePost unix_plugs.vim source %
+	autocmd BufWritePost unix.vim source %
 augroup END
 " 如果是 Windows 则用
 " autocmd! bufwritepost _vimrc source %
@@ -219,7 +221,9 @@ nnoremap s} <C-W>]
 " 打开预览窗口
 nnoremap sg] <C-W>g}
 
+" 内置终端
 set termwinkey=<C-G>
+
 "Add simple highlight removal.
 " nmap <Leader><space> :nohlsearch<cr>
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
@@ -272,17 +276,43 @@ nnoremap S <C-w>w
 " nnoremap <A-k> <C-W><C-K>
 " nnoremap <A-l> <C-W><C-L>
 " nnoremap <A-h> <C-W><C-H>
-" tnoremap <A-h> <C-\><C-N><C-w>h
-" tnoremap <A-j> <C-\><C-N><C-w>j
-" tnoremap <A-k> <C-\><C-N><C-w>k
-" tnoremap <A-l> <C-\><C-N><C-w>l
-tnoremap <A-q> <C-\><C-n>
-" 
-" 我希望 ctrl w 是删除一个单词，就像平时终端一样，但是做不到
-" tnoremap <C-w> <ESC>ciw
+
+" tnoremap <A-h> <C-\><C-N><C-g>h
+" tnoremap <A-j> <C-\><C-N><C-g>j
+" tnoremap <A-k> <C-\><C-N><C-g>k
+" tnoremap <A-l> <C-\><C-N><C-g>l
+"
+"Use tab split to open the current window in a new tab, then <C-W><C-Q> to go back. You can map the command, for example:
+nnoremap sO :tab split<CR>
+tnoremap <M-o> <C-\><C-n>:tab split<CR>a
+nnoremap so <c-w>o
+
+nnoremap <C-g> <C-w>
+tnoremap <M-q> <C-\><C-n>
+
+tnoremap <M-h> <C-g>h
+tnoremap <M-j> <C-g>j
+tnoremap <M-k> <C-g>k
+tnoremap <M-l> <C-g>l
+
+tnoremap <M-H> <C-g>H
+tnoremap <M-J> <C-g>J
+tnoremap <M-K> <C-g>K
+tnoremap <M-L> <C-g>L
+
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
+
+nnoremap <M-H> <C-w>H
+nnoremap <M-J> <C-w>J
+nnoremap <M-K> <C-w>K
+nnoremap <M-L> <C-w>L
+
+
 
 " 我需要 term 的时候一定是没开 tmux 的时候，<C-g> 是 tmux 的前缀
-nnoremap <C-g> <C-w>
 
 " inoremap <A-h> <C-\><C-N><C-w>h
 " inoremap <A-j> <C-\><C-N><C-w>j
@@ -394,10 +424,10 @@ noremap vA ggVG
 " nnoremap <backspace> :b1<cr>
 " choose tab but it may not work in terminal 后来装了依云的插件就好了
 " ~/.vim/plugin/
-nnoremap <M-h> gT
-nnoremap <M-l> gt
-nnoremap <M-H> :tabmove -1<CR>
-nnoremap <M-L> :tabmove +1<CR>
+" nnoremap <M-h> gT
+" nnoremap <M-l> gt
+" nnoremap <M-H> :tabmove -1<CR>
+" nnoremap <M-L> :tabmove +1<CR>
 
 nnoremap <M-1> 1gt
 nnoremap <M-2> 2gt

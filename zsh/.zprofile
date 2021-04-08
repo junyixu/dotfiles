@@ -3,7 +3,7 @@
 # export PATH=$HOME/Baidu-Pan/BaiduPCS-Go-v3.5.6-linux-amd64:$HOME/bin:$HOME/.local/bin/:/opt/MATLAB/R2018a/bin:$PATH
 # export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
 
-export TEXLIVE=/usr/local/texlive/2020
+export TEXLIVE=/usr/local/texlive/2021
 export MATLAB=/opt/MATLAB/R2019b
 
 export PATH=$HOME/bin:$HOME/.local/bin/:$MATLAB/bin:$PATH

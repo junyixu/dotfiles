@@ -147,7 +147,7 @@ export LANG=zh_CN.UTF-8
 #
 # Example aliases
 alias zshcfg="$EDITOR ~/.zshrc"
-alias tmuxcfg="$EDITOR ~/.tmux.conf"
+alias tmuxcfg="$EDITOR ~/.config/tmux/tmux.conf"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # alias okular='XDG_CONFIG_HOME=/home/junyi/okularconfig okular'
@@ -318,7 +318,7 @@ todo() {
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-alias ls='ls --color=auto'
+alias ls='lsd'
 
 r() {
   if [ "$1" != "" ]; then

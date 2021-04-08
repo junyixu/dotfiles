@@ -3,6 +3,8 @@
 #\item \textbf{定义类}：definition，conjecture，example；
 #\item \textbf{备注类}：remark，note，case；
 #\item \textbf{证明类}：proof。
+
+priority -30
 snippet sec "Section"
 \section{${1:${VISUAL:section name}}}%
 endsnippet
@@ -221,6 +223,7 @@ snippet href "href" w
 \href{${2:url}}{${1:${VISUAL:text}}} $0
 endsnippet
 
+priority -10
 snippet lst "lstlisting" b
 \begin{lstlisting}[language=${1:cpp}]
 ${2:${VISUAL:code}}

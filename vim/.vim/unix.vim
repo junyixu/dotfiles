@@ -1,5 +1,6 @@
 " runtimepath
-set rtp+=./
+" set rtp+=./
+set rtp+=./snippets
 " set tags+=~/.vim/systags
 set encoding=utf8
 set fileencodings=utf8,cp936,gb18030,big5

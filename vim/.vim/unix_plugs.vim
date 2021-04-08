@@ -186,6 +186,7 @@ Plug 'jpalardy/vim-slime', {'on': ['<Plug>SlimeRegionSend',
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
 let g:slime_python_ipython = 1
 let g:slime_target = 'tmux'
+" let g:slime_target = 'vimterminal'
 " let g:slime_default_config = {
 "             \ 'socket_name': get(split($TMUX, ','), 0),
 "             \ 'target_pane': ':.'
@@ -193,12 +194,12 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-autocmd filetype python,matlab xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
-autocmd filetype python,matlab nmap <silent><buffer> <C-CR> <Plug>SlimeParagraphSend
-autocmd filetype python,matlab nmap <silent><buffer> <localleader>c <Plug>SlimeConfig
-autocmd filetype python,matlab nmap <S-CR> <Plug>SlimeSendCell
-autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
-autocmd filetype python,matlab nmap <localleader><localleader> <Plug>SlimeLineSend
+autocmd filetype python,matlab,julia xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
+autocmd filetype python,matlab,julia nmap <silent><buffer> <localleader>c <Plug>SlimeConfig
+autocmd filetype python,matlab,julia nmap <C-CR> <Plug>SlimeSendCell
+" autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
+autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
 " }}}
 
 
@@ -343,13 +344,27 @@ Plug 'skywind3000/vim-dict'
 " ===========  tmux ============={{{
 " Plug 'tmux-plugins/vim-tmux'
 if executable("tmux") && strlen($TMUX)
-    " Plug 'tmux-plugins/vim-tmux-focus-events'
+    Plug 'tmux-plugins/vim-tmux-focus-events'
     Plug 'roxma/vim-tmux-clipboard'
 
     Plug 'wellle/tmux-complete.vim'
         " let g:tmuxcomplete#trigger = 'omnifunc'
 endif
 " ===========  tmux =============}}}
+
+Plug 'puremourning/vimspector'
+let g:vimspector_install_gadgets = [ 'debugpy', 'CodeLLDB'  ]
+let g:vimspector_enable_mappings = 'HUMAN'
+
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-abolish'
@@ -373,20 +388,21 @@ Plug 'voldikss/vim-floaterm'
     let g:asyncrun_rootmarks = ['.svn', '.git', '.root','.project', '_darcs', 'build.xml', '.tasks']
 	" let g:asynctasks_term_pos = 'tab' " vim, bottom
 
-    nnoremap <silent> <F4> :AsyncRun -cwd=<root>/build cmake .. <cr>
+    " nnoremap <silent> <F4> :AsyncRun -cwd=<root>/build cmake .. <cr>
 
-	noremap <silent><f5> :AsyncTask file-run<cr>
+	" noremap <silent><f5> :AsyncTask file-run<cr>
 	noremap <silent><leader>r :AsyncTask file-run<cr>
-	noremap <silent><f9> :AsyncTask file-build<cr>
-	noremap <silent><S-f5> :AsyncTask project-run<cr>
-	noremap <silent><S-f9> :AsyncTask project-run<cr>
-	noremap <silent><S-f9> :AsyncTask project-build<cr>
-    nnoremap <silent> <S-F6> :AsyncTask project-test<cr>
-    nnoremap <silent> <C-f10> :AsyncTaskList<cr>
-    nnoremap <silent> <F7> :AsyncRun -cwd=<root>/build make <cr>
-    nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
-    " 设置 F10 打开 / 关闭 Quickfix 窗口
-    nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+	" noremap <silent><leader>r :AsyncTask file-run<cr>
+	" noremap <silent><f9> :AsyncTask file-build<cr>
+	" noremap <silent><S-f5> :AsyncTask project-run<cr>
+	" noremap <silent><S-f9> :AsyncTask project-run<cr>
+	" noremap <silent><S-f9> :AsyncTask project-build<cr>
+    " nnoremap <silent> <S-F6> :AsyncTask project-test<cr>
+    " nnoremap <silent> <C-f10> :AsyncTaskList<cr>
+    " nnoremap <silent> <F7> :AsyncRun -cwd=<root>/build make <cr>
+    " nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
+    " " 设置 F10 打开 / 关闭 Quickfix 窗口
+    " nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
     "}}}
 
 
@@ -906,6 +922,7 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 let g:ycm_warning_symbol                                = '--'
 let g:ycm_autoclose_preview_window_after_completion     = 1
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
+let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 let g:ycm_add_preview_to_completeopt                    = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_complete_in_strings                           = 1
@@ -1276,6 +1293,7 @@ autocmd Filetype tex call vimtex#imaps#add_map({
   \ 'context' : ["itemize", "enumerate"],
   \})
 autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
+
 autocmd FileType tex nnoremap <buffer><silent> <C-n> o\input{lec_.tex}<Esc>F_a
     let g:vimtex_doc_handlers = ['MyHandler']
     function! MyHandler(context)

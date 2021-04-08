@@ -245,9 +245,9 @@ let g:interestingWordsDefaultMappings = 1
 endif
 
 if !hasmapto('<Plug>InterestingWords')
-nnoremap <silent> <M-k> :call InterestingWords('n')<cr>
-    vnoremap <silent> <M-k> :call InterestingWords('v')<cr>
-    nnoremap <silent> <M-K> :call UncolorAllWords()<cr>
+nnoremap <silent> <space>k :call InterestingWords('n')<cr>
+    vnoremap <silent> <space>k :call InterestingWords('v')<cr>
+    nnoremap <silent> <space>K :call UncolorAllWords()<cr>
 
     nnoremap <silent> n :call WordNavigation(1)<cr>
     nnoremap <silent> N :call WordNavigation(0)<cr>
