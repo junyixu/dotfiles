@@ -859,6 +859,66 @@ snippet f'y "f'_y" i
 f'_y\left( ${1:x},${2:y} \right) $0
 endsnippet
 
+# snippet "\|(.*?)\>" "ket" riA
+# \ket{`!p name = 'eric' 
+# snip.rv = match.group(1).replace('2', f'{name.upper()}').replace(f'{name.upper()}', f'{name.lower()}')`}
+# endsnippet
+
+# f-string，亦称为格式化字符串常量（formatted string literals），是Python3.6新引入的一种字符串格式化方法
+# eg: f'\phi'
+context "isMath()"
+snippet "\<(.*?)\|" "bra" riA
+\bra{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
+context "isMath()"
+snippet "\|(.*?)\>" "ket" riA
+\ket{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
+context "isMath()"
+snippet "(.*)\\bra{(.*?)}([^\|]*?)\>" "braket" riA
+`!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`}{`!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
+snippet á "ɑ" A
+\alpha
+endsnippet
+
+snippet Á "Alpha" A
+\Alpha
+endsnippet
+
+snippet ç "gamma" A
+\gamma
+endsnippet
+
+snippet ñ "θ" A
+\theta
+endsnippet
+
+snippet â "beta" A
+\beta
+endsnippet
+
+snippet æ "phi" A
+\varphi
+endsnippet
+
+snippet Æ "phi" A
+\Phi
+endsnippet
+
+snippet å "phi" A
+\varepsilon
+endsnippet
+
+
+snippet ø "xi" A
+\xi
+endsnippet
+
+
 # # 量子力学
 # context "isMath()"
 # snippet hb "hbar" iA

@@ -1,1 +1,1 @@
-nnoremap <buffer> <localleader>C :JupyterConnect<CR>
+" nnoremap <buffer> <localleader>C :JupyterConnect<CR>

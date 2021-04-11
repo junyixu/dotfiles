@@ -36,15 +36,15 @@ endif
 
 " begin daeyun vim-matlab {{{
 " if has('nvim')
-nnoremap <buffer>         <localleader>rn :MatlabRename
-nnoremap <buffer><silent> <localleader>fn :MatlabFixName<CR>
-" vnoremap <buffer><silent> <C-m> <ESC>:MatlabCliRunSelection<CR>
-" nnoremap <buffer><silent> <C-m> <ESC>:MatlabCliRunCell<CR>
-nnoremap <buffer><silent> <localleader><localleader> :MatlabCliRunLine<CR>
-nnoremap <buffer><silent> <localleader>i <ESC>:MatlabCliViewVarUnderCursor<CR>
-vnoremap <buffer><silent> <localleader>i <ESC>:MatlabCliViewSelectedVar<CR>
-nnoremap <buffer><silent> <localleader>k <ESC>:MatlabCliHelp<CR>
-nnoremap <buffer><silent> <localleader>e <ESC>:MatlabCliOpenInMatlabEditor<CR>
+" nnoremap <buffer>         <localleader>rn :MatlabRename
+" nnoremap <buffer><silent> <localleader>fn :MatlabFixName<CR>
+" " vnoremap <buffer><silent> <C-m> <ESC>:MatlabCliRunSelection<CR>
+" " nnoremap <buffer><silent> <C-m> <ESC>:MatlabCliRunCell<CR>
+" nnoremap <buffer><silent> <localleader><localleader> :MatlabCliRunLine<CR>
+" nnoremap <buffer><silent> <localleader>i <ESC>:MatlabCliViewVarUnderCursor<CR>
+" vnoremap <buffer><silent> <localleader>i <ESC>:MatlabCliViewSelectedVar<CR>
+" nnoremap <buffer><silent> <localleader>k <ESC>:MatlabCliHelp<CR>
+" nnoremap <buffer><silent> <localleader>e <ESC>:MatlabCliOpenInMatlabEditor<CR>
 " nnoremap <buffer><silent> <localleader>c :MatlabCliCancel<CR>
 " nnoremap <buffer><silent> <C-l> :MatlabNormalModeCreateCell<CR>
 " vnoremap <buffer><silent> <C-l> :<C-u>MatlabVisualModeCreateCell<CR>

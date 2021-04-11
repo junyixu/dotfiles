@@ -22,12 +22,12 @@ if has("nvim")
 		  " let g:airline_theme='deus'
 		  " let g:airline_theme='quantum'
 		  " let g:airline_theme='distinguished'
-		  " let g:airline_theme='gruvbox'
+		  let g:airline_theme='gruvbox'
 		  " let g:airline_theme='onedark'
 		  " let g:airline_theme='base16'
 		  " let g:airline_theme='base16_classic'
 		  " let g:airline_theme='base16_nord'
-		  let g:airline_theme='base16_oceanicnext'
+		  " let g:airline_theme='base16_oceanicnext'
 		  let g:airline#extensions#tabline#enabled = 1
 		  let g:airline_powerline_fonts = 1
 		  let g:airline#extensions#vimtex#enabled = 1
@@ -49,15 +49,8 @@ else
 Plug 'vim-airline/vim-airline', {'on': []}
 Plug 'vim-airline/vim-airline-themes'
 " {{{  airline
-" let g:airline_theme='deus'
-" let g:airline_theme='quantum'
-" let g:airline_theme='distinguished'
-" let g:airline_theme='gruvbox'
-" let g:airline_theme='onedark'
-" let g:airline_theme='base16'
-" let g:airline_theme='base16_classic'
-" let g:airline_theme='base16_nord'
-let g:airline_theme='base16_oceanicnext'
+let g:airline_theme='gruvbox'
+" let g:airline_theme='base16_oceanicnext'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 function LazyLoadAirline(timer) abort
@@ -194,12 +187,17 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-autocmd filetype python,matlab,julia xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
-autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
-autocmd filetype python,matlab,julia nmap <silent><buffer> <localleader>c <Plug>SlimeConfig
-autocmd filetype python,matlab,julia nmap <C-CR> <Plug>SlimeSendCell
+" autocmd filetype python,matlab,julia xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+" autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
+" autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
+autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
+autocmd filetype python,matlab,julia nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
+autocmd filetype matlab,julia nmap <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
+autocmd filetype python,matlab,julia nmap <M-CR> <Plug>SlimeSendCell
+autocmd filetype python nmap <localleader>r <Plug>SlimeSendCell
 " autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
-autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
+" autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
+autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
 " }}}
 
 
@@ -411,7 +409,7 @@ if has('nvim')
 	 Plug 'neoclide/coc.nvim'
 else
 	 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer', 'for': ['c', 'cpp', 'cuda', 'tex', 'python', 'cmake', 'go', 'matlab', 'fortran']}
-" set completeopt+=popup
+set completeopt+=popup
 	Plug 'ycm-core/lsp-examples'
 	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
 endif
@@ -432,12 +430,12 @@ Plug 'skywind3000/vim-preview'
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
     noremap <m-u> :PreviewScroll -1<cr>
     noremap <m-d> :PreviewScroll +1<cr>
-    inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
-    inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
+    " inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
+    " inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
     noremap <m-b> :PreviewScroll -2<cr>
     noremap <m-f> :PreviewScroll +2<cr>
-    inoremap <m-b> <c-\><c-o>:PreviewScroll -2<cr>
-    inoremap <m-f> <c-\><c-o>:PreviewScroll +2<cr>
+    " inoremap <m-b> <c-\><c-o>:PreviewScroll -2<cr>
+    " inoremap <m-f> <c-\><c-o>:PreviewScroll +2<cr>
     "}}}
 " Plug 'liuchengxu/vista.vim', { 'for': ['c','markdown', 'vimwiki', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab']}
 " Plug 'liuchengxu/vista.vim', {'on': 'Vista!!'}
@@ -452,7 +450,7 @@ Plug 'liuchengxu/vista.vim'
      " }}}
 " ----------------- tags ------------------}}}
 
-Plug 'lilydjwg/fcitx.vim'
+" Plug 'lilydjwg/fcitx.vim'
 " au FileType tex,vimwiki,markdown nmap <silent> w <Plug>(coc-ci-w)
 " au FileType tex,vimwiki,markdown nmap <silent> b <Plug>(coc-ci-b)
 
@@ -521,6 +519,7 @@ Plug 'tpope/vim-commentary'
     autocmd FileType matlab setlocal commentstring=%\ %s
     autocmd FileType systemd setlocal commentstring=#\ %s
     autocmd FileType dosini setlocal commentstring=#\ %s
+    autocmd FileType crontab setlocal commentstring=#\ %s
     autocmd FileType mma setlocal commentstring=(*\ %s\ *)
     " 对 c 没有用
     " autocmd FileType c setlocal commentstring=%\ %s
@@ -533,7 +532,7 @@ Plug 'andymass/vim-matchup'
 
 " matlab
 Plug 'andymass/vim-matlab', {'for': 'matlab'}
-Plug 'yinflying/matlab-screen', {'for': 'matlab'}
+" Plug 'yinflying/matlab-screen', {'for': 'matlab'}
 
 function! DoRemote(arg)
 	  UpdateRemotePlugins
@@ -770,13 +769,21 @@ let g:rainbow_conf = {
 " =========================  colorscheme {{{
 "colorscheme molokai-mod
 " let g:molokai_transparent=1
+
+" konsole 不支持波浪线，spell check 显示不出来
+if !has('gui_running')
+"https://github.com/morhetz/gruvbox/issues/175#issuecomment-390428621
+let g:gruvbox_guisp_fallback = "bg"
+
+endif
+
 try
     " colorscheme one
-	colorscheme onedark
+	" colorscheme onedark
+	colorscheme gruvbox
 catch
 endtry
 " colorscheme hybrid
-" colorscheme gruvbox
 " colorscheme base16-gruvbox-dark-pale
 " colorscheme base16-nord
 " colorscheme base16-woodland
@@ -971,14 +978,14 @@ let g:ycm_filetype_blacklist = {
             \ 'text'         : 1,
             \ }
 
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,cuda': ['re!\w{4}'],
-			\ 'python': ['re!\w{2}'],
-            \ 'java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
-			\ 'matlab': ['re!\w{2}'],
-			\ 'julia': ['re!\w{3}'],
-			\ }
+" let g:ycm_semantic_triggers =  {
+" 			\ 'c,cpp,cuda': ['re!\w{4}'],
+" 			\ 'python': ['re!\w{2}'],
+"             \ 'java,go,erlang,perl': ['re!\w{2}'],
+" 			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
+" 			\ 'matlab': ['re!\w{2}'],
+" 			\ 'julia': ['re!\w{3}'],
+" 			\ }
 
 nnoremap <leader>yd<Space> :YcmDiags<Space>
 nnoremap <leader>ydf :YcmDiags FixIt<CR>
@@ -1282,8 +1289,10 @@ nmap <Leader>wp <Plug>VimwikiPrevLink
 "=================== end vimwiki ===============================}}}
 
 "================= VimTeX ==============================={{{
-" au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-autocmd Filetype tex let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+if !exists('g:ycm_semantic_triggers')
+let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
 autocmd Filetype tex call vimtex#imaps#add_map({
   \ 'lhs' : '<CR>',
@@ -1325,9 +1334,6 @@ let g:vimtex_compiler_latexmk = {
 			\}
 
 " 补全
-if !exists('g:ycm_semantic_triggers')
-	let g:ycm_semantic_triggers = {}
-endif
 
 ""打开后前一个 call 函数就会消失
 "call vimtex#imaps#add_map({
@@ -1413,7 +1419,8 @@ else
     let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 endif
 
-let $FZF_PREVIEW_COMMAND = 'bat --color=always --style=plain --theme=TwoDark -n -- {} || cat {}'
+" let $FZF_PREVIEW_COMMAND = 'bat --color=always --style=plain --theme=TwoDark -n -- {} || cat {}'
+let $FZF_PREVIEW_COMMAND = 'bat --color=always --style=plain --theme=gruvbox-dark -n -- {} || cat {}'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
     " function! s:update_fzf_colors()
   " let rules =
