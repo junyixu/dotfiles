@@ -63,7 +63,6 @@ snippet // "Fraction" i
 \\frac{$1}{$2}$0
 endsnippet
 
-context "isMath()"
 snippet '(\S+)' "Fraction" Ar
 \\frac{`!p snip.rv=match.group(1)`}{$1}
 endsnippet
@@ -881,42 +880,52 @@ snippet "(.*)\\bra{(.*?)}([^\|]*?)\>" "braket" riA
 `!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`}{`!p snip.rv = match.group(3).replace('q', f'\psi').replace('f', f'\phi')`}
 endsnippet
 
-snippet á "ɑ" A
+snippet á "ɑ" Ai
 \alpha
 endsnippet
 
-snippet Á "Alpha" A
+snippet Á "Alpha" Ai
 \Alpha
 endsnippet
 
-snippet ç "gamma" A
+snippet ç "gamma" Ai
 \gamma
 endsnippet
 
-snippet ñ "θ" A
+snippet ñ "θ" Ai
 \theta
 endsnippet
 
-snippet â "beta" A
+snippet â "beta" Ai
 \beta
 endsnippet
 
-snippet æ "phi" A
+snippet ï "omega" Ai
+\omega
+endsnippet
+
+snippet æ "phi" Ai
 \varphi
 endsnippet
 
-snippet Æ "phi" A
+snippet Æ "phi" Ai
 \Phi
 endsnippet
 
-snippet å "phi" A
+snippet å "phi" Ai
 \varepsilon
 endsnippet
 
 
-snippet ø "xi" A
+snippet ø "xi" Ai
 \xi
 endsnippet
+
+snippet ð "rho" Ai
+\rho
+endsnippet
+
+
 
 
 # # 量子力学

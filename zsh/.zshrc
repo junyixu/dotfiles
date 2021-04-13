@@ -226,6 +226,7 @@ alias vitodo='$EDITOR ~/Notes/todolist.md'
 alias svi='sudo -E vim'
 # 打开到 上一次 打开的地方
 alias lvi='vim -c "normal '\''0"'
+alias vit='vim --servername TEX main.tex'
 # 打开 jupyter qtconsole
 alias jvi="vim -c JupyterConnect"
 # alias jvi="jupyter qtconsole& ; vim -c JupyterConnect"
@@ -266,7 +267,7 @@ alias vimcmake='$EDITOR CMakeLists.txt'
 alias turbo='sudo sh -c "echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
 alias no_turbo='sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
 alias top='htop'
-# alias anki='XDG_CONFIG_HOME=/home/junyi/ankiconfig anki'
+alias anki='XDG_CONFIG_HOME=/home/junyi/lightconfig anki'
 # alias sudo='sudo -E'
 # alias pacman='powerpill'
 
@@ -347,7 +348,7 @@ export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'  # --ansi 选项
 # export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
 # export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git *.log *.bbl *.pdf *.aux *.out *.xdv *.fdb*'
 # export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *.out --exclude *.svg'
-export FZF_DEFAULT_COMMAND='fd --type f --color=always --hidden --follow --exclude .git'  # 遵循符号链接 --follow 并包含隐藏文件 --hidden (但不包括.git文件夹) :
+export FZF_DEFAULT_COMMAND='fd --type f --color=auto --hidden --follow --exclude .git'  # 遵循符号链接: --follow;  并包含隐藏文件: --hidden (但不包括.git文件夹) :
 # export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_ALT_C_COMMAND='fd --type d . --color=always'
 # export FZF_DEFAULT_OPTS='--height 40% --border'

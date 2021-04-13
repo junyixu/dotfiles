@@ -174,15 +174,16 @@ augroup END
 " 如果是 neovim 只要把 .vimrc 改成 init.vim 就可以了
 
 "---------------------Visual---------------------------------"
-set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
+" set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
 " " Enable true color 启用终端24位色
 " if exists('+termguicolors') && $SSH_CONNECTION == ''
-" if exists('+termguicolors')
+if exists('+termguicolors')
   set termguicolors
   set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
-" else
-	" set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
-" endif
+
+else
+	set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
+endif
 " if &term =~# '^screen'
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"

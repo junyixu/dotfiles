@@ -450,7 +450,7 @@ Plug 'liuchengxu/vista.vim'
      " }}}
 " ----------------- tags ------------------}}}
 
-" Plug 'lilydjwg/fcitx.vim'
+Plug 'lilydjwg/fcitx.vim'
 " au FileType tex,vimwiki,markdown nmap <silent> w <Plug>(coc-ci-w)
 " au FileType tex,vimwiki,markdown nmap <silent> b <Plug>(coc-ci-b)
 

@@ -618,8 +618,9 @@ key_bindings:
   - { key: Key9,      mods: Control,       chars: "\x1b\x5b\x32\x30\x3b\x35\x7e" }
   - { key: Key0,      mods: Control,       chars: "\x1b\x5b\x32\x31\x3b\x35\x7e" }
   # - { key: Semicolon, mods: Control,       chars: "\x1b\x5b\x32\x33\x3b\x35\x7e" }
-  - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
-  - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
+  # - { key: Return,   mods: Shift,   chars: "\x1b[13;2u" }
+  # - { key: Return,   mods: Control, chars: "\x1b[13;5u" }
+  - { key: Return,   mods: Control, chars: "\x1b\x5b\x31\x3b\x35\x50" }
   - { key: Apostrophe,mods: Control,       chars: "\x1b\x5b\x32\x34\x3b\x35\x7e" }
 
   # Map Control-Alt-([1-9]) and Control-[,.] to Control-shift-[F1-F12] (F37-F48)
