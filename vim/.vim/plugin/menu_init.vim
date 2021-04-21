@@ -110,8 +110,8 @@ call quickui#menu#install("&Build", [
 			\ ])
 
 call quickui#menu#install("&Git", [
-			\ ['&View Diff', 'call svnhelp#svn_diff("%")'],
-			\ ['&Show Log', 'call svnhelp#svn_log("%")'],
+			\ ['View &Diff', 'Gdiffsplit'],
+			\ ['&Show Log', 'Glog'],
 			\ ['File &Add', 'call svnhelp#svn_add("%")'],
 			\ ['-'],
 			\ ['&Fugitive Status', 'Gstatus'],

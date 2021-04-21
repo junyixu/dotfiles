@@ -187,12 +187,12 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-" autocmd filetype python,matlab,julia xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+autocmd filetype python,matlab,julia xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
 autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
 autocmd filetype python,matlab,julia nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
-autocmd filetype matlab,julia nmap <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
+autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
 autocmd filetype python,matlab,julia nmap <M-CR> <Plug>SlimeSendCell
 autocmd filetype python nmap <localleader>r <Plug>SlimeSendCell
 " autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
@@ -817,9 +817,9 @@ endif
 " TODO 不起作用，我想在 写 tex 的时候不用 gtags
 " if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
 
-if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
-	let g:gutentags_modules += ['gtags_cscope']
-endif
+" if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
+" 	let g:gutentags_modules += ['gtags_cscope']
+" endif
 
 " 配置 ctags 的参数，
 " extra=+q 表示强制要求ctags对同一个语法元素 再记一行(如果某个语法元素是类的一个成员，ctags默认会给其记录一行)，这样可以保证在Vim中多个同名函数可以通过路径不同来区分
@@ -978,14 +978,14 @@ let g:ycm_filetype_blacklist = {
             \ 'text'         : 1,
             \ }
 
-" let g:ycm_semantic_triggers =  {
-" 			\ 'c,cpp,cuda': ['re!\w{4}'],
-" 			\ 'python': ['re!\w{2}'],
-"             \ 'java,go,erlang,perl': ['re!\w{2}'],
-" 			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
-" 			\ 'matlab': ['re!\w{2}'],
-" 			\ 'julia': ['re!\w{3}'],
-" 			\ }
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,cuda': ['re!\w{4}'],
+			\ 'python': ['re!\w{2}'],
+            \ 'java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
+			\ 'matlab': ['re!\w{2}'],
+			\ 'julia': ['re!\w{3}'],
+			\ }
 
 nnoremap <leader>yd<Space> :YcmDiags<Space>
 nnoremap <leader>ydf :YcmDiags FixIt<CR>
