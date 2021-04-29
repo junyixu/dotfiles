@@ -171,6 +171,7 @@ alias Qs='pacman -Qs'
 alias Qo='pacman -Qo'
 alias F='pacman -F'
 alias Fl='pacman -Fl'
+alias search='baloosearch'
 
 # 查询 ip
 alias myip='curl https://ip.cn'
@@ -233,7 +234,7 @@ alias jvi="vim -c JupyterConnect"
 
 # Show open ports
 alias ports='netstat -tulanp'
-alias ssh='ssh -Y'
+# alias ssh='ssh -Y'
 
 alias tldr='https_proxy=http://127.0.0.1:1081 tldr'
 # note
@@ -342,9 +343,9 @@ r() {
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "[[ $(file --mime {}) =~ binary ]] & echo {} is a binary file || (bat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview  "bat --style=numbers --color=always {} | head -33" '
 # export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --preview  "bat --style=numbers --color=always --line-range :500 {}" '
-# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline'
-# export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'
-export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'  # --ansi 选项使 fzf 可以带有 fd 的彩色输出
+# export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline --preview  "bat --style=numbers --color=always {} | head -33" '
+# export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi '
+export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi --preview  "bat --style=numbers --color=always {} | head -33"'  # --ansi 选项使 fzf 可以带有 fd 的彩色输出
 # export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
 # export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git *.log *.bbl *.pdf *.aux *.out *.xdv *.fdb*'
 # export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *.out --exclude *.svg'

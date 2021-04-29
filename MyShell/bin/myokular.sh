@@ -6,6 +6,4 @@
 # Distributed under terms of the MIT license.
 #
 
-XDG_CONFIG_HOME=/home/junyi/okularconfig okular  ~/Desktop/university/current_course/latex.out/main.pdf &
-
-
+xdg-open  ~/Desktop/university/current_course/latex.out/main.pdf

@@ -575,6 +575,7 @@ Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
 Plug 'vimwiki/vimwiki'
 "=============== Markdown ==============={{{
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
+let g:mkdp_filetypes = ['markdown', 'vimwiki']
 Plug 'hotoo/pangu.vim', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 	let g:vim_markdown_folding_disabled = 1
@@ -593,29 +594,6 @@ Plug 'ferrine/md-img-paste.vim', {'for': 'markdown'}
 
 "=============== begin LaTeX ==============={{{
 Plug 'lervag/vimtex'
-	let g:vimtex_fold_enabled=0
-    let  g:vimtex_fold_types = {
-           \ 'preamble' : {'enabled' : 1},
-           \ 'envs' : {
-		   \	'whitelist' : ['figure', 'table'],
-		   \},
-		   \ 'sections' : {
-		   \   'parse_levels' : 2,
-		   \   'sections' : [      
-		   \     'part',
-		   \     'chapter',
-		   \     'section',
-		   \     'subsection',
-		   \     'subsubsection',
-		   \   ],
-		   \   'parts' : [     
-		   \     'appendix',
-		   \     'frontmatter',
-		   \     'mainmatter',
-		   \     'backmatter',
-		   \   ],
-		   \ },
-		   \}
 	set conceallevel=2
 	" let g:tex_conceal="abdgm"
 "=============== end LaTeX ===============}}}
@@ -1289,6 +1267,29 @@ nmap <Leader>wp <Plug>VimwikiPrevLink
 "=================== end vimwiki ===============================}}}
 
 "================= VimTeX ==============================={{{
+
+let g:vimtex_fold_enabled=1
+let  g:vimtex_fold_types = {
+	   \ 'preamble' : {'enabled' : 1},
+	   \ 'envs' : {
+	   \	'whitelist' : ['figure', 'table'],
+	   \},
+	   \ 'sections' : {
+	   \   'parse_levels' : 2,
+	   \   'sections' : [      
+	   \     'part',
+	   \     'chapter',
+	   \     'section',
+	   \   ],
+	   \   'parts' : [     
+	   \     'appendix',
+	   \     'frontmatter',
+	   \     'mainmatter',
+	   \     'backmatter',
+	   \   ],
+	   \ },
+	   \}
+
 if !exists('g:ycm_semantic_triggers')
 let g:ycm_semantic_triggers = {}
 endif
@@ -1304,34 +1305,34 @@ autocmd Filetype tex call vimtex#imaps#add_map({
 autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
 
 autocmd FileType tex nnoremap <buffer><silent> <C-n> o\input{lec_.tex}<Esc>F_a
-    let g:vimtex_doc_handlers = ['MyHandler']
-    function! MyHandler(context)
-      call vimtex#doc#make_selection(a:context)
-      if !empty(a:context.selected)
-        execute '!texdoc' a:context.selected '&'
-      endif
-      return 1
-    endfunction
 
- let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_doc_handlers = ['MyHandler']
+function! MyHandler(context)
+  call vimtex#doc#make_selection(a:context)
+  if !empty(a:context.selected)
+	execute '!texdoc' a:context.selected '&'
+  endif
+  return 1
+endfunction
+
+let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 " https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
 
-" 编译选项 连续编译 preview
-let g:vimtex_compiler_latexmk = {
-			\ 'callback' : 1,
-			\ 'continuous' : 1,
-			\ 'executable' : 'latexmk',
-			\ 'options' : [
-			\ '-pdf',
-			\ '-verbose',
-			\ '-bibtex',
-			\ '-file-line-error',
-			\ '-synctex=1',
-			\ '-interaction=nonstopmode',
-			\ ],
-			\}
+" " 编译选项 连续编译 preview
+" let g:vimtex_compiler_latexmk = {
+" 			\ 'callback' : 1,
+" 			\ 'executable' : 'latexmk',
+" 			\ 'options' : [
+" 			\ '-pdf',
+" 			\ '-verbose',
+" 			\ '-bibtex',
+" 			\ '-file-line-error',
+" 			\ '-synctex=1',
+" 			\ '-interaction=nonstopmode',
+" 			\ ],
+" 			\}
 
 " 补全
 

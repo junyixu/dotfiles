@@ -15,8 +15,7 @@ $out_dir = "latex.out";
 
 $clean_ext = "hd nav snm synctex.gz xdv";
 
-$preview_mode = 0; # 编译完成后自动打开 pdf；
-# $preview_mode = 1; # 这个似乎和 “$preview_continuous_mode = 1” 冲突
-# $preview_continuous_mode = 0; # 已经在 vimrc 里面设置了
-# @default_files = ('main.tex'); # 已经在 vimrc 里面设置了
-# $pdf_previewer = 'okular'; # linux 会根据 xdg-open 自动选择(大概
+$preview_mode = 0; # 编译完成后是否自动打开 pdf；
+$preview_continuous_mode = 0; # 已经在 vimrc 里面设置了
+# @default_files = ('main.tex'); # 已经在 vimrc 里面设置了	注：	@ 表示数组
+# $pdf_previewer = 'okular'; # 已经在 vimrc 里面设置了， 且 linux 会根据 xdg-open 自动选择

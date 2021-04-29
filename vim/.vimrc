@@ -211,6 +211,15 @@ nnoremap <silent> c<Tab> *Ncgn
 inoremap <expr><C-e> pumvisible()? "<C-E>":"\<ESC>A"
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
+
+"
+" note
+"
+" 切换到上一次的 buffer
+" :b#
+" or
+" :b #
+
 nnoremap [g :cprevious<CR>
 nnoremap ]g :cnext<CR>
 nnoremap [l :lprevious<CR>
@@ -464,7 +473,7 @@ let @+ = expand("%:p").'|'.line(".")
 endfunction
 silent! command -nargs=0 CopyEntry call g:CopyFileEntryToClipBoard()
 
-silent! command Pwd :echo expand('%:p')
+silent! command Pwd :echo expand('%:h')
 
 function! g:CopyFilePathToClipBoard() "for syntax/index.vim
 let @+ = expand("%:p")

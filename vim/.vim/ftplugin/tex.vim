@@ -53,3 +53,4 @@ nnoremap <localleader>f : silent exec '!inkscape-figures edit "'.b:vimtex.root.'
 " for char in split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '\zs')
 "     exe printf("inoremap <expr> %s search('[.!?]\\_s\\+\\%%#', 'bcnW') ? '%s' : '%s'", char, tolower(char), char)
 " endfor
+

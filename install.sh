@@ -11,4 +11,10 @@
 stow zsh
 stow vim
 stow tmux
-mkdir -p /home/junyi/.cache/vim/undo
+stow git
+stow ripgrep
+stow fd
+stow pip
+stow ranger
+stow MyShell
+mkdir -p ~/.cache/vim/undo
