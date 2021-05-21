@@ -336,6 +336,13 @@ syn match texTypeStyle		"\\textrm\>"
 
 syn match texTypeStyle		"\\mathbb\>"
 syn match texTypeStyle		"\\mathbf\>"
+" 矢量粗体 \usepackage{physics}
+syn match texTypeStyle		"\\vb\>"
+syn match texTypeStyle		"\\vectorbold\>"
+" 单位矢量 \usepackage{physics}
+syn match texTypeStyle		"\\vectorunit\>"
+syn match texTypeStyle		"\\vu\>"
+
 syn match texTypeStyle		"\\mathcal\>"
 syn match texTypeStyle		"\\mathfrak\>"
 syn match texTypeStyle		"\\mathit\>"
@@ -408,6 +415,7 @@ if s:tex_fast =~# 'b'
     syn region texBoldItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texItalGroup,@Spell
     syn region texItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texItalGroup,@Spell
     syn region texItalBoldStyle	matchgroup=texTypeStyle start="\\textbf\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texBoldGroup,@Spell
+    " 不认为斜体是强调，粗体才是强调
     syn region texEmphStyle	matchgroup=texTypeStyle start="\\emph\s*{"   matchgroup=texTypeStyle  end="}" concealends contains=@texItalGroup,@Spell
     syn region texEmphStyle	matchgroup=texTypeStyle start="\\texts[cfl]\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texBoldGroup,@Spell
     syn region texEmphStyle	matchgroup=texTypeStyle start="\\textup\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texBoldGroup,@Spell
@@ -417,6 +425,7 @@ if s:tex_fast =~# 'b'
     syn region texBoldItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texItalGroup
     syn region texItalStyle	matchgroup=texTypeStyle start="\\textit\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texItalGroup
     syn region texItalBoldStyle	matchgroup=texTypeStyle start="\\textbf\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texBoldGroup
+    " 不认为斜体是强调，粗体才是强调
     syn region texEmphStyle	matchgroup=texTypeStyle start="\\emph\s*{"   matchgroup=texTypeStyle  end="}" concealends contains=@texItalGroup
     syn region texEmphStyle	matchgroup=texTypeStyle start="\\texts[cfl]\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texEmphGroup
     syn region texEmphStyle	matchgroup=texTypeStyle start="\\textup\s*{" matchgroup=texTypeStyle  end="}" concealends contains=@texEmphGroup

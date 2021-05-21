@@ -30,19 +30,6 @@ endif
 
 au FileType cmake set keywordprg=/home/junyi/bin/cmake-help
 
-"-------------------begin gvimrc-------------------------------{{{
-set linespace=0				"Gvim-specific line-height.
-set guioptions-=m
-" set guioptions-=e
-set guioptions-=l
-set guioptions-=L
-set guioptions-=t
-set guioptions-=T
-set guioptions-=r
-set guifont=FiraCodeNerdFontMono\ 10
-" set guifont=MesloLGSNF\ 11
-" set guifont=OperatorMonoLight\ 13
-"-------------------end gvimrc-------------------------------}}}
 
 if has("nvim")
     " Make it easy to edit the .vimrc file.

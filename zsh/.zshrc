@@ -20,16 +20,25 @@ fi
 #export CC=/usr/bin/gcc-8
 #export CXX=/usr/bin/g++-8
 
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 # export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 #export INCLUDE=$HOME/.local/mpich/include:$INCLUDE
 #export INCLUDE=$HOME/.local/mpich/include
-export GPG_TTY=$TTY
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -41,6 +50,8 @@ export ZSH="$HOME/.oh-my-zsh"
 	# ZSH_THEME="random"
 # fi
 ZSH_THEME=powerlevel10k/powerlevel10k
+
+export GPG_TTY=$TTY
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -124,18 +135,10 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=zh_CN.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
- export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # z
 # export _Z_CMD=j
@@ -165,6 +168,7 @@ alias Syu='sudo pacman -Syu'
 alias S='sudo pacman -S'
 alias Si='pacman -Si'
 alias Ss='pacman -Ss'
+alias R='sudo pacman -Rs'
 alias Qi='pacman -Qi'
 alias Ql='pacman -Ql'
 alias Qs='pacman -Qs'
@@ -193,6 +197,8 @@ alias u='ffsend upload --copy'
 
 alias sagenotes='cd /home/junyi/Desktop/learning/learning_python3/sage_files && jupyter lab --no-browser'
 
+gvimt(){ command gvim --remote-tab-silent $@ || command gvim $@; }
+
 alias ctl='systemctl'
 alias sys='sudo systemctl'
 alias user='systemctl --user'
@@ -211,8 +217,8 @@ alias screenshot='flameshot gui -r'
 
 alias vi='$EDITOR'
 alias nvi='nvim'
-alias wiki='vim -c "cd %:h" ~/Notes/index.md'
-alias diary='vim -c "cd %:h" ~/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
+alias wiki='vim -c "cd %:h" ~/Documents/Notes/index.md'
+alias diary='vim -c "cd %:h" ~/Documents/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
 
 
 # plasmashell cpu占用过高，重启解决
@@ -222,12 +228,14 @@ alias plasmashellrestart='kquitapp5 plasmashell ; kstart5 plasmashell'
 alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex makefile.md'
 
 alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
-alias vitodo='$EDITOR ~/Notes/todolist.md'
+alias vitodo='$EDITOR ~/Documents/Notes/todolist.md'
 
 alias svi='sudo -E vim'
 # 打开到 上一次 打开的地方
 alias lvi='vim -c "normal '\''0"'
-alias vit='vim --servername TEX main.tex'
+alias vit='vim --servername TEX'
+alias vitv='vim --servername TEX -c 'VimtexView''
+alias testtex="cd ~/Desktop/university/testtex && vim --servername TEX -c 'VimtexView' main.tex"
 # 打开 jupyter qtconsole
 alias jvi="vim -c JupyterConnect"
 # alias jvi="jupyter qtconsole& ; vim -c JupyterConnect"
@@ -277,7 +285,7 @@ alias -s rb=vim
 alias -s c=vim
 alias -s cpp=vim
 alias -s md=vim
-alias -s tex=vim
+alias -s tex='vim --servername TEX -c 'VimtexView''
 alias -s pdf=okular
 
 # winecfg
@@ -296,8 +304,6 @@ alias -s pdf=okular
 # export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 
 
-# https://www.reddit.com/r/kde/comments/asseoc/how_to_hide_qfilesystemwatcherremovepaths_list_is/
-export QT_LOGGING_RULES='*=false'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # if [ "$SSH_CONNECTION" != "" ]; then
@@ -340,12 +346,15 @@ r() {
 	return $?
 }
 
+# https://www.reddit.com/r/kde/comments/asseoc/how_to_hide_qfilesystemwatcherremovepaths_list_is/
+export QT_LOGGING_RULES='*=false'
+
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview "[[ $(file --mime {}) =~ binary ]] & echo {} is a binary file || (bat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview  "bat --style=numbers --color=always {} | head -33" '
 # export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --preview  "bat --style=numbers --color=always --line-range :500 {}" '
 # export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline --preview  "bat --style=numbers --color=always {} | head -33" '
 # export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi '
-export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi --preview  "bat --style=numbers --color=always {} | head -33"'  # --ansi 选项使 fzf 可以带有 fd 的彩色输出
+export FZF_DEFAULT_OPTS='--layout=reverse --info=inline --ansi'  # --ansi 选项使 fzf 可以带有 fd 的彩色输出
 # export FZF_DEFAULT_COMMAND="fd --type file --color=always --follow --hidden --exclude .git"
 # export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git *.log *.bbl *.pdf *.aux *.out *.xdv *.fdb*'
 # export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude *.out --exclude *.svg'
@@ -354,9 +363,13 @@ export FZF_DEFAULT_COMMAND='fd --type f --color=auto --hidden --follow --exclude
 # export FZF_ALT_C_COMMAND='fd --type d . --color=always'
 # export FZF_DEFAULT_OPTS='--height 40% --border'
 
+# xargs -r 表示 如果为空，那么什么都不做
 # vim 用 xargs 需要用 -o 选项 详情见
 # https://superuser.com/questions/336016/invoking-vi-through-find-xargs-breaks-my-terminal-why
 se() { du -a ~/bin/* ~/.config/* | awk '{ print $2 }'  | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
+
+visearch() { baloosearch $1 | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
+
 etc() { du -a /etc/* | awk '{ print $2 }'  | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
 # system() { du -a ~/.config/systemd/user/* /etc/systemd/* /usr/lib/systemd/* | awk '{ print $2 }'  | fzf | xargs -ro $EDITOR; }
 # vim 用 xargs 必须要有 -o, 这是 vim 的 bug
@@ -372,11 +385,32 @@ sd() {
 	unset __sd_filename
 }
 
+fnotes(){
+	cd ~/.cache/LaTeXNotesPDFImg
+	__note_name=$(ls ./* | fzfimg.sh)
+	if [[ $__note_name != "" ]]; then
+		__note_name=$(basename $__note_name .jpg)
+		__note_dir_name=$HOME/Desktop/university/bachelor-3
+		 __note_dir=$__note_dir_name/$__note_name
+		cd $__note_dir
+		vim --servername TEX -c 'VimtexView' ./main.tex
+	else
+		1
+	fi
+}
+    # local __DEFAULT_SIZE="1920x1080"
+	# pdftoppm -f 1 -l 1 \
+			 # -scale-to-x "${__DEFAULT_SIZE%x*}" \
+			 # -scale-to-y -1 \
+			 # -singlefile \
+			 # -jpeg -tiffcompression jpeg \
+			 # -- "$__note_dir/latex.out/main.pdf" "$HOME/.cache/LaTeXNotesPDFImg/$__note_dir_name" 
 # 更改 v2ray 配置
 v2ray() { 
 	cd /etc/v2ray
 	ls ./* | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro sudo -E $EDITOR; 
 }
+
 
 vimrc() { find -H ~/.vim -type d \( -path ~/.vim/doc -o -path  ~/.vim/plugged  \) -prune -false -o -type f -print| fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
 # vimrc() { find -L ~/.vim  \( -path ~/.vim/plugged -o -path ~/.vim/doc -o -path ~/.vim/cache \) -prune -o -type f -print | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro $EDITOR; }
@@ -684,7 +718,7 @@ lg()
             rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
     fi
 }
-export GTAGSLABEL=pygments
+export GTAGSLABEL=native-pygments
 
 # 让 gtags 把 *.h 视为 cpp 文件
 # export GTAGSFORCECPP=
@@ -744,8 +778,4 @@ export SYSTEMD_LESS=FRXMK journalctl
 
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 export -U PATH
-
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS="@im=fcitx"
 

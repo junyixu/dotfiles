@@ -1,4 +1,6 @@
 "---------------------latex---------------------------------"
+let b:ale_linter_aliases = ['tex', 'text']
+
 " 小时物理百科
 noremap <silent><buffer> <leader>vh :! xdg-open http://wuli.wiki/online/%:r.html<cr>
 nnoremap <silent><buffer> <S-CR> :! xdg-open http://wuli.wiki/online/<cfile>.html<cr>

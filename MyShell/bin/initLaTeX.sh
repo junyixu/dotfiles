@@ -1,3 +1,11 @@
 #! /bin/sh
+# usage 
+# eg： initLaTeX.sh matlab
 
-cp -r  ~/Desktop/university/template/* .
+TEMPLATE="normal"
+if [ $# = 1 ] && [ $1 = "matlab" ]
+then
+    TEMPLATE="matlab"
+fi
+cp -r  ~/Desktop/university/template/$TEMPLATE/* .
+echo "LaTeX template: "$TEMPLATE

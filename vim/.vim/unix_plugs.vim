@@ -22,12 +22,10 @@ if has("nvim")
 		  " let g:airline_theme='deus'
 		  " let g:airline_theme='quantum'
 		  " let g:airline_theme='distinguished'
-		  let g:airline_theme='gruvbox'
 		  " let g:airline_theme='onedark'
 		  " let g:airline_theme='base16'
 		  " let g:airline_theme='base16_classic'
 		  " let g:airline_theme='base16_nord'
-		  " let g:airline_theme='base16_oceanicnext'
 		  let g:airline#extensions#tabline#enabled = 1
 		  let g:airline_powerline_fonts = 1
 		  let g:airline#extensions#vimtex#enabled = 1
@@ -49,8 +47,6 @@ else
 Plug 'vim-airline/vim-airline', {'on': []}
 Plug 'vim-airline/vim-airline-themes'
 " {{{  airline
-let g:airline_theme='gruvbox'
-" let g:airline_theme='base16_oceanicnext'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 function LazyLoadAirline(timer) abort
@@ -66,10 +62,15 @@ autocmd VimEnter * ++once call timer_start(50, 'LazyLoadAirline')
 
 endif
 
+" 下划线
 Plug 'itchyny/vim-cursorword'
+" Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }
+
 Plug 'tyru/open-browser.vim'
 
 Plug 'voldikss/vim-mma'
+
+" ssh 远程复制粘贴
 Plug 'fcpg/vim-osc52'
 	vmap <C-c> y:Oscyank<cr>
 	xmap <F7> y:Oscyank<cr>
@@ -77,7 +78,7 @@ Plug 'fcpg/vim-osc52'
 if version < 800
 echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
 else
-Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'javascript'] }
+Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json'] }
 endif
 
 if version < 800
@@ -86,6 +87,7 @@ else
 Plug 'skywind3000/vim-quickui'
 endif
 
+" 文本对象选择模式
 Plug 'gcmt/wildfire.vim'
 " --------------- wildfire config --------------{{{
 " This selects the next closest text object.
@@ -118,7 +120,7 @@ Plug 'bps/vim-textobj-python', {'for':'python'}
 Plug 'petRUShka/vim-sage', {'for': 'sage'}
 
 Plug 'majutsushi/tagbar'
-nmap <leader>tb :TagbarToggle<CR>
+	nmap <leader>tb :TagbarToggle<CR>
 
 " Plug 'tpope/vim-unimpaired'
 " impaired 受损的
@@ -210,6 +212,8 @@ nmap <C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
 "===========  git ============={{{
 Plug 'tpope/vim-fugitive'
+
+" gf <c-w>f <c-w>gf :find :sfind :tabfind ]i
 Plug 'tpope/vim-apathy'
 
 Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
@@ -343,13 +347,20 @@ Plug 'skywind3000/vim-dict'
 " Plug 'tmux-plugins/vim-tmux'
 if executable("tmux") && strlen($TMUX)
     Plug 'tmux-plugins/vim-tmux-focus-events'
+
     Plug 'roxma/vim-tmux-clipboard'
 
+	" ^X^U 在 vim 中补全 tmux 里的内容
     Plug 'wellle/tmux-complete.vim'
         " let g:tmuxcomplete#trigger = 'omnifunc'
+	
+	" 和 vim-floaterm 配合使用
+	" Plug 'benmills/vimux'
 endif
 " ===========  tmux =============}}}
+" Plug 'voldikss/vim-floaterm'
 
+" ============ vimspector 调试 ============={{{
 Plug 'puremourning/vimspector'
 let g:vimspector_install_gadgets = [ 'debugpy', 'CodeLLDB'  ]
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -364,8 +375,14 @@ xmap <Leader>di <Plug>VimspectorBalloonEval
 nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 
+" ============ end 调试 =============}}}
+"
+" toml 语法高亮
 Plug 'cespare/vim-toml'
+
 Plug 'tpope/vim-abolish'
+
+"===================== 异步任务 ================={{{
 " lazy load
 " Plug 'skywind3000/asynctasks.vim', {'on': ['AsyncTask', 'AsyncTaskMacro', 'AsyncTaskList', 'AsyncTaskEdit'] }
 Plug 'skywind3000/asynctasks.vim'
@@ -373,8 +390,8 @@ Plug 'skywind3000/asynctasks.vim'
 	 let g:asynctasks_template = '~/.vim/template.ini'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asyncrun.extra'
-Plug 'benmills/vimux'
-Plug 'voldikss/vim-floaterm'
+"===================== end 异步任务 =================}}}
+
 
     "{{{
     " 自动打开 quickfix window ，高度为 6
@@ -408,8 +425,7 @@ Plug 'voldikss/vim-floaterm'
 if has('nvim')
 	 Plug 'neoclide/coc.nvim'
 else
-	 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer', 'for': ['c', 'cpp', 'cuda', 'tex', 'python', 'cmake', 'go', 'matlab', 'fortran']}
-set completeopt+=popup
+	 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 	Plug 'ycm-core/lsp-examples'
 	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
 endif
@@ -441,7 +457,7 @@ Plug 'skywind3000/vim-preview'
 " Plug 'liuchengxu/vista.vim', {'on': 'Vista!!'}
 Plug 'liuchengxu/vista.vim'
     "{{{
-    nnoremap <leader>tt :Vista<CR>
+    nnoremap <leader>tt :Vista!!<CR>
      let g:vista_no_mappings=1
      autocmd FileType vista,vista_kind nnoremap <buffer> <silent> / :<c-u>call vista#finder#fzf#Run()<CR>
      autocmd FileType vista,vista_kind nnoremap <buffer> <silent> q    :close<CR>
@@ -459,25 +475,25 @@ Plug 'lilydjwg/fcitx.vim'
 	" let g:session_autoload=0
 " Plug 'xolox/vim-misc'
 
-" -----------------begin 美观 ------------------{{{
+" -----------------美观 ------------------{{{
 " 缩进插件
 " Plug 'Yggdroot/indentLine', {'for': ['python', 'fortran']}
 Plug 'Yggdroot/indentLine', {'for': ['python']}
     "{{{
-    nnoremap <leader>tt :Vista!!<CR>
 	let g:indentLine_char = '¦'
-	let g:indentLine_setConceal = 0
+    " 和 tex 共用的时候 conceal 颜色会被覆盖
+    let g:indentLine_setColors=0
+    " let g:indentLine_setConceal=1
+    let g:indentLine_concealcursor=1
 	" let g:indentLine_fileTypeExclude = ['text', 'sh', 'txt', 'tex', 'vim']
-	"let g:indentLine_fileType = ['py', 'c', 'cpp', 'f', 'f90']
+	" let g:indentLine_fileType = ['py', 'f', 'f90']
 	"let g:indentLine_char_list = ['|', '¦', '┆', '┊']
     "}}}
-" Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'lfv89/vim-interestingwords' " 使用 <M-k> 和 <M-K> 选择和取消  该插件在 "~/.vim/plugin/ 下面
 Plug 'kshenoy/vim-signature'
 Plug 'junegunn/vim-easy-align'
     "{{{
-    nnoremap <leader>tt :Vista!!<CR>
     " Start interactive EasyAlign in visual mode (e.g. vipga)
     xmap ga <Plug>(EasyAlign)
     " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -500,7 +516,6 @@ Plug 'tpope/vim-surround'
   " 自动补全括号
 Plug 'Raimondi/delimitMate'
     "{{{
-    nnoremap <leader>tt :Vista!!<CR>
 	" For Python docstring.
     let delimitMate_expand_cr = 1
     let delimitMate_expand_space = 1
@@ -513,16 +528,11 @@ Plug 'luochen1990/rainbow', {'on': 'RainbowToggle'}
 " 注释插件
 Plug 'tpope/vim-commentary' 
     "{{{
-    nnoremap <leader>tt :Vista!!<CR>
-    autocmd FileType apache setlocal commentstring=#\ %s
+    " autocmd FileType apache setlocal commentstring=#\ %s
     autocmd FileType nginx setlocal commentstring=#\ %s
-    autocmd FileType matlab setlocal commentstring=%\ %s
     autocmd FileType systemd setlocal commentstring=#\ %s
     autocmd FileType dosini setlocal commentstring=#\ %s
     autocmd FileType crontab setlocal commentstring=#\ %s
-    autocmd FileType mma setlocal commentstring=(*\ %s\ *)
-    " 对 c 没有用
-    " autocmd FileType c setlocal commentstring=%\ %s
     "}}}
 
 
@@ -536,7 +546,7 @@ Plug 'andymass/vim-matlab', {'for': 'matlab'}
 
 function! DoRemote(arg)
 	  UpdateRemotePlugins
-  endfunction
+endfunction
 
 " Plug 'daeyun/vim-matlab', { 'do': function('DoRemote'), 'for': 'matlab' }
 	" let g:matlab_server_launcher = 'tmux' "launch the server in a tmux split
@@ -563,14 +573,14 @@ Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
     nnoremap <leader>tu :UndotreeToggle<cr>
 "======================= 🌲️ 项目树 =========================}}}
 
-"================== begin colorscheme ======================{{{
-Plug 'morhetz/gruvbox' "colorscheme
+"================== colorscheme ======================{{{
+Plug 'morhetz/gruvbox'
 
-Plug 'joshdick/onedark.vim' "colorscheme
+Plug 'joshdick/onedark.vim'
+"================== colorscheme ======================}}}
 
-
-Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
-    let g:jupyter_mapkeys = 0
+" Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
+    " let g:jupyter_mapkeys = 0
 
 Plug 'vimwiki/vimwiki'
 "=============== Markdown ==============={{{
@@ -607,7 +617,6 @@ if has("nvim") || version < 802
         let g:echodoc_enable_at_startup = 1
 endif
 
-Plug 'Linfee/ultisnips-zh-doc'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 "============== =====================}}}
 
@@ -615,7 +624,14 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 	" let g:pymode_rope_completion = 0
 	" let g:pymode_rope_complete_on_dot = 0
 Plug 'vim-python/python-syntax', { 'for': 'python'}
-    let g:python_highlight_all = 1
+" let g:python_highlight_all=0
+let g:python_highlight_func_calls=1
+let g:python_highlight_builtins=1
+let g:python_highlight_builtin_objs=1
+let g:python_highlight_builtin_types=1
+let g:python_highlight_builtin_funcs=1
+let g:python_highlight_builtin_funcs_kwarg=1
+let g:python_highlight_exceptions=1
 " Plug 'tmhedberg/SimpylFold', { 'for': 'python'}
 
 Plug 'aperezdc/vim-template'
@@ -685,6 +701,8 @@ let g:cycle_default_groups = [
 			\     "eight", "nine", "ten"]],
 			\   [['是', '否']],
 			\   [['\leftarrow', '\rightarrow', '\leftrightarrow', ]],
+			\   [['\vb', '\vectorbold']],
+			\   [['\vu', '\vectorunit']],
 			\   [['\Longleftarrow', '\Longrightarrow' ]],
 			\   [['void', 'int', 'char']],
 			\   [['{:}', '[:]', '(:)'], 'sub_pairs'],
@@ -750,11 +768,13 @@ let g:rainbow_conf = {
 
 " konsole 不支持波浪线，spell check 显示不出来
 if !has('gui_running')
-"https://github.com/morhetz/gruvbox/issues/175#issuecomment-390428621
+" https://github.com/morhetz/gruvbox/issues/175#issuecomment-390428621
 let g:gruvbox_guisp_fallback = "bg"
-
+" let g:gruvbox_undercurl = 0
 endif
 
+let g:airline_theme='gruvbox'
+" let g:airline_theme='base16_oceanicnext'
 try
     " colorscheme one
 	" colorscheme onedark
@@ -795,7 +815,7 @@ endif
 " TODO 不起作用，我想在 写 tex 的时候不用 gtags
 " if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
 
-" if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
+" if executable('gtags-cscope') && executable('gtags')
 " 	let g:gutentags_modules += ['gtags_cscope']
 " endif
 
@@ -882,6 +902,7 @@ nnoremap <leader>gss :Gdiffsplit<cr>
 let g:ycm_error_symbol = "\ue009\ue009"  "set error or warning signs
 let g:ale_sign_error = "\ue009\ue009"
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_add_preview_to_completeopt = 0
 " let g:ale_sign_error = '⨉'
 " let g:ale_sign_error = '✗'
 " let g:ale_sign_warning = '⚡'
@@ -904,6 +925,9 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 " let g:ycm_min_num_identifier_candidate_chars = 2
 "let g:ycm_add_preview_to_completeopt = 0
 " let g:ycm_goto_buffer_command = 'vertical-split'
+" if has('patch-8.0.1000')
+" 	set completeopt+=noselect
+" endif
 let g:ycm_warning_symbol                                = '--'
 let g:ycm_autoclose_preview_window_after_completion     = 1
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
@@ -919,10 +943,10 @@ let g:ycm_confirm_extra_conf                            = 0
 let g:ycm_key_list_select_completion                    = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
 let g:ycm_cache_omnifunc                                = 0  " 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语义补全
+let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语法自动补全
 let g:ycm_complete_in_comments                          = 1  "在注释输入中也能补全
 let g:ycm_always_populate_location_list = 1
-let g:ycm_python_sys_path = ['/usr/lib/python3.8/site-packages/numpy']
+let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 " let g:ycm_filetype_whitelist = {
 " 			\ "c":1,
 " 			\ "cpp":1,
@@ -1008,7 +1032,7 @@ let g:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-
 \   ']
 
 
-let s:lsp = '/home/junyi/.vim/plugged/lsp-examples'
+let s:lsp = $HOME.'.vim/plugged/lsp-examples'
 let g:ycm_language_server = [
 			\   { 'name': 'fortran',
 			\     'filetypes': [ 'fortran' ],
@@ -1115,7 +1139,6 @@ let g:ale_lint_on_enter = 0
 " let g:ale_completion_enabled = 1
 
 let g:ale_linters = {
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
             \   'asm': ['gcc'],
             \   'nasm': ['nasm'],
             \   'cmake': ['cmakeformat', 'cmakelint'],
@@ -1126,14 +1149,39 @@ let g:ale_linters = {
             \   'matlab': ['mlint'],
             \   'shell': ['shell -n flag'],
             \   'yaml': ['prettier'],
-            \   'tex': ['alex', 'chktex', 'lacheck'],
+            \   'markdown': ['textidote'],
+			\   'lua': ['luac'], 
+            \   'vimwiki': ['textidote'],
+            \   'tex': ['lacheck', 'textidote'],
             \   'sh': ['language_server', 'shell', 'shellcheck'],
             \   'bash': ['language_server', 'shell', 'shellcheck'],
             \   'vue': ['eslint'],
             \   'json': ['jsonlint'],
             \ }
+" let g:ale_languagetool_options='--autoDetect --mothertongue zh-CN'
+" alias 好像不起作用
+" let g:ale_linter_aliases = {
+" 			\   'Dockerfile': 'dockerfile',
+" 			\   'csh': 'sh',
+" 			\   'javascriptreact': ['javascript', 'jsx'],
+" 			\   'plaintex': 'tex',
+" 			\	'tex': ['text', 'tex'],
+" 			\	'markdown': ['markdown', 'text'],
+" 			\   'ps1': 'powershell',
+" 			\   'rmarkdown': 'r',
+" 			\   'rmd': 'r',
+" 			\   'svelte': ['svelte', 'javascript'],
+" 			\   'systemverilog': 'verilog',
+" 			\   'typescriptreact': ['typescript', 'tsx'],
+" 			\   'verilog_systemverilog': ['verilog_systemverilog', 'verilog'],
+" 			\   'vimwiki': 'markdown',
+" 			\   'vue': ['vue', 'javascript'],
+" 			\   'xsd': ['xsd', 'xml'],
+" 			\   'xslt': ['xslt', 'xml'],
+" 			\   'zsh': 'sh',
+" 			\}
 
-let g:ale_fixers = {'python': ['autopep8'], 'html': [], '*': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fixers = {'python': ['autopep8'], 'html': [], 'tex': ['latexindent'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 "==================== end =============================}}}
 
 "================== UltiSnips ============{{{
@@ -1235,7 +1283,7 @@ imap <M-L><C-J> <Plug>VimwikiListNextSymbol
 imap <M-L><C-K> <Plug>VimwikiListPrevSymbol
 imap <M-L><C-M> <Plug>VimwikiListToggle
 "let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_list = [{'path': '~/Notes', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Documents/Notes', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 " let g:vimwiki_list = [{'path': '~/Notes', 'syntax': 'markdown'}]
 "autocmd BufRead,BufNewFile *.wiki setfiletype vimwiki
@@ -1302,7 +1350,7 @@ autocmd Filetype tex call vimtex#imaps#add_map({
   \ 'wrapper' : 'vimtex#imaps#wrap_environment',
   \ 'context' : ["itemize", "enumerate"],
   \})
-autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
+" autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
 
 autocmd FileType tex nnoremap <buffer><silent> <C-n> o\input{lec_.tex}<Esc>F_a
 
@@ -1316,7 +1364,7 @@ function! MyHandler(context)
 endfunction
 
 let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 " https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
 
@@ -1346,7 +1394,7 @@ let g:vimtex_view_general_options_latexmk = '--unique'
 "  \})
 
 let g:tex_flavor='latex'
-let g:vimtex_quickfix_mode=1
+let g:vimtex_quickfix_mode=0
 
 " 待解决
 "call vimtex#imaps#add_map({

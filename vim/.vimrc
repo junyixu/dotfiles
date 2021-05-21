@@ -79,7 +79,7 @@ set foldmethod=marker
 nnoremap <leader>z @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "---------------------tex---------------------------------"
 "autocmd BufReadPost *.md setlocal spell spelllang=en_us,cjk		"忽略中文对英文进行拼写检查
-" 语法检查 更改拼写错误
+" 语法检查 更改拼写错误; CTRL-G u	打断撤销序列，开始新的改变
 inoremap <M-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 "set spell spelllang=en_us				"打开英语单词的拼写检查
@@ -259,8 +259,8 @@ nnoremap Q q
 nnoremap <space>ya gg"+yG<C-O><C-O>
 
 "忘记 sudo vim 时
-nmap <M-S> <silent>:w !sudo tee % > /dev/null<CR>
-nmap <M-Z> <silent>:wqall<CR>
+nmap <silent> <M-S> :w !sudo tee % > /dev/null<CR>
+nmap <silent> <M-Z> :wqall<CR>
 
 nnoremap cd :tcd %:h<cr>
 

@@ -68,6 +68,18 @@ endsnippet
 # \ref{${1:reference}} $0
 # endsnippet
 
+# snippet visual "Math"
+# \[
+# 	${1:${VISUAL}}
+# \]
+# test.
+# `!p
+# import subprocess
+# import base64
+# snip.rv = (subprocess.check_output(['translator.py', '--engine=baidu', snip.v.text])).decode()`
+# $0
+# endsnippet
+
 snippet eqr "eqref" i
 Eq~\eqref{eq:${1:equation}} $0
 endsnippet
@@ -106,9 +118,9 @@ snippet subfig "\usepackage{subcation}" b
 \centering
 \subcaptionbox{${3/(\w+)\.\w+/\u$1/}\label{fig:${3/\w+\/(\w+)\.\w+/$1/}}}
 [.4\linewidth]{\includegraphics{${3:name.ext}}}
-\subcaptionbox{${5/(\w+)\.\w+/\u$4/}\label{elephant}}
+\subcaptionbox{test\label{elephant}}
 [.4\linewidth]{\includegraphics{elephant}}
-\caption{$0}\label{fig:${5/\w+\/(\w+)\.\w+/$1/}}
+\caption{$0}\label{fig:test}
 \end{figure}
 endsnippet
 

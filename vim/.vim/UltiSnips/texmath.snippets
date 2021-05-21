@@ -15,18 +15,18 @@ endglobal
 # 导数(流数)
 context "isMath()"
 snippet "(\\?\w+)(\.\.)" "二阶导" ri
-\ddot{`!p snip.rv=match.group(1)`}
+\ddot{`!p snip.rv=match.group(1)`} 
 endsnippet 
 
 context "isMath()"
 snippet "(\\?\w+)(\.)" "一阶导" ri
-\dot{`!p snip.rv=match.group(1)`}
+\dot{`!p snip.rv=match.group(1)`} 
 endsnippet 
 
 #向量 vector 匹配\零次或一次，或一个非贪婪限定, \w匹配字母、数字、下划线。等价于'[A-Za-z0-9_]'
 context "isMath()"
 snippet "(\\?\w+)(,\.|\.,)" "Vector postfix" riA
-\vectorbold{`!p snip.rv=match.group(1)`}
+\vb{`!p snip.rv=match.group(1)`}
 endsnippet 
 
 priority 100
@@ -105,17 +105,12 @@ snippet '([A-Za-z])_(\d\d)' "auto subscript2 角标" wrA
 endsnippet
 
 context "isMath()"
-snippet == "equals" iA
-&= $1 \\\\
-endsnippet
-
-context "isMath()"
 snippet != "not equals" iA
 \neq 
 endsnippet
 
 context "isMath()"
-snippet eqv "equals" iA
+snippet == "equals" iA
 \equiv 
 endsnippet
 
@@ -128,6 +123,28 @@ context "isMath()"
 snippet floor "floor" iA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
+
+context "isMath()"
+snippet .* "点乘" A
+\vdot 
+endsnippet
+
+context "isMath()"
+snippet x* "叉乘" A
+\cross 
+endsnippet
+
+context "isMath()"
+snippet  "subscript" A
+^{$1} $0
+endsnippet
+
+context "isMath()"
+snippet __ "sub" Ai
+_{$1} $0
+endsnippet
+
+
 
 ############
 #  矩阵和行列式  #{{{

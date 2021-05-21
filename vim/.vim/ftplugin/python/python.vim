@@ -1,5 +1,4 @@
 let $PYTHONUNBUFFERED=1
-
 " Run current file
 "nnoremap <buffer> <silent> <localleader>R :JupyterRunFile<CR>
 "nnoremap <buffer> <silent> <localleader>I :PythonImportThisFile<CR>
