@@ -7,3 +7,6 @@ sockets.target.wants
 timers.target.wants
 default.target.wants
 systags
+ranger/.config/ranger/bookmarks
+ranger/.config/ranger/history
+ranger/.config/ranger/tagged
