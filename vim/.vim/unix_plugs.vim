@@ -70,6 +70,24 @@ Plug 'tyru/open-browser.vim'
 
 Plug 'voldikss/vim-mma'
 
+Plug 'voldikss/vim-translator'
+" let g:translator_target_lang='en'
+" let g:translator_source_lang='zh'
+" let g:translator_default_engines=['google']
+" nmap <silent> <localLeader>t <Plug>Translate
+vmap <silent> <localLeader>t <Plug>TranslateV
+" Display translation in a window
+" nmap <silent> <localLeader>w <Plug>TranslateW
+vmap <silent> <localLeader>w <Plug>TranslateWV
+" Replace the text with translation
+" nmap <silent> <localLeader>r <Plug>TranslateR
+vmap <silent> <localLeader>r <Plug>TranslateRV
+" Translate the text in clipboard
+nmap <silent> <localLeader>x <Plug>TranslateX
+
+
+
+
 " ssh 远程复制粘贴
 Plug 'fcpg/vim-osc52'
 	vmap <C-c> y:Oscyank<cr>
@@ -91,7 +109,7 @@ endif
 Plug 'gcmt/wildfire.vim'
 " --------------- wildfire config --------------{{{
 " This selects the next closest text object.
-map <leader>v <Plug>(wildfire-fuel)
+map <localleader>v <Plug>(wildfire-fuel)
 
 " This selects the previous closest text object.
 " vmap <S-SPACE> <Plug>(wildfire-water)
@@ -189,17 +207,24 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-autocmd filetype python,matlab,julia xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+autocmd filetype python,matlab,julia,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
-autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
-autocmd filetype python,matlab,julia nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
-autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
-autocmd filetype python,matlab,julia nmap <M-CR> <Plug>SlimeSendCell
+autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
+
+autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
+" autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
+autocmd filetype matlab,julia,sage.python nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
+" autocmd filetype matlab,julia,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
+
+autocmd filetype python,matlab,julia,sage.python nmap <M-CR> <Plug>SlimeSendCell
+" autocmd filetype python,matlab,julia,sage.python nnoremap <C-CR> <Plug>SlimeSendCell
+" nnoremap <s-cr> :w
+
 autocmd filetype python nmap <localleader>r <Plug>SlimeSendCell
 " autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
 " autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
-autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
+autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
 " }}}
 
 
@@ -511,7 +536,8 @@ Plug 'mhinz/vim-startify'
 " 打开 vim 到上次编辑的位置
 Plug 'farmergreg/vim-lastplace'  
 
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 
   " 自动补全括号
 Plug 'Raimondi/delimitMate'
@@ -643,6 +669,26 @@ Plug 'bootleq/vim-cycle'
 call plug#end()
 
 "=========== end vim-plug =============}}}
+runtime macros/sandwich/keymap/surround.vim
+" Text objects to select a text surrounded by brackets or user-specified characters.
+xmap is <Plug>(textobj-sandwich-query-i)
+xmap as <Plug>(textobj-sandwich-query-a)
+omap is <Plug>(textobj-sandwich-query-i)
+omap as <Plug>(textobj-sandwich-query-a)
+" Text objects to select the nearest surrounded text automatically.
+xmap iss <Plug>(textobj-sandwich-auto-i)
+xmap ass <Plug>(textobj-sandwich-auto-a)
+omap iss <Plug>(textobj-sandwich-auto-i)
+omap ass <Plug>(textobj-sandwich-auto-a)
+let g:sandwich#magicchar#f#patterns = [
+        \   {
+        \     'header' : '\<\%(\h\k*\.\)*\h\k*',
+        \     'bra'    : '(',
+        \     'ket'    : ')',
+        \     'footer' : '',
+        \   },
+        \ ]
+
 "" the glaive#Install() should go after the "call vundle#end()"
 call glaive#Install()
 " Optional: Enable codefmt's default mappings on the <Leader>= prefix.
@@ -944,7 +990,7 @@ let g:ycm_key_list_select_completion                    = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
 let g:ycm_cache_omnifunc                                = 0  " 禁止缓存匹配项，每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语法自动补全
-let g:ycm_complete_in_comments                          = 1  "在注释输入中也能补全
+let g:ycm_complete_in_comments                          = 0  "在注释输入中也能补全
 let g:ycm_always_populate_location_list = 1
 let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 " let g:ycm_filetype_whitelist = {
@@ -963,22 +1009,23 @@ let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 " 			\ }
 
 let g:ycm_filetype_blacklist = {
-            \ 'notes': 1,
-            \ 'netrw': 1,
-            \ 'unite': 1,
-            \ 'pandoc': 1,
-            \ 'infolog': 1,
-            \ 'mail': 1,
-            \ 'coc-explorer' : 1,
-            \ 'tagbar'       : 1,
-            \ 'vista'        : 1,
-            \ 'leaderf'      : 1,
-            \ 'fzf'          : 1,
-            \ 'gitcommit'    : 1,
-            \ 'markdown'     : 1,
-            \ 'vimwiki'      : 1,
-            \ 'text'         : 1,
-            \ }
+			\ 'notes':        1,
+			\ 'netrw':        1,
+			\ 'unite':        1,
+			\ 'pandoc':       1,
+			\ 'infolog':      1,
+			\ 'mail':         1,
+			\ 'coc-explorer': 1,
+			\ 'tagbar':       1,
+			\ 'vista':        1,
+			\ 'leaderf':      1,
+			\ 'fzf':          1,
+ 			\ 'julia':        1,
+			\ 'gitcommit':    1,
+			\ 'markdown':     1,
+			\ 'vimwiki':      1,
+			\ 'text':         1,
+			\ }
 
 let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,cuda': ['re!\w{4}'],
@@ -986,8 +1033,14 @@ let g:ycm_semantic_triggers =  {
             \ 'java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
 			\ 'matlab': ['re!\w{2}'],
+			\ 'tex': ['re!\\\w{4}'],
 			\ 'julia': ['re!\w{3}'],
 			\ }
+
+" let g:vimtex_enabled = 0
+
+" https://github.com/lervag/ vimtex/issues/168#issuecomment-108019496
+" let g:tex_fast = "bMpr"
 
 nnoremap <leader>yd<Space> :YcmDiags<Space>
 nnoremap <leader>ydf :YcmDiags FixIt<CR>
@@ -1316,32 +1369,34 @@ nmap <Leader>wp <Plug>VimwikiPrevLink
 
 "================= VimTeX ==============================={{{
 
-let g:vimtex_fold_enabled=1
-let  g:vimtex_fold_types = {
-	   \ 'preamble' : {'enabled' : 1},
-	   \ 'envs' : {
-	   \	'whitelist' : ['figure', 'table'],
-	   \},
-	   \ 'sections' : {
-	   \   'parse_levels' : 2,
-	   \   'sections' : [      
-	   \     'part',
-	   \     'chapter',
-	   \     'section',
-	   \   ],
-	   \   'parts' : [     
-	   \     'appendix',
-	   \     'frontmatter',
-	   \     'mainmatter',
-	   \     'backmatter',
-	   \   ],
-	   \ },
-	   \}
+" fold 造成 vimtex 相当卡顿
+let g:vimtex_fold_enabled=0
 
-if !exists('g:ycm_semantic_triggers')
-let g:ycm_semantic_triggers = {}
-endif
-au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+" let  g:vimtex_fold_types = {
+" 	   \ 'preamble' : {'enabled' : 1},
+" 	   \ 'envs' : {
+" 	   \	'whitelist' : ['figure', 'table'],
+" 	   \},
+" 	   \ 'sections' : {
+" 	   \   'parse_levels' : 2,
+" 	   \   'sections' : [      
+" 	   \     'part',
+" 	   \     'chapter',
+" 	   \     'section',
+" 	   \   ],
+" 	   \   'parts' : [     
+" 	   \     'appendix',
+" 	   \     'frontmatter',
+" 	   \     'mainmatter',
+" 	   \     'backmatter',
+" 	   \   ],
+" 	   \ },
+" 	   \}
+
+" if !exists('g:ycm_semantic_triggers')
+" let g:ycm_semantic_triggers = {}
+" endif
+" au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
 autocmd Filetype tex call vimtex#imaps#add_map({
   \ 'lhs' : '<CR>',
@@ -1364,7 +1419,7 @@ function! MyHandler(context)
 endfunction
 
 let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf#src:@line@tex'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 let g:vimtex_view_general_options_latexmk = '--unique'
 " https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
 

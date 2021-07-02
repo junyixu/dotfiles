@@ -19,6 +19,7 @@ filetype on
 filetype plugin indent on
 syntax enable							" 打开语法高亮
 syntax on								" 开启文件类型侦测
+syntax sync fromstart                   " 不然有时候高亮会出错
 
 "set paste								"允许粘贴模式（避免粘贴时自动缩进影响格式）
 "=========================================================================
@@ -159,7 +160,7 @@ function! ChineseCount() range
 	echo "Count of Chinese charasters is:"
 	echo cc
 endfunc
-vnoremap <F7> :call ChineseCount()<cr>
+vnoremap <F8> :call ChineseCount()<cr>
 
 "---------------------Auto-Command---------------------------------"
 "Automatically source the .vimrc file on save.
@@ -233,6 +234,8 @@ nnoremap sg] <C-W>g}
 
 " 内置终端
 set termwinkey=<C-G>
+nnoremap <C-G>v :vertical term<CR>
+nnoremap <C-G>s :term<CR>
 
 "Add simple highlight removal.
 " nmap <Leader><space> :nohlsearch<cr>
@@ -266,6 +269,8 @@ nnoremap cd :tcd %:h<cr>
 
 " 自动展开，就像输入 %:h 一样
 cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
+
+cnoremap <expr> !! 'AsyncRun! -mode=hide '
 
 " split window
 nnoremap s <C-w>
@@ -349,10 +354,8 @@ nmap daa mzggVG"+dZ
 nmap Y y$
 
 "在一行有居多字的时候可以跳转
-"nnoremap gj j
-"nnoremap gk k
-"nnoremap k gk
-"nnoremap j gj
+nnoremap <C-j> gj
+nnoremap <C-k> gk
 
 "System Clipboard
 "vnoremap <C-c> "+y

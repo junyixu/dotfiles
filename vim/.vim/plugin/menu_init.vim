@@ -71,9 +71,12 @@ call quickui#menu#install('&Symbol', [
 			\ [ "Get &Type\t(YCM)", 'YcmCompleter GetTypeImprecise'],
 			\ ])
 
+" https://github.com/lervag/vimtex/issues/310#issuecomment-169830341
 " 在 %{...} 内的脚本会被求值并展开成字符串
 call quickui#menu#install("&Option", [
 			\ ['Set &Spell %{&spell? "Off":"On"}', 'set spell!'],
+			\ ['LaTe&X \input{部分文件} 打开拼写检查', 'syntax spell toplevel'],
+			\ ['LaTeX \input{部分文件} 关闭拼写检查', 'syntax spell default'],
 			\ ["Add a good word to LaTeX\t2zg", 'exec "normal 2zg"'],
 			\ ["Delete a wrong LaTeX word\t2zw", 'exec "normal 2zw"'],
 			\ ["清理坏词", 'runtime spell/cleanadd.vim'],

@@ -50,6 +50,18 @@ snippet iff "iff" i
 \iff
 endsnippet
 
+context "isMath()"
+snippet +- "pm" iA
+\pm 
+endsnippet
+
+context "isMath()"
+snippet ~= "approximate " iA
+\approx 
+endsnippet
+
+
+
 #snippet array "Align" i
 #\left\{\begin{array}
 #{l}{x=r(\theta) \cos \theta} \\ 
@@ -110,6 +122,17 @@ snippet != "not equals" iA
 endsnippet
 
 context "isMath()"
+snippet <= "not equals" iA
+\leq 
+endsnippet
+
+context "isMath()"
+snippet >= "not equals" iA
+\geq 
+endsnippet
+
+
+context "isMath()"
 snippet == "equals" iA
 \equiv 
 endsnippet
@@ -135,7 +158,7 @@ snippet x* "叉乘" A
 endsnippet
 
 context "isMath()"
-snippet  "subscript" A
+snippet ^^ "subscript" Ai
 ^{$1} $0
 endsnippet
 
@@ -149,7 +172,10 @@ endsnippet
 ############
 #  矩阵和行列式  #{{{
 
-
+context "isMath()"
+snippet "\<(.*?)\|" "bra" riA
+\bra{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
 
 
 # # 量子力学

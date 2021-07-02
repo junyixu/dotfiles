@@ -437,7 +437,7 @@ endif
 " Bad Math (mismatched): {{{1
 if !exists("g:tex_no_math") && !s:tex_no_error
  syn match texBadMath		"\\end\s*{\s*\(array\|[bBpvV]matrix\|split\|smallmatrix\)\s*}"
- syn match texBadMath		"\\end\s*{\s*\(displaymath\|equation\|eqnarray\|math\)\*\=\s*}"
+ syn match texBadMath		"\\end\s*{\s*\(displaymath\|equation\|eqnarray\|math\|align\)\*\=\s*}"
  syn match texBadMath		"\\[\])]"
 endif
 
@@ -480,6 +480,7 @@ if !exists("g:tex_no_math")
  call TexNewMathZone("B","eqnarray",1)
  call TexNewMathZone("C","equation",1)
  call TexNewMathZone("D","math",1)
+ call TexNewMathZone("E","align",1)
 
  " Inline Math Zones: {{{2
  if s:tex_fast =~# 'M'
@@ -487,7 +488,8 @@ if !exists("g:tex_no_math")
    syn region texMathZoneV	matchgroup=Delimiter start="\\("			matchgroup=Delimiter	end="\\)\|%stopzone\>"			keepend concealends contains=@texMathZoneGroup
    syn region texMathZoneW	matchgroup=Delimiter start="\\\["			matchgroup=Delimiter	end="\\]\|%stopzone\>"			keepend concealends contains=@texMathZoneGroup
    syn region texMathZoneX	matchgroup=Delimiter start="\$" skip="\\\\\|\\\$"	matchgroup=Delimiter	end="\$"	end="%stopzone\>"		concealends contains=@texMathZoneGroup
-   syn region texMathZoneY	matchgroup=Delimiter start="\$\$" 			matchgroup=Delimiter	end="\$\$"	end="%stopzone\>"	keepend concealends contains=@texMathZoneGroup
+   " 常使用 \[ \] 而不是 $$，并且用 mk 创建 $math$ 的时候 会变色
+   " syn region texMathZoneY	matchgroup=Delimiter start="\$\$" 			matchgroup=Delimiter	end="\$\$"	end="%stopzone\>"	keepend concealends contains=@texMathZoneGroup
   else
    syn region texMathZoneV	matchgroup=Delimiter start="\\("			matchgroup=Delimiter	end="\\)\|%stopzone\>"			keepend contains=@texMathZoneGroup
    syn region texMathZoneW	matchgroup=Delimiter start="\\\["			matchgroup=Delimiter	end="\\]\|%stopzone\>"			keepend contains=@texMathZoneGroup
@@ -632,6 +634,7 @@ endif
 " Separate lines used for verb` and verb# so that the end conditions {{{1
 " will appropriately terminate.
 " If g:tex_verbspell exists, then verbatim texZones will permit spellchecking there.
+" https://tex.stackexchange.com/questions/9303/in-vim-how-to-enable-spellchecking-of-text-only-and-exclude-listings
 if s:tex_fast =~# 'v'
   if exists("g:tex_verbspell") && g:tex_verbspell
    syn region texZone		start="\\begin{[vV]erbatim}"		end="\\end{[vV]erbatim}\|%stopzone\>"	contains=@Spell
@@ -643,6 +646,14 @@ if s:tex_fast =~# 'v'
    endif
   else
    syn region texZone		start="\\begin{[vV]erbatim}"		end="\\end{[vV]erbatim}\|%stopzone\>"
+syn region texZone      start="\\begin{code}"               end="\\end{code}\|%stopzone\>"
+" listings package:
+syn region texZone      start="\\begin{lstlisting}"         end="\\end{lstlisting}\|%stopzone\>" 
+syn region texZone      start="\\begin{minted}"         end="\\end{minted}\|%stopzone\>" 
+" moreverb package:
+syn region texZone      start="\\begin{verbatimtab}"        end="\\end{verbatimtab}\|%stopzone\>"
+syn region texZone      start="\\begin{verbatimwrite}"      end="\\end{verbatimwrite}\|%stopzone\>"
+syn region texZone      start="\\begin{boxedverbatim}"      end="\\end{boxedverbatim}\|%stopzone\>"
    if b:tex_stylish
      syn region texZone		start="\\verb\*\=\z([^\ta-zA-Z@]\)"	end="\z1\|%stopzone\>"
    else
@@ -807,6 +818,8 @@ if has("conceal") && &enc == 'utf-8'
     \ ['mp'		, '∓'],
     \ ['nabla'		, '∇'],
     \ ['grad'		, '∇'],
+    \ ['laplacian'		, 'Δ'],
+    \ ['dd'		, 'd'],
     \ ['natural'	, '♮'],
     \ ['ne'		, '≠'],
     \ ['nearrow'	, '↗'],
@@ -888,6 +901,8 @@ if has("conceal") && &enc == 'utf-8'
     \ ['wedge'		, '∧'],
     \ ['wp'		, '℘'],
     \ ['wr'		, '≀']]
+
+    " \ ['Ham'		, 'ℋ'],
   if &ambw == "double" || exists("g:tex_usedblwidth")
     let s:texMathList= s:texMathList + [
     \ ['right\\rangle'	, '〉'],

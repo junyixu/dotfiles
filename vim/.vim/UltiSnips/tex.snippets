@@ -46,15 +46,89 @@ snippet ul "underline" i
 \uline{$1}$0
 endsnippet
 
+snippet ifig "include eps" b
+\includegraphics[width=0.5\textwidth]{figures/$1}
+$0
+endsnippet
+
+
+# snippet exc "include eps" b
+# \includegraphics[width=0.5\textwidth]{figures/`!p
+# import pyperclip
+# imgpath = pyperclip.paste()
+# while (imgpath[-1] in ['\r', '\n']):
+# 	imgpath = imgpath[:-1]  # 移除尾部换行符
+# snip.rv=imgpath
+# `
+# }
+# $0
+# endsnippet
+
+# snippet is "include png" b
+# \includegraphics[width=0.5\textwidth]{`!p
+# filename='test.png'
+# director='figures/'
+# fullpath=director+filename
+# cmd='flameshot gui --raw > ' + fullpath
+# # check_call(['flameshot', 'gui', '--raw', '> ' , fullpath], stdout=DEVNULL, stderr=STDOUT)
+# import subprocess
+# # if not snip.c:
+# 	# os.system(cmd)
+# subprocess.call(cmd)
+# snip.rv=fullpath
+# `}
+# $0
+# endsnippet
+
+# snippet blub "include png" b
+# `!p
+# if not snip.c:
+#     os.system("date >> /tmp/blub.txt")
+#     snip.rv="foo"
+# `$0
+# endsnippet
+
+# snippet i "include img" b
+# \includegraphics[width=0.5\textwidth]{`!p
+# import time
+# # round 是四舍五入
+# filename=str(round(time.time() * 1000))+'.png'
+# director='figures/'
+# fullpath=director+filename
+# # cmd = 'tex-screenshot'
+# # cmd='maim -s ' + fullpath + ' > /dev/null 2&>1'
+# # import os
+# # os.system(cmd)
+# import subprocess
+# # subprocess.call(['maim', '-s', fullpath])
+# # rnt=subprocess.call(['flameshot', 'gui', '--raw', '>', fullpath], shell=True)
+# # import os
+# cmd='flameshot gui --raw > figures/test.png'
+# os.system(cmd)
+# # subprocess.check_output(['flameshot', 'gui', '--raw','>', fullpath], shell=True)
+# # if rnt==0 :
+# snip.rv=fullpath
+# # else:
+# 	# snip.rv='hello'
+# `}
+# $0
+# endsnippet
+
+
 # mk 表示 make Ketax
 snippet mk "Math" wA
-$${1}$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-	snip.rv = ' '
-else:
-	snip.rv = ''
-`$2
+$${1}$$0
 endsnippet
+
+# # mk 表示 make Ketax
+# snippet mk "Math" wA
+# $${1}$`!p
+# if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+# 	snip.rv = ' '
+# else:
+# 	snip.rv = ''
+# `$2
+# endsnippet
 
 # dm 表示 Display math
 priority 100
@@ -81,7 +155,7 @@ endsnippet
 # endsnippet
 
 snippet eqr "eqref" i
-Eq~\eqref{eq:${1:equation}} $0
+Eq.~\eqref{eq:${1:equation}} $0
 endsnippet
 
 snippet bib "bibliography" b

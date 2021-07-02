@@ -120,7 +120,7 @@ plugins=(
 	fd
 	ripgrep
 	rsync
-	alias-finder
+	alias-finder # 参数 -l (longer) ; -e (exact)
 	git
 	fzf-tab
 	# dotbare
@@ -158,11 +158,15 @@ alias tmuxcfg="$EDITOR ~/.config/tmux/tmux.conf"
 
 # matlab
 # for GNOME's bug
+# export J2D_D3D=false
+# export MATLAB_JAVA=/usr/lib/jvm/java-7-openjdk/jre
 alias matlab='unset GTK_MODULES && matlab'
 # alias matlab='screen -S matlab -m sh -c "/opt/MATLAB/R2018a/bin/matlab -nodesktop -nosplash"'
 alias mrun="matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -r"
 
 alias clc='clear'
+
+alias socks5='ALL_PROXY=socks5://localhost:1080 HTTP_PROXY=socks5://localhost:1080 HTTPS_PROXY=socks5://localhost:1080 '
 
 alias Syu='sudo pacman -Syu'
 alias S='sudo pacman -S'
@@ -172,9 +176,12 @@ alias R='sudo pacman -Rs'
 alias Qi='pacman -Qi'
 alias Ql='pacman -Ql'
 alias Qs='pacman -Qs'
+alias Qk='pacman -Qk'
+alias Qkk='pacman -Qkk'
 alias Qo='pacman -Qo'
 alias F='pacman -F'
 alias Fl='pacman -Fl'
+
 alias search='baloosearch'
 
 # 查询 ip
@@ -321,7 +328,7 @@ alias -s pdf=okular
 # fi
 
 todo() {
- echo "$2" | /usr/bin/mail -s "$1" todo+rvvckje44g0x@mail.dida365.com 2>/dev/null
+ echo "$2" | /usr/bin/mail -s "$1" todo+rvvckje44g0x@mail.dida365.com
 }
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
@@ -776,6 +783,7 @@ export SYSTEMD_LESS=FRXMK journalctl
 
 # export TEXINPUTS="/usr/share/texmf//:"
 
+export XDG_DATA_HOME=$HOME/.config
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 export -U PATH
 

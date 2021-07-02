@@ -8,4 +8,4 @@ then
     TEMPLATE="matlab"
 fi
 cp -r  ~/Desktop/university/template/$TEMPLATE/* .
-echo "LaTeX template: "$TEMPLATE
+echo "Initialize LaTeX template: "$TEMPLATE" successfully!" 

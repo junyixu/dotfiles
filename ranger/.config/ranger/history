@@ -1,0 +1,6 @@
+shell 
+h
+rename OS_Market_Share.jpg
+shell latexmk
+shell latexmk > /dev/null
+shell latexmk &> /dev/null

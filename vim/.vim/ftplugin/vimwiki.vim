@@ -69,3 +69,9 @@ setlocal fo+=B
 "      \ }
 
 "imap <buffer> <BS> <C-R>=Lilydjwg_checklist_bs('\v^\s*[*-]( \[.\])? $')<CR>
+"
+"
+
+
+" 我有时不想手写字母大写
+setlocal spellcapcheck=""

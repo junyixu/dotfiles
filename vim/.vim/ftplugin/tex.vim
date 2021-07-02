@@ -1,3 +1,5 @@
+" let b:tex_stylish=1
+let g:tex_verbspell=0
 "---------------------latex---------------------------------"
 let b:ale_linter_aliases = ['tex', 'text']
 
@@ -45,6 +47,7 @@ setlocal spellfile+=~/.vim/spell/latex.utf-8.add
 
 inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
 nnoremap <localleader>f : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+nnoremap <localleader>p o\includegraphics[width=0.5\textwidth]{figures/<C-r>+}<esc>
 
 " 句首字母大写
 " https://superuser.com/questions/737130/automatically-capitalize-the-first-letter-of-sentence-in-vim
@@ -55,4 +58,11 @@ nnoremap <localleader>f : silent exec '!inkscape-figures edit "'.b:vimtex.root.'
 " for char in split('ABCDEFGHIJKLMNOPQRSTUVWXYZ', '\zs')
 "     exe printf("inoremap <expr> %s search('[.!?]\\_s\\+\\%%#', 'bcnW') ? '%s' : '%s'", char, tolower(char), char)
 " endfor
+
+" https://github.com/tpope/vim-surround/issues/201#issuecomment-246439841
+if exists('g:loaded_surround')
+    " vim-surround: q for `foo' and Q for ``foo''
+    let b:surround_{char2nr('q')} = "`\r'"
+    let b:surround_{char2nr('Q')} = "``\r''"
+endif
 
