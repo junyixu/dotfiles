@@ -437,7 +437,7 @@ endif
 " Bad Math (mismatched): {{{1
 if !exists("g:tex_no_math") && !s:tex_no_error
  syn match texBadMath		"\\end\s*{\s*\(array\|[bBpvV]matrix\|split\|smallmatrix\)\s*}"
- syn match texBadMath		"\\end\s*{\s*\(displaymath\|equation\|eqnarray\|math\|align\)\*\=\s*}"
+ syn match texBadMath		"\\end\s*{\s*\(displaymath\|equation\|eqnarray\|math\|align\|gather\)\*\=\s*}"
  syn match texBadMath		"\\[\])]"
 endif
 

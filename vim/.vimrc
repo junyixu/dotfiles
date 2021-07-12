@@ -270,7 +270,7 @@ nnoremap cd :tcd %:h<cr>
 " 自动展开，就像输入 %:h 一样
 cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
 
-cnoremap <expr> !! 'AsyncRun! -mode=hide '
+cnoremap !! AsyncRun! -mode=hide<space>
 
 " split window
 nnoremap s <C-w>

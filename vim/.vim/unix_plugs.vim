@@ -1033,7 +1033,7 @@ let g:ycm_semantic_triggers =  {
             \ 'java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
 			\ 'matlab': ['re!\w{2}'],
-			\ 'tex': ['re!\\\w{4}'],
+			\ 'tex': ['re!\\\w{3}'],
 			\ 'julia': ['re!\w{3}'],
 			\ }
 
@@ -1398,14 +1398,14 @@ let g:vimtex_fold_enabled=0
 " endif
 " au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
-autocmd Filetype tex call vimtex#imaps#add_map({
-  \ 'lhs' : '<CR>',
-  \ 'rhs' : '\item ',
-  \ 'leader' : '',
-  \ 'wrapper' : 'vimtex#imaps#wrap_environment',
-  \ 'context' : ["itemize", "enumerate"],
-  \})
-" autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
+" autocmd Filetype tex call vimtex#imaps#add_map({
+"   \ 'lhs' : '<CR>',
+"   \ 'rhs' : '\item ',
+"   \ 'leader' : '',
+"   \ 'wrapper' : 'vimtex#imaps#wrap_environment',
+"   \ 'context' : ["itemize", "enumerate"],
+"   \})
+" " autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
 
 autocmd FileType tex nnoremap <buffer><silent> <C-n> o\input{lec_.tex}<Esc>F_a
 
@@ -1413,9 +1413,7 @@ let g:vimtex_doc_handlers = ['MyHandler']
 function! MyHandler(context)
   call vimtex#doc#make_selection(a:context)
   if !empty(a:context.selected)
-	execute '!texdoc' a:context.selected '&'
   endif
-  return 1
 endfunction
 
 let g:vimtex_view_general_viewer = 'okular'

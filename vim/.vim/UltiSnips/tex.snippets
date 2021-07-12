@@ -6,15 +6,23 @@
 
 priority -30
 snippet sec "Section"
-\section{${1:${VISUAL:section name}}}%
+\section{$1}%
+$0
+endsnippet
+
+snippet sub "Section"
+\subsection{$1}%
+$0
 endsnippet
 
 snippet ! "%! TEX root = ./main.tex" b
 %! TEX root = ./main.tex
 endsnippet
 
-snippet sub "Subsection"
-\subsection{${1:${VISUAL:subsection name}}}%
+snippet ali "aligned 必须在数学环境中" b
+\begin{aligned}
+	$1
+\end{aligned}
 endsnippet
 
 snippet fontset "使用方正字体" b
@@ -34,11 +42,11 @@ snippet fontset "使用方正字体" b
 
 endsnippet
 
-snippet ql "quad" iA
+snippet ql "quad" 
  \quad $0
 endsnippet
 
-snippet qql "qquad" iA
+snippet qql "qquad"
  \qquad $0
 endsnippet
 
@@ -46,10 +54,10 @@ snippet ul "underline" i
 \uline{$1}$0
 endsnippet
 
-snippet ifig "include eps" b
-\includegraphics[width=0.5\textwidth]{figures/$1}
-$0
-endsnippet
+# snippet if "include eps" b
+# \includegraphics[width=0.5\textwidth]{figures/$1}
+# $0
+# endsnippet
 
 
 # snippet exc "include eps" b
@@ -138,9 +146,18 @@ snippet dm "Math" wA
 \]
 $0
 endsnippet
-# snippet ref "ref" w
-# \ref{${1:reference}} $0
-# endsnippet
+
+snippet ref "ref" w
+\ref{${1:reference}} $0
+endsnippet
+
+snippet fref "ref" w
+图~\ref{fig:${1:reference}} $0
+endsnippet
+
+snippet 图 "ref" i
+图~\ref{fig:${1:reference}} $0
+endsnippet
 
 # snippet visual "Math"
 # \[
@@ -157,6 +174,11 @@ endsnippet
 snippet eqr "eqref" i
 Eq.~\eqref{eq:${1:equation}} $0
 endsnippet
+
+snippet 式 "方程引用" i
+式~\eqref{eq:${1:refkey}} $0
+endsnippet
+
 
 snippet bib "bibliography" b
 \bibliography{myLibrary}
@@ -179,24 +201,44 @@ snippet fig "Figure environment" b
 	\label{fig:${3/\w+\/(\w+)\.\w+/$1/}}
 \end{figure}
 endsnippet
+
 # t：top，表示排在页面顶部；
 # h：here，表示当前位置；将图形放置在 正文文本中给出该图形环境的地方。如果本页所剩的页面不够， 这一参数将不起作用；
 # b：bottom，将图形放置在页面的底部。
 # p：page，浮动页，将图形放置在只允许有浮动对象的页面上。
 # H：表示固定图片位置，需要加入\usepackage{float} ；
-# TODO subfig
-
 
 snippet subfig "\usepackage{subcation}" b
-\begin{figure}[${2:htpb}]
-\centering
-\subcaptionbox{${3/(\w+)\.\w+/\u$1/}\label{fig:${3/\w+\/(\w+)\.\w+/$1/}}}
-[.4\linewidth]{\includegraphics{${3:name.ext}}}
-\subcaptionbox{test\label{elephant}}
-[.4\linewidth]{\includegraphics{elephant}}
-\caption{$0}\label{fig:test}
+\begin{figure} \centering    
+\subfigure[Flowchart of fungal decomposition rate model] {  % 子图的 caption
+	\includegraphics[width=0.4\linewidth]{figures/framework1.esp} % 调节 width=0.25\linewidth能在一行放入更多的图片
+	% \label{fig:fig_a} % 子图a的标签，便于后面引用
+}     
+ % \quad  % 不知道为什么要加这个，好像不加也行？
+\subfigure[Flowchart of interaction model between species under environmental impact] { % 子图的 caption
+	\includegraphics[width=0.4\linewidth]{figures/framework2.esp}
+	% \label{fig:fig_b} % 子图b的标签，便于后面引用
+}    
+	\caption{write your caption} % 整张图的 caption
+	% \label{fig:whole} % 整张图的标签，便于后面引用
 \end{figure}
 endsnippet
+
+# snippet subfig "\usepackage{subcation}" b
+# \begin{figure} % figure加上*，变成figure*, 如果是双栏会合并成单栏显示图片
+# \captionsetup[subfigure]{margin=12pt} % 设置子标题编号的位置是12pt
+# \subfloat[比例环节]{ % 子图的 caption
+# 	% \label{fig:fig_a} % 子图a的标签，便于后面引用
+# 	\includegraphics[width=0.4\textwidth]{./figures/${1:name1}}
+# }
+# \hspace{.4in} % 两图之间的横向距离，纵向距离使用vspace
+# \subfloat[]{ % 子图的 caption
+# 	% \label{fig:fig_b} % 子图b的标签，便于后面引用
+# 	\includegraphics[width=0.4\textwidth]{./figures/${2:name2}}
+# }
+# \end{figure}
+# endsnippet
+
 
 #snippet * "Individual item" bA
 #\item$0
