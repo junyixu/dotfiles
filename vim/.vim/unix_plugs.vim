@@ -280,7 +280,9 @@ map  qp <Plug>(easymotion-prev)
 " must after easymotion plugin
 Plug 'junyixu/vim-easymotion-chs', {'for': ['markdown', 'vimwiki', 'tex', 'text']}
 
-Plug 'pboettch/vim-cmake-syntax', {'for': 'cmake'}
+" archlinux cmake 包自带 cmake syntax and indent
+" Plug 'pboettch/vim-cmake-syntax', {'for': 'cmake'}
+
 " On-demand lazy load
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     " {{{
