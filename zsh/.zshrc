@@ -222,7 +222,6 @@ alias open='xdg-open'
 alias o='xdg-open'
 alias screenshot='flameshot gui -r'
 
-alias vim='$EDITOR'
 # alias vim='vim --cmd "let g:isProgramming=1" '
 # alias vim='vim --cmd "let g:isProgramming=1" '
 alias nvi='nvim'
@@ -242,6 +241,7 @@ alias vitodo='vi ~/Documents/Notes/todolist.md'
 alias svi='sudo -E vim --cmd "let g:SUDO=1" --cmd "let g:isPlain=1" '
 # 088.987  000.001: --- VIM STARTED --- 启动 只需要 88 毫秒
 alias vi='vim --cmd "let g:isPlain=1"'
+alias vim='vim --cmd "let g:isPlain=0"'
 # 打开到 上一次 打开的地方
 alias lvi='vim -c "normal '\''0"'
 alias vit='vim --servername TEX'

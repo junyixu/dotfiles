@@ -62,7 +62,7 @@ set tabstop=4
 
 " https://t.me/vimzh_real/61855
 let g:SUDO = get(g:, 'SUDO', 0)
-let g:isPlain = get(g:, 'isPlain', 0)
+let g:isPlain = get(g:, 'isPlain', 1)
 " let g:isProgramming = get(g:, 'isProgramming', 0)
 " let g:vim_startup = get(g:, 'vim_startup', 0)
 
