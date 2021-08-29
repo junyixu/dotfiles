@@ -432,7 +432,11 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 endif
 "===================== end 异步任务 =================}}}
 
-if !g:isPlain && !exists('g:started_by_firenvim')
+function IsOnSomeParticularMachine(hostname)
+	return match($HOST, a:hostname)>=0
+endfunction
+
+if !g:isPlain && !exists('g:started_by_firenvim') && IsOnSomeParticularMachine('Surface')
 	if g:isNVIM
 		 Plug 'neoclide/coc.nvim'
 	else
