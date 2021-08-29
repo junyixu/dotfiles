@@ -1,0 +1,244 @@
+# - i 表示片段可在句中被触发。默认是只有在前面有多个空格或者在行首时才会被触发。 
+# - A 表示片段会被自动触发 
+# - w 表示片段只会在关键词为单独单词的情况下被触发。若关键词为 mk, 那么只有在 html mk 时会被触发，htmlmk 不会被触发。 
+# - r 表示关键词使用正则表达式。正则表达式必须用 两个引号' '包围。比如 \'([1-9])day\'。 
+# - b 表示只有在一行的开头才会被触发。
+# 以下全部借鉴
+# https://castel.dev/post/lecture-notes-1/
+
+# https://vi.stackexchange.com/questions/18490/ultisnips-context-and-tex
+global !p
+def isMath():
+	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+context "isMath()"
+snippet t "文字"
+\text{$1}
+endsnippet
+
+context "isMath()"
+snippet q "quad"
+\quad 
+endsnippet
+
+context "isMath()"
+snippet l "label eq" b
+\label{eq:$1}
+endsnippet
+
+context "isMath()"
+snippet d "微分"
+\dv{$1}
+endsnippet
+
+context "isMath()"
+snippet p "偏微分"
+\pdv{$1}
+endsnippet
+
+# 导数(流数)
+context "isMath()"
+snippet "(\\?\w+)(\.\.)" "二阶导" ri
+\ddot{`!p snip.rv=match.group(1)`} 
+endsnippet 
+
+# 把小数如 5.5 0.5 也包括进来
+snippet '(\d\.\d+|\d+)si' "unit" rA
+\SI{`!p snip.rv=match.group(1)`}{$1}$0
+endsnippet
+
+context "isMath()"
+snippet "(\\?[A-Za-z]+)(\.)" "一阶导" ri
+\dot{`!p snip.rv=match.group(1)`} 
+endsnippet 
+
+context "isMath()"
+snippet '(\w)hat' " i hat " r
+\hat{`!p snip.rv=match.group(1)`}$0
+endsnippet
+
+#向量 vector 匹配\零次或一次，或一个非贪婪限定, \w匹配字母、数字、下划线。等价于'[A-Za-z0-9_]'
+context "isMath()"
+snippet "(\\?[A-Za-z]+)(,\.|\.,)" "Vector postfix" riA
+\vb{`!p snip.rv=match.group(1)`}
+endsnippet 
+
+priority 100
+context "isMath()"
+snippet ... "ldots" iA
+\ldots
+endsnippet
+
+context "isMath()"
+snippet => "implies" Ai
+\implies
+endsnippet
+
+context "isMath()"
+snippet =< "implied by" Ai
+\impliedby
+endsnippet
+
+context "isMath()"
+snippet iff "iff" i
+\iff
+endsnippet
+
+context "isMath()"
+snippet +- "pm" iA
+\pm 
+endsnippet
+
+context "isMath()"
+snippet ~= "approximate " iA
+\approx 
+endsnippet
+
+
+
+#snippet array "Align" i
+#\left\{\begin{array}
+#{l}{x=r(\theta) \cos \theta} \\ 
+#{y=r(\theta)\sin \theta}
+#\end{array}\right. \theta \in[\alpha, \beta]
+#endsnippet
+
+
+context "isMath()"
+snippet // "Fraction" i
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet '(\S+)' "Fraction" Ar
+\\frac{`!p snip.rv=match.group(1)`}{$1}
+endsnippet
+
+
+# 分式 frac
+context "isMath()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+
+
+
+# 分数
+context "isMath()"
+snippet '^.*\)/' "() frac" wrA
+`!p
+stripped = match.string[:-1]   # 匹配除了最后一个所有，因为最后一个是)
+depth = 0
+i = len(stripped) - 1  # 再去掉 (
+while True:
+	if stripped[i] == ')': depth += 1  # 此时 depth 不为 0
+	if stripped[i] == '(': depth -= 1  # 若匹配到 (, depth = 0
+	if depth == 0: break;
+	i-=1   # 到此为止获取所有 () 内的字符串
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+# 角标
+context "isMath()"
+snippet '\b([A-Za-z])(\d)' "auto subscript 角标" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "isMath()"
+snippet '([A-Za-z])_(\d\d)' "auto subscript2 角标" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "isMath()"
+snippet != "not equals" iA
+\neq 
+endsnippet
+
+context "isMath()"
+snippet <= "not equals" iA
+\leq 
+endsnippet
+
+snippet >= "not equals" iA
+\geq 
+endsnippet
+
+snippet >~ "not equals" iA
+\gtrsim  
+endsnippet
+
+snippet <~ "not equals" iA
+\lesssim  
+endsnippet
+
+
+context "isMath()"
+snippet == "equals" iA
+\equiv 
+endsnippet
+
+context "isMath()"
+snippet ceil "ceil" iA
+\left\lceil $1 \right\rceil $0
+endsnippet
+
+context "isMath()"
+snippet floor "floor" iA
+\left\lfloor $1 \right\rfloor$0
+endsnippet
+
+context "isMath()"
+snippet .* "点乘" A
+\vdot 
+endsnippet
+
+context "isMath()"
+snippet x* "叉乘" A
+\cross 
+endsnippet
+
+context "isMath()"
+snippet ^^ "subscript" Ai
+^{$1} $0
+endsnippet
+
+context "isMath()"
+snippet __ "sub" Ai
+_{$1} $0
+endsnippet
+
+
+
+############
+#  矩阵和行列式  #{{{
+
+context "isMath()"
+snippet "\<(.*?)\|" "bra" riA
+\bra{`!p snip.rv = match.group(1).replace('q', f'\psi').replace('f', f'\phi')`}
+endsnippet
+
+
+# # 量子力学
+# context "isMath()"
+# snippet hb "hbar" iA
+# \hbar $0
+# endsnippet
+
+# context "isMath()"
+# snippet ket "|a>" A
+# \ket{$1} $0
+# endsnippet
+
+# context "isMath()"
+# snippet bra "<b|" A
+# \bra{$1} $0
+# endsnippet
+
+# context "isMath()"
+# snippet bk "<b|a>" A
+# \braket{$1}{$2} $0
+# endsnippet
+
+# vim:ft=snippets

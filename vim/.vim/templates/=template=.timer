@@ -1,0 +1,12 @@
+[Unit]
+Description=%HERE%Run %FILE% weekly
+
+[Timer]
+#OnCalendar=weekly
+#OnCalendar=Wed, 22:15
+#Persistent=true     
+OnBootSec=15min
+OnUnitActiveSec=1w 
+ 
+[Install]
+WantedBy=timers.target

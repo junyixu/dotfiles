@@ -1,0 +1,154 @@
+###########################
+# Sections and Paragraphs #
+###########################
+# snippet ,1 "Section" bA
+# # ${1:Section Name}
+# $0
+# endsnippet
+
+# snippet ,2 "Sub Section" bA
+# ## ${1:Section Name}
+# $0
+# endsnippet
+
+# snippet ,3 "SubSub Section" bA
+# ### ${1:Section Name}
+# $0
+# endsnippet
+
+# snippet ,4 "Paragraph" bA
+# #### ${1:Paragraph Name}
+# $0
+# endsnippet
+# snippet ,5 "Paragraph" bA
+# ##### ${1:Paragraph Name}
+# $0
+# endsnippet
+
+# snippet ,6 "Paragraph" bA
+# ###### ${1:Paragraph Name}
+# $0
+# endsnippet
+
+snippet head "my blog | Jekyll post header" b
+---
+layout: post
+title: ${1:title}
+subtitle: ${2:subtitle}
+date: `!v strftime("%Y-%m-%d %H:%M:%S")`
+author:     Killua
+header-img: img/post-bg-coffee.jpeg
+catalog: true
+tags:
+- ${4}
+---
+endsnippet
+
+snippet math "my blog | Jekyll post math environment" b
+<!-- 数学公式 -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		TeX: { extensions: ["[Contrib]/physics/physics.js", "AMSmath.js","AMSsymbols.js", "[Contrib]/siunitx/siunitx.js"],
+			Macros: {
+					bm: ['{\boldsymbol {#1}}', 1] ,
+				}
+		},
+		tex2jax: {
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			inlineMath: [['$','$']]
+		}
+});
+</script>
+
+
+${0}
+endsnippet
+
+# snippet "\w* " "bold" iAr
+# **${1:${VISUAL}}**$0
+# endsnippet
+
+# snippet * "italics" 
+# *${1:${VISUAL}}*$0
+# endsnippet
+
+
+snippet blue "blue font"
+<span style="color:blue">$1</span>$0
+endsnippet
+
+snippet red "red font"
+<span style="color:red">$1</span>$0
+endsnippet
+
+snippet pred "red paragraph"
+<p style="color:red">$1</p>$0
+endsnippet
+
+snippet beamer "beamer" b
+---
+documentclass:
+	- ctexbeamer
+title:
+	- Junyi's Presentation
+author:
+	- Junyi
+theme:
+	- Copenhagen
+---
+
+
+endsnippet
+
+
+
+snippet fig "Image"
+![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+endsnippet
+
+# 使用两个 ~~ 表示划去
+snippet ~~ "划去" bA
+~~${1:${VISUAL}}~~$0
+endsnippet
+
+# 使用两个 `` 展开 代码块
+snippet '\`\`' "Codeblock" brA
+\`\`\`
+${1:${VISUAL}}
+\`\`\`$0
+endsnippet
+# for chaoli.club 超理论坛
+snippet md "markdown" bA
+[markdown]
+$0
+[/markdown]
+endsnippet
+
+snippet - "todo" b
+- [ ] 
+endsnippet
+
+snippet physics "physics宏包 的 mathjax 拓展" b
+$\require{physics}$
+endsnippet
+
+# snippet ** "bold text" i
+# **${1:${VISUAL}}**
+# endsnippet
+
+# ./texmath.snippets
+extends texmath
+
+priority 1000
+snippet dm "Math" wA
+$$
+	${1:${VISUAL}}
+$$
+$0
+endsnippet
+
+# priority 1000
+# snippet dd "diff" wA
+# \,\mathrm{d} 
+# endsnippet

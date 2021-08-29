@@ -1,0 +1,32 @@
+% vim:ft=tex:
+%
+\documentclass[12pt]{article}
+\usepackage{ctex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{indentfirst} % 修改首行缩进的行为
+%\usepackage{fullpage} % 两边边距填充
+%\usepackage{graphicx} % 插图
+%\usepackage{xcolor}
+%\usepackage{hyperref} % 目录、引用、注脚、索引、参考文献的链接
+
+
+%\newtheorem{definition}{定义}[section]
+%\newtheorem{theorem}{定理}[section]
+%\newtheorem{lemma}[theorem]{引理}
+%\newtheorem{corollary}[theorem]{推论}
+%\newcommand{\degree}{\circ}
+\title{
+	%FILE%
+}
+\author{
+	%USER% --- \texttt{%EMAIL%}
+}
+
+\begin{document}
+\maketitle
+
+%HERE%
+
+\end{document}
+

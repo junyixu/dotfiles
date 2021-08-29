@@ -1,0 +1,37 @@
+GPATH
+GTAGS
+GRTAGS
+tags
+.ctags
+.notags
+.tasks
+compile_commands.json
+
+*.o
+
+
+.venv
+.root
+.project
+
+build
+.repoproject/
+*.swp
+*.swo
+*.so
+*.pyc
+*.pyo
+*.out
+
+# todo file
+todo.md
+todo.txt
+TODO.md
+TODO.txt
+
+# testfile
+run_admin.sh
+test.tex
+run.sh
+.python-version
+t.js

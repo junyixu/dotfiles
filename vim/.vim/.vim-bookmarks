@@ -1,0 +1,3 @@
+let l:bm_file_version = 1
+let l:bm_sessions = {'default': {'/home/junyi/.vim/unix_plugs.vim': [{'sign_idx': 9500, 'line_nr': 112, 'content': '  let g:bookmark_auto_save_file = ''/home/junyi/.cache/vim/vim-bookmarks'''},{'sign_idx': 9501, 'line_nr': 123, 'content': 'Plug ''farmergreg/vim-lastplace'' "打开 vim 到上次编辑的位置'},{'sign_idx': 9502, 'line_nr': 110, 'content': '  nmap ml <Plug>BookmarkShowAll'},],}}
+let l:bm_current_session = 'default'

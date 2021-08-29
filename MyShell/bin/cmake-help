@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+cmake --help-command $1 ||\
+cmake --help-variable $1 ||\
+cmake --help-module $1 ||\
+cmake --help-property $1

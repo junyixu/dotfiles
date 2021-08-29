@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+
+deck="Cloze"
+if [ $# = 1 ] && [ $1 = "ph" ]
+then
+    deck="Physics"
+elif [ $# = 1 ] && [ $1 = "b" ]
+then
+    deck="Basic"
+elif [ $# = 1 ] && [ $1 = "qm" ]
+then
+    deck="QuantumMechanics"
+elif [ $# = 1 ] && [ $1 = "ed" ]
+then
+    deck="Electrodynamics"
+elif [ $# = 1 ] && [ $1 = "de" ]
+then
+    deck="DiffEq"
+elif [ $# = 1 ] && [ $1 = "ec" ]
+then
+    deck="Economics"
+fi
+echo "Deck: "$deck
+# export EDITOR='gvim'
+anki-vim hola5 --deckpath /home/junyi/Documents/Anki/$deck
+
+# vim:ft=bash:

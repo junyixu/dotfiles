@@ -1,0 +1,26 @@
+#!/bin/zsh -e
+ 
+cd $(dirname $0)
+ 
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+  echo "usage: $0 SRC_DIR DEST_DIR [-w]"
+  exit 1
+fi
+ 
+src=$1
+dest=$2
+doit=$3
+ 
+if [[ $doit == -w ]]; then
+  dry=
+else
+  dry='-n'
+fi
+ 
+rsync --archive --one-file-system --inplace --hard-links \
+  --numeric-ids --delete --delete-excluded \
+  --acls --xattrs --sparse \
+  --exclude='*~' --exclude=__pycache__  \
+  --exclude-from=root.exclude \
+  $src $dest $dry
+

@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+
+import sys
+import os
+file_path = os.path.dirname(sys.argv[2])
+os.system('xdg-open "' + file_path + '"')

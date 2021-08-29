@@ -1,0 +1,18 @@
+#! /bin/sh
+#
+# 用法
+# pdf2jpg main.pdf
+#
+# Copyright (C) 2021 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+__DEFAULT_SIZE="1920x1080"
+
+pdftoppm -f 1 -l 1 \
+			 -scale-to-x "${__DEFAULT_SIZE%x*}" \
+			 -scale-to-y -1 \
+			 -singlefile \
+			 -jpeg -tiffcompression jpeg \
+			 -- "$1" "$(basename $1 .pdf)" 

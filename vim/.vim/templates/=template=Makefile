@@ -1,0 +1,49 @@
+#
+# %FFILE%
+# %USER%, %FDATE%
+#
+
+#vpath %.h ./inc
+HEADER_DIR = -I. -I./inc
+CC=gcc
+LIBS=-lm
+CFLAGS=-Wall
+CFLAGS+=-O2
+TAR=main
+OBJ=grep.o strindex.o mygetline.o
+RMRF:=rm -rf
+
+# 解释： = 替换 += 追加:= 恒等于
+
+all: $(TAR)
+	%HERE%@echo "%FFILE% needs your attention!"
+
+
+$(TAR): $(OBJ)
+	@# 生成可执行程序, OBJ->TAR
+	@echo "生成可执行程序..."
+	$(CC) -o $@ $(HEADER_DIR) $(LIBS) $^
+
+# % 表示文件名(去除扩展名)
+%.o: %.c
+	@echo "生成目标文件..."
+	$(CC) $(HEADER_DIR) -c $^
+
+# 在命令的前面加上 @,就可以关闭回声(echoing)：即：就不会有任何输出。
+# grep.o: grep.c mygetline.h strindex.h
+# 	$(CC) $(HEADER_DIR) -c grep.c
+# mygetline.o: mygetline.c mygetline.h
+# 	$(CC) $(HEADER_DIR) -c mygetline.c
+# strindex.o: strindex.c strindex.h
+# 	$(CC) $(HEADER_DIR) -c strindex.c
+
+.PHONY: clean run
+run:
+	./$(TAR)
+clean:
+	@echo "删除目标文件和可执行程序..."
+	$(RMRF) *.o $(TAR)
+
+
+# vim:ft=make
+#

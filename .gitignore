@@ -1,0 +1,14 @@
+docs
+public/images
+vim/.vim/plugged
+vim/.vim/spell
+vim/.vim/swap
+cache
+sockets.target.wants
+timers.target.wants
+default.target.wants
+systags
+ranger/.config/ranger/bookmarks
+ranger/.config/ranger/history
+ranger/.config/ranger/tagged
+fontconfigbak

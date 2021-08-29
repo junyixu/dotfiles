@@ -1,0 +1,9 @@
+plugged/*
+plugin/fcitx.*
+undo-dir
+sessions
+.netrwhist
+cache
+.cache
+shada/*
+

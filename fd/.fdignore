@@ -1,0 +1,14 @@
+/mnt/test
+*.bak
+*.out
+.obsidian
+.trash
+.notags
+.root
+.project
+.st*
+.tasks
+GPATH
+GRTAGS
+GTAGS
+tags

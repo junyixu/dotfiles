@@ -1,0 +1,142 @@
+###########################################################################                         
+# Snippets to create anki cards using vim
+###########################################################################
+extends tex, html
+
+priority 1000
+
+snippet ? "?" b
+[latex]\[
+$1 = \text{?}
+\][/latex]
+endsnippet
+
+snippet la "Block [latex]"
+[latex]
+${1}
+[/latex]
+endsnippet
+
+snippet lai "Inline [latex]"
+[latex]${1}[/latex]
+endsnippet
+
+# snippet mk "[$]LaTeX inline MATH[/$]" iA
+# [latex]$$1$[/latex]$0
+# endsnippet
+
+snippet mk "[$]LaTeX inline MATH[/$]" iA
+\($1\)$0
+endsnippet
+
+snippet dm "[$]display MATH[/S]" iA
+[latex]\[
+$1
+\][/latex]
+$0
+endsnippet
+
+# snippet dm "[$]display MATH[/S]" iA
+# \[$1\]$0
+# endsnippet
+
+
+
+snippet bm "bold vector" Ai
+\mathbf{$1}$0
+endsnippet
+
+snippet tem "Cloze deletion card template" bA
+<h2>$1</h2><hr>
+
+$0
+endsnippet
+
+snippet sec "Section template" bA
+<h3>$1</h3>
+$0
+endsnippet
+
+snippet sl "Subsection template" bA
+<ol>
+    <h4><li>$1</li></h4>$0
+<ol>
+$0
+endsnippet
+
+snippet li "Item subsection template" bA
+    <h4><li>$1</li></h4>$0
+endsnippet
+
+snippet it "Item subsection template" bA
+    <h4><li>$1</li></h4>$0
+endsnippet
+
+
+snippet opr "Definition template" bA
+<h3>Definition: $1</h3>
+$0
+endsnippet
+
+snippet lem "Lemma template" bA
+<h3>Lemma: $1</h3>
+$0
+endsnippet
+
+snippet thm "Theorem definition" bA
+<h3>Theorem: $1</h3>
+$0
+endsnippet
+
+snippet pf "Proof template" bA
+<h3>Proof: $1</h3>
+$0
+endsnippet
+
+snippet cc "Cloze deletion" i
+{{c1::$1}}$0
+endsnippet
+
+snippet r "red" i
+<font color="#aa0000">$1</font>$0
+endsnippet
+
+snippet b "blue" i
+<font color="#00007f">$1</font>$0
+endsnippet
+
+snippet g "green" i
+<font color="#005500">$1</font>$0
+endsnippet
+
+
+snippet img "image-name" A
+<img src = "$1" />$0
+endsnippet
+
+snippet ci "Cloze deletion" bA
+{{c$1::<img src = "$2" />}}
+$0
+endsnippet
+
+snippet ** "bold text" iA
+<b>${1:${VISUAL:Bold}}</b>
+endsnippet
+
+snippet __ "underline" A
+<u>$1</u>$0
+endsnippet
+
+snippet ii "italics" i
+<i>$1</i>$0
+endsnippet
+
+# snippet "c([c\d]){1}" "{{c1::Cloze}}" r
+# {{c`!p snip.rv = match.group(1) if match.group(1) != 'c' else "1"`::${1:Cloze}}}
+# 
+# $0
+# endsnippet
+
+snippet slink
+[${1:link}]($1)
+endsnippet

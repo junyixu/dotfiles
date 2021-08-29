@@ -1,0 +1,38 @@
+[user]
+	name = Junyi Xu
+	email = junyixu0@gmail.com
+	signingkey = D275031A139EE901
+[color]
+	ui = auto
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+[commit]
+	gpgsign = true
+
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -
+
+[diff]
+    tool = nvim
+    ignoreSubmodules = dirty
+[diff]
+    tool = nvimdiff
+[difftool]
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+    tool = nvimdiff
+[mergetool]
+    prompt = true
+[mergetool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c"
+[init]
+	defaultBranch = main

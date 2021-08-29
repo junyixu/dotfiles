@@ -1,0 +1,55 @@
+snippet ! "python3" b
+#! /usr/bin/env python3
+$0
+endsnippet
+
+snippet sp "sympy" b
+import sympy as sp
+$0
+endsnippet
+
+snippet pd "pandas" b
+import pandas as pd
+$0
+endsnippet
+
+snippet np "numpy" b
+import numpy as np
+$0
+endsnippet
+
+snippet plt "matplotlib.pyplot" b
+from matplotlib import pyplot as plt
+$0
+endsnippet
+
+snippet pr "print" b
+print($0)
+endsnippet
+
+
+# snippet plt "matplotlib.pyplot" b
+# import matplotlib.pyplot as plt
+# $0
+# endsnippet
+
+snippet fft "Fast Fourier Transformation" b
+from scipy.fftpack import fft
+$0
+endsnippet
+snippet latex "display latex" b
+%display latex
+endsnippet
+
+
+# 还可以加 dtype
+# c=np.loadtxt('b.csv',dtype=np.int,delimiter=',')
+snippet loadcsv "numpy load csv"
+np.loadtxt('${1:FileName}.csv', delimiter=',')$0
+endsnippet
+
+snippet savecsv "numpy save csv 保留小数点后一位"
+np.loadtxt('${1:FileName}.csv', fmt='%.1f', delimiter=',')$0 # 浮点型 0.0
+endsnippet
+
+# extends texmath

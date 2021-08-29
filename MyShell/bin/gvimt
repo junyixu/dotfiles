@@ -1,0 +1,9 @@
+#! /bin/bash
+#
+# gvimt.bash
+# Copyright (C) 2021 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+gvim --remote-tab-silent $@ || gvim $@

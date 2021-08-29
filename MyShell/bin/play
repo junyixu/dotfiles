@@ -1,0 +1,10 @@
+#! /bin/sh
+#
+# play.sh
+# Copyright (C) 2019 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+youtube-dl -o - "$1" | vlc -
+
