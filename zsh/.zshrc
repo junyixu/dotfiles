@@ -225,8 +225,8 @@ alias screenshot='flameshot gui -r'
 # alias vim='vim --cmd "let g:isProgramming=1" '
 # alias vim='vim --cmd "let g:isProgramming=1" '
 alias nvi='nvim'
-alias wiki='vim -c "cd %:h" ~/Documents/Notes/index.md'
-alias diary='vim -c "cd %:h" ~/Documents/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
+alias wiki='vim -c "cd %:h" ~/Notes/index.md'
+alias diary='vim -c "cd %:h" ~/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
 
 
 # plasmashell cpu占用过高，重启解决
@@ -236,7 +236,7 @@ alias plasmashellrestart='kquitapp5 plasmashell ; kstart5 plasmashell'
 alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex makefile.md'
 
 alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
-alias vitodo='vi ~/Documents/Notes/todolist.md'
+alias vitodo='vi ~/Notes/todolist.md'
 
 alias svi='sudo -E vim --cmd "let g:SUDO=1" --cmd "let g:isPlain=1" '
 # 088.987  000.001: --- VIM STARTED --- 启动 只需要 88 毫秒

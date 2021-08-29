@@ -585,7 +585,7 @@ Plug 'joshdick/onedark.vim'
 " Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
     " let g:jupyter_mapkeys = 0
 Plug 'mattn/calendar-vim'
-	let g:calendar_diary=$HOME.'/Documents/Notes/diary/' 
+	let g:calendar_diary=$HOME.'/Notes/diary/' 
 	let g:calendar_monday = 1
 	let g:calendar_wruler = '日 一 二 三 四 五 六'
 	let g:calendar_datetime = 'title'
@@ -1339,7 +1339,7 @@ imap <M-L><C-J> <Plug>VimwikiListNextSymbol
 imap <M-L><C-K> <Plug>VimwikiListPrevSymbol
 imap <M-L><C-M> <Plug>VimwikiListToggle
 "let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:vimwiki_list = [{'path': '~/Documents/Notes', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Notes', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 " let g:vimwiki_list = [{'path': '~/Notes', 'syntax': 'markdown'}]
 "autocmd BufRead,BufNewFile *.wiki setfiletype vimwiki
@@ -1361,7 +1361,7 @@ let g:vimwiki_global_ext = 0
 ""    echo "Done!"
 ""    exe 'cd' cwd
 ""    redraw!
-""    " exe '!cd ~/Documents/Notes/; git add . && git commit -S -s -m "' 'Update file(s): '.expand('%:t'). '" && git push '
+""    " exe '!cd ~/Notes/; git add . && git commit -S -s -m "' 'Update file(s): '.expand('%:t'). '" && git push '
 ""endfunction
 
 let g:vimwiki_table_mappings=0
