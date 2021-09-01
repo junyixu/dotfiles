@@ -160,6 +160,13 @@ syn match texMathSymbol '\\mathfrak{\s*X\s*}' contained conceal cchar=𝔛
 syn match texMathSymbol '\\mathfrak{\s*Y\s*}' contained conceal cchar=𝔜
 syn match texMathSymbol '\\mathfrak{\s*Z\s*}' contained conceal cchar=ℨ
 
+" \vu characters or \vector unit characters 
+syn match texMathSymbol '\\vu{\s*i\s*}' contained conceal cchar=î
+syn match texMathSymbol '\\vu{\s*j\s*}' contained conceal cchar=ĵ
+syn match texMathSymbol '\\vu{\s*H\s*}' contained conceal cchar=Ĥ
+
+
+
 " \mathcal characters
 syn match texMathSymbol '\\math\%(scr\|cal\){\s*A\s*}' contained conceal cchar=𝓐
 syn match texMathSymbol '\\math\%(scr\|cal\){\s*B\s*}' contained conceal cchar=𝓑
