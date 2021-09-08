@@ -16,6 +16,7 @@ if g:isNVIM
 		  set background=light
 		  nnoremap <leader>i :set lines=20<cr>i
 	  else
+		Plug 'voldikss/vim-mma'
 		set background=dark
 		  Plug 'vim-airline/vim-airline', {'on': []}
 		  Plug 'vim-airline/vim-airline-themes'
@@ -83,8 +84,6 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	nmap <silent> <localLeader>x <Plug>TranslateX
 	"}}}
 
-	Plug 'voldikss/vim-mma'
-
 	if version < 800
 		echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
 	else
@@ -103,7 +102,7 @@ if $SSH_CONNECTION != ''
 		xmap <F7> y:Oscyank<cr>
 endif
 
-" 剪贴板
+" 寄存器
 Plug 'junegunn/vim-peekaboo'
 	let g:peekaboo_delay=500
 
@@ -432,6 +431,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 endif
 "===================== end 异步任务 =================}}}
 
+" {{{ ========================== ycm or coc 补全 ============================
 if !g:isPlain && !exists('g:started_by_firenvim') && hostname()!='Surface'
 	if g:isNVIM
 		 Plug 'neoclide/coc.nvim'
@@ -442,7 +442,7 @@ if !g:isPlain && !exists('g:started_by_firenvim') && hostname()!='Surface'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
 	endif
 endif
-
+"  ========================== end 补全 ============================ }}}
 
 " 启动时间
 " Plug 'dstein64/vim-startuptime'
@@ -523,11 +523,21 @@ Plug 'farmergreg/vim-lastplace'
 
 " 注释插件
 Plug 'tpope/vim-commentary' 
+    "{{{ comment plug
+    " autocmd FileType apache setlocal commentstring=#\ %s
+    autocmd FileType nginx setlocal commentstring=#\ %s
+    autocmd FileType systemd setlocal commentstring=#\ %s
+    autocmd FileType dosini setlocal commentstring=#\ %s
+    autocmd FileType crontab setlocal commentstring=#\ %s
+    "}}}
 
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'machakann/vim-sandwich'
+	" 匹配增强
+	Plug 'andymass/vim-matchup'
 else
 	Plug 'tpope/vim-surround'
+	Plug 'chrisbra/matchit'
 endif
 
   " 自动补全括号
@@ -541,17 +551,6 @@ Plug 'Raimondi/delimitMate'
     "}}}
 
 Plug 'luochen1990/rainbow', {'on': 'RainbowToggle'}
-
-    "{{{
-    " autocmd FileType apache setlocal commentstring=#\ %s
-    autocmd FileType nginx setlocal commentstring=#\ %s
-    autocmd FileType systemd setlocal commentstring=#\ %s
-    autocmd FileType dosini setlocal commentstring=#\ %s
-    autocmd FileType crontab setlocal commentstring=#\ %s
-    "}}}
-
-
-
 
 "======================= 🌲️ 项目树 ========================={{{
 " 抽屉式项目树
@@ -642,13 +641,13 @@ Plug 'aperezdc/vim-template'
 "=============== LaTeX ==============={{{
 Plug 'lervag/vimtex'
 	set conceallevel=2
-	" let g:tex_conceal="abdgm"
+	let g:tex_conceal="abdgm"
 "=============== end LaTeX ===============}}}
 
 " cycle: true <-> false etc
 Plug 'bootleq/vim-cycle'
-	let g:cycle_no_mappings = 1
 "=================== vim-cycle ================{{{
+let g:cycle_no_mappings = 1
 nmap <silent> <c-a> <Plug>CycleNext
 vmap <silent> <c-a> <Plug>CycleNext
 nmap <silent> <c-x> <Plug>CyclePrev
@@ -682,8 +681,26 @@ noremap <silent> <Plug>CycleFallbackPrev <C-X>
 				\     'December'], 'hard_case', {'name': 'Months'}],
 				\ ]
 
-	"=================== vim-cycle ================}}}
+"=================== vim-cycle ================}}}
 
+"=========== textobj-user 全家桶 ============={{{
+" Plug 'jeetsukumaran/vim-pythonsense'
+
+Plug 'kana/vim-textobj-user'
+" 以下都依赖 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-fold'
+if !g:isPlain && !exists('g:started_by_firenvim')
+Plug 'kana/vim-textobj-lastpat'
+endif
+Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java'] }
+Plug 'sgur/vim-textobj-parameter'
+Plug 'julian/vim-textobj-variable-segment'
+Plug 'coachshea/vim-textobj-markdown', {'for': 'markdown'}
+Plug 'bps/vim-textobj-python', {'for':'python'}
+"=========== end textobj-user 全家桶 =============}}}
 
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
@@ -695,38 +712,15 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 		nmap ga <Plug>(EasyAlign)
 		"}}}
 		
-
-	" 匹配增强
-	Plug 'andymass/vim-matchup'
-
 	" vim 中文文档
 	Plug 'yianwillis/vimcdoc'
-	"=========== textobj-user 全家桶 ============={{{
-	" Plug 'jeetsukumaran/vim-pythonsense'
-
-	Plug 'kana/vim-textobj-user'
-	" 以下都依赖 Plug 'kana/vim-textobj-user'
-	Plug 'kana/vim-textobj-indent'
-	Plug 'kana/vim-textobj-syntax'
-	Plug 'kana/vim-textobj-fold'
-	Plug 'kana/vim-textobj-lastpat'
-	Plug 'kana/vim-textobj-line'
-	Plug 'kana/vim-textobj-function', { 'for': ['c', 'cpp', 'vim', 'java'] }
-	Plug 'sgur/vim-textobj-parameter'
-	Plug 'julian/vim-textobj-variable-segment'
-	Plug 'coachshea/vim-textobj-markdown', {'for': 'markdown'}
-	Plug 'bps/vim-textobj-python', {'for':'python'}
-	"=========== end textobj-user 全家桶 =============}}}
 	
 	" matlab
 	Plug 'andymass/vim-matlab', {'for': 'matlab'}
 	" Plug 'yinflying/matlab-screen', {'for': 'matlab'}
 
-
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'petRUShka/vim-sage', {'for': 'sage'}
-else
-	Plug 'chrisbra/matchit'
 endif
 
 call plug#end()
@@ -750,6 +744,15 @@ xmap ass <Plug>(textobj-sandwich-auto-a)
 omap iss <Plug>(textobj-sandwich-auto-i)
 omap ass <Plug>(textobj-sandwich-auto-a)
 
+" Textobjects to select a text surrounded by same characters user
+xmap iq <Plug>(textobj-sandwich-literal-query-i)
+xmap aq <Plug>(textobj-sandwich-literal-query-a)
+omap iq <Plug>(textobj-sandwich-literal-query-i)
+omap aq <Plug>(textobj-sandwich-literal-query-a)
+
+" i for Instant surroundings.
+" f for Function
+" t for Tag to edit HTML
 let g:sandwich#magicchar#f#patterns = [
         \   {
         \     'header' : '\<\%(\h\k*\.\)*\h\k*',
@@ -758,7 +761,47 @@ let g:sandwich#magicchar#f#patterns = [
         \     'footer' : '',
         \   },
         \ ]
+         
+" 和 vim surround 一样的括号
+	let g:sandwich#recipes += [
+	\   {'buns': ['{ ', ' }'], 'nesting': 1, 'match_syntax': 1,
+	\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['{']},
+	\
+	\   {'buns': ['[ ', ' ]'], 'nesting': 1, 'match_syntax': 1,
+	\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['[']},
+	\
+	\   {'buns': ['( ', ' )'], 'nesting': 1, 'match_syntax': 1,
+	\    'kind': ['add', 'replace'], 'action': ['add'], 'input': ['(']},
+	\
+	\   {'buns': ['{\s*', '\s*}'],   'nesting': 1, 'regex': 1,
+	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'], 'input': ['{']},
+	\
+	\   {'buns': ['\[\s*', '\s*\]'], 'nesting': 1, 'regex': 1,
+	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'], 'input': ['[']},
+	\
+	\   {'buns': ['(\s*', '\s*)'],   'nesting': 1, 'regex': 1,
+	\    'match_syntax': 1, 'kind': ['delete', 'replace', 'textobj'],
+	\    'action': ['delete'], 'input': ['(']},
+	\ ]
+        let g:sandwich#recipes += [
+        \   {'buns': ['*',     '*'],           'nesting': 0, 'input': [ '*' ],    'filetype': ['markdown', 'vimwiki'] },
+        \   {'buns': ['**',     '**'],           'nesting': 0, 'input': [ 'b' ],    'filetype': ['markdown', 'vimwiki'] },
+        \   {'buns': ['“',     '”'],           'nesting': 0, 'input': [ 'U"' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki', 'text'] },
+        \   {'buns': ['\left(',           '\right)'],           'nesting': 1, 'input': [ 'm)' ],    'filetype': ['tex',       'plaintex'] },
+        \   {'buns': ['\left[',           '\right]'],           'nesting': 1, 'input': [ 'm]' ],    'filetype': ['tex',       'plaintex'] },
+        \   {'buns': ['\left|',           '\right|'],           'nesting': 1, 'input': [ 'm|' ],    'filetype': ['tex',       'plaintex'] },
+        \   {'buns': ['\left\{',          '\right\}'],          'nesting': 1, 'input': [ 'm}' ],    'filetype': ['tex',       'plaintex'] },
+        \   {'buns': ['\left\langle ',    '\right\rangle '],    'nesting': 1, 'input': [ 'm>' ],    'filetype': ['tex',       'plaintex'] },
+        \   {'buns': ['\mqty(',        ')'],        'nesting': 1, 'input': [ 'M(' , 'M)' ],   'filetype': ['tex',       'plaintex'] },
+        \   {'buns': ['\mqty[',        ']'],        'nesting': 1, 'input': [ 'M[' ,'M]' ],    'filetype': ['tex',       'plaintex'] },
+        \   {'buns': ['\mqty|',        '|'],        'nesting': 1, 'input': ['M|' ],           'filetype': ['tex',       'plaintex'] },
+		\   {'buns': ['\mqty\{',       '\}'],       'nesting': 1, 'input': [ 'M{' ,'M}' ],    'filetype': ['tex',       'plaintex'] },
+        \ ]
 "}}}
+"
+"
 " {{{ 格式化
 "" the glaive#Install() should go after the "call vundle#end()"
 call glaive#Install()
@@ -1372,6 +1415,10 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 " fold 造成 vimtex 相当卡顿
 let g:vimtex_fold_enabled=0
 
+" 在这里需要注意一下, 如果用了自动补全的插件, 需要设置:
+let g:vimtex_fold_manual=1
+" 不然会变得好慢.
+
 " let  g:vimtex_fold_types = {
 " 	   \ 'preamble' : {'enabled' : 1},
 " 	   \ 'envs' : {
@@ -1394,20 +1441,9 @@ let g:vimtex_fold_enabled=0
 " 	   \}
 
 if !exists('g:ycm_semantic_triggers')
-let g:ycm_semantic_triggers = {}
+  let g:ycm_semantic_triggers = {}
 endif
 au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-
-" autocmd Filetype tex call vimtex#imaps#add_map({
-"   \ 'lhs' : '<CR>',
-"   \ 'rhs' : '\item ',
-"   \ 'leader' : '',
-"   \ 'wrapper' : 'vimtex#imaps#wrap_environment',
-"   \ 'context' : ["itemize", "enumerate"],
-"   \})
-" " autocmd BufReadPre *.tex let b:vimtex_main = 'main.tex'
-
-autocmd FileType tex nnoremap <buffer><silent> <C-n> o\input{lec_.tex}<Esc>F_a
 
 let g:vimtex_doc_handlers = ['MyHandler']
 function! MyHandler(context)
@@ -1438,28 +1474,9 @@ let g:vimtex_view_general_options_latexmk = '--unique'
 " 			\ ],
 " 			\}
 
-" 补全
-
-""打开后前一个 call 函数就会消失
-"call vimtex#imaps#add_map({
-"  \ 'lhs' : '<CR>',
-"  \ 'rhs' : '\\&= ',
-"  \ 'leader' : '',
-"  \ 'wrapper' : 'vimtex#imaps#wrap_environment',
-"  \ 'context' : ["align"],
-"  \})
-
 let g:tex_flavor='latex'
 let g:vimtex_quickfix_mode=0
 
-" 待解决
-"call vimtex#imaps#add_map({
-"  \ 'lhs' : '<S-CR>',
-"  \ 'rhs' : '\\',
-"  \ 'leader' : '',
-"  \ 'wrapper' : 'vimtex#imaps#wrap_environment',
-"  \ 'context' : ["itemize", "enumerate"],
-"  \})
 "=================== end VimTex ===============================}}}
 endif
 

@@ -26,6 +26,11 @@ let mapleader = ','						"The default leader is \, but a comma is much better. �
 noremap \ ,
 noremap g\ g,
 
+" 选择模式
+vnoremap g<C-g> <C-g>
+
+nnoremap g<C-g> <C-g>
+
 "Space is much better than '_' 
 let maplocalleader = "\<Space>" 
 " let maplocalleader = "_"
@@ -171,7 +176,7 @@ nnoremap <M->> <C-w>>
 
 
 " 数中文字符有多少个
-function! ChineseCount() range
+function ChineseCount() range
 	let save = @z
 	silent exec 'normal! gv"zy'
 	let text = @z

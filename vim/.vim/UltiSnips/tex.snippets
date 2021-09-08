@@ -185,9 +185,14 @@ snippet 式 "方程引用" i
 式~\eqref{eq:${1:refkey}} $0
 endsnippet
 
-
 snippet bib "bibliography" b
 \bibliography{myLibrary}
+endsnippet
+
+snippet wf "wrapfigure" b
+\begin{wrapfigure}{r}{0.30\textwidth}
+	\includesvg[width=0.28\textwidth]{figures/$1.svg}
+\end{wrapfigure}
 endsnippet
 
 snippet svg "Figure environment" b

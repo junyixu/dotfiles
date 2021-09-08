@@ -37,11 +37,38 @@ snippet p "偏微分"
 \pdv{$1}
 endsnippet
 
+context "isMath()"
+snippet sqr "平方根" i
+\sqrt{$1}
+endsnippet 
+
+
+context "isMath()"
+snippet | "|" i
+\left| $1 \right|
+endsnippet 
+
+context "isMath()"
+snippet [ "|" i
+\left[ $1 \right
+endsnippet 
+
+context "isMath()"
+snippet ( "|" i
+\left( $1 \right
+endsnippet 
+
 # 导数(流数)
 context "isMath()"
 snippet "(\\?\w+)(\.\.)" "二阶导" ri
 \ddot{`!p snip.rv=match.group(1)`} 
 endsnippet 
+
+context "isMath()"
+snippet lims "lim substack" 
+\lim_{\substack{$1}}
+endsnippet 
+
 
 # 把小数如 5.5 0.5 也包括进来
 snippet '(\d\.\d+|\d+)si' "unit" rA

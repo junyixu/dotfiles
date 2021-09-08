@@ -21,6 +21,38 @@ vnoremap <buffer><silent> <localleader>u "zc\uline{<C-R>z}<ESC>
 vnoremap <buffer><silent> <localleader>e "zc\emph{<C-R>z}<ESC>
 
 nnoremap <buffer> <localleader><tab> nla
+inoremap <buffer><silent> <C-l> <esc>l%%a
+
+call textobj#user#plugin('tex', {
+\  'double-quote': {
+\     '*pattern*': ['``', "''"],
+\     'select-a': 'aQ',
+\     'select-i': 'iQ',
+\   },
+\  'biglimiter': {
+\     '*pattern*': ['\\{', '\\}'],
+\     'select-a': 'aU',
+\     'select-i': 'iU',
+\   },
+\ })
+
+call vimtex#imaps#add_map({
+  \ 'lhs' : '<CR>',
+  \ 'rhs' : '\item ',
+  \ 'leader' : '',
+  \ 'wrapper' : 'vimtex#imaps#wrap_environment',
+  \ 'context' : ["itemize", "enumerate"],
+  \})
+
+" call vimtex#imaps#add_map({
+"   \ 'lhs' : '<C-L>',
+"   \ 'rhs' : '\item ',
+"   \ 'leader' : '',
+"   \ 'wrapper' : 'vimtex#imaps#wrap_environment',
+"   \ 'context' : ["itemize", "enumerate"],
+"   \})
+
+" let b:vimtex_main = 'main.tex'
 
 function g:PreviewEq4LaTeX()
 	execute 'normal "xyie'
@@ -66,8 +98,8 @@ setlocal spellfile+=~/.vim/spell/latex.utf-8.add
 " 后来得知 <C-i> 就是 tab <C-m> 就是 <cr>
 
 inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
-nnoremap <localleader>f : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
-nnoremap <localleader>p o\includegraphics[width=0.5\textwidth]{figures/<C-r>+}<esc>
+nnoremap <localleader><C-F> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+nnoremap <localleader><C-P> o\includegraphics[width=0.5\textwidth]{figures/<C-r>+}<esc>
 
 " 句首字母大写
 " https://superuser.com/questions/737130/automatically-capitalize-the-first-letter-of-sentence-in-vim
@@ -86,8 +118,11 @@ if exists('g:loaded_surround')
     let b:surround_{char2nr('Q')} = "``\r''"
 endif
 
+" let b:delimitMate_quotes = "\" ' `"
+
 " 锚点
 " 定义人工锚点 
 inoremap <buffer> <silent> <M-,> <++>
 " 切换到下一个锚点  
-inoremap <buffer> <silent> <M-f> <Esc>/<++><CR>:nohlsearch<CR>c4l
+" inoremap <buffer> <silent> <C-j> <Esc>/<+\w*+><CR>:nohlsearch<CR>cgn
+inoremap <buffer> <silent> <C-j> <Esc>/<++><CR>:nohlsearch<CR>c4l

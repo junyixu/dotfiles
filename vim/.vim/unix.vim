@@ -30,7 +30,7 @@ endif
 	let &t_EI = "\<Esc>[2 q"
 " endif
 
-au FileType cmake set keywordprg=/home/junyi/bin/cmake-help
+au FileType cmake set keywordprg=~/bin/cmake-help
 
 
 if has("nvim")

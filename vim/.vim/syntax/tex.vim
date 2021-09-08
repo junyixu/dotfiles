@@ -336,12 +336,6 @@ syn match texTypeStyle		"\\textrm\>"
 
 syn match texTypeStyle		"\\mathbb\>"
 syn match texTypeStyle		"\\mathbf\>"
-" 矢量粗体 \usepackage{physics}
-syn match texTypeStyle		"\\vb\>"
-syn match texTypeStyle		"\\vectorbold\>"
-" 单位矢量 \usepackage{physics}
-syn match texTypeStyle		"\\vectorunit\>"
-syn match texTypeStyle		"\\vu\>"
 
 syn match texTypeStyle		"\\mathcal\>"
 syn match texTypeStyle		"\\mathfrak\>"
