@@ -310,7 +310,7 @@ Plug 'google/vim-glaive'
 
 augroup autoformat_settings
   autocmd FileType bzl AutoFormatBuffer buildifier
-  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  " autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
   autocmd FileType dart AutoFormatBuffer dartfmt
   autocmd FileType go AutoFormatBuffer gofmt
   autocmd FileType gn AutoFormatBuffer gn
@@ -991,7 +991,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 " let g:ycm_error_symbol = '⨉'  "set error or warning signs
 let g:ycm_error_symbol = "\ue009\ue009"  "set error or warning signs
 let g:ale_sign_error = "\ue009\ue009"
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 let g:ycm_add_preview_to_completeopt = 0
 " let g:ale_sign_error = '⨉'
 " let g:ale_sign_error = '✗'

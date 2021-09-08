@@ -1,6 +1,6 @@
 # export PATH="$PATH:/bin"
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+if [[ -z "$TMUX" ]] && ( [ "$SSH_CONNECTION" != "" ] || [ "$HOST" = "Surface" ] || [ "$HOST" = "Win10LTSC" ] ); then
     SESSION_NAME="test"
     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 fi
@@ -337,7 +337,9 @@ todo() {
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-alias ls='lsd'
+if hash lsd 2> /dev/null; then
+	alias ls='lsd'
+fi
 
 r() {
   if [ "$1" != "" ]; then
