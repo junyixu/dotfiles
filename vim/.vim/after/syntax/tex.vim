@@ -20,7 +20,7 @@ syn match texMathSymbol '\\\\' contained conceal cchar=⏎
 syn match texMathSymbol '\\lor\>' contained conceal cchar=∨
 syn match texMathSymbol '\\land\>' contained conceal cchar=∧
 syn match texMathSymbol '\\lnot\>' contained conceal cchar=¬
-syn match texMathSymbol '\\implies\>' contained conceal cchar=⇒
+" syn match texMathSymbol '\\implies\>' contained conceal cchar=⇒
 syn match texMathSymbol '\\geqslant\>' contained conceal cchar=⩾
 syn match texMathSymbol '\\leqslant\>' contained conceal cchar=⩽
 
