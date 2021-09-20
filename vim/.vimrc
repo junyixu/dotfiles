@@ -229,7 +229,11 @@ set cursorline							"显示当前行
 " set relativenumber   "显示相对行号
 set number								"Let's activate line numbers.
 " 按 F2 快速打开(或关闭)显示行号
-nnoremap <F2> :set nu! nu?<CR>:set relativenumber! relativenumber?<CR>
+" nnoremap <F2> :set nu! nu?<CR>:set relativenumber! relativenumber?<CR>
+
+
+" 按 F2 快速打开(或关闭) ctrl shift v 粘贴
+nnoremap <F2> :set paste! paste?<CR>
 nnoremap <F3> :set spell! spell?<CR>
 "----------------------ab----------------------------------------"
 ab mymail junyixu0@gmail.com

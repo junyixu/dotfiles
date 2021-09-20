@@ -1,6 +1,6 @@
 # export PATH="$PATH:/bin"
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
-if [[ -z "$TMUX" ]] && ( [ "$SSH_CONNECTION" != "" ] || [ "$HOST" = "Surface" ] || [ "$HOST" = "Win10LTSC" ] ); then
+if [[ -z "$TMUX" ]] && ( [ "$SSH_CONNECTION" != "" ] || [ "$HOST" = "Surface" ]  ); then
     SESSION_NAME="test"
     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 fi
@@ -167,6 +167,7 @@ alias mrun="matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -
 alias clc='clear'
 
 alias socks5='ALL_PROXY=socks5://localhost:1080 HTTP_PROXY=socks5://localhost:1080 HTTPS_PROXY=socks5://localhost:1080 '
+alias proxy='ALL_PROXY=http://localhost:1081 HTTP_PROXY=http://localhost:1081 HTTPS_PROXY=http://localhost:1081 '
 
 alias Syu='sudo pacman -Syu'
 alias S='sudo pacman -S'
