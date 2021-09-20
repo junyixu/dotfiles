@@ -13,11 +13,6 @@ def isMath():
 endglobal
 
 context "isMath()"
-snippet t "文字"
-\text{$1}
-endsnippet
-
-context "isMath()"
 snippet q "quad"
 \quad 
 endsnippet
@@ -86,9 +81,16 @@ snippet '(\w)hat' " i hat " r
 endsnippet
 
 #向量 vector 匹配\零次或一次，或一个非贪婪限定, \w匹配字母、数字、下划线。等价于'[A-Za-z0-9_]'
+priority 10
 context "isMath()"
-snippet "(\\?[A-Za-z]+)(,\.|\.,)" "Vector postfix" riA
+snippet "([A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
 \vb{`!p snip.rv=match.group(1)`}
+endsnippet 
+
+priority 100
+context "isMath()"
+snippet "(\\[A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
+\va{`!p snip.rv=match.group(1)`}
 endsnippet 
 
 priority 100

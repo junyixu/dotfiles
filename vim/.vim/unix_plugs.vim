@@ -91,8 +91,8 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	endif
 
 " 下划线
-Plug 'itchyny/vim-cursorword'
-" Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }
+" Plug 'itchyny/vim-cursorword'
+Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }
 " ssh 远程复制粘贴
 endif
 
@@ -146,39 +146,6 @@ Plug 'zackhsi/fzf-tags'
 nmap <C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
 
-Plug 'jpalardy/vim-slime', {'on': ['<Plug>SlimeRegionSend',
-            \ '<Plug>SlimeParagraphSend', '<Plug>SlimeConfig']}
-" {{{ slime 发送文本
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
-let g:slime_python_ipython = 1
-let g:slime_target = 'tmux'
-" let g:slime_target = 'vimterminal'
-" let g:slime_default_config = {
-"             \ 'socket_name': get(split($TMUX, ','), 0),
-"             \ 'target_pane': ':.'
-"             \ }
-" let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
-let g:slime_python_ipython = 1
-let g:slime_no_mappings = 1
-autocmd filetype python,matlab,julia,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
-" autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
-" autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
-autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
-
-autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
-" autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
-autocmd filetype matlab,julia,sage.python nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
-" autocmd filetype matlab,julia,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
-
-autocmd filetype python,matlab,julia,sage.python nmap <M-CR> <Plug>SlimeSendCell
-" autocmd filetype python,matlab,julia,sage.python nnoremap <C-CR> <Plug>SlimeSendCell
-" nnoremap <s-cr> :w
-
-autocmd filetype python nmap <localleader>r <Plug>SlimeSendCell
-" autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
-" autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
-autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
-" }}}
 Plug 'dyng/ctrlsf.vim'
 ""{{{ ctrlsf
 highlight link ctrlsfFilename Underlined
@@ -232,7 +199,41 @@ Plug 'majutsushi/tagbar'
 	nmap <leader>tb :TagbarToggle<CR>
 endif
 
+Plug 'jpalardy/vim-slime', {'on': ['<Plug>SlimeRegionSend',
+            \ '<Plug>SlimeParagraphSend', '<Plug>SlimeConfig']}
+" {{{ slime 发送文本
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+let g:slime_python_ipython = 1
+let g:slime_target = 'tmux'
+" let g:slime_target = 'vimterminal'
+" let g:slime_default_config = {
+"             \ 'socket_name': get(split($TMUX, ','), 0),
+"             \ 'target_pane': ':.'
+"             \ }
+" let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
+let g:slime_python_ipython = 1
+let g:slime_no_mappings = 1
+autocmd filetype python,matlab,julia,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+" autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
+" autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
+autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
+
+autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
+" autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
+autocmd filetype matlab,julia,sage.python nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
+" autocmd filetype matlab,julia,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
+
+autocmd filetype python,matlab,julia,sage.python nmap <M-CR> <Plug>SlimeSendCell
+" autocmd filetype python,matlab,julia,sage.python nnoremap <C-CR> <Plug>SlimeSendCell
+" nnoremap <s-cr> :w
+
+autocmd filetype python nmap <localleader>r <Plug>SlimeSendCell
+" autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
+" autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
+autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
+" }}}
 " TODO
+"
 " Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
 Plug 'easymotion/vim-easymotion'
@@ -496,6 +497,10 @@ endif
 " Plug 'xolox/vim-misc'
 
 " -----------------美观 ------------------{{{
+"  latex 语法高亮 http://padamson.github.io/chapel/seamless/2016/02/27/highlight-chapel-syntax-in-latex-in-vim.html
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-SyntaxRange'
+
 " 缩进插件
 " Plug 'Yggdroot/indentLine', {'for': ['python', 'fortran']}
 Plug 'Yggdroot/indentLine', {'for': ['python']}
@@ -1246,7 +1251,7 @@ let g:ale_linters = {
             \   'matlab': ['mlint'],
             \   'shell': ['shell -n flag'],
             \   'yaml': ['prettier'],
-            \   'markdown': ['textidote'],
+            \   'markdown': ['languagetool', 'textidote'],
 			\   'lua': ['luac'], 
             \   'vimwiki': ['textidote'],
             \   'tex': ['lacheck', 'textidote'],
