@@ -26,6 +26,11 @@ let mapleader = ','						"The default leader is \, but a comma is much better. �
 noremap \ ,
 noremap g\ g,
 
+" 选择模式
+vnoremap g<C-g> <C-g>
+
+nnoremap g<C-g> <C-g>
+
 "Space is much better than '_' 
 let maplocalleader = "\<Space>" 
 " let maplocalleader = "_"
@@ -171,7 +176,7 @@ nnoremap <M->> <C-w>>
 
 
 " 数中文字符有多少个
-function! ChineseCount() range
+function ChineseCount() range
 	let save = @z
 	silent exec 'normal! gv"zy'
 	let text = @z
@@ -224,7 +229,11 @@ set cursorline							"显示当前行
 " set relativenumber   "显示相对行号
 set number								"Let's activate line numbers.
 " 按 F2 快速打开(或关闭)显示行号
-nnoremap <F2> :set nu! nu?<CR>:set relativenumber! relativenumber?<CR>
+" nnoremap <F2> :set nu! nu?<CR>:set relativenumber! relativenumber?<CR>
+
+
+" 按 F2 快速打开(或关闭) ctrl shift v 粘贴
+nnoremap <F2> :set paste! paste?<CR>
 nnoremap <F3> :set spell! spell?<CR>
 "----------------------ab----------------------------------------"
 ab mymail junyixu0@gmail.com

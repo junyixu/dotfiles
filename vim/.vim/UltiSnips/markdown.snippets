@@ -129,6 +129,13 @@ snippet - "todo" b
 - [ ] 
 endsnippet
 
+snippet d "离考研天数" b
+# 离考研还有`!p import datetime
+finalday = datetime.date(2021, 12, 24)
+today = datetime.date.today()
+snip.rv=str((finalday - today).days)`天
+endsnippet
+
 snippet physics "physics宏包 的 mathjax 拓展" b
 $\require{physics}$
 endsnippet
@@ -147,6 +154,11 @@ $$
 $$
 $0
 endsnippet
+priority 1000
+snippet mk "Math" wA
+\(  $1 \)
+endsnippet
+
 
 # priority 1000
 # snippet dd "diff" wA

@@ -1,6 +1,5 @@
-# export PATH="$PATH:/bin"
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+if [[ -z "$TMUX" ]] && ( [ "$SSH_CONNECTION" != "" ] || [ "$HOST" = "Surface" ]  ); then
     SESSION_NAME="test"
     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 fi
@@ -44,11 +43,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# if [ "$SSH_CONNECTION" = "" ]; then
-	# ZSH_THEME="random"
-	# ZSH_THEME=powerlevel10k/powerlevel10k
-	# ZSH_THEME="random"
-# fi
 ZSH_THEME=powerlevel10k/powerlevel10k
 
 export GPG_TTY=$TTY
@@ -70,7 +64,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
- export UPDATE_ZSH_DAYS=30
+ export UPDATE_ZSH_DAYS=60
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -133,7 +127,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=zh_CN.UTF-8
+# export LANG=zh_CN.UTF-8
 
 
 # Compilation flags
@@ -167,6 +161,7 @@ alias mrun="matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -
 alias clc='clear'
 
 alias socks5='ALL_PROXY=socks5://localhost:1080 HTTP_PROXY=socks5://localhost:1080 HTTPS_PROXY=socks5://localhost:1080 '
+alias proxy='ALL_PROXY=http://localhost:1081 HTTP_PROXY=http://localhost:1081 HTTPS_PROXY=http://localhost:1081 '
 
 alias Syu='sudo pacman -Syu'
 alias S='sudo pacman -S'
@@ -337,7 +332,9 @@ todo() {
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-alias ls='lsd'
+if hash lsd 2> /dev/null; then
+	alias ls='lsd'
+fi
 
 r() {
   if [ "$1" != "" ]; then
@@ -397,9 +394,11 @@ sd() {
 }
 
 fnotes(){
+	local __current_working_dir
 	local __note_name
 	local __note_dir
 	local __note_dir_name
+	__current_working_dir=$(pwd)
 	cd ~/.cache/LaTeXNotesPDFImg
 	__note_name=$(ls ./* | fzfimg.sh)
 	if [[ $__note_name != "" ]]; then
@@ -409,7 +408,8 @@ fnotes(){
 		cd $__note_dir
 		vim --servername TEX -c 'VimtexView' ./main.tex
 	else
-		1
+		cd $current_working_dir
+		echo '字符串为空，没有选择任何pdf文件'
 	fi
 }
     # local __DEFAULT_SIZE="1920x1080"
@@ -519,7 +519,9 @@ s() {
 # }
 
 t() {
+	local __current_working_dir
 	local __note_name
+	__current_working_dir=$(pwd)
 	cd ~/.cache/LaTeXNotesPDFImg  # TODO fzfimg.sh 必须 cd 到那个目录，如何修改使之不需要 cd 到那个目录？
 	__note_name=$(ls ./* | fzfimg.sh)
 
@@ -528,12 +530,15 @@ t() {
 	# 用 sed 去掉末尾的      .jpg
 	xdg-open ~/Sync/uni_pdf/$__note_name:r.pdf || echo '没有这个文件'
 	else # 若字符串为空，则
+		cd $__current_working_dir
 		echo '字符串为空，没有选择任何pdf文件'
 	fi
 }
 
 tt() {
+	local __current_working_dir
 	local __note_name
+	__current_working_dir=$(pwd)
 	cd ~/.cache/LaTeXNotesPDFImg  # TODO fzfimg.sh 必须 cd 到那个目录，如何修改使之不需要 cd 到那个目录？
 	__note_name=$(ls ./* | fzfimg.sh)
 
@@ -542,6 +547,7 @@ tt() {
 	# 用 sed 去掉末尾的      .jpg
 	_z "$(echo $__note_name | sed 's/^[0-9,.\/]* *//' | sed 's/\.jpg$//')" && vim --servername TEX -c 'VimtexView' ./main.tex || echo '没有这个目录'
 	else # 若字符串为空，则
+		cd $__current_working_dir
 		echo '字符串为空，没有选择任何pdf文件'
 	fi
 }

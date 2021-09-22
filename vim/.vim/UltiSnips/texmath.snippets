@@ -13,11 +13,6 @@ def isMath():
 endglobal
 
 context "isMath()"
-snippet t "文字"
-\text{$1}
-endsnippet
-
-context "isMath()"
 snippet q "quad"
 \quad 
 endsnippet
@@ -37,11 +32,38 @@ snippet p "偏微分"
 \pdv{$1}
 endsnippet
 
+context "isMath()"
+snippet sqr "平方根" i
+\sqrt{$1}
+endsnippet 
+
+
+context "isMath()"
+snippet | "|" i
+\left| $1 \right|
+endsnippet 
+
+context "isMath()"
+snippet [ "|" i
+\left[ $1 \right
+endsnippet 
+
+context "isMath()"
+snippet ( "|" i
+\left( $1 \right
+endsnippet 
+
 # 导数(流数)
 context "isMath()"
 snippet "(\\?\w+)(\.\.)" "二阶导" ri
 \ddot{`!p snip.rv=match.group(1)`} 
 endsnippet 
+
+context "isMath()"
+snippet lims "lim substack" 
+\lim_{\substack{$1}}
+endsnippet 
+
 
 # 把小数如 5.5 0.5 也包括进来
 snippet '(\d\.\d+|\d+)si' "unit" rA
@@ -59,9 +81,16 @@ snippet '(\w)hat' " i hat " r
 endsnippet
 
 #向量 vector 匹配\零次或一次，或一个非贪婪限定, \w匹配字母、数字、下划线。等价于'[A-Za-z0-9_]'
+priority 10
 context "isMath()"
-snippet "(\\?[A-Za-z]+)(,\.|\.,)" "Vector postfix" riA
+snippet "([A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
 \vb{`!p snip.rv=match.group(1)`}
+endsnippet 
+
+priority 100
+context "isMath()"
+snippet "(\\[A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
+\va{`!p snip.rv=match.group(1)`}
 endsnippet 
 
 priority 100

@@ -1,0 +1,16 @@
+#! /bin/sh
+#
+# win7.sh
+# Copyright (C) 2021 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+if [ $# = 1 ] && [ $1 = "shutdown" ]
+then
+	sudo virsh shutdown Win7
+	sudo systemctl stop smb.service
+else
+	sudo virsh start Win7
+	sudo systemctl start smb.service
+fi

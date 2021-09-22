@@ -15,6 +15,13 @@ snippet sub "Section"
 $0
 endsnippet
 
+snippet b "begin" b
+\begin{$1}
+	$2
+\end{$1}
+$0
+endsnippet
+
 snippet ! "%! TEX root = ./main.tex" b
 %! TEX root = ./main.tex
 endsnippet
@@ -131,7 +138,7 @@ endsnippet
 
 # mk 表示 make Ketax
 snippet mk "Math" wA
-\( ${1} \)$0
+\(${1}\)$0
 endsnippet
 
 # # mk 表示 make Ketax
@@ -147,9 +154,9 @@ endsnippet
 # dm 表示 Display math
 priority 100
 snippet dm "Math" wA
-\[
-	${1:${VISUAL}}
-\]
+\begin{equation*}
+	$1
+\end{equation*}
 $0
 endsnippet
 
@@ -162,7 +169,7 @@ snippet fref "ref" w
 endsnippet
 
 snippet 图 "ref" i
-图~\ref{fig:${1:reference}} $0
+图~\ref{fig:$1} $0
 endsnippet
 
 # snippet visual "Math"
@@ -178,16 +185,21 @@ endsnippet
 # endsnippet
 
 snippet eqr "eqref" i
-Eq.~\eqref{eq:${1:equation}} $0
+Eq.~\eqref{eq:$1} $0
 endsnippet
 
 snippet 式 "方程引用" i
-式~\eqref{eq:${1:refkey}} $0
+式~\eqref{eq:$1} $0
 endsnippet
-
 
 snippet bib "bibliography" b
 \bibliography{myLibrary}
+endsnippet
+
+snippet wf "wrapfigure" b
+\begin{wrapfigure}{r}{0.30\textwidth}
+	\includesvg[width=0.28\textwidth]{figures/$1.svg}
+\end{wrapfigure}
 endsnippet
 
 snippet svg "Figure environment" b
