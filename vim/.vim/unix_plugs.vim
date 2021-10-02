@@ -536,6 +536,7 @@ Plug 'tpope/vim-commentary'
     autocmd FileType systemd setlocal commentstring=#\ %s
     autocmd FileType dosini setlocal commentstring=#\ %s
     autocmd FileType crontab setlocal commentstring=#\ %s
+    autocmd FileType autohotkey setlocal commentstring=;\ %s
     "}}}
 
 if !g:isPlain && !exists('g:started_by_firenvim')
