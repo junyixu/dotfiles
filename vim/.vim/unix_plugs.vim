@@ -123,7 +123,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 if !g:isPlain && !exists('g:started_by_firenvim')
 "===========  git ============={{{
-Plug 'tpope/vim-fugitive'
 
 " gf <c-w>f <c-w>gf :find :sfind :tabfind ]i
 Plug 'tpope/vim-apathy'
@@ -142,6 +141,7 @@ Plug 'airblade/vim-gitgutter'
 " 确定插件仓库中的分支或者 tag
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 "=========== end git =============}}}
+Plug 'tpope/vim-fugitive'
 Plug 'zackhsi/fzf-tags'
 nmap <C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
@@ -751,6 +751,8 @@ xmap iss <Plug>(textobj-sandwich-auto-i)
 xmap ass <Plug>(textobj-sandwich-auto-a)
 omap iss <Plug>(textobj-sandwich-auto-i)
 omap ass <Plug>(textobj-sandwich-auto-a)
+vmap s <Plug>(textobj-sandwich-auto-i)
+vmap s <Plug>(textobj-sandwich-auto-a)
 
 " Textobjects to select a text surrounded by same characters user
 xmap iq <Plug>(textobj-sandwich-literal-query-i)
@@ -1255,7 +1257,7 @@ let g:ale_linters = {
             \   'markdown': ['languagetool', 'textidote'],
 			\   'lua': ['luac'], 
             \   'vimwiki': ['textidote'],
-            \   'tex': ['lacheck', 'textidote'],
+            \   'tex': ['textidote'],
             \   'sh': ['language_server', 'shell', 'shellcheck'],
             \   'bash': ['language_server', 'shell', 'shellcheck'],
             \   'vue': ['eslint'],

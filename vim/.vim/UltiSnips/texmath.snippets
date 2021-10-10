@@ -7,10 +7,12 @@
 # https://castel.dev/post/lecture-notes-1/
 
 # https://vi.stackexchange.com/questions/18490/ultisnips-context-and-tex
+
 global !p
 def isMath():
-	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 endglobal
+
 
 context "isMath()"
 snippet q "quad"

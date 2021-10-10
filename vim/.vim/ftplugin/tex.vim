@@ -9,11 +9,12 @@ nnoremap <silent><buffer> <S-CR> :! xdg-open http://wuli.wiki/online/<cfile>.htm
 inoremap <silent><buffer> <S-CR> \\<CR>
 nnoremap <buffer> <localleader>r :VimtexCompile<CR>
 nnoremap <buffer> <localleader>e :VimtexError<CR>
-nnoremap <buffer> <localleader>s :VimtexStatus<CR>
 nnoremap <buffer> <localleader>k :VimtexStop<CR>
 nnoremap <buffer> <localleader>v :VimtexView<CR>
 nnoremap <buffer> <localleader>c :VimtexClean<CR>
 
+nnoremap <buffer> <localleader>s :AsyncRun! -mode=hide tex-screenshot<CR>
+nnoremap <buffer> <localleader><localleader>s :AsyncRun! -mode=hide sleep 3; tex-screenshot<CR>
 
 vnoremap <buffer><silent> <localleader>r "zc\red{<C-R>z}<ESC>
 vnoremap <buffer><silent> <localleader>h "zc\hl{<C-R>z}<ESC>
@@ -126,4 +127,4 @@ endif
 inoremap <buffer> <silent> <M-,> <++>
 " 切换到下一个锚点  
 " inoremap <buffer> <silent> <C-j> <Esc>/<+\w*+><CR>:nohlsearch<CR>cgn
-inoremap <buffer> <silent> <C-j> <Esc>/<++><CR>:nohlsearch<CR>c4l
+inoremap <buffer> <silent> <C-j> <Esc>/<++><CR>c4l

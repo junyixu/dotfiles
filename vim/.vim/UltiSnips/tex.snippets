@@ -3,11 +3,27 @@
 #\item \textbf{定义类}：definition，conjecture，example；
 #\item \textbf{备注类}：remark，note，case；
 #\item \textbf{证明类}：proof。
+global !p
+def isComment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def isEnv(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+endglobal
 
 priority -30
 snippet sec "Section"
 \section{$1}%
 $0
+endsnippet
+
+snippet op "options" b
+\options
+{$1}
+{$2}
+{$3}
+{$4}
 endsnippet
 
 snippet sub "Section"
@@ -194,6 +210,11 @@ endsnippet
 
 snippet bib "bibliography" b
 \bibliography{myLibrary}
+endsnippet
+
+
+snippet ig "includegraphics" b
+\includegraphics[width=0.5\textwidth]{figures/$1}
 endsnippet
 
 snippet wf "wrapfigure" b

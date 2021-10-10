@@ -892,13 +892,13 @@ if has("conceal") && &enc == 'utf-8'
     \ ['updownarrow'	, '↕'],
     \ ['Updownarrow'	, '⇕'],
     \ ['vdash'		, '⊢'],
+    \ ['Ham'		, 'ℋ'],
     \ ['vdots'		, '⋮'],
     \ ['vee'		, '∨'],
     \ ['wedge'		, '∧'],
     \ ['wp'		, '℘'],
     \ ['wr'		, '≀']]
 
-    " \ ['Ham'		, 'ℋ'],
   if &ambw == "double" || exists("g:tex_usedblwidth")
     let s:texMathList= s:texMathList + [
     \ ['right\\rangle'	, '〉'],

@@ -75,6 +75,7 @@ call quickui#menu#install('&Symbol', [
 " 在 %{...} 内的脚本会被求值并展开成字符串
 call quickui#menu#install("&Option", [
 			\ ['Set &Spell %{&spell? "Off":"On"}', 'set spell!'],
+			\ ['Set HLSearch %{&hlsearch? "Off":"On"}', 'set hlsearch!'],
 			\ ['LaTe&X \input{部分文件} 打开拼写检查', 'syntax spell toplevel'],
 			\ ['LaTeX \input{部分文件} 关闭拼写检查', 'syntax spell default'],
 			\ ["Add a good word to LaTeX\t2zg", 'exec "normal 2zg"'],

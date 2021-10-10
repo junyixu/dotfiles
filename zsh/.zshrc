@@ -1,5 +1,5 @@
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+if [[ -z "$TMUX" ]] && ( [ "$SSH_CONNECTION" != "" ] || [ "$HOST" = "Surface" ]  ); then
     SESSION_NAME="test"
     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 fi
@@ -37,7 +37,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -171,6 +171,7 @@ alias R='sudo pacman -Rs'
 alias Qi='pacman -Qi'
 alias Ql='pacman -Ql'
 alias Qs='pacman -Qs'
+alias Qsq='pacman -Qsq'
 alias Qk='pacman -Qk'
 alias Qkk='pacman -Qkk'
 alias Qo='pacman -Qo'
@@ -211,7 +212,6 @@ alias status="systemctl status"
 
 alias reboot='systemctl reboot'
 alias poweroff='systemctl poweroff'
-alias shutdown='systemctl shutdown'
 
 alias open='xdg-open'
 alias o='xdg-open'
@@ -500,10 +500,11 @@ jt() {
 }
 
 # 搜索pdf笔记中的内容
-s() {
+searchnotes() {
 	# 让 awk 用 冒号 : 分隔
 	okular $(rga $@ ~/Sync/uni_pdf | fzf | awk -F: '{print $2, $1}' | sed s/Page/--page/) --find $@
 }
+alias s='searchnotes'
 
 # 不行，-- 的作用
 # s() {
@@ -830,9 +831,6 @@ setopt extendedglob
 # electron 电子
 export ELECTRON_MIRROR='https://npm.taobao.org/mirrors/electron/'
 export SASS_BINARY_SITE='https://npm.taobao.org/mirrors/node-sass'
-
-export XDG_DATA_DIR="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # systemd-journal 格式, 折行
 export SYSTEMD_LESS=FRXMK journalctl

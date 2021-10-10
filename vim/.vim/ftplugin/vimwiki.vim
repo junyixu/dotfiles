@@ -1,6 +1,7 @@
 "nmap <silent><buffer> <Leader>wc <Plug>Vimwiki2HTML
 
 setlocal spell spelllang=en_us,cjk		"忽略中文对英文进行拼写检查
+setlocal autoread
 
 ""============== markdown preview==========={{{
 let g:mkdp_command_for_global = 1

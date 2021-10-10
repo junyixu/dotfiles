@@ -58,6 +58,7 @@ syntax sync fromstart                   " 不然有时候高亮会出错
 set smarttab
 set foldcolumn=2
 
+
 " 设置格式化时制表符占用空格数
 set shiftwidth=4
 " 让 vim 把连续数量的空格视为一个制表符
@@ -74,6 +75,10 @@ let g:isPlain = get(g:, 'isPlain', 1)
 "如果只想在 Python 文件中将 Tab 展开成空格，就改换成下面这句"
 autocmd FileType python set expandtab
 " set expandtab
+
+if g:isPlain
+	set showcmd
+endif
 
 "上面的一些配置已经可以让你避免编译出现错误的问题了"
 "不过下面还有一些配置是建议同学们根据需要加上的"
@@ -122,7 +127,7 @@ set backspace=indent,eol,start			"Make backspace behave like every other editor
 
 
 "---------------------Search---------------------------------"
-set hlsearch
+" set hlsearch
 set incsearch
 set ignorecase smartcase				" 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 
@@ -174,6 +179,10 @@ nnoremap <M->> <C-w>>
 "" 将 tab 键绑定为跳出括号引号
 "inoremap <TAB> :call SkipThePair()<CR>
 
+" fun deleteChineseChars()
+" 	exec s/\v[^\x00-\xff]+//g
+" endf
+silent! command -nargs=0 DeleteChineseChars :s/\v[^\x00-\xff]+//g
 
 " 数中文字符有多少个
 function ChineseCount() range

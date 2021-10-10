@@ -1,10 +1,6 @@
 " https://vim.fandom.com/wiki/Completion_using_a_syntax_file
-if has("autocmd") && exists("+omnifunc")
-  autocmd Filetype *
-          \	if &omnifunc == "" |
-          \		setlocal omnifunc=syntaxcomplete#Complete |
-          \	endif
-endif
+" :help ft-syntax-omni
+setlocal omnifunc=syntaxcomplete#Complete
 
 " nnoremap <buffer><silent> <leader>r :w<cr>:AsyncRun octave %<cr>
 " setlocal complete=.,k,w,b,t
