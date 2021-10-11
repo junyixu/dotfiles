@@ -4,6 +4,8 @@ if [[ -z "$TMUX" ]] && ( [ "$SSH_CONNECTION" != "" ] || [ "$HOST" = "Surface" ] 
     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 fi
 
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -342,7 +344,6 @@ sw() {
 	wmctrl -ia $__window_id
 }
 
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 if hash lsd 2> /dev/null; then
 	alias ls='lsd'
