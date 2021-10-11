@@ -330,6 +330,18 @@ todo() {
  echo "$2" | /usr/bin/mail -s "$1" $TICKTICKEMAIL
 }
 
+# switch window 用 fzf 糢糊切换程序窗口
+sw() { 
+	local __window_id
+
+	# 不需要 桌面 和 Latte Dock 栏，用 grep -v 去除
+	__window_id=$(wmctrl -l | grep -v Plasma | grep -v Latte | fzf | cut -d' ' -f1)
+
+	# 最小化当前窗口 没弄懂 怎么用 wmctrl 最小化窗口
+	xdotool windowminimize $(xdotool getactivewindow)
+	wmctrl -ia $__window_id
+}
+
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 if hash lsd 2> /dev/null; then
