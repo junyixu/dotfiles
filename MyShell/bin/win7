@@ -13,4 +13,5 @@ then
 else
 	sudo virsh start Win7
 	sudo systemctl start smb.service
+	virt-manager
 fi
