@@ -52,3 +52,4 @@ endif
 " ocr
 command! Ocr :r! ocr ~/Downloads/test.png
 " vnoremap <C-h> :s/
+

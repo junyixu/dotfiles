@@ -20,4 +20,22 @@ map <buffer> <Leader>vm :MarkdownPreview<cr>
 " 有了 tpope/vim-apathy 插件不需要了
 " setlocal  suffixesadd+=.md
 
+
+function! TmpMarkdown()
+	if expand("%:p") == "/tmp/test.md"
+		execute "normal gg\"+dG"
+		execute "bd!"
+		" call system('wmctrl -a 滴答清单')
+		" 最小化窗口
+		call system('xdotool windowminimize $(xdotool getactivewindow)')
+	else 
+		execute "normal ZZ"
+	endif
+endfunc
+
+nnoremap <buffer> <M-z> :call TmpMarkdown()<cr>
+" if IsTmpMarkdown()
+" 	nnoremap <M-z>  ggVG"+dZZ
+" endif
+
 source $HOME/.vim/ftplugin/markdownandvimwiki.vim

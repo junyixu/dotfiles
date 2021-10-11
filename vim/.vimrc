@@ -403,6 +403,10 @@ nmap Y y$
 nnoremap <C-j> gj
 nnoremap <C-k> gk
 
+" for goldendict
+" vnoremap <C-c> "+ygv
+vnoremap <C-c> "+y
+
 "System Clipboard
 "vnoremap <C-c> "+y
 "map tp "+P
@@ -410,18 +414,6 @@ nnoremap <C-k> gk
 " For copying to both the Clipboard and primary selection
 " vnoremap <C-c> "*y :let @+=@*<CR>
 
-function! IsTmpMarkdown()
-	if expand("%:p") == "/home/junyi/tmp/test.md"
-		return 1
-	else 
-		return 0
-	endif
-endfunc
-
-" nnoremap <expr> Z IsTmpMarkdown() ? "ggVG"+dZZ" : "ZZ"
-if IsTmpMarkdown()
-	nnoremap <M-z>  ggVG"+dZZ
-endif
 
 function! IsTmpPasted()
 	if expand("%:p") == "/tmp/new"
