@@ -222,8 +222,8 @@ alias screenshot='flameshot gui -r'
 # alias vim='vim --cmd "let g:isProgramming=1" '
 # alias vim='vim --cmd "let g:isProgramming=1" '
 alias nvi='nvim'
-alias wiki='vim -c "cd %:h" ~/Notes/index.md'
-alias diary='vim -c "cd %:h" ~/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
+alias wiki='vi -c "cd %:h" ~/Notes/index.md'
+alias diary='vi -c "cd %:h" ~/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
 
 
 # plasmashell cpu占用过高，重启解决

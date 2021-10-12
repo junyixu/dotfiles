@@ -433,7 +433,8 @@ endif
 "===================== end 异步任务 =================}}}
 
 " {{{ ========================== ycm or coc 补全 ============================
-if !g:isPlain && !exists('g:started_by_firenvim') && hostname()!='Surface'
+" if !g:isPlain && !exists('g:started_by_firenvim') && hostname()!='Surface'
+if !g:isPlain && !exists('g:started_by_firenvim')
 	if g:isNVIM
 		 Plug 'neoclide/coc.nvim'
 	else
