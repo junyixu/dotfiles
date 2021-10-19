@@ -23,3 +23,10 @@ inoremap <buffer> {<CR> {<CR>}<ESC>O
 "autocmd BufNewFile,BufRead *.cpp au Syntax * RainbowParenthesesLoadSquare
 "autocmd BufNewFile,BufRead *.cpp au Syntax * RainbowParenthesesLoadBraces
 "autocmd BufNewFile,BufRead *.cpp au Syntax * RainbowParenthesesLoadChevrons
+let b:ycm_hover = {
+  \ 'command': 'GetDoc',
+  \ 'syntax': &filetype
+  \ }
+
+
+source $HOME/.vim/ycmMaps.vim

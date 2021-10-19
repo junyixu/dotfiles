@@ -128,3 +128,5 @@ inoremap <buffer> <silent> <M-,> <++>
 " 切换到下一个锚点  
 " inoremap <buffer> <silent> <C-j> <Esc>/<+\w*+><CR>:nohlsearch<CR>cgn
 inoremap <buffer> <silent> <C-j> <Esc>/<++><CR>c4l
+
+source $HOME/.vim/ycmMaps.vim
