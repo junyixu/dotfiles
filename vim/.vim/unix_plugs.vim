@@ -992,6 +992,10 @@ endif
 "================== git ============{{{
 nnoremap <leader>gsv :Gvdiffsplit<cr>
 nnoremap <leader>gss :Gdiffsplit<cr>
+" left 留下左边
+nnoremap <leader>gh :diffget //2<cr>
+" right 留下右边
+nnoremap <leader>gl :diffget //3<cr>
 "================== git ============}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================== youcompleteme ============{{{
