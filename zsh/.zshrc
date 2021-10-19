@@ -301,15 +301,6 @@ alias -s md=vim
 alias -s tex='vim --servername TEX -c 'VimtexView''
 alias -s pdf=okular
 
-# git
-alias gpp='git add . && git commit -m "update" && git push'
-alias gc1='git clone --depth=1 '
-alias gtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ad)%Creset''
-alias gxtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ar)%Creset''
-alias greftree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=iso'
-alias grefxtree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=relative'
-alias gfetched-xtree='git xtree @{1}..'
-
 # winecfg
 # 生成 32 位 Wine 环境
 # export WINEARCH=win32
@@ -735,6 +726,15 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 # 不要自作聪明，我需要通配符
 unsetopt nomatch
 
+
+# git
+alias gpp='git add . && git commit -m "update" && git push'
+alias gc1='git clone --depth=1 '
+alias gtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ad)%Creset''
+alias gxtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ar)%Creset''
+alias greftree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=iso'
+alias grefxtree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=relative'
+alias gfetched-xtree='git xtree @{1}..'
 
 #
 # 与 Powerlevel10k instant prompt 一起使用会报错
