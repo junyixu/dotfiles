@@ -990,12 +990,14 @@ let g:gutentags_ctags_exclude = [
 "====================== end ctags ==========================}}}
 endif
 "================== git ============{{{
-nnoremap <leader>gsv :Gvdiffsplit<cr>
-nnoremap <leader>gss :Gdiffsplit<cr>
+nnoremap <leader>gdd :Gvdiffsplit<cr>
+nnoremap <leader>gdv :Gvdiffsplit<cr>
+nnoremap <leader>gds :Ghdiffsplit<cr>
 " left 留下左边
 nnoremap <leader>gh :diffget //2<cr>
 " right 留下右边
 nnoremap <leader>gl :diffget //3<cr>
+nnoremap <leader>g<space> :Git 
 "================== git ============}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================== youcompleteme ============{{{
