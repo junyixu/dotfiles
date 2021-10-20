@@ -537,6 +537,7 @@ Plug 'tpope/vim-commentary'
     autocmd FileType systemd setlocal commentstring=#\ %s
     autocmd FileType dosini setlocal commentstring=#\ %s
     autocmd FileType crontab setlocal commentstring=#\ %s
+    autocmd FileType desktop setlocal commentstring=#\ %s
     autocmd FileType autohotkey setlocal commentstring=;\ %s
     "}}}
 
@@ -989,8 +990,15 @@ let g:gutentags_ctags_exclude = [
 "====================== end ctags ==========================}}}
 endif
 "================== git ============{{{
-nnoremap <leader>gsv :Gvdiffsplit<cr>
-nnoremap <leader>gss :Gdiffsplit<cr>
+nnoremap <leader>gd<SPACE> :Gvdiffsplit<SPACE>
+nnoremap <leader>gdd :Gdiffsplit<cr>
+nnoremap <leader>gdv :Gvdiffsplit<cr>
+nnoremap <leader>gds :Ghdiffsplit<cr>
+" left 留下左边
+nnoremap <leader>gh :diffget //2<cr>
+" right 留下右边
+nnoremap <leader>gl :diffget //3<cr>
+nnoremap <leader>g<space> :Git 
 "================== git ============}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================== youcompleteme ============{{{
@@ -1096,36 +1104,7 @@ let g:ycm_semantic_triggers =  {
 " https://github.com/lervag/ vimtex/issues/168#issuecomment-108019496
 " let g:tex_fast = "bMpr"
 
-nnoremap <leader>yd<Space> :YcmDiags<Space>
-nnoremap <leader>ydf :YcmDiags FixIt<CR>
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <leader>y<space> :YcmCompleter<Space>
-nnoremap <leader>ygp :YcmCompleter GetParent<CR>
-nnoremap <leader>ygc :YcmGenerateConfig<CR>
-nnoremap <leader>yl :YcmToggleLogs<CR>
 
-" GetDoc
-let g:ycm_auto_hover=''
-nmap     <leader>H      <Plug>(YCMHover)
-nnoremap <leader>K :YcmCompleter GetDoc<CR>
-
-  augroup MyYCMCustom
-    autocmd!
-    autocmd FileType c,cpp let b:ycm_hover = {
-      \ 'command': 'GetDoc',
-      \ 'syntax': &filetype
-      \ }
-  augroup END
-
-
-nnoremap <leader>gt :YcmCompleter GetType<CR>
-nnoremap <leader>gp :YcmCompleter GetParent<CR>
-" nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
-" nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gf :YcmCompleter GotoInclude<CR>
-nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gi :YcmCompleter GoToImplementation<CR>
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 let g:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-e', '
 			\       using LanguageServer;
 			\       using Pkg;

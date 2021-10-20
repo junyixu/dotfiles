@@ -6,3 +6,6 @@
 " setlocal softtabstop=2
 " 设置编辑时制表符占用空格数
 " setlocal tabstop=4
+"
+
+source $HOME/.vim/ycmMaps.vim

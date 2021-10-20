@@ -33,3 +33,5 @@ command! PythonInsertModeCreateCell :execute 'normal! I## '
 nnoremap <buffer><silent> <M-c> :PythonNormalModeCreateCell<CR>
 vnoremap <buffer><silent> <M-c> :<C-u>PythonVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:PythonInsertModeCreateCell<CR>
+
+source $HOME/.vim/ycmMaps.vim

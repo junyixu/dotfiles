@@ -174,6 +174,8 @@ alias Qi='pacman -Qi'
 alias Ql='pacman -Ql'
 alias Qs='pacman -Qs'
 alias Qsq='pacman -Qsq'
+alias Qm='pacman -Qm'
+alias Qmq='pacman -Qmq'
 alias Qk='pacman -Qk'
 alias Qkk='pacman -Qkk'
 alias Qo='pacman -Qo'
@@ -240,7 +242,10 @@ alias svi='sudo -E vim --cmd "let g:SUDO=1" --cmd "let g:isPlain=1" '
 alias vi='vim --cmd "let g:isPlain=1"'
 alias vim='vim --cmd "let g:isPlain=0"'
 # 打开到 上一次 打开的地方
-alias lvi='vim -c "normal '\''0"'
+alias lvi='vi -c "normal '\''0"'
+
+# For git front-end: vim-fugitive
+alias vig='vim -c "G"'
 alias vit='vim --servername TEX'
 alias vitv='vim --servername TEX -c 'VimtexView''
 alias testtex="cd ~/Desktop/university/testtex && vim --servername TEX -c 'VimtexView' main.tex"
@@ -342,17 +347,18 @@ todo() {
 }
 
 # switch window 用 fzf 糢糊切换程序窗口
-sw() { 
+switch_window() { 
 	local __window_id
 
 	# 不需要 桌面 和 Latte Dock 栏，用 grep -v 去除
-	__window_id=$(wmctrl -l | grep -v Plasma | grep -v Latte | fzf | cut -d' ' -f1)
+	__window_id=$(wmctrl -l | grep -v Plasma | grep -v Latte| fzf | cut -d' ' -f1)
 
 	# 最小化当前窗口 没弄懂 怎么用 wmctrl 最小化窗口
-	xdotool windowminimize $(xdotool getactivewindow)
+	# xdotool windowminimize $(xdotool getactivewindow)
 	wmctrl -ia $__window_id
 }
 
+alias s=switch_window
 
 if hash lsd 2> /dev/null; then
 	alias ls='lsd'
@@ -526,7 +532,6 @@ searchnotes() {
 	# 让 awk 用 冒号 : 分隔
 	okular $(rga $@ ~/Sync/uni_pdf | fzf | awk -F: '{print $2, $1}' | sed s/Page/--page/) --find $@
 }
-alias s='searchnotes'
 
 # 不行，-- 的作用
 # s() {
@@ -731,6 +736,8 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 unsetopt nomatch
 
 
+# git
+alias gpp='git add . && git commit -m "update" && git push'
 alias gc1='git clone --depth=1 '
 alias gtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ad)%Creset''
 alias gxtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ar)%Creset''
