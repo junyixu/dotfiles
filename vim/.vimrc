@@ -72,16 +72,18 @@ let g:isPlain = get(g:, 'isPlain', 1)
 " let g:isProgramming = get(g:, 'isProgramming', 0)
 " let g:vim_startup = get(g:, 'vim_startup', 0)
 
-"如果只想在 Python 文件中将 Tab 展开成空格，就改换成下面这句"
+"如果只想在 Python 文件中将 Tab 展开成空格，就改换成下面这句
 autocmd FileType python set expandtab
 " set expandtab
 
-if g:isPlain
+" alacritty on windows has a rendering issue when using showcmd
+" you'd better not set showcmd on WSL
+" Windows sucks
+if g:isPlain && $isWSL!='yes'
+" if g:isPlain && hostname()!='Surface'
 	set showcmd
 endif
 
-"上面的一些配置已经可以让你避免编译出现错误的问题了"
-"不过下面还有一些配置是建议同学们根据需要加上的"
 set smartindent "智能缩进"
 set cindent "C 语言风格缩进"
 set autoindent "自动缩进"

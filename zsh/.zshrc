@@ -1,5 +1,5 @@
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
-if [[ -z "$TMUX" ]] && ( [ "$SSH_CONNECTION" != "" ] || [ "$HOST" = "Surface" ]  ); then
+if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
     SESSION_NAME="test"
     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 fi
@@ -269,7 +269,16 @@ alias gtar="tar -Ipigz czvf"
 alias btar="tar cjvf"
 # ztar 包.tar.zst  打包对象1 打包对象2 ...
 # --no-same-owner 解压时不保留用户信息
-alias ztar='tar --no-same-owner -I zstd -cvf'
+# alias ztar='tar --no-same-owner -I zstd -cvf'
+ztar(){
+	local __tar_name=$(echo $1:r | sed 's/^\.[^\/]?//')
+	# 去除第一个参数的拓展名  $1:r
+	# 如果是隐藏文件则去掉开头的 .
+	# 并且防止 ./*
+	
+	tar --no-same-owner -I zstd -cvf $__tar_name.tar.zst $@
+}
+
 alias unztar='tar -I zstd -xvf'
 alias 7tar="7z a -mmt"
 
@@ -293,7 +302,7 @@ alias -s rb=vim
 alias -s c=vim
 alias -s cpp=vim
 alias -s md=vim
-alias -s tex='vim --servername TEX -c 'VimtexView''
+alias -s tex='vim --servername TEX'
 alias -s pdf=okular
 
 # winecfg

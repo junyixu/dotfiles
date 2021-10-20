@@ -6,7 +6,7 @@ c.InteractiveShellApp.log_level = 20
 #     'myextension'
 # ]
 c.InteractiveShellApp.exec_lines = [
-    'import numpy as np', 'from matplotlib import pyplot as plt'
+    'import numpy as np'
 ]
 # c.InteractiveShellApp.exec_files = [
 #     'mycode.py',
