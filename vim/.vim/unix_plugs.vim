@@ -121,11 +121,10 @@ endif
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-if !g:isPlain && !exists('g:started_by_firenvim')
-"===========  git ============={{{
-
 " gf <c-w>f <c-w>gf :find :sfind :tabfind ]i
 Plug 'tpope/vim-apathy'
+"===========  git ============={{{
+Plug 'tpope/vim-fugitive'
 
 Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
     "{{{
@@ -134,6 +133,7 @@ Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
     noremap <leader>gm :GitMessenger<CR>
     "}}}
 
+if !g:isPlain && !exists('g:started_by_firenvim')
 " 侧栏显示 git 标识
 Plug 'airblade/vim-gitgutter'
     " let g:gitgutter_max_signs=700
@@ -141,7 +141,6 @@ Plug 'airblade/vim-gitgutter'
 " 确定插件仓库中的分支或者 tag
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 "=========== end git =============}}}
-Plug 'tpope/vim-fugitive'
 Plug 'zackhsi/fzf-tags'
 nmap <C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'

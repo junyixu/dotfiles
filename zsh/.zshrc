@@ -247,7 +247,9 @@ alias lvi='vi -c "normal '\''0"'
 # For git front-end: vim-fugitive
 alias vig='vim -c "G"'
 alias vit='vim --servername TEX'
+alias gvit='gvim --servername TEX'
 alias vitv='vim --servername TEX -c 'VimtexView''
+alias gvitv='vim --servername TEX -c 'VimtexView''
 alias testtex="cd ~/Desktop/university/testtex && vim --servername TEX -c 'VimtexView' main.tex"
 # 打开 jupyter qtconsole
 alias jvi="vim -c JupyterConnect"
@@ -293,7 +295,7 @@ alias copy='xclip -selection clipboard -in'
 alias vicmake='$EDITOR CMakeLists.txt'
 alias vimcmake='$EDITOR CMakeLists.txt'
 
-(( $+commands[you-get] )) && alias you-getp="you-get -p vlc"
+(( $+commands[you-get] )) && alias you-getp="you-get -p mpv"
 #alias cat='bat'
 alias turbo='sudo sh -c "echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
 alias no_turbo='sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
