@@ -123,10 +123,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " gf <c-w>f <c-w>gf :find :sfind :tabfind ]i
 Plug 'tpope/vim-apathy'
-"===========  git ============={{{
-Plug 'tpope/vim-fugitive'
-
-Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
     "{{{
     let g:git_messenger_no_default_mappings = 0
     " let g:git_messenger_always_into_popup = 1
@@ -134,6 +130,9 @@ Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
     "}}}
 
 if !g:isPlain && !exists('g:started_by_firenvim')
+"===========  git ============={{{
+Plug 'tpope/vim-fugitive'
+Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
 " 侧栏显示 git 标识
 Plug 'airblade/vim-gitgutter'
     " let g:gitgutter_max_signs=700
