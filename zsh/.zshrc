@@ -6,44 +6,6 @@ fi
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-
-#
-# 与 Powerlevel10k instant prompt 一起使用会报错
-# '\e[2 q' 是光标方块，不闪烁
-# '\e[1 q' 是光标方块，闪烁
-# '\e[6 q' 是光标竖线，不闪烁
-# '\e[5 q' 是光标竖线，闪烁
-# if [ "$SSH_CONNECTION" == "" ]; then
-
-function zle-keymap-select {
-    if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-        >$TTY echo -ne '\e[2 q'
-    elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
-        >$TTY echo -ne '\e[6 q'
-    fi
-}
-# zle -N zle-keymap-select
-
-# Use beam shape cursor on startup.
->$TTY echo -ne '\e[6 q'
-
-# Use beam shape cursor for each new prompt.
-preexec() {
-	>$TTY echo -ne '\e[6 q'
-}
-
-_fix_cursor() {
-	>$TTY echo -ne '\e[6 q'
-}
-precmd_functions+=(_fix_cursor)
-
-
-zle -N zle-line-init
-zle -N zle-keymap-select
-
-KEYTIMEOUT=1
-# fi
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -793,6 +755,42 @@ alias greftree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgree
 alias grefxtree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=relative'
 alias gfetched-xtree='git xtree @{1}..'
 
+#
+# 与 Powerlevel10k instant prompt 一起使用会报错
+# '\e[2 q' 是光标方块，不闪烁
+# '\e[1 q' 是光标方块，闪烁
+# '\e[6 q' 是光标竖线，不闪烁
+# '\e[5 q' 是光标竖线，闪烁
+# if [ "$SSH_CONNECTION" == "" ]; then
+
+function zle-keymap-select {
+    if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+        >$TTY echo -ne '\e[2 q'
+    elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+        >$TTY echo -ne '\e[6 q'
+    fi
+}
+# zle -N zle-keymap-select
+
+# Use beam shape cursor on startup.
+>$TTY echo -ne '\e[6 q'
+
+# Use beam shape cursor for each new prompt.
+preexec() {
+	>$TTY echo -ne '\e[6 q'
+}
+
+_fix_cursor() {
+	>$TTY echo -ne '\e[6 q'
+}
+precmd_functions+=(_fix_cursor)
+
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+KEYTIMEOUT=1
+# fi
 
 # fzf-tab
 # https://github.com/Aloxaf/fzf-tab/blob/master/README_CN.md
@@ -897,6 +895,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export -U PATH
-
-
-
