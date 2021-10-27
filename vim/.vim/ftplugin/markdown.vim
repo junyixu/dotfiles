@@ -23,7 +23,7 @@ map <buffer> <Leader>vm :MarkdownPreview<cr>
 
 function! TmpMarkdown()
 	if expand("%:p") == "/tmp/test.md"
-		execute "normal gg\"+dG"
+		execute "normal ggvG$\"+d"
 		execute "bd!"
 		" call system('wmctrl -a 滴答清单')
 		" 最小化窗口
