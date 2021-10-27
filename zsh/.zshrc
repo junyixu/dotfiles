@@ -245,7 +245,7 @@ alias vim='vim --cmd "let g:isPlain=0"'
 alias lvi='vi -c "normal '\''0"'
 
 # For git front-end: vim-fugitive
-alias vig='vim -c "G"'
+alias vig='vi -c "G"'
 alias vit='vim --servername TEX'
 alias gvit='gvim --servername TEX'
 alias vitv='vim --servername TEX -c 'VimtexView''
@@ -887,3 +887,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export -U PATH
+
+
+
