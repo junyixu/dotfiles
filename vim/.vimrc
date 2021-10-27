@@ -526,6 +526,8 @@ let @+ = expand("%:p").'|'.line(".")
 endfunction
 silent! command -nargs=0 CopyEntry call g:CopyFileEntryToClipBoard()
 
+command -nargs=0 Md2docx :AsyncRun! -mode=hide pandoc % -o ~/Sync/%:t:r.docx
+
 silent! command Pwd :echo expand('%:h')
 
 function g:CopyFilePathToClipBoard() "for syntax/index.vim
