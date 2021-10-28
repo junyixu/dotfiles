@@ -1,0 +1,126 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.022  000.022: --- VIM STARTING ---
+000.248  000.226: Allocated generic buffers
+000.846  000.598: locale set
+000.863  000.017: window checked
+002.331  001.468: inits 1
+002.430  000.099: parsing arguments
+002.433  000.003: expanding arguments
+002.510  000.077: shell init
+003.354  000.844: Termcap init
+003.378  000.024: inits 2
+003.545  000.167: init highlight
+003.618  000.073: --cmd commands
+004.759  000.492  000.492: sourcing /usr/share/vim/vimfiles/archlinux.vim
+005.214  001.320  000.828: sourcing /etc/vimrc
+006.606  000.361  000.361: sourcing /root/.vim/filetype.vim
+017.076  000.055  000.055: sourcing /usr/share/vim/vimfiles/ftdetect/PKGBUILD.vim
+017.436  010.480  010.425: sourcing /usr/share/vim/vim82/filetype.vim
+018.180  000.247  000.247: sourcing /root/.vim/filetype.vim
+018.479  000.035  000.035: sourcing /usr/share/vim/vim82/filetype.vim
+018.958  000.086  000.086: sourcing /usr/share/vim/vim82/ftplugin.vim
+020.009  000.099  000.099: sourcing /usr/share/vim/vim82/indent.vim
+022.689  001.614  001.614: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+023.014  002.276  000.662: sourcing /usr/share/vim/vim82/syntax/synload.vim
+023.095  002.759  000.483: sourcing /usr/share/vim/vim82/syntax/syntax.vim
+023.911  000.435  000.435: sourcing /usr/share/vim/vim82/syntax/nosyntax.vim
+024.889  000.289  000.289: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+025.216  000.982  000.693: sourcing /usr/share/vim/vim82/syntax/synload.vim
+025.412  002.135  000.718: sourcing /usr/share/vim/vim82/syntax/syntax.vim
+027.636  000.275  000.275: sourcing /root/.vim/unix.vim
+028.690  000.380  000.380: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+032.664  003.215  003.215: sourcing /root/.vim/autoload/plug.vim
+048.076  000.743  000.743: sourcing /usr/share/vim/vim82/ftoff.vim
+070.680  000.245  000.245: sourcing /root/.vim/filetype.vim
+083.872  000.071  000.071: sourcing /root/.vim/plugged/vim-toml/ftdetect/toml.vim
+086.309  000.086  000.086: sourcing /root/.vim/plugged/vim-markdown/ftdetect/markdown.vim
+086.978  000.050  000.050: sourcing /root/.vim/plugged/vim-markdown-toc/ftdetect/markdown.vim
+087.558  000.054  000.054: sourcing /root/.vim/plugged/ultisnips/ftdetect/snippets.vim
+088.478  000.059  000.059: sourcing /root/.vim/plugged/vimtex/ftdetect/tex.vim
+089.959  000.061  000.061: sourcing /usr/share/vim/vimfiles/ftdetect/PKGBUILD.vim
+091.137  015.846  015.465: sourcing /usr/share/vim/vim82/filetype.vim
+097.164  000.055  000.055: sourcing /usr/share/vim/vim82/ftplugin.vim
+102.796  000.038  000.038: sourcing /usr/share/vim/vim82/indent.vim
+113.828  000.433  000.433: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+121.044  000.345  000.345: sourcing /usr/share/vim/vim82/syntax/syncolor.vim
+133.498  026.925  026.147: sourcing /root/.vim/plugged/gruvbox/colors/gruvbox.vim
+135.363  107.489  060.042: sourcing /root/.vim/unix_plugs.vim
+135.439  129.855  005.889: sourcing $HOME/.vimrc
+135.471  000.678: sourcing vimrc file(s)
+138.886  001.010  001.010: sourcing /root/.vim/plugin/escalt.vim
+139.256  000.034  000.034: sourcing /root/.vim/plugin/interestingwords.vim
+141.127  000.963  000.963: sourcing /root/.vim/plugged/vim-quickui/autoload/quickui/menu.vim
+148.672  009.162  008.199: sourcing /root/.vim/plugin/menu_init.vim
+149.995  000.264  000.264: sourcing /root/.vim/plugged/vim-peekaboo/plugin/peekaboo.vim
+151.697  000.217  000.217: sourcing /root/.dotfiles/vim/.vim/plugged/vim-quickui/colors/quickui/papercol_dark.vim
+151.927  001.065  000.848: sourcing /root/.vim/plugged/vim-quickui/plugin/quickui.vim
+153.892  001.512  001.512: sourcing /root/.fzf/plugin/fzf.vim
+156.154  001.317  001.317: sourcing /root/.vim/plugged/fzf.vim/plugin/fzf.vim
+157.194  000.118  000.118: sourcing /root/.vim/plugged/vim-apathy/plugin/apathy.vim
+166.020  007.880  007.880: sourcing /root/.vim/plugged/vim-easymotion/plugin/EasyMotion.vim
+167.777  000.513  000.513: sourcing /root/.vim/plugged/vim-dict/plugin/vim_dict.vim
+170.326  001.438  001.438: sourcing /root/.vim/plugged/vim-abolish/plugin/abolish.vim
+173.820  002.563  002.563: sourcing /root/.vim/plugged/asyncrun.vim/plugin/asyncrun.vim
+178.099  000.275  000.275: sourcing /root/.vim/plugged/vim-signature/autoload/signature/utils.vim
+179.853  004.040  003.765: sourcing /root/.vim/plugged/vim-signature/plugin/signature.vim
+181.156  000.277  000.277: sourcing /root/.vim/plugged/vim-lastplace/plugin/vim-lastplace.vim
+182.489  000.439  000.439: sourcing /root/.vim/plugged/vim-commentary/plugin/commentary.vim
+184.418  000.968  000.968: sourcing /root/.vim/plugged/vim-surround/plugin/surround.vim
+185.962  000.672  000.672: sourcing /root/.vim/plugged/matchit/plugin/matchit.vim
+190.580  000.713  000.713: sourcing /root/.vim/plugged/delimitMate/autoload/delimitMate.vim
+194.077  007.264  006.551: sourcing /root/.vim/plugged/delimitMate/plugin/delimitMate.vim
+195.859  000.747  000.747: sourcing /root/.vim/plugged/vim-vinegar/plugin/vinegar.vim
+197.121  000.336  000.336: sourcing /root/.vim/plugged/ranger.vim/plugin/ranger.vim
+198.823  000.382  000.382: sourcing /root/.vim/plugged/calendar-vim/plugin/calendar.vim
+204.022  001.031  001.031: sourcing /root/.vim/plugged/vimwiki/autoload/vimwiki/vars.vim
+213.042  000.295  000.295: sourcing /root/.vim/plugged/vimwiki/autoload/vimwiki/u.vim
+218.707  019.076  017.750: sourcing /root/.vim/plugged/vimwiki/plugin/vimwiki.vim
+234.357  000.673  000.673: sourcing /root/.vim/plugged/ultisnips/autoload/UltiSnips/map_keys.vim
+235.326  014.859  014.186: sourcing /root/.vim/plugged/ultisnips/plugin/UltiSnips.vim
+239.271  000.266  000.266: sourcing /root/.vim/plugged/vim-snippets/plugin/vimsnippets.vim
+244.319  001.338  001.338: sourcing /root/.vim/plugged/vim-template/plugin/templates.vim
+245.930  000.448  000.448: sourcing /root/.vim/plugged/vim-cycle/plugin/cycle.vim
+252.195  000.874  000.874: sourcing /root/.vim/plugged/vim-textobj-user/autoload/textobj/user.vim
+255.373  007.955  007.081: sourcing /root/.vim/plugged/vim-textobj-indent/plugin/textobj/indent.vim
+258.259  001.701  001.701: sourcing /root/.vim/plugged/vim-textobj-syntax/plugin/textobj/syntax.vim
+261.668  001.804  001.804: sourcing /root/.vim/plugged/vim-textobj-fold/plugin/textobj/fold.vim
+264.464  001.646  001.646: sourcing /root/.vim/plugged/vim-textobj-line/plugin/textobj/line.vim
+268.008  002.441  002.441: sourcing /root/.vim/plugged/vim-textobj-parameter/plugin/textobj/parameter.vim
+270.925  001.810  001.810: sourcing /root/.vim/plugged/vim-textobj-variable-segment/plugin/textobj/variable-segment.vim
+272.334  000.152  000.152: sourcing /usr/share/vim/vim82/plugin/getscriptPlugin.vim
+273.046  000.509  000.509: sourcing /usr/share/vim/vim82/plugin/gzip.vim
+273.677  000.457  000.457: sourcing /usr/share/vim/vim82/plugin/logiPat.vim
+273.944  000.088  000.088: sourcing /usr/share/vim/vim82/plugin/manpager.vim
+274.427  000.326  000.326: sourcing /usr/share/vim/vim82/plugin/matchparen.vim
+275.793  001.203  001.203: sourcing /usr/share/vim/vim82/plugin/netrwPlugin.vim
+276.145  000.043  000.043: sourcing /usr/share/vim/vim82/plugin/rrhelper.vim
+276.511  000.106  000.106: sourcing /usr/share/vim/vim82/plugin/spellfile.vim
+277.156  000.452  000.452: sourcing /usr/share/vim/vim82/plugin/tarPlugin.vim
+277.678  000.307  000.307: sourcing /usr/share/vim/vim82/plugin/tohtml.vim
+278.218  000.357  000.357: sourcing /usr/share/vim/vim82/plugin/vimballPlugin.vim
+278.775  000.341  000.341: sourcing /usr/share/vim/vim82/plugin/zipPlugin.vim
+278.831  043.674: loading plugins
+279.342  000.511: loading packages
+280.815  000.106  000.106: sourcing /root/.vim/plugged/vim-signature/after/plugin/signature.vim
+282.129  000.253  000.253: sourcing /root/.vim/plugged/ultisnips/after/plugin/UltiSnips_after.vim
+282.917  003.216: loading after plugins
+282.928  000.011: inits 3
+295.301  012.373: reading viminfo
+295.408  000.107: setting raw mode
+295.620  000.212: start termcap
+296.302  000.682: clearing screen
+299.381  003.079: opening buffers
+301.536  000.750  000.750: sourcing /root/.vim/plugged/vim-peekaboo/autoload/peekaboo.vim
+304.111  000.421  000.421: sourcing /root/.vim/plugged/vim-signature/autoload/signature/sign.vim
+306.709  000.487  000.487: sourcing /root/.vim/plugged/vim-signature/autoload/signature/mark.vim
+321.581  020.542: BufEnter autocommands
+321.590  000.009: editing files in windows
+322.369  000.779: VimEnter autocommands
+322.372  000.003: before starting main loop
+324.068  001.696: first screen update
+324.070  000.002: --- VIM STARTED ---
