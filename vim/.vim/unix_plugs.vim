@@ -605,7 +605,6 @@ Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 	let g:vim_markdown_math = 1
 	" 代码块不 conceal
 	let g:vim_markdown_conceal_code_blocks = 0
-Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 	let g:vmt_auto_update_on_save = 0
 Plug 'ferrine/md-img-paste.vim', {'for': 'markdown'}
 	let g:mdip_imgdir = 'resources'
@@ -669,6 +668,7 @@ noremap <silent> <Plug>CycleFallbackPrev <C-X>
 	let g:cycle_default_groups = [
 				\   [['true', 'false']],
 				\   [['True', 'False']],
+				\   [['TODO', 'DONE']],
 				\   [['dark', 'light']],
 				\   [['yes', 'no']],
 				\   [['error', 'warning', 'info', 'debug']],
@@ -799,11 +799,11 @@ let g:sandwich#magicchar#f#patterns = [
         \   {'buns': ['*',     '*'],           'nesting': 0, 'input': [ '*' ],    'filetype': ['markdown', 'vimwiki'] },
         \   {'buns': ['**',     '**'],           'nesting': 0, 'input': [ 'b' ],    'filetype': ['markdown', 'vimwiki'] },
         \   {'buns': ['“',     '”'],           'nesting': 0, 'input': [ 'U"' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki', 'text'] },
-        \   {'buns': ['\left(',           '\right)'],           'nesting': 1, 'input': [ 'm)' ],    'filetype': ['tex',       'plaintex', 'markdown', 'vimwiki'] },
-        \   {'buns': ['\left[',           '\right]'],           'nesting': 1, 'input': [ 'm]' ],    'filetype': ['tex',       'plaintex', 'markdown', 'vimwiki'] },
-        \   {'buns': ['\left|',           '\right|'],           'nesting': 1, 'input': [ 'm|' ],    'filetype': ['tex',       'plaintex', 'markdown', 'vimwiki'] },
-        \   {'buns': ['\left\{',          '\right\}'],          'nesting': 1, 'input': [ 'm}' ],    'filetype': ['tex',       'plaintex', 'markdown', 'vimwiki'] },
-        \   {'buns': ['\left\langle ',    '\right\rangle '],    'nesting': 1, 'input': [ 'm>' ],    'filetype': ['tex',       'plaintex', 'markdown', 'vimwiki'] },
+        \   {'buns': ['\left(',           '\right)'],           'nesting': 1, 'input': [ 'm)' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
+        \   {'buns': ['\left[',           '\right]'],           'nesting': 1, 'input': [ 'm]' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
+        \   {'buns': ['\left|',           '\right|'],           'nesting': 1, 'input': [ 'm|' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
+        \   {'buns': ['\left\{',          '\right\}'],          'nesting': 1, 'input': [ 'm}' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
+        \   {'buns': ['\left\langle ',    '\right\rangle '],    'nesting': 1, 'input': [ 'm>' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
         \   {'buns': ['\mqty(',        ')'],        'nesting': 1, 'input': [ 'M(' , 'M)' ],   'filetype': ['tex',       'plaintex'] },
         \   {'buns': ['\mqty[',        ']'],        'nesting': 1, 'input': [ 'M[' ,'M]' ],    'filetype': ['tex',       'plaintex'] },
         \   {'buns': ['\mqty|',        '|'],        'nesting': 1, 'input': ['M|' ],           'filetype': ['tex',       'plaintex'] },

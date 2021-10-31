@@ -28,10 +28,36 @@ context "isMath()"
 snippet d "微分"
 \dv{$1}
 endsnippet
+context "isMath()"
+snippet "\\dv{([\s\\\w]*)" "偏微分" ri
+\dv{`!p snip.rv=match.group(1)`}{
+endsnippet
+
+context "isMath()"
+snippet dd "微分"
+\dv[2]{$1}
+endsnippet
+context "isMath()"
+snippet "\\dv\[2\]{([\s\\\w]*)" "偏微分" ri
+\dv[2]{`!p snip.rv=match.group(1)`}{
+endsnippet
 
 context "isMath()"
 snippet p "偏微分"
 \pdv{$1}
+endsnippet
+context "isMath()"
+snippet "\\pdv{([\s\\\w]*)" "偏微分" ri
+\pdv{`!p snip.rv=match.group(1)`}{
+endsnippet
+
+context "isMath()"
+snippet pp "偏微分"
+\pdv[2]{$1}
+endsnippet
+context "isMath()"
+snippet "\\pdv\[2\]{([\s\\\w]*)" "偏微分" ri
+\pdv[2]{`!p snip.rv=match.group(1)`}{
 endsnippet
 
 context "isMath()"
@@ -138,7 +164,7 @@ endsnippet
 
 context "isMath()"
 snippet // "Fraction" i
-\\frac{$1}{$2}$0
+\\frac{${1:${VISUAL}}}{$2}$0
 endsnippet
 
 snippet '(\S+)' "Fraction" Ar

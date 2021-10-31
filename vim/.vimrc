@@ -255,7 +255,7 @@ ab mymail junyixu0@gmail.com
 nnoremap <silent> c<Tab> *Ncgn
 " nnoremap <silent> c<Tab> :let @/=expand('<cword>')<cr>cgn
 
-inoremap <expr><C-e> pumvisible()? "<C-E>":"\<ESC>A"
+inoremap <expr><C-e> pumvisible()? "<C-E>":"\<C-o>A"
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 
@@ -428,6 +428,8 @@ endfunc
 if IsTmpPasted()
 	nnoremap <M-z>  ggVG"+dZZ
 endif
+
+inoremap <silent> <M-f> <C-r>=expand('%:t:r')<CR>
 
 " autocmd filetype markdown nmap <silent> <expr> <C-c> IsTmpMarkdown() ? "mzggVG"+dZ" : "<C-c>"
 
