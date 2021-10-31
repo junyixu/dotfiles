@@ -1,0 +1,6 @@
+call vimtex#text_obj#init_buffer()
+call vimtex#options#init()
+omap <silent><buffer> id <plug>(vimtex-id)
+omap <silent><buffer> ad <plug>(vimtex-ad)
+xmap <silent><buffer> id <plug>(vimtex-id)
+xmap <silent><buffer> ad <plug>(vimtex-ad)
