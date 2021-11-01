@@ -79,7 +79,7 @@ autocmd FileType python set expandtab
 " alacritty on windows has a rendering issue when using showcmd
 " you'd better not set showcmd on WSL
 " Windows sucks
-if g:isPlain && $isWSL!='yes'
+if g:isPlain && $isWSL!='1'
 " if g:isPlain && hostname()!='Surface'
 	set showcmd
 endif

@@ -480,8 +480,8 @@ Plug 'liuchengxu/vista.vim'
 endif
 
 
-" export isWSL='yes' in ~/.zprofile
-if SUDO!=1 && g:isPlain!=1 && $isWSL!='yes'
+" export isWSL=1 in ~/.zprofile
+if SUDO!=1 && g:isPlain!=1 && $isWSL!='1'
 " if SUDO!=1
 	" fcitx.vim 共需要 30 毫秒左右
 	Plug 'lilydjwg/fcitx.vim'
