@@ -710,15 +710,19 @@ Plug 'coachshea/vim-textobj-markdown', {'for': 'markdown'}
 Plug 'bps/vim-textobj-python', {'for':'python'}
 "=========== end textobj-user 全家桶 =============}}}
 
+Plug 'junegunn/vim-easy-align'
+	"{{{
+	" Start interactive EasyAlign in visual mode (e.g. vipga)
+	xmap ga <Plug>(EasyAlign)
+	" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+	nmap ga <Plug>(EasyAlign)
+	" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+	" 与 vim-slime 回车键冲突
+	" vmap ga <Plug>(EasyAlign)
+	"}}}
+	"
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
-	Plug 'junegunn/vim-easy-align'
-		"{{{
-		" Start interactive EasyAlign in visual mode (e.g. vipga)
-		xmap ga <Plug>(EasyAlign)
-		" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-		nmap ga <Plug>(EasyAlign)
-		"}}}
 		
 	" vim 中文文档
 	Plug 'yianwillis/vimcdoc'
