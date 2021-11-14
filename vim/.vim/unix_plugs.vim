@@ -480,8 +480,8 @@ Plug 'liuchengxu/vista.vim'
 endif
 
 
-" export isWSL='yes' in ~/.zprofile
-if SUDO!=1 && g:isPlain!=1 && $isWSL!='yes'
+" export isWSL=1 in ~/.zprofile
+if SUDO!=1 && g:isPlain!=1 && $isWSL!='1'
 " if SUDO!=1
 	" fcitx.vim 共需要 30 毫秒左右
 	Plug 'lilydjwg/fcitx.vim'
@@ -1390,10 +1390,10 @@ endfunction
 "==================== end vim-templates ======================}}}
 
 "=================== vimwiki ==============================={{{
-
-imap <M-L><C-J> <Plug>VimwikiListNextSymbol
-imap <M-L><C-K> <Plug>VimwikiListPrevSymbol
-imap <M-L><C-M> <Plug>VimwikiListToggle
+" more maps in .vim/ftplugin/vimwiki.vim
+" TODO ycm vim lsp is dead
+let g:vimwiki_markdown_link_ext=1
+let g:taskwiki_markup_syntax='markdown'
 "let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
 let g:vimwiki_list = [{'path': '~/Notes', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
@@ -1421,8 +1421,6 @@ let g:vimwiki_global_ext = 0
 ""endfunction
 
 let g:vimwiki_table_mappings=0
-nmap <Leader>wn <Plug>VimwikiNextLink
-nmap <Leader>wp <Plug>VimwikiPrevLink
 
 "=================== end vimwiki ===============================}}}
 
