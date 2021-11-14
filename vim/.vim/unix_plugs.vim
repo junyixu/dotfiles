@@ -710,15 +710,19 @@ Plug 'coachshea/vim-textobj-markdown', {'for': 'markdown'}
 Plug 'bps/vim-textobj-python', {'for':'python'}
 "=========== end textobj-user 全家桶 =============}}}
 
+Plug 'junegunn/vim-easy-align'
+	"{{{
+	" Start interactive EasyAlign in visual mode (e.g. vipga)
+	xmap ga <Plug>(EasyAlign)
+	" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+	nmap ga <Plug>(EasyAlign)
+	" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+	" 与 vim-slime 回车键冲突
+	" vmap ga <Plug>(EasyAlign)
+	"}}}
+	"
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
-	Plug 'junegunn/vim-easy-align'
-		"{{{
-		" Start interactive EasyAlign in visual mode (e.g. vipga)
-		xmap ga <Plug>(EasyAlign)
-		" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-		nmap ga <Plug>(EasyAlign)
-		"}}}
 		
 	" vim 中文文档
 	Plug 'yianwillis/vimcdoc'
@@ -762,7 +766,7 @@ omap aq <Plug>(textobj-sandwich-literal-query-a)
 
 " i for Instant surroundings.
 " f for Function
-" t for Tag to edit HTML
+" t for Tag to edit HTML and XML
 let g:sandwich#magicchar#f#patterns = [
         \   {
         \     'header' : '\<\%(\h\k*\.\)*\h\k*',
@@ -799,6 +803,8 @@ let g:sandwich#magicchar#f#patterns = [
         \   {'buns': ['*',     '*'],           'nesting': 0, 'input': [ '*' ],    'filetype': ['markdown', 'vimwiki'] },
         \   {'buns': ['**',     '**'],           'nesting': 0, 'input': [ 'b' ],    'filetype': ['markdown', 'vimwiki'] },
         \   {'buns': ['“',     '”'],           'nesting': 0, 'input': [ 'U"' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki', 'text'] },
+        \   {'buns': ['\(',           '\)'],           'nesting': 1, 'input': [ 'mk' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
+        \   {'buns': ['\[',           '\]'],           'nesting': 1, 'input': [ 'dm' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
         \   {'buns': ['\left(',           '\right)'],           'nesting': 1, 'input': [ 'm)' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
         \   {'buns': ['\left[',           '\right]'],           'nesting': 1, 'input': [ 'm]' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
         \   {'buns': ['\left|',           '\right|'],           'nesting': 1, 'input': [ 'm|' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
@@ -1097,61 +1103,84 @@ let g:ycm_semantic_triggers =  {
 			\ 'julia': ['re!\w{3}'],
 			\ }
 
-" let g:vimtex_enabled = 0
+" let g:imtex_enabled = 0
 
 " https://github.com/lervag/ vimtex/issues/168#issuecomment-108019496
 " let g:tex_fast = "bMpr"
 
 
-let g:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-e', '
-			\       using LanguageServer;
-			\       using Pkg;
-			\       import StaticLint;
-			\       import SymbolServer;
-			\       env_path = dirname(Pkg.Types.Context().env.project_file);
-			\       
-			\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
-			\       server.runlinter = true;
-			\       run(server);
-\   ']
+" let g:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-e', '
+" 			\       using LanguageServer;
+" 			\       using Pkg;
+" 			\       import StaticLint;
+" 			\       import SymbolServer;
+" 			\       env_path = dirname(Pkg.Types.Context().env.project_file);
+" 			\       
+" 			\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
+" 			\       server.runlinter = true;
+" 			\       run(server);
+" \   ']
 
 
 let s:lsp = $HOME.'.vim/plugged/lsp-examples'
+let g:ycm_lsp_dir = '/home/junyi/.dotfiles/vim/.vim/plugged/lsp-examples'
+
+let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
+\       using LanguageServer;
+\       using Pkg;
+\       import StaticLint;
+\       import SymbolServer;
+\       env_path = dirname(Pkg.Types.Context().env.project_file);
+\       debug = false;
+\
+\       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());
+\       server.runlinter = true;
+\       run(server);
+\   ']
+
+let s:pip_os_dir = 'bin'
 let g:ycm_language_server = [
 			\   { 'name': 'fortran',
 			\     'filetypes': [ 'fortran' ],
 			\     'cmdline': [ 'fortls' ],
 			\   },
+  \   {
+  \     'name': 'cmake',
+  \     'cmdline': [ expand( g:ycm_lsp_dir . '/cmake/venv/' . s:pip_os_dir . '/cmake-language-server' )],
+  \     'filetypes': [ 'cmake' ],
+  \    },
 			\   {
-			\     'name': 'bash',
-			\     'cmdline': [ 'node', expand( s:lsp . '/bash/node_modules/.bin/bash-language-server' ), 'start' ],
-			\     'filetypes': [ 'sh', 'bash' ],
-			\  },
-			\   { 'name': 'vim',
-			\     'filetypes': [ 'vim' ],
-			\     'cmdline': [ expand( s:lsp . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
-			\   },
-			\   { 'name': 'docker',
-			\     'filetypes': [ 'dockerfile' ],
-			\     'cmdline': [ expand( s:lsp . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
-			\   },
-			\   {
-			\   'name': 'yaml',
-			\   'filetypes': ['yaml'],
-			\   'cmdline': ['node', expand( s:lsp . '/yaml/node_modules/.bin/yaml-language-server'), '--stdio' ]
-			\   },
-			\   {
-			\   'name': 'json',
-			\   'filetypes': ['json'],
-			\   'cmdline': ['node', expand(s:lsp . '/json/node_modules/.bin/vscode-json-languageserver'), '--stdio']
-			\   },
-			\   { 
-			\     'name': 'julia',
-			\     'filetypes': [ 'julia' ],
-			\     'project_root_files': [ 'Project.toml' ],
-			\	'cmdline': g:julia_cmdline
-			\  },
-			\ ]
+				\     'name': 'bash',
+				\     'cmdline': [ 'node', expand( g:ycm_lsp_dir . '/bash/node_modules/.bin/bash-language-server' ), 'start' ],
+				\     'filetypes': [ 'sh', 'bash'],
+				\   },
+				\   { 'name': 'vim',
+				\     'filetypes': [ 'vim' ],
+				\     'cmdline': [ expand( g:ycm_lsp_dir . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
+				\   },
+				\   { 'name': 'docker',
+				\     'filetypes': [ 'dockerfile' ],
+				\     'cmdline': [ expand( g:ycm_lsp_dir . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
+				\   },
+				\   {
+					\     'name': 'yaml',
+					\     'cmdline': [ 'node', expand( g:ycm_lsp_dir . '/yaml/node_modules/.bin/yaml-language-server' ), '--stdio' ],
+					\     'filetypes': [ 'yaml' ],
+					\     'capabilities': { 'textDocument': { 'completion': { 'completionItem': { 'snippetSupport': v:true } } } },
+					\   },
+					\   {
+						\     'name': 'json',
+						\     'cmdline': [ 'node', expand( g:ycm_lsp_dir . '/json/node_modules/.bin/vscode-json-languageserver' ), '--stdio' ],
+						\     'filetypes': [ 'json' ],
+						\     'capabilities': { 'textDocument': { 'completion': { 'completionItem': { 'snippetSupport': v:true } } } },
+						\   },
+						\   { 
+							\     'name': 'julia',
+							\     'filetypes': [ 'julia' ],
+							\     'project_root_files': [ 'Project.toml' ],
+							\	'cmdline': s:julia_cmdline
+							\  },
+							\ ]
 
 "=================== YCM | you complete me========================================}}}
 "==================== w0rp/ale ============================={{{
@@ -1353,9 +1382,9 @@ endif
 
 "==================== vim-templates ======================{{{
 let g:templates_directory = '$HOME/.vim/templates'
-let g:templates_user_variables = [['EMAIL', 'GetEmail'],]
+let g:templates_user_variables = [['EMAIL', 'MyEmail'],]
 
-function GetEmail()
+function MyEmail()
 	return 'junyixu0@gmail.com'
 endfunction
 "==================== end vim-templates ======================}}}
@@ -1398,12 +1427,18 @@ let g:vimwiki_table_mappings=0
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================= VimTeX ==============================={{{
 
+" 英文语法检查
+let g:vimtex_grammar_vlty = {'lt_command': 'languagetool'}
+
 " fold 造成 vimtex 相当卡顿
 let g:vimtex_fold_enabled=0
 
 " 在这里需要注意一下, 如果用了自动补全的插件, 需要设置:
 let g:vimtex_fold_manual=1
 " 不然会变得好慢.
+
+" 默认的还有 itemize
+let g:vimtex_indent_lists = ['thebibliography']
 
 " let  g:vimtex_fold_types = {
 " 	   \ 'preamble' : {'enabled' : 1},
