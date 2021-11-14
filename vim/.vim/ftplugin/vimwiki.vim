@@ -128,5 +128,15 @@ inoremap <buffer> <silent> ,p ![](<++>) <++><Esc>F[a
 " 链接
 inoremap <buffer> <silent> ,a [](<++>) <++><Esc>F[a
 
+imap <M-L><C-J> <Plug>VimwikiListNextSymbol
+imap <M-L><C-K> <Plug>VimwikiListPrevSymbol
+imap <M-L><C-M> <Plug>VimwikiListToggle
+nmap <buffer> <localLeader>tl <Plug>VimwikiToggleListItem
+vmap <buffer> <localLeader>tl <Plug>VimwikiToggleListItem
+nnoremap <buffer> glo :VimwikiChangeSymbolTo a)<CR>
+nnoremap <buffer> <C-n> <Plug>VimwikiNextLink
+nnoremap <buffer> <C-p> <Plug>VimwikiPrevLink
+nnoremap <buffer> <localleader><localleader> :VimwikiToggleListItem<CR>
+
 source $HOME/.vim/ftplugin/markdownandvimwiki.vim
 
