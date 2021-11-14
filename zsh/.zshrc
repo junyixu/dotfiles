@@ -217,9 +217,6 @@ alias status="systemctl status"
 alias reboot='systemctl reboot'
 alias poweroff='systemctl poweroff'
 
-alias open='xdg-open'
-alias o='xdg-open'
-alias screenshot='flameshot gui -r'
 
 # alias vim='vim --cmd "let g:isProgramming=1" '
 # alias vim='vim --cmd "let g:isProgramming=1" '
@@ -289,7 +286,6 @@ ztar(){
 alias unztar='tar -I zstd -xvf'
 alias 7tar="7z a -mmt"
 
-alias copy='xclip -selection clipboard -in'
 
 #alias rsync='myrsync.sh'
 alias vicmake='$EDITOR CMakeLists.txt'
