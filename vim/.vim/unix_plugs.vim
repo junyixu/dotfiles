@@ -67,6 +67,7 @@ endif
 endif
 
 if !g:isPlain && !exists('g:started_by_firenvim')
+	Plug 'voldikss/vim-mma'
 	Plug 'voldikss/vim-translator'
 	"{{{ translator
 	" let g:translator_target_lang='en'
@@ -211,24 +212,24 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-autocmd filetype python,matlab,julia,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+autocmd filetype mma,python,matlab,julia,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
-autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
+autocmd filetype mma,python,matlab,julia,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
 
-autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
+autocmd filetype mma,python,matlab,julia,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
 " autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
-autocmd filetype matlab,julia,sage.python nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
+autocmd filetype mma,matlab,julia,sage.python nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
 " autocmd filetype matlab,julia,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
 
-autocmd filetype python,matlab,julia,sage.python nmap <M-CR> <Plug>SlimeSendCell
+autocmd filetype mma,python,matlab,julia,sage.python nmap <M-CR> <Plug>SlimeSendCell
 " autocmd filetype python,matlab,julia,sage.python nnoremap <C-CR> <Plug>SlimeSendCell
 " nnoremap <s-cr> :w
 
-autocmd filetype python nmap <localleader>r <Plug>SlimeSendCell
+autocmd filetype mma,python nmap <localleader>r <Plug>SlimeSendCell
 " autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
 " autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
-autocmd filetype python,matlab,julia,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
+autocmd filetype mma,python,matlab,julia,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
 " }}}
 " TODO
 "
@@ -434,7 +435,7 @@ endif
 " if !g:isPlain && !exists('g:started_by_firenvim') && hostname()!='Surface'
 if !g:isPlain && !exists('g:started_by_firenvim')
 	if g:isNVIM
-		 Plug 'neoclide/coc.nvim'
+		 " Plug 'neoclide/coc.nvim'
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
