@@ -1,5 +1,5 @@
 #!/bin/bash
 # 简洁地显示内存占用
-total=$(free -h | grep "内存" | cut -d' ' -f9)
-used=$(free -h | grep "内存" | cut -d' ' -f16)
+total=$(free -h | grep "内存" | cut -d' ' -f8)
+used=$(free -h | grep "内存" | cut -d' ' -f15)
 echo ${used}/${total}

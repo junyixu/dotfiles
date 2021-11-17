@@ -15,7 +15,6 @@ endglobal
 priority -30
 snippet sec "Section"
 \section{$1}%
-$0
 endsnippet
 
 snippet op "options" b
@@ -173,7 +172,12 @@ snippet dm "Math" wA
 \begin{equation*}
 	$1
 \end{equation*}
-$0
+endsnippet
+
+snippet eq "Math" b
+\begin{equation}
+	$1
+\end{equation}
 endsnippet
 
 snippet ref "ref" w

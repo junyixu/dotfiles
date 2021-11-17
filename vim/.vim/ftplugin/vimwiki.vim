@@ -13,9 +13,9 @@ map <Leader>vm :MarkdownPreview<cr>
 " Author:       lilydjwg <lilydjwg@gmail.com>
 
 let g:vimwiki_table_mappins = 0
-nmap <buffer> <Leader>gt <Plug>VimwikiTabnewLink
-nmap <buffer> <Leader>vsp <Plug>VimwikiVSplitLink
-nmap <buffer> <Leader>sp <Plug>VimwikiSplitLink
+nmap <buffer> <localleader>gt <Plug>VimwikiTabnewLink
+nmap <buffer> <localleader>vsp <Plug>VimwikiVSplitLink
+nmap <buffer> <localleader>sp <Plug>VimwikiSplitLink
 
 " 没有-regex 选项时候，只有空格用加 `\` 括号不用加, CtrlSF 真奇怪
 nnoremap <buffer> <localleader>todo :CtrlSF \ [\ ]\ <CR>

@@ -182,6 +182,12 @@ alias Qo='pacman -Qo'
 alias F='pacman -F'
 alias Fl='pacman -Fl'
 
+# 虚拟机
+# sudo virsh list
+# sudo virsh start archlinux
+# sudo virsh shutdown archlinux
+alias v='sudo -E virsh'
+
 alias search='baloosearch'
 
 # 查询 ip

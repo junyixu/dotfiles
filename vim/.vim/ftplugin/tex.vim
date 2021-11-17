@@ -38,6 +38,8 @@ call textobj#user#plugin('tex', {
 \   },
 \ })
 
+nnoremap <buffer> <localleader>lf :call vimtex#fzf#run('ctli', g:fzf_layout)<cr>
+
 call vimtex#imaps#add_map({
   \ 'lhs' : '<CR>',
   \ 'rhs' : '\item ',
@@ -56,16 +58,19 @@ call vimtex#imaps#add_map({
 
 " let b:vimtex_main = 'main.tex'
 
-function g:PreviewEq4LaTeX()
-	execute 'normal "xyie'
-	call writefile(getreg('z',1,1), '/tmp/testtex/test.tex')
-	call system('/tmp/testtex/utest.py')
-	" let job = job_start('/tmp/testtex/utest.py')
-	" if job_status(job) != 'fail'
-	" 	echom job_status(job)
-	" endif
-endfunction
-nnoremap <buffer> <space><space> :call g:PreviewEq4LaTeX()<cr>
+" " TODO
+" " 部分公式预览
+" function g:PreviewEq4LaTeX()
+" 	" 复制 env 中的内容到 x 剪贴板
+" 	execute 'normal "xyie'
+" 	call writefile(getreg('z',1,1), '/tmp/testtex/test.tex')
+" 	call system('/tmp/testtex/utest.py')
+" 	" let job = job_start('/tmp/testtex/utest.py')
+" 	" if job_status(job) != 'fail'
+" 	" 	echom job_status(job)
+" 	" endif
+" endfunction
+" nnoremap <buffer> <space><space> :call g:PreviewEq4LaTeX()<cr>
 
 " 设置格式化时制表符占用空格数
 setlocal shiftwidth=2
