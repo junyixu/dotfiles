@@ -1,6 +1,6 @@
 " https://vim.fandom.com/wiki/Completion_using_a_syntax_file
 " :help ft-syntax-omni
-setlocal omnifunc=syntaxcomplete#Complete
+" setlocal omnifunc=syntaxcomplete#Complete
 
 " nnoremap <buffer><silent> <leader>r :w<cr>:AsyncRun octave %<cr>
 " setlocal complete=.,k,w,b,t

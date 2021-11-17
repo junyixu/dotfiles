@@ -16,7 +16,6 @@ if g:isNVIM
 		  set background=light
 		  nnoremap <leader>i :set lines=20<cr>i
 	  else
-		Plug 'voldikss/vim-mma'
 		set background=dark
 		  Plug 'vim-airline/vim-airline', {'on': []}
 		  Plug 'vim-airline/vim-airline-themes'
@@ -47,6 +46,7 @@ else
     call plug#begin('~/.vim/plugged')
 
 if !g:isPlain && !exists('g:started_by_firenvim')
+		Plug 'voldikss/vim-mma'
 	Plug 'vim-airline/vim-airline', {'on': []}
 	Plug 'vim-airline/vim-airline-themes'
 	" {{{  airline
@@ -1007,7 +1007,7 @@ nnoremap <leader>g<space> :Git
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================== youcompleteme ============{{{
 "set completeopt=menu,menuone
-
+let g:ycm_seed_identifiers_with_syntax = 1
 " 错误标记
  " let g:ycm_log_level = 'debug'
 " let g:ycm_error_symbol = '✗'  "set error or warning signs
@@ -1096,11 +1096,9 @@ let g:ycm_filetype_blacklist = {
 
 let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,cuda': ['re!\w{4}'],
-			\ 'python': ['re!\w{2}'],
-            \ 'java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs, lua,javascript, typescript': ['re!\w{2}'],
-			\ 'matlab': ['re!\w{2}'],
-			\ 'julia': ['re!\w{3}'],
+			\ 'python': ['re!\w{4}'],
+			\ 'matlab': ['re!\w{4}'],
+			\ 'julia': ['re!\w{4}'],
 			\ }
 
 " let g:imtex_enabled = 0
