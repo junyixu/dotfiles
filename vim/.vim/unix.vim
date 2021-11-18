@@ -45,6 +45,8 @@ else
     nmap <Leader>ev :tabedit ~/.vim/unix.vim<cr>
     " Make it easy to edit the plugs file.
     nmap <Leader>ep :tabedit ~/.vim/unix_plugs.vim<cr>
+    " Make it easy to edit the ftplug file.
+    nmap <Leader>ep :tabedit ~/.vim/unix_plugs.vim<cr>
     " Make it easy to edit the tex snips
     nmap <Leader>ets :tabedit ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets<cr>
 endif
