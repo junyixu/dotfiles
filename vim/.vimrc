@@ -520,6 +520,12 @@ nmap <C-n> :tnext<CR>
 " 反向遍历同名标签
 nmap <C-p> :tprevious<CR>
 
+function g:EditFtPlugin() "for syntax/index.vim
+	execute "vsp ~/.vim/ftplugin/" . &ft . '.vim'
+endfunction
+silent! command -nargs=0 EditFtPlugin call g:EditFtPlugin()
+nmap <leader>ef :EditFtPlugin<CR>
+
 function g:CopyFileEntryToClipBoard() "for syntax/index.vim
 let @+ = expand("%:p").'|'.line(".")
 endfunction
