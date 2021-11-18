@@ -46,7 +46,8 @@ else
     call plug#begin('~/.vim/plugged')
 
 if !g:isPlain && !exists('g:started_by_firenvim')
-		Plug 'voldikss/vim-mma'
+	Plug 'voldikss/vim-mma'
+	let g:mma_candy = 2
 	Plug 'vim-airline/vim-airline', {'on': []}
 	Plug 'vim-airline/vim-airline-themes'
 	" {{{  airline
@@ -1716,41 +1717,41 @@ let g:tagbar_map_close='<M-q>'
 " ========================= tagbar ===================================}}}
 endif
 
-" 使用 wolfram 计算 {{{
-" jobstart 和 jobwait 只有 nvim 可用
-" vim 用 job_start 和 waittime 或 timeout
-inoremap <CR> <C-R>=Caculate()<CR>
-let s:caculate_dict={}
-function s:callback(jd,data,event) dict
-	let msg=join(a:data)
-	let self.data .= msg
-endfunction
-let s:caculate_dict.on_stdout=function("s:callback")
-function! Caculate()
-	let buf=getline(".")
-	let n=2
-	" 当前光标的位置之前一列
-	let ps=col(".")-1
-	if(ps<4 || buf[ps-1] isnot '=')
-		return "\<CR>"
-	endif
-	while(1)
-		if(ps-n<0||buf[ps-1] is "'")
-			break
-		endif
-		let n+=1
-	endwhile
-	let expr=buf[ps-n+2:ps-2]
-	let cmd="wolframscript -code "."'".expr."'"
-	let s:caculate_dict.data=""
-	let job_id=jobstart(cmd,s:caculate_dict)
-	let status=jobwait([job_id], 20000)[0]==-1
-	if status
-		return "timeout"
-	endif
-	return s:caculate_dict.data
-endfunction
-" }}}
+" " 使用 wolfram 计算 {{{
+" " jobstart 和 jobwait 只有 nvim 可用
+" " vim 用 job_start 和 waittime 或 timeout
+" inoremap <CR> <C-R>=Caculate()<CR>
+" let s:caculate_dict={}
+" function s:callback(jd,data,event) dict
+" 	let msg=join(a:data)
+" 	let self.data .= msg
+" endfunction
+" let s:caculate_dict.on_stdout=function("s:callback")
+" function! Caculate()
+" 	let buf=getline(".")
+" 	let n=2
+" 	" 当前光标的位置之前一列
+" 	let ps=col(".")-1
+" 	if(ps<4 || buf[ps-1] isnot '=')
+" 		return "\<CR>"
+" 	endif
+" 	while(1)
+" 		if(ps-n<0||buf[ps-1] is "'")
+" 			break
+" 		endif
+" 		let n+=1
+" 	endwhile
+" 	let expr=buf[ps-n+2:ps-2]
+" 	let cmd="wolframscript -code "."'".expr."'"
+" 	let s:caculate_dict.data=""
+" 	let job_id=jobstart(cmd,s:caculate_dict)
+" 	let status=jobwait([job_id], 20000)[0]==-1
+" 	if status
+" 		return "timeout"
+" 	endif
+" 	return s:caculate_dict.data
+" endfunction
+" " }}}
 
 " 注释显示斜体
 " highlight Comment cterm=italic
