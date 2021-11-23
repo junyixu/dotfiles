@@ -34,7 +34,6 @@ snippet b "begin" b
 \begin{$1}
 	$2
 \end{$1}
-$0
 endsnippet
 
 snippet ! "%! TEX root = ./main.tex" b
@@ -392,6 +391,10 @@ endsnippet
 
 snippet href "href" w
 \href{${2:url}}{${1:${VISUAL:text}}} $0
+endsnippet
+
+snippet verb "行间代码"
+\verb+$1+
 endsnippet
 
 priority -10
