@@ -8,6 +8,5 @@ nnoremap <buffer><silent> <M-c> :MatlabNormalModeCreateCell<CR>
 vnoremap <buffer><silent> <M-c> :<C-u>MatlabVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:MatlabInsertModeCreateCell<CR>
 
-nnoremap <buffer> <localleader>s :AsyncRun! -mode=hide splitMatlabFile.py %<cr>
 
 source $HOME/.vim/ycmMaps.vim
