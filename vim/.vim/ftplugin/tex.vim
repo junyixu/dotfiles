@@ -104,9 +104,9 @@ setlocal spellfile+=~/.vim/spell/latex.utf-8.add
 " 如果是 <C-i> 就会和 Ultisnips 的 tab 冲突
 " 后来得知 <C-i> 就是 tab <C-m> 就是 <cr>
 
-inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
-nnoremap <localleader><C-F> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
-nnoremap <localleader><C-P> o\includegraphics[width=0.5\textwidth]{figures/<C-r>+}<esc>
+inoremap <M-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
+nnoremap <localleader>ff : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+nnoremap <localleader>fp o\includegraphics[width=0.5\textwidth]{figures/<C-r>+}<esc>
 
 " 句首字母大写
 " https://superuser.com/questions/737130/automatically-capitalize-the-first-letter-of-sentence-in-vim
