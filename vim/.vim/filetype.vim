@@ -4,6 +4,7 @@ endif
 
 augroup filetypedetect
   au BufNewFile,BufRead *.asm				setf masm
+  au BufNewFile,BufRead TAGS				setf tags
   au BufNewFile,BufRead *.cls				setf tex
   au BufNewFile,BufRead frp?.ini				setf systemd
   au BufNewFile,BufRead hg-editor-*.txt			setf hgcommit

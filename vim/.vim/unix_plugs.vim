@@ -435,10 +435,11 @@ endif
 " {{{ ========================== ycm or coc 补全 ============================
 " if !g:isPlain && !exists('g:started_by_firenvim') && hostname()!='Surface'
 if !g:isPlain && !exists('g:started_by_firenvim')
-	if g:isNVIM
-		 " Plug 'neoclide/coc.nvim'
+	if g:isNVIM || g:CoC
+		 Plug 'neoclide/coc.nvim'
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
+		set completeopt+=preview
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		Plug 'ycm-core/lsp-examples'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
@@ -545,6 +546,9 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'machakann/vim-sandwich'
 	" 匹配增强
 	Plug 'andymass/vim-matchup'
+	" for vimtex
+    " let g:matchup_override_vimtex = 1
+    " let g:matchup_matchparen_deferred = 1
 else
 	Plug 'tpope/vim-surround'
 	Plug 'chrisbra/matchit'
@@ -601,7 +605,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
 let g:mkdp_filetypes = ['markdown', 'vimwiki']
 Plug 'hotoo/pangu.vim', {'for': 'markdown'}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 	let g:vim_markdown_folding_disabled = 1
 	" let g:tex_conceal = ""
 	let g:vim_markdown_math = 1
@@ -725,13 +730,12 @@ Plug 'junegunn/vim-easy-align'
 	"
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
-		
+
 	" vim 中文文档
 	Plug 'yianwillis/vimcdoc'
 	
 	" matlab
 	Plug 'andymass/vim-matlab', {'for': 'matlab'}
-	" Plug 'yinflying/matlab-screen', {'for': 'matlab'}
 
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'petRUShka/vim-sage', {'for': 'sage'}
@@ -936,7 +940,9 @@ endif
 " S 表示如果是函数，则生成的tag文件要标识函数的原型(Signature)
 
 " let g:gutentags_ctags_extra_args = ['--fields=+nliazS', '--extras=+q']
-" let g:gutentags_ctags_extra_args = ['--fields=+niaz', '--extras=+q']
+let g:gutentags_ctags_extra_args = ['--fields=+nliaz', '--extras=+q']
+
+let g:gutentags_exclude_filetypes=['vim', 'sh', 'css', 'html']
 " let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 " ctags识别很多元素，但未必全都记录，例如“函数声明”这一语法元素默认是不记录的，可以控制ctags记录的语法元素的种类。如下命令要求ctags记录c++文件中的函数声明和各种外部和前向声明
 " let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
@@ -945,7 +951,6 @@ let g:gutentags_exclude_project_root = [ '/home/junyi/.local/share/nvim', '/home
 " 禁用 gutentags 自动加载 gtags 数据库的行为, 由于我一个 vim
 " 只打开一个工程，用 tmux 和 vim 结合的方式，所以这里不需要了.
 let g:gutentags_auto_add_gtags_cscope = 0
-let g:gutentags_exclude_filetypes=['vim', 'sh']
 let g:gutentags_ctags_exclude = [
       \ '*.git', '*.svg', '*.hg',
       \ '*/tests/*',
@@ -1008,16 +1013,14 @@ nnoremap <leader>g<space> :Git
 "================== git ============}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================== youcompleteme ============{{{
-"set completeopt=menu,menuone
-let g:ycm_seed_identifiers_with_syntax = 1
 " 错误标记
  " let g:ycm_log_level = 'debug'
 " let g:ycm_error_symbol = '✗'  "set error or warning signs
 " let g:ycm_error_symbol = '⨉'  "set error or warning signs
 let g:ycm_error_symbol = "\ue009\ue009"  "set error or warning signs
+" let g:ycm_clangd_binary_path = '/usr/bin/clangd'
 let g:ale_sign_error = "\ue009\ue009"
 let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
-let g:ycm_add_preview_to_completeopt = 0
 " let g:ale_sign_error = '⨉'
 " let g:ale_sign_error = '✗'
 " let g:ale_sign_warning = '⚡'
@@ -1044,24 +1047,23 @@ let g:ycm_add_preview_to_completeopt = 0
 " 	set completeopt+=noselect
 " endif
 let g:ycm_warning_symbol                                = '--'
-let g:ycm_autoclose_preview_window_after_completion     = 1
+let g:ycm_max_num_candidates = 10
+let g:ycm_autoclose_preview_window_after_completion     = 0
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
 let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 let g:ycm_add_preview_to_completeopt                    = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_complete_in_strings                           = 1
-let g:ycm_seed_identifiers_with_syntax                  = 1
-let g:ycm_collect_identifiers_from_tags_files           = 1
+let g:ycm_complete_in_strings                           = 0
 " let g:ycm_global_ycm_extra_conf = '~/.local/share/nvim/.ycm_extra_conf.py'
 let g:ycm_global_ycm_extra_conf                         = '~/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf                            = 0
 let g:ycm_key_list_select_completion                    = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
-let g:ycm_cache_omnifunc                                = 0  " 禁止缓存匹配项，每次都重新生成匹配项
+let g:ycm_cache_omnifunc                                = 1  " 缓存匹配项，不然每次都重新生成匹配项
 let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语法自动补全
 let g:ycm_complete_in_comments                          = 0  "在注释输入中也能补全
-let g:ycm_always_populate_location_list = 1
-let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
+let g:ycm_always_populate_location_list = 0
+" let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 " let g:ycm_filetype_whitelist = {
 " 			\ "c":1,
 " 			\ "cpp":1,
@@ -1070,7 +1072,6 @@ let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 "             \ "python":1,
 "             \ "tex":1,
 " 			\ "sh":1,
-" 			\ "julia":1,
 " 			\ "zimbu":1,
 " 			\ "fortran":1,
 " 			\ "matlab":1,
@@ -1089,18 +1090,19 @@ let g:ycm_filetype_blacklist = {
 			\ 'vista':        1,
 			\ 'leaderf':      1,
 			\ 'fzf':          1,
- 			\ 'julia':        1,
 			\ 'gitcommit':    1,
 			\ 'markdown':     1,
 			\ 'vimwiki':      1,
 			\ 'text':         1,
 			\ }
 
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,cuda': ['re!\w{4}'],
-			\ 'python': ['re!\w{4}'],
-			\ 'matlab': ['re!\w{4}'],
+let g:ycm_semantic_triggers = {
+			\ 'c': ['re!\w{4}', '->', '.'],
+			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
+			\ 'python': ['re!\w{4}', '.'],
 			\ 'julia': ['re!\w{4}'],
+			\ 'matlab': ['re!\w{4}'],
+			\ 'ruby,rust': ['.', '::'],
 			\ }
 
 " let g:imtex_enabled = 0
@@ -1109,7 +1111,7 @@ let g:ycm_semantic_triggers =  {
 " let g:tex_fast = "bMpr"
 
 
-" let g:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-e', '
+" let s:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-e', '
 " 			\       using LanguageServer;
 " 			\       using Pkg;
 " 			\       import StaticLint;
@@ -1124,19 +1126,6 @@ let g:ycm_semantic_triggers =  {
 
 let s:lsp = $HOME.'.vim/plugged/lsp-examples'
 let g:ycm_lsp_dir = '/home/junyi/.dotfiles/vim/.vim/plugged/lsp-examples'
-
-let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
-\       using LanguageServer;
-\       using Pkg;
-\       import StaticLint;
-\       import SymbolServer;
-\       env_path = dirname(Pkg.Types.Context().env.project_file);
-\       debug = false;
-\
-\       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());
-\       server.runlinter = true;
-\       run(server);
-\   ']
 
 let s:pip_os_dir = 'bin'
 let g:ycm_language_server = [
@@ -1174,13 +1163,42 @@ let g:ycm_language_server = [
 						\     'filetypes': [ 'json' ],
 						\     'capabilities': { 'textDocument': { 'completion': { 'completionItem': { 'snippetSupport': v:true } } } },
 						\   },
-						\   { 
-							\     'name': 'julia',
-							\     'filetypes': [ 'julia' ],
-							\     'project_root_files': [ 'Project.toml' ],
-							\	'cmdline': s:julia_cmdline
-							\  },
 							\ ]
+
+
+" let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
+" \       using LanguageServer;
+" \       using Pkg;
+" \       import StaticLint;
+" \       import SymbolServer;
+" \       env_path = dirname(Pkg.Types.Context().env.project_file);
+" \       debug = false;
+" \
+" \       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());
+" \       server.runlinter = true;
+" \       run(server);
+" \   ']
+
+if g:juliaLSP
+	let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
+				\       using LanguageServer;
+				\       using Pkg;
+				\       import StaticLint;
+				\       import SymbolServer;
+				\       env_path = dirname(Pkg.Types.Context().env.project_file);
+				\
+				\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
+				\       server.runlinter = true;
+				\       run(server);
+				\   ']
+	let g:ycm_language_server += [
+				\   { 'name': 'julia',
+				\     'filetypes': [ 'julia' ],
+				\     'project_root_files': [ 'Project.toml' ],
+				\     'cmdline': s:julia_cmdline
+				\   },
+				\ ]
+endif
 
 "=================== YCM | you complete me========================================}}}
 "==================== w0rp/ale ============================={{{
@@ -1225,8 +1243,8 @@ let g:airline#extensions#ale#enabled = 1
 " 暂时没想到好办法使 YCM 的跳转到下一页错误 :ll 和 ale 的相容
 nmap [e :ll<cr>
 nmap ]e :ll<cr>
-au filetype python,matlab nmap <buffer> [e <Plug>(ale_previous_wrap)
-au filetype python,matlab nmap <buffer> ]e  <Plug>(ale_next_wrap)
+au filetype python,matlab,tex nmap <buffer> [e <Plug>(ale_previous_wrap)
+au filetype python,matlab,tex nmap <buffer> ]e  <Plug>(ale_next_wrap)
 
 " c/c++ 的设置
 "let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
@@ -1247,7 +1265,6 @@ let g:ale_lint_on_enter = 0
 
 " let g:ale_command_wrapper = 'nice -n5'
 
-" let g:ale_julia_executable = '/usr/bin/julia'
 " let g:ale_completion_enabled = 1
 
 let g:ale_linters = {
@@ -1427,6 +1444,14 @@ let g:vimwiki_table_mappings=0
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================= VimTeX ==============================={{{
 
+" VimTeX sets the 'omnifunc' to provide omni completion
+let g:vimtex_complete_enabled=1
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+
+
 " 英文语法检查
 let g:vimtex_grammar_vlty = {'lt_command': 'languagetool'}
 
@@ -1460,11 +1485,6 @@ let g:vimtex_indent_lists = ['thebibliography']
 " 	   \   ],
 " 	   \ },
 " 	   \}
-
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
 let g:vimtex_doc_handlers = ['MyHandler']
 function! MyHandler(context)
@@ -1656,6 +1676,7 @@ nnoremap <space>/<space> :cs find<space>
 	nmap gr<space> :Gtags -r<space>
 	nmap gar<space> :Gtagsa -r<space>
 	nmap t<space> :tjump<space>
+	nmap t* :tjump <C-R>=expand("<cword>")<CR>
     nmap g} :GtagsCursor<CR>
 
     nmap gss :Gtags <C-R>=expand("<cword>")<CR>

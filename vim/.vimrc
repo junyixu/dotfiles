@@ -68,6 +68,8 @@ let g:SUDO = get(g:, 'SUDO', 0)
 let g:isPlain = get(g:, 'isPlain', 1)
 " let g:isProgramming = get(g:, 'isProgramming', 0)
 " let g:vim_startup = get(g:, 'vim_startup', 0)
+let g:juliaLSP = get(g:, 'juliaLSP', 0)
+let g:CoC = get(g:, 'CoC', 0)
 
 "如果只想在 Python 文件中将 Tab 展开成空格，就改换成下面这句
 autocmd FileType python set expandtab
