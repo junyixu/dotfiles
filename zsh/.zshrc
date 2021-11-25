@@ -355,7 +355,7 @@ switch_window() {
 	local __window_id
 
 	# 不需要 桌面 和 Latte Dock 栏，用 grep -v 去除
-	__window_id=$(wmctrl -l | grep -v Plasma | grep -v Latte| fzf | cut -d' ' -f1)
+	__window_id=$(wmctrl -l | grep -v Plasma | grep -v Latte | grep -v Yakuake | fzf | cut -d' ' -f1)
 
 	# 最小化当前窗口 没弄懂 怎么用 wmctrl 最小化窗口
 	# xdotool windowminimize $(xdotool getactivewindow)
