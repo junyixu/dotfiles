@@ -262,6 +262,9 @@ alias jvi="vim -c JupyterConnect"
 alias ports='netstat -tulanp'
 # alias ssh='ssh -Y'
 
+# matlab tmux 布局
+alias tmatlab='tmux -f ~/.tmux/scripting/matlab.conf attach'
+
 alias tldr='https_proxy=http://127.0.0.1:1081 tldr'
 # note
 # find -name *.java -print0 | xargs -0 p4 add
