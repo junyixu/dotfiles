@@ -38,8 +38,8 @@ function SetupTeXInlineBlocks()
     auto User SyntaxPyEnvironmentInTeXLeaveA let &indentexpr=s:TeX_indentexpr | let &indentkeys=s:TeX_indentkeys
 endfunction
 
-augroup TeXInlineBlocks
-	auto! FileType tex call SetupTeXInlineBlocks()
-augroup END
+" augroup TeXInlineBlocks
+" 	auto! FileType tex call SetupTeXInlineBlocks()
+" augroup END
 
 setlocal concealcursor=
