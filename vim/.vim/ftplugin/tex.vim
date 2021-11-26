@@ -38,7 +38,6 @@ call textobj#user#plugin('tex', {
 \   },
 \ })
 
-nnoremap <buffer> <localleader>lf :call vimtex#fzf#run('ctli', g:fzf_layout)<cr>
 
 call vimtex#imaps#add_map({
   \ 'lhs' : '<CR>',
