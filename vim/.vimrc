@@ -28,6 +28,7 @@ noremap g\ g,
 
 nnoremap g<C-g> <C-g>
 
+
 "Space is much better than '_' 
 let maplocalleader = "\<Space>" 
 " let maplocalleader = "_"
@@ -69,6 +70,7 @@ let g:isPlain = get(g:, 'isPlain', 1)
 " let g:isProgramming = get(g:, 'isProgramming', 0)
 " let g:vim_startup = get(g:, 'vim_startup', 0)
 let g:juliaLSP = get(g:, 'juliaLSP', 0)
+let g:vimLSP = get(g:, 'vimLSP', 0)
 let g:CoC = get(g:, 'CoC', 0)
 
 "如果只想在 Python 文件中将 Tab 展开成空格，就改换成下面这句
@@ -257,6 +259,12 @@ nnoremap <silent> c<Tab> *Ncgn
 inoremap <expr><C-e> pumvisible()? "<C-E>":"\<C-o>A"
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
+
+" inoremap  
+" inoremap  
+" inoremap  
+" inoremap  
+inoremap  
 
 "
 " note
@@ -522,10 +530,7 @@ nmap <C-n> :tnext<CR>
 " 反向遍历同名标签
 nmap <C-p> :tprevious<CR>
 
-function g:EditFtPlugin() "for syntax/index.vim
-	execute "vsp ~/.vim/ftplugin/" . &ft . '.vim'
-endfunction
-silent! command -nargs=0 EditFtPlugin call g:EditFtPlugin()
+silent! command -nargs=0 EditFtPlugin execute "vsp ~/.vim/ftplugin/" . &filetype . '.vim'
 nmap <leader>ef :EditFtPlugin<CR>
 
 function g:CopyFileEntryToClipBoard() "for syntax/index.vim
