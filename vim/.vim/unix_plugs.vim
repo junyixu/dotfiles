@@ -329,24 +329,45 @@ endif
 " ===========  词典 ============={{{
 " doc: apc
 " Plug 'skywind3000/vim-auto-popmenu' 
-	" enable this plugin for filetypes, '*' for all files.
-	let g:apc_enable_ft = {'text':1, 'markdown':1, 'php':1, 'vimwiki':1}
-    let g:apc_enable_tab=0
-	let g:vim_dict_config = {'html':'html,javascript,css', 'markdown':'text', 'tex':'tex, latex, text'}
+	" " enable this plugin for filetypes, '*' for all files.
+" let g:apc_enable_ft = {'text':1, 'markdown':1, 'vimwiki':1}
+" let g:apc_enable_tab=0
+" let g:vim_dict_config = {'html':'html,javascript,css'}
 	" source for dictionary, current or other loaded buffers, see ':help cpt'
 	" complete
 	" set cpt=.,k,w,b,t
 	" set cpt=.,k,w,b
 	" set complete+=k
-
 	" don't select the first item.
 	" set completeopt=menu,noselect
+	
+	"
+	" note
+	"
+	" :help cpt
+	" .	扫描当前缓冲区 (忽略 'wrapscan')
+	" w	扫描其它窗口的缓冲区
+	" b	扫描其它缓冲区列表里载入的缓冲区
+	" u	扫描缓冲区列表里卸载的缓冲区
+	" U	扫描不在缓冲区列表里的缓冲区
+	" k	扫描 'dictionary' 选项给出的文件
+	" kspell  使用当前激活的拼写检查 |spell|
+	" k{dict}	扫描文件 {dict}。可以给出多个 "k" 标志位，也可以使用模式。比
+	" 	如: >
+	" 		:set cpt=k/usr/dict/*,k~/spanish
+<	" s	扫描 'thesaurus' 选项给出的文件
+	" s{tsr}	扫描文件 {tsr}。可以给出多个 "s" 标志位，也可以使用模式。
+	" i	扫描当前文件和包含的头文件
+" d	扫描当前文件和包含的头文件里的定义名或宏 |i_CTRL-X_CTRL-D|
+	" ]	标签补全
+	" t	同 "]"
+
 
 	" suppress annoy messages.
 	" set shortmess+=c
     " let g:ycm_filetype_blacklist = {'text':1, 'markdown':1, 'php':1}
     " let g:apc_enable_ft = {'text':1, 'markdown':1, 'php':1}
-Plug 'skywind3000/vim-dict'
+" Plug 'skywind3000/vim-dict'
 "===========  词典 =============}}}
 
 if !g:isPlain && !exists('g:started_by_firenvim')
@@ -630,7 +651,8 @@ if g:isNVIM && version < 802
         let g:echodoc_enable_at_startup = 1
 endif
 
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' 
+Plug 'honza/vim-snippets'
 set rtp+=./snippets
 "============== =====================}}}
 
@@ -1047,10 +1069,10 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 " 	set completeopt+=noselect
 " endif
 let g:ycm_warning_symbol                                = '--'
-let g:ycm_max_num_candidates = 10
+let g:ycm_max_num_candidates                            = 10
 let g:ycm_autoclose_preview_window_after_completion     = 0
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
-let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
+let g:ycm_python_sys_path                               = ['/usr/lib/python3.9/site-packages/numpy']
 let g:ycm_add_preview_to_completeopt                    = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_complete_in_strings                           = 0
@@ -1060,9 +1082,10 @@ let g:ycm_confirm_extra_conf                            = 0
 let g:ycm_key_list_select_completion                    = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
 let g:ycm_cache_omnifunc                                = 1  " 缓存匹配项，不然每次都重新生成匹配项
+let g:ycm_min_num_of_chars_for_completion               = 3
 let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语法自动补全
 let g:ycm_complete_in_comments                          = 0  "在注释输入中也能补全
-let g:ycm_always_populate_location_list = 0
+let g:ycm_always_populate_location_list                 = 0
 " let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
 " let g:ycm_filetype_whitelist = {
 " 			\ "c":1,
@@ -1088,11 +1111,11 @@ let g:ycm_filetype_blacklist = {
 			\ 'coc-explorer': 1,
 			\ 'tagbar':       1,
 			\ 'vista':        1,
+			\ 'vimwiki':        1,
+			\ 'markdown':        1,
 			\ 'leaderf':      1,
 			\ 'fzf':          1,
 			\ 'gitcommit':    1,
-			\ 'markdown':     1,
-			\ 'vimwiki':      1,
 			\ 'text':         1,
 			\ }
 
@@ -1143,10 +1166,6 @@ let g:ycm_language_server = [
 				\     'cmdline': [ 'node', expand( g:ycm_lsp_dir . '/bash/node_modules/.bin/bash-language-server' ), 'start' ],
 				\     'filetypes': [ 'sh', 'bash'],
 				\   },
-				\   { 'name': 'vim',
-				\     'filetypes': [ 'vim' ],
-				\     'cmdline': [ expand( g:ycm_lsp_dir . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
-				\   },
 				\   { 'name': 'docker',
 				\     'filetypes': [ 'dockerfile' ],
 				\     'cmdline': [ expand( g:ycm_lsp_dir . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
@@ -1165,6 +1184,15 @@ let g:ycm_language_server = [
 						\   },
 							\ ]
 
+" LSP 实在太耗资源，更多时候我就简单修改下配置，不需要 LSP
+if g:vimLSP
+	let g:ycm_language_server += [
+				\   { 'name': 'vim',
+				\     'filetypes': [ 'vim' ],
+				\     'cmdline': [ expand( g:ycm_lsp_dir . '/viml/node_modules/.bin/vim-language-server' ), '--stdio' ]
+				\   },
+				\ ]
+endif
 
 " let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
 " \       using LanguageServer;
