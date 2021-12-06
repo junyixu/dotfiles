@@ -137,10 +137,38 @@ snippet #r "Description"
 #flashcard-reversed
 endsnippet
 
+snippet #c "Description" 
+#flashcard-cloze
+endsnippet
+
+snippet cc "Cloze deletion" i
+{{c1::$1}}$0
+endsnippet
+
+snippet ac "anki" b
+START
+Cloze
+$0
+END
+endsnippet
+
+snippet ab "anki" b
+START
+Basic
+$0
+END
+endsnippet
+
+snippet ar "anki" b
+START
+Basic (and reversed card)
+$0
+END
+endsnippet
 
 snippet d "离考研天数" b
 # 离考研还有`!p import datetime
-finalday = datetime.date(2021, 12, 24)
+finalday = datetime.date(2021, 12, 22)
 today = datetime.date.today()
 snip.rv=str((finalday - today).days)`天
 endsnippet
