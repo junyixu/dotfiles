@@ -1,17 +1,22 @@
-cmake
+GNU stow
+git
+cmake # for compiling You Complete Me
+
 ctags
+global gtags
+
 pip
 tmux
-git
 ranger # pip install --user ranger-fm 
-GNU stow
 
-lsd
-grc
 ripgrep
 zsh
 htop
 mosh
-global gtags
 
 tar
+
+ruby # for tmux-jump
+
+lsd
+grc

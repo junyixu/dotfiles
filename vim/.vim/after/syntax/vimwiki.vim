@@ -38,3 +38,5 @@
 " syn region mkdBoldItalic matchgroup=mkdBoldItalic start="\%(\*\*\*\|___\)"    end="\%(\*\*\*\|___\)"
 "
 
+
+syntax keyword Comment START END 
