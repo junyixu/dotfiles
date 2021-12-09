@@ -41,3 +41,12 @@ imap <buffer> `u \[Upsilon]
 imap <buffer> `w \[Omega]
 imap <buffer> `z \[Zeta]
 imap <buffer> `x \[Xi]
+
+command! MathematicaNormalModeCreateCell :execute 'normal! :set paste<CR>m`O(**  **)<ESC>``:set nopaste<CR>'
+command! MathematicaVisualModeCreateCell :execute 'normal! gvD:set paste<CR>O(**  **)<CR>(**  **)<ESC>P:set nopaste<CR>'
+command! MathematicaInsertModeCreateCell :execute 'normal! I(**  **) '
+
+nnoremap <buffer><silent> <M-c> :MathematicaNormalModeCreateCell<CR>
+vnoremap <buffer><silent> <M-c> :<C-u>MathematicaVisualModeCreateCell<CR>
+inoremap <buffer><silent> <M-c> <C-o>:MathematicaInsertModeCreateCell<CR>
+
