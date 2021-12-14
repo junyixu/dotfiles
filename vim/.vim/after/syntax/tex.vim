@@ -19,6 +19,9 @@ syn match texMathSymbol '\\\\' contained conceal cchar=⏎
 " 哈密顿
 " syn match texMathSymbol '\\Ham' contained conceal cchar=ℋ
 
+" 微分
+syn match texMathSymbol '\\dd' contained conceal cchar=d
+
 " logical symbols
 syn match texMathSymbol '\\lor\>' contained conceal cchar=∨
 syn match texMathSymbol '\\land\>' contained conceal cchar=∧

@@ -16,13 +16,13 @@ file_ext=$1:e
 isIMG=0
 
 for imgext in ${imgexts[*]}; do
-	echo $imgext
 	if [[ "$imgext" == "$file_ext" ]]; then
 		isIMG=1
 	fi
 done
 
 if [[ $isIMG == 1 ]]; then
+	echo "正在上传图片……\n"
 	curl --data-binary @$1 https://pb.nichi.co/
 else
 	# curl -F c=@- https://fars.ee/ < $1

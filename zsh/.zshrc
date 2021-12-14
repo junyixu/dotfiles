@@ -252,8 +252,8 @@ alias vig='vim -c "G" -c "only"'
 alias vit='vim --servername TEX'
 alias gvit='gvim --servername TEX --cmd "let g:isPlain=0"'
 alias vitv='vim --servername TEX -c 'VimtexView''
-alias gvitv='vim --servername TEX -c 'VimtexView''
-alias testtex="cd ~/Desktop/university/testtex && vim --servername TEX -c 'VimtexView' main.tex"
+alias gvitv='gvim --servername TEX --cmd "let g:isPlain=0" -c 'VimtexView''
+alias testtex="cd ~/Desktop/university/testtex && gvim --servername TEX --cmd "let g:isPlain=0" -c 'VimtexView' main.tex"
 # 打开 jupyter qtconsole
 alias jvi="vim -c JupyterConnect"
 # alias jvi="jupyter qtconsole& ; vim -c JupyterConnect"
@@ -457,7 +457,7 @@ fnotes(){
 			 # -jpeg -tiffcompression jpeg \
 			 # -- "$__note_dir/latex.out/main.pdf" "$HOME/.cache/LaTeXNotesPDFImg/$__note_dir_name" 
 # 更改 v2ray 配置
-v2ray() { 
+v2raycfg() { 
 	cd /etc/v2ray
 	ls ./* | fzf --preview 'bat --style=numbers --color=always {} | head -33' | xargs -ro sudo -E $EDITOR; 
 }
@@ -529,6 +529,10 @@ jj() {
   cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
 }
 
+d() {
+	cd -$(dirs -v | fzf | cut -f1)
+}
+
 jt() {
 	# 用 sed 去掉 开头的     数字 , . /
 	# 用 sed 去掉末尾的      .pdf
@@ -542,6 +546,14 @@ searchnotes() {
 	okular $(rga $@ ~/Sync/uni_pdf | fzf | awk -F: '{print $2, $1}' | sed s/Page/--page/) --find $@
 }
 
+# 搜索考研英语真题中的内容
+searche() {
+	# 让 awk 用 冒号 : 分隔
+	what_i_got=$(rga $@ ~/Documents/Sync/考研英语真题 | fzf)
+	if [ ! -z $what_i_got  ]; then # 判断字符串是否为空，若不为空，则：
+		okular $(echo $what_i_got | awk -F: '{print $2, $1}' | sed s/Page/--page/) --find $@
+	fi
+}
 
 # 搜索当前目录 pdf 中的内容
 searchpdf() {
@@ -590,7 +602,7 @@ tt() {
 	if [ ! -z $__note_name ]; then  # 判断字符串是否为空，若不为空，则：
 	# 用 sed 去掉 开头的     数字 , . /
 	# 用 sed 去掉末尾的      .jpg
-	_z "$(echo $__note_name | sed 's/^[0-9,.\/]* *//' | sed 's/\.jpg$//')" && vim --servername TEX -c 'VimtexView' ./main.tex || echo '没有这个目录'
+	_z "$(echo $__note_name | sed 's/^[0-9,.\/]* *//' | sed 's/\.jpg$//')" && gvim --servername TEX --cmd "let g:isPlain=0" -c 'VimtexView' ./main.tex || echo '没有这个目录'
 	else # 若字符串为空，则
 		cd $__current_working_dir
 		echo '字符串为空，没有选择任何pdf文件'

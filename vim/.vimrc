@@ -547,6 +547,15 @@ let @+ = expand("%:p")
 endfunction
 silent! command -nargs=0 CopyPath call g:CopyFilePathToClipBoard()
 
+function g:Sec2File4LaTeX()
+	exec 'normal yypk0'
+	exec 's/section/input'
+	exec 'normal %h'
+	exec "sp <cfile>.tex"
+	" 跳转回之前的窗口
+	exec 'wincmd p'
+	exec 'normal jVj]['
+endfunction
 
 if g:isUNIX
     if g:isNVIM
@@ -565,6 +574,14 @@ else " 是 windows
     so $HOME\.vim\windows_plugs.vim
 endif
 
+" https://vi.stackexchange.com/questions/5531/how-to-remap-i-in-netrw
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call NetrwMapping()
+augroup END
+function! NetrwMapping()
+    noremap <buffer> s <C-W>
+endfunction
 
 " if has('win32') || has('win64') ||has('win95') ||has('win16')
 " 	so ~/.vim/windows.vim

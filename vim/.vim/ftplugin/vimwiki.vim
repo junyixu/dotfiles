@@ -89,7 +89,7 @@ endfunction
 function! ListTODO()
 	call asyncrun#run("", {'mode': 'term'}, 'todoist list')
 endfunction
-
+nnoremap <buffer> <localLeader>wrhl <Plug>VimwikiRemoveHeaderLevel
 setlocal nolbr
 setlocal fo+=B
 " 不能设置在 .vimrc 里，因为那里 wiki 变量还未被建立

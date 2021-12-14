@@ -23,7 +23,7 @@ vnoremap <buffer><silent> <localleader>u "zc\uline{<C-R>z}<ESC>
 vnoremap <buffer><silent> <localleader>e "zc\emph{<C-R>z}<ESC>
 
 nnoremap <buffer> <localleader><tab> nla
-inoremap <buffer><silent> <C-l> <esc>l%%a
+inoremap <buffer><silent> <C-j> <esc>l%%a
 
 call textobj#user#plugin('tex', {
 \  'double-quote': {
@@ -131,6 +131,8 @@ endif
 inoremap <buffer> <silent> <M-,> <++>
 " 切换到下一个锚点  
 " inoremap <buffer> <silent> <C-j> <Esc>/<+\w*+><CR>:nohlsearch<CR>cgn
-inoremap <buffer> <silent> <C-j> <Esc>/<++><CR>c4l
+inoremap <buffer> <silent> <M-j> <Esc>/<++><CR>c4l
+
+nnoremap <buffer><silent> <localleader>f :call Sec2File4LaTeX()<CR>
 
 source $HOME/.vim/ycmMaps.vim

@@ -575,6 +575,8 @@ else
 	Plug 'chrisbra/matchit'
 endif
 
+Plug 'vimwiki/vimwiki'
+
   " 自动补全括号
 Plug 'Raimondi/delimitMate'
     "{{{
@@ -621,7 +623,6 @@ Plug 'mattn/calendar-vim'
 	let g:calendar_datetime = 'title'
 	let g:calendar_no_mappings=0
 	  let g:calendar_keys = { 'goto_next_month': '<C-Right>', 'goto_prev_month': '<C-Left>', 'close': '<M-q>', 'goto_next_year': '<C-Down>', 'goto_prev_year': '<C-Up>', 'goto_today': 'td'}
-Plug 'vimwiki/vimwiki'
 "=============== Markdown ==============={{{
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
 let g:mkdp_filetypes = ['markdown', 'vimwiki']
