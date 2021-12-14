@@ -262,6 +262,7 @@ alias jvi="vim -c JupyterConnect"
 alias ports='netstat -tulanp'
 # alias ssh='ssh -Y'
 alias sshphone='ssh -p8022 _gateway'
+alias pb='curl -F sunset=1200 -F "c=@-" "http://8.140.148.238:10002"'
 
 # matlab tmux 布局
 alias tmatlab='tmux -f ~/.tmux/scripting/matlab.conf attach'

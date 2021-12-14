@@ -25,5 +25,7 @@ done
 if [[ $isIMG == 1 ]]; then
 	curl --data-binary @$1 https://pb.nichi.co/
 else
-	curl -F c=@- https://fars.ee/ < $1
+	# curl -F c=@- https://fars.ee/ < $1
+	# sunset=1200 20 分钟后删除
+	curl -F sunset=1200 -F c=@- https://fars.ee/ < $1
 fi
