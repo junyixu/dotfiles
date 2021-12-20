@@ -26,7 +26,7 @@ let mapleader = ','						"The default leader is \, but a comma is much better. å
 noremap \ ,
 noremap g\ g,
 
-nnoremap g<C-g> <C-g>
+" nnoremap g<C-g> <C-g>
 
 
 "Space is much better than '_' 
