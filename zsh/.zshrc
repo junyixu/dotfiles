@@ -156,9 +156,9 @@ alias tmuxcfg="vi ~/.config/tmux/tmux.conf"
 # for GNOME's bug
 # export J2D_D3D=false
 # export MATLAB_JAVA=/usr/lib/jvm/java-7-openjdk/jre
-alias matlab='unset GTK_MODULES && matlab'
+# alias matlab='unset GTK_MODULES && env MESA_LOADER_DRIVER_OVERRIDE=i965 && matlab'
 # alias matlab='screen -S matlab -m sh -c "/opt/MATLAB/R2018a/bin/matlab -nodesktop -nosplash"'
-alias mrun="matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -r"
+alias mrun="env MESA_LOADER_DRIVER_OVERRIDE=i965 matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -r"
 
 alias clc='clear'
 
@@ -267,7 +267,6 @@ alias pb='curl -F sunset=1200 -F "c=@-" "http://8.140.148.238:10002"'
 # matlab tmux 布局
 alias tmatlab='tmux -f ~/.tmux/scripting/matlab.conf attach'
 
-alias tldr='https_proxy=http://127.0.0.1:1081 tldr'
 # note
 # find -name *.java -print0 | xargs -0 p4 add
 # 它的工作原理是，find 命令在目录树下找到所有的以 ".java" 结尾的文件，把它们用NULL字符隔开做成一个字符串，然后交给 xargs。
@@ -897,17 +896,16 @@ export SYSTEMD_LESS=FRXMK journalctl
 
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/opt/anaconda/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda/etc/profile.d/conda.sh"
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/opt/anaconda/bin:$PATH"
+        export PATH="/opt/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup

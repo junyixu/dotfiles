@@ -6,5 +6,4 @@
 # Distributed under terms of the MIT license.
 #
 
-youtube-dl -o - "$1" | vlc -
-
+youtube-dl -o - "$1" | mpv -

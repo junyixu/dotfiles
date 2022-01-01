@@ -8,6 +8,8 @@
 
 
 # tar Jc  .oh-my-zsh .dotfiles .vim .tmux -f dotfiles.tar.xz
+# tar --no-same-owner -I zstd -cvf dotfiles.tar.zst  .oh-my-zsh .dotfiles .vim .tmux .fzf .ssh
+
 stow zsh
 stow vim
 stow tmux

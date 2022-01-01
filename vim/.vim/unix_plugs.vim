@@ -94,7 +94,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 
 " 下划线
 " Plug 'itchyny/vim-cursorword'
-Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }
+" Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }
 " ssh 远程复制粘贴
 endif
 
