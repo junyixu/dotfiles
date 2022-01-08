@@ -583,6 +583,10 @@ function! NetrwMapping()
     noremap <buffer> s <C-W>
 endfunction
 
+" git log 语法高亮
+" https://dpwright.com/posts/2018/04/06/graphical-log-with-vimfugitive/
+command -nargs=* Glg Git! log --graph --pretty=format:'\%h - (\%ad)\%d \%s <\%an>' --abbrev-commit --date=local <args>
+
 " if has('win32') || has('win64') ||has('win95') ||has('win16')
 " 	so ~/.vim/windows.vim
 "     " 插件
