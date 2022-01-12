@@ -8,4 +8,4 @@ nnoremap <buffer> <localleader>cc :Git commit -m "update"<cr>
 " nmap <buffer> a s
 
 " s to use as window prefix
-nnoremap <buffer> s <C-w>
+nmap <buffer> s <C-w>
