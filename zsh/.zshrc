@@ -63,10 +63,10 @@ export GPG_TTY=$TTY
 HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
- export UPDATE_ZSH_DAYS=60
+export UPDATE_ZSH_DAYS=500
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -320,8 +320,8 @@ alias -s pdf=okular
 
 # winecfg
 # 生成 32 位 Wine 环境
-export WINEARCH=win32
-# export WINEPREFIX=~/.wine32
+# export WINEARCH=win32
+export WINEPREFIX=~/.deepinwine/BookxNote/
 
 # time 命令格式
 # export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
@@ -367,6 +367,8 @@ switch_window() {
 }
 
 alias s=switch_window
+
+
 
 if hash lsd 2> /dev/null; then
 	alias ls='lsd'
@@ -772,6 +774,12 @@ alias gxtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cg
 alias greftree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=iso'
 alias grefxtree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=relative'
 alias gfetched-xtree='git xtree @{1}..'
+
+alias y='yt-dlp'
+
+# plugins/vi-mode/vi-mode.plugin.zsh
+# alt v 进入vim
+bindkey -M vicmd 'v' edit-command-line
 
 #
 # 与 Powerlevel10k instant prompt 一起使用会报错
