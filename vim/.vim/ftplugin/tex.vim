@@ -104,8 +104,8 @@ setlocal spellfile+=~/.vim/spell/latex.utf-8.add
 " 后来得知 <C-i> 就是 tab <C-m> 就是 <cr>
 
 inoremap <M-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
-nnoremap <localleader>ff : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
-nnoremap <localleader>fp o\includegraphics[width=0.5\textwidth]{figures/<C-r>+}<esc>
+nnoremap <localleader><localleader>f : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
+nnoremap <localleader><localleader>p o\includegraphics[width=0.5\textwidth]{figures/<C-r>+}<esc>
 
 " 句首字母大写
 " https://superuser.com/questions/737130/automatically-capitalize-the-first-letter-of-sentence-in-vim
