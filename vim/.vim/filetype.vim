@@ -3,6 +3,8 @@ if &cp
 endif
 
 augroup filetypedetect
+	" v2ray config.json
+  autocmd BufNewFile,BufRead config.json setlocal filetype=jsonc
   au BufNewFile,BufRead *.asm				setf masm
   au BufNewFile,BufRead TAGS				setf tags
   au BufNewFile,BufRead *.cls				setf tex
