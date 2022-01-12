@@ -7,4 +7,4 @@
 #
 
 
-cd $(wslpath $1)
+cd "$(wslpath $1)"

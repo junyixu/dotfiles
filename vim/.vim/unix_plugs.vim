@@ -89,7 +89,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	if version < 800
 		echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
 	else
-		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json'] }
+		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json', 'bash', 'sh'] }
 	endif
 
 " 下划线
@@ -115,6 +115,9 @@ if version < 800
 else
 	Plug 'skywind3000/vim-quickui'
 endif
+
+" json comment
+Plug 'neoclide/jsonc.vim'
 
 " Plug 'tpope/vim-unimpaired'
 " impaired 受损的
@@ -460,7 +463,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 		 Plug 'neoclide/coc.nvim'
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
-		set completeopt+=preview
+		set completeopt=menu
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		Plug 'ycm-core/lsp-examples'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
@@ -572,6 +575,8 @@ if !g:isPlain && !exists('g:started_by_firenvim')
     " let g:matchup_matchparen_deferred = 1
 else
 	Plug 'tpope/vim-surround'
+	  xmap s   <Plug>VSurround
+	  xmap gs  <Plug>VgSurround
 	Plug 'chrisbra/matchit'
 endif
 
@@ -610,6 +615,8 @@ Plug 'mbbill/undotree', {'on': 'UndotreeToggle'}
 
 "================== colorscheme ======================{{{
 Plug 'morhetz/gruvbox'
+" 斜体让 ~/.vim/after/syntax/git.vim 很难看
+let g:gruvbox_italicize_comments = 0
 
 Plug 'joshdick/onedark.vim'
 "================== colorscheme ======================}}}
@@ -774,6 +781,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 "{{{ sandwich 改 surround 键位
 runtime macros/sandwich/keymap/surround.vim
 " Text objects to select a text surrounded by brackets or user-specified characters.
+xmap s <Plug>(sandwich-add)
 
 xmap is <Plug>(textobj-sandwich-query-i)
 xmap as <Plug>(textobj-sandwich-query-a)
@@ -784,8 +792,8 @@ xmap iss <Plug>(textobj-sandwich-auto-i)
 xmap ass <Plug>(textobj-sandwich-auto-a)
 omap iss <Plug>(textobj-sandwich-auto-i)
 omap ass <Plug>(textobj-sandwich-auto-a)
-vmap s <Plug>(textobj-sandwich-auto-i)
-vmap s <Plug>(textobj-sandwich-auto-a)
+vmap v <Plug>(textobj-sandwich-auto-i)
+vmap v <Plug>(textobj-sandwich-auto-a)
 
 " Textobjects to select a text surrounded by same characters user
 xmap iq <Plug>(textobj-sandwich-literal-query-i)
@@ -1074,7 +1082,7 @@ let g:ycm_max_num_candidates                            = 10
 let g:ycm_autoclose_preview_window_after_completion     = 0
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
 let g:ycm_python_sys_path                               = ['/usr/lib/python3.9/site-packages/numpy']
-let g:ycm_add_preview_to_completeopt                    = 1
+let g:ycm_add_preview_to_completeopt                    = 0
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_complete_in_strings                           = 0
 " let g:ycm_global_ycm_extra_conf = '~/.local/share/nvim/.ycm_extra_conf.py'
@@ -1120,6 +1128,14 @@ let g:ycm_filetype_blacklist = {
 			\ 'text':         1,
 			\ }
 
+let g:ycm_filepath_blacklist = {
+	\ 'html': 1,
+	\ 'jsx': 1,
+	\ 'xml': 1,
+	\ 'matlab': 1,
+	\ 'mma': 1,
+	\}
+
 let g:ycm_semantic_triggers = {
 			\ 'c': ['re!\w{4}', '->', '.'],
 			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
@@ -1162,11 +1178,6 @@ let g:ycm_language_server = [
   \     'cmdline': [ expand( g:ycm_lsp_dir . '/cmake/venv/' . s:pip_os_dir . '/cmake-language-server' )],
   \     'filetypes': [ 'cmake' ],
   \    },
-			\   {
-				\     'name': 'bash',
-				\     'cmdline': [ 'node', expand( g:ycm_lsp_dir . '/bash/node_modules/.bin/bash-language-server' ), 'start' ],
-				\     'filetypes': [ 'sh', 'bash'],
-				\   },
 				\   { 'name': 'docker',
 				\     'filetypes': [ 'dockerfile' ],
 				\     'cmdline': [ expand( g:ycm_lsp_dir . '/docker/node_modules/.bin/docker-langserver' ), '--stdio' ]
@@ -1305,14 +1316,14 @@ let g:ale_linters = {
             \   'java': ['javac'],
             \   'javascript': ['eslint'],
             \   'matlab': ['mlint'],
-            \   'shell': ['shell -n flag'],
             \   'yaml': ['prettier'],
             \   'markdown': ['languagetool', 'textidote'],
 			\   'lua': ['luac'], 
             \   'vimwiki': ['textidote'],
             \   'tex': ['textidote'],
-            \   'sh': ['language_server', 'shell', 'shellcheck'],
-            \   'bash': ['language_server', 'shell', 'shellcheck'],
+            \   'sh': ['shellcheck'],
+		\   'bash': ['shellcheck'],
+		\   'zsh': ['shellcheck'],
             \   'vue': ['eslint'],
             \   'json': ['jsonlint'],
             \ }
