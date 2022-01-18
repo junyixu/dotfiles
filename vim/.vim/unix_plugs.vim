@@ -1491,6 +1491,12 @@ if !exists('g:ycm_semantic_triggers')
 endif
 au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
+augroup VimTeX
+  autocmd!
+  autocmd BufReadPre debug.tex
+		\ let b:vimtex_main = 'debug.tex'
+augroup END
+
 
 " 英文语法检查
 let g:vimtex_grammar_vlty = {'lt_command': 'languagetool'}

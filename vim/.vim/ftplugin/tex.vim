@@ -55,6 +55,7 @@ call vimtex#imaps#add_map({
 "   \ 'context' : ["itemize", "enumerate"],
 "   \})
 
+
 " let b:vimtex_main = 'main.tex'
 
 " " TODO

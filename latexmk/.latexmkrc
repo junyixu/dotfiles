@@ -10,17 +10,12 @@ $pdflatex = "pdflatex -file-line-error -halt-on-error -interaction=nonstopmode -
 $xelatex = "xelatex -file-line-error -halt-on-error -interaction=nonstopmode -shell-escape -no-pdf -synctex=1 %O %S";
 $xdvipdfmx = "xdvipdfmx -E -o %D %O %S";
 
-$bibtex_use = 1.5;
-$out_dir = "latex.out";
-
-$clean_ext = "hd nav snm synctex.gz xdv";
+$clean_ext = "hd nav snm synctex.gz xdv log";
 
 $preview_mode = 0; # 编译完成后是否自动打开 pdf；
 $preview_continuous_mode = 0; # 已经在 vimrc 里面设置了
-# @default_files = ('main.tex'); # 已经在 vimrc 里面设置了	注：	@ 表示数组
+@default_files = ('main.tex');
 # $pdf_previewer = 'okular'; # 已经在 vimrc 里面设置了， 且 linux 会根据 xdg-open 自动选择
-
-
 
 
 

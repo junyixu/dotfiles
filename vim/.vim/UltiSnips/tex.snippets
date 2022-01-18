@@ -36,8 +36,9 @@ snippet b "begin" b
 \end{$1}
 endsnippet
 
-snippet ! "%! TEX root = ./main.tex" b
-%! TEX root = ./main.tex
+snippet ! "%! TEX root = ./debug.tex" b
+%!TEX program=xelatex
+%! TEX root = debug.tex
 endsnippet
 
 snippet fontset "使用方正字体" b
