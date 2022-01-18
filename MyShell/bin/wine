@@ -1,0 +1,10 @@
+#! /bin/sh
+#
+# wine.sh
+# Copyright (C) 2022 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+
+WINEPREFIX=~/.deepinwine/BookxNote deepin-wine5 $@
