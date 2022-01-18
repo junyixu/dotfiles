@@ -11,6 +11,12 @@ else
 	let g:isNVIM=0
 endif
 
+if has("python3")
+	let g:hasPython3=1
+else
+	let g:hasPython3=0
+endif
+
 if has('Unix')
 	let g:isUNIX=1
 else

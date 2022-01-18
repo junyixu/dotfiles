@@ -391,6 +391,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 
 Plug 'mhinz/vim-startify'
 
+if g:hasPython3
 " ============ vimspector 调试 ============={{{
 Plug 'puremourning/vimspector'
 let g:vimspector_install_gadgets = [ 'debugpy', 'CodeLLDB'  ]
@@ -407,6 +408,8 @@ nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
 
 " ============ end 调试 =============}}}
+endif
+
 endif
 
 " toml 语法高亮
@@ -458,7 +461,7 @@ endif
 
 " {{{ ========================== ycm or coc 补全 ============================
 " if !g:isPlain && !exists('g:started_by_firenvim') && hostname()!='Surface'
-if !g:isPlain && !exists('g:started_by_firenvim')
+if !g:isPlain && !exists('g:started_by_firenvim') && g:hasPython3
 	if g:isNVIM || g:CoC
 		 Plug 'neoclide/coc.nvim'
 	else
@@ -659,9 +662,11 @@ if g:isNVIM && version < 802
         let g:echodoc_enable_at_startup = 1
 endif
 
+if g:hasPython3
 Plug 'SirVer/ultisnips' 
 Plug 'honza/vim-snippets'
 set rtp+=./snippets
+endif
 "============== =====================}}}
 
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -1353,6 +1358,7 @@ let g:ale_linters = {
 let g:ale_fixers = {'python': ['autopep8'], 'html': [], 'tex': ['latexindent'], '*': ['remove_trailing_lines', 'trim_whitespace']}
 "==================== end =============================}}}
 endif
+if g:hasPython3
 "================== UltiSnips ============{{{
 " better key bindings for UltiSnipsExpandTrigger
 " let g:UltiSnipsExpandTrigger = "<tab>"
@@ -1391,6 +1397,7 @@ let g:UltiSnipsEditSplit="vertical"
 " endfunction
 " au BufEnter * exec "inoremap <silent> <Tab> <C-R>=g:UltiSnips_Tab()<cr>" 
 "=================== end ========================================}}}
+endif
 "==================== mappings for vim-fswitch ================{{{
 "Plug 'derekwyatt/ "替换 vim-scripts/a.vim
 "- Switch to the file and load it into the current window >

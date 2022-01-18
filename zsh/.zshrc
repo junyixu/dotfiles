@@ -199,8 +199,6 @@ alias ctl='systemctl'
 alias sys='sudo systemctl'
 alias user='systemctl --user'
 
-alias start="sudo systemctl start"
-alias stop="sudo systemctl stop"
 alias status="systemctl status"
 
 alias reboot='systemctl reboot'
