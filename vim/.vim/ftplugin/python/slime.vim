@@ -15,3 +15,6 @@ function! _EscapeText_python(text)
     return substitute(dedented_lines, add_eol_pat, "\n", "g")
   end
 endfunction
+
+
+" noremap <localleader>d :call slime#send("doc(" . expand("<cword>").")")<CR>
