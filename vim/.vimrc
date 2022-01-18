@@ -17,6 +17,12 @@ else
 	let g:hasPython3=0
 endif
 
+if has('gui_running')
+	let g:gui_running=1
+else
+	let g:gui_running=0
+endif
+
 if has('Unix')
 	let g:isUNIX=1
 else

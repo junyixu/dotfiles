@@ -16,9 +16,6 @@ syn match texMathSymbol '\\langle\>\s*' contained conceal cchar=⟨
 syn match texMathSymbol '\s*\\rangle\>' contained conceal cchar=⟩
 syn match texMathSymbol '\\\\' contained conceal cchar=⏎
 
-" 哈密顿
-syn match texMathSymbol '\\Ham' contained conceal cchar=ℋ
-
 " 微分
 " 会把 \ddot  映射成为 dot
 " syn match texMathSymbol '\\dd' contained conceal cchar=d
@@ -30,34 +27,6 @@ syn match texMathSymbol '\\lnot\>' contained conceal cchar=¬
 syn match texMathSymbol '\\implies\>' contained conceal cchar=⇒
 syn match texMathSymbol '\\geqslant\>' contained conceal cchar=⩾
 syn match texMathSymbol '\\leqslant\>' contained conceal cchar=⩽
-
-" \mathbb characters
-syn match texMathSymbol '\\mathbb{\s*A\s*}' contained conceal cchar=𝔸
-syn match texMathSymbol '\\mathbb{\s*B\s*}' contained conceal cchar=𝔹
-syn match texMathSymbol '\\mathbb{\s*C\s*}' contained conceal cchar=ℂ
-syn match texMathSymbol '\\mathbb{\s*D\s*}' contained conceal cchar=𝔻
-syn match texMathSymbol '\\mathbb{\s*E\s*}' contained conceal cchar=𝔼
-syn match texMathSymbol '\\mathbb{\s*F\s*}' contained conceal cchar=𝔽
-syn match texMathSymbol '\\mathbb{\s*G\s*}' contained conceal cchar=𝔾
-syn match texMathSymbol '\\mathbb{\s*H\s*}' contained conceal cchar=ℍ
-syn match texMathSymbol '\\mathbb{\s*I\s*}' contained conceal cchar=𝕀
-syn match texMathSymbol '\\mathbb{\s*J\s*}' contained conceal cchar=𝕁
-syn match texMathSymbol '\\mathbb{\s*K\s*}' contained conceal cchar=𝕂
-syn match texMathSymbol '\\mathbb{\s*L\s*}' contained conceal cchar=𝕃
-syn match texMathSymbol '\\mathbb{\s*M\s*}' contained conceal cchar=𝕄
-syn match texMathSymbol '\\mathbb{\s*N\s*}' contained conceal cchar=ℕ
-syn match texMathSymbol '\\mathbb{\s*O\s*}' contained conceal cchar=𝕆
-syn match texMathSymbol '\\mathbb{\s*P\s*}' contained conceal cchar=ℙ
-syn match texMathSymbol '\\mathbb{\s*Q\s*}' contained conceal cchar=ℚ
-syn match texMathSymbol '\\mathbb{\s*R\s*}' contained conceal cchar=ℝ
-syn match texMathSymbol '\\mathbb{\s*S\s*}' contained conceal cchar=𝕊
-syn match texMathSymbol '\\mathbb{\s*T\s*}' contained conceal cchar=𝕋
-syn match texMathSymbol '\\mathbb{\s*U\s*}' contained conceal cchar=𝕌
-syn match texMathSymbol '\\mathbb{\s*V\s*}' contained conceal cchar=𝕍
-syn match texMathSymbol '\\mathbb{\s*W\s*}' contained conceal cchar=𝕎
-syn match texMathSymbol '\\mathbb{\s*X\s*}' contained conceal cchar=𝕏
-syn match texMathSymbol '\\mathbb{\s*Y\s*}' contained conceal cchar=𝕐
-syn match texMathSymbol '\\mathbb{\s*Z\s*}' contained conceal cchar=ℤ
 
 " \mathsf characters
 syn match texMathSymbol '\\mathsf{\s*a\s*}' contained conceal cchar=𝖺
@@ -174,34 +143,6 @@ syn match texMathSymbol '\\vu{\s*k\s*}' contained conceal cchar=k̂
 syn match texMathSymbol '\\vu{\s*H\s*}' contained conceal cchar=Ĥ
 
 
-
-" \mathcal characters
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*A\s*}' contained conceal cchar=𝓐
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*B\s*}' contained conceal cchar=𝓑
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*C\s*}' contained conceal cchar=𝓒
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*D\s*}' contained conceal cchar=𝓓
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*E\s*}' contained conceal cchar=𝓔
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*F\s*}' contained conceal cchar=𝓕
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*G\s*}' contained conceal cchar=𝓖
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*H\s*}' contained conceal cchar=𝓗
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*I\s*}' contained conceal cchar=𝓘
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*J\s*}' contained conceal cchar=𝓙
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*K\s*}' contained conceal cchar=𝓚
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*L\s*}' contained conceal cchar=𝓛
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*M\s*}' contained conceal cchar=𝓜
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*N\s*}' contained conceal cchar=𝓝
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*O\s*}' contained conceal cchar=𝓞
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*P\s*}' contained conceal cchar=𝓟
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*Q\s*}' contained conceal cchar=𝓠
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*R\s*}' contained conceal cchar=𝓡
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*S\s*}' contained conceal cchar=𝓢
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*T\s*}' contained conceal cchar=𝓣
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*U\s*}' contained conceal cchar=𝓤
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*V\s*}' contained conceal cchar=𝓥
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*W\s*}' contained conceal cchar=𝓦
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*X\s*}' contained conceal cchar=𝓧
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*Y\s*}' contained conceal cchar=𝓨
-syn match texMathSymbol '\\math\%(scr\|cal\){\s*Z\s*}' contained conceal cchar=𝓩
 
 syn match texSpecialChar '\\#' contained conceal cchar=#
 
@@ -410,3 +351,72 @@ call s:SuperSub('_','\\rho','ᵨ')
 call s:SuperSub('_','\\phi','ᵩ')
 call s:SuperSub('_','\\gamma','ᵧ')
 call s:SuperSub('_','\\chi','ᵪ')
+
+
+
+if g:gui_running
+  finish
+endif
+
+" \mathbb characters
+syn match texMathSymbol '\\mathbb{\s*A\s*}' contained conceal cchar=𝔸
+syn match texMathSymbol '\\mathbb{\s*B\s*}' contained conceal cchar=𝔹
+syn match texMathSymbol '\\mathbb{\s*C\s*}' contained conceal cchar=ℂ
+syn match texMathSymbol '\\mathbb{\s*D\s*}' contained conceal cchar=𝔻
+syn match texMathSymbol '\\mathbb{\s*E\s*}' contained conceal cchar=𝔼
+syn match texMathSymbol '\\mathbb{\s*F\s*}' contained conceal cchar=𝔽
+syn match texMathSymbol '\\mathbb{\s*G\s*}' contained conceal cchar=𝔾
+syn match texMathSymbol '\\mathbb{\s*H\s*}' contained conceal cchar=ℍ
+syn match texMathSymbol '\\mathbb{\s*I\s*}' contained conceal cchar=𝕀
+syn match texMathSymbol '\\mathbb{\s*J\s*}' contained conceal cchar=𝕁
+syn match texMathSymbol '\\mathbb{\s*K\s*}' contained conceal cchar=𝕂
+syn match texMathSymbol '\\mathbb{\s*L\s*}' contained conceal cchar=𝕃
+syn match texMathSymbol '\\mathbb{\s*M\s*}' contained conceal cchar=𝕄
+syn match texMathSymbol '\\mathbb{\s*N\s*}' contained conceal cchar=ℕ
+syn match texMathSymbol '\\mathbb{\s*O\s*}' contained conceal cchar=𝕆
+syn match texMathSymbol '\\mathbb{\s*P\s*}' contained conceal cchar=ℙ
+syn match texMathSymbol '\\mathbb{\s*Q\s*}' contained conceal cchar=ℚ
+syn match texMathSymbol '\\mathbb{\s*R\s*}' contained conceal cchar=ℝ
+syn match texMathSymbol '\\mathbb{\s*S\s*}' contained conceal cchar=𝕊
+syn match texMathSymbol '\\mathbb{\s*T\s*}' contained conceal cchar=𝕋
+syn match texMathSymbol '\\mathbb{\s*U\s*}' contained conceal cchar=𝕌
+syn match texMathSymbol '\\mathbb{\s*V\s*}' contained conceal cchar=𝕍
+syn match texMathSymbol '\\mathbb{\s*W\s*}' contained conceal cchar=𝕎
+syn match texMathSymbol '\\mathbb{\s*X\s*}' contained conceal cchar=𝕏
+syn match texMathSymbol '\\mathbb{\s*Y\s*}' contained conceal cchar=𝕐
+syn match texMathSymbol '\\mathbb{\s*Z\s*}' contained conceal cchar=ℤ
+
+
+" 哈密顿
+syn match texMathSymbol '\\Ham' contained conceal cchar=ℋ
+
+
+
+" \mathcal characters
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*A\s*}' contained conceal cchar=𝓐
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*B\s*}' contained conceal cchar=𝓑
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*C\s*}' contained conceal cchar=𝓒
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*D\s*}' contained conceal cchar=𝓓
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*E\s*}' contained conceal cchar=𝓔
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*F\s*}' contained conceal cchar=𝓕
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*G\s*}' contained conceal cchar=𝓖
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*H\s*}' contained conceal cchar=𝓗
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*I\s*}' contained conceal cchar=𝓘
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*J\s*}' contained conceal cchar=𝓙
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*K\s*}' contained conceal cchar=𝓚
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*L\s*}' contained conceal cchar=𝓛
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*M\s*}' contained conceal cchar=𝓜
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*N\s*}' contained conceal cchar=𝓝
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*O\s*}' contained conceal cchar=𝓞
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*P\s*}' contained conceal cchar=𝓟
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*Q\s*}' contained conceal cchar=𝓠
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*R\s*}' contained conceal cchar=𝓡
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*S\s*}' contained conceal cchar=𝓢
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*T\s*}' contained conceal cchar=𝓣
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*U\s*}' contained conceal cchar=𝓤
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*V\s*}' contained conceal cchar=𝓥
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*W\s*}' contained conceal cchar=𝓦
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*X\s*}' contained conceal cchar=𝓧
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*Y\s*}' contained conceal cchar=𝓨
+syn match texMathSymbol '\\math\%(scr\|cal\){\s*Z\s*}' contained conceal cchar=𝓩
+
