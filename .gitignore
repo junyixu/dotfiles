@@ -1,7 +1,6 @@
 docs
 public/images
 vim/.vim/plugged
-vim/.vim/spell
 vim/.vim/swap
 cache
 sockets.target.wants
