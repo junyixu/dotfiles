@@ -165,23 +165,6 @@ alias clc='clear'
 alias socks5='ALL_PROXY=socks5://localhost:1080 HTTP_PROXY=socks5://localhost:1080 HTTPS_PROXY=socks5://localhost:1080 '
 alias proxy='ALL_PROXY=http://localhost:1081 HTTP_PROXY=http://localhost:1081 HTTPS_PROXY=http://localhost:1081 '
 
-alias Syu='sudo pacman -Syu'
-alias S='sudo pacman -S'
-alias Si='pacman -Si'
-alias Ss='pacman -Ss'
-alias R='sudo pacman -Rs'
-alias Qi='pacman -Qi'
-alias Ql='pacman -Ql'
-alias Qs='pacman -Qs'
-alias Qsq='pacman -Qsq'
-alias Qm='pacman -Qm'
-alias Qmq='pacman -Qmq'
-alias Qk='pacman -Qk'
-alias Qkk='pacman -Qkk'
-alias Qo='pacman -Qo'
-alias F='pacman -F'
-alias Fl='pacman -Fl'
-
 # 虚拟机
 # sudo virsh list
 # sudo virsh start archlinux
