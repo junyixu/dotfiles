@@ -102,9 +102,12 @@ theme:
 endsnippet
 
 
+snippet img "Image"
+![img]($1)$0
+endsnippet
 
 snippet fig "Image"
-![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+![img](${1:path}})$0
 endsnippet
 
 # 使用两个 ~~ 表示划去

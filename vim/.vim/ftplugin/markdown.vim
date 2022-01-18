@@ -2,6 +2,9 @@
 " autocmd filetype markdown nnoremap ZZ :Pangu<cr>ZZ
 setlocal spell spelllang=en_us,cjk		"忽略中文对英文进行拼写检查
 
+nnoremap <buffer> <localleader>s :AsyncRun! -mode=hide markdown-screenshot.sh<CR>
+inoremap <buffer> <M-v> ![img](<C-r>+)
+
 " 没有-regex 选项时候，只有空格用加 `\` 括号不用加, CtrlSF 真奇怪
 nnoremap <buffer> <localleader>todo :CtrlSF -- -\ [\ ]\ <CR>
 

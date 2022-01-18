@@ -146,7 +146,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 alias zshcfg="vi ~/.zshrc"
-alias tmuxcfg="vi ~/.config/tmux/tmux.conf"
+alias tmuxcfg="vi ~/.tmux.conf"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # alias okular='XDG_CONFIG_HOME=/home/junyi/okularconfig okular'
@@ -206,7 +206,7 @@ alias yden='youtube-dl --write-sub --sub-lang en'
 alias ydcn='youtube-dl --write-sub --sub-lang zh-CN'
 
 alias mkcd='foo(){ mkdir -p "$1"; cd "$1"  }; foo '
-alias u='ffsend upload --copy'
+alias u='chevereto_upload.py -c ~/.config/chevereto/config.json -s'
 
 alias sagenotes='cd ~/Desktop/learning/learning_python3/sage_files && jupyter lab --no-browser'
 
