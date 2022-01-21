@@ -195,10 +195,14 @@ alias sagenotes='cd ~/Desktop/learning/learning_python3/sage_files && jupyter la
 
 gvimt(){ command gvim --remote-tab-silent $@ || command gvim $@; }
 
-alias ctl='systemctl'
-alias sys='sudo systemctl'
-alias user='systemctl --user'
+alias sc='sudo systemctl'
+# edit
+alias sce='sudo -E /usr/bin/systemctl edit --full'
+alias scu='systemctl --user'
+# edit
+alias scue='/usr/bin/systemctl --user edit --full'
 
+alias ctl='systemctl'
 alias status="systemctl status"
 
 alias reboot='systemctl reboot'
@@ -695,7 +699,7 @@ fcd() {
 }
 
 # Google Chrome (OS X/linux)
-c() {
+chromec() {
   local cols sep google_history open
   cols=$(( COLUMNS / 3 ))
   sep='{::}'
@@ -716,7 +720,7 @@ c() {
 }
 
 # b - browse chrome bookmarks
-b() {
+chromeb() {
      bookmarks_path=~/.config/chromium/Default/Bookmarks
 
      jq_script='
