@@ -195,6 +195,9 @@ alias sagenotes='cd ~/Desktop/learning/learning_python3/sage_files && jupyter la
 
 gvimt(){ command gvim --remote-tab-silent $@ || command gvim $@; }
 
+alias jc='journalctl -f -u'
+alias jcu='journalctl --user -f -u'
+
 alias sc='sudo systemctl'
 # edit
 alias sce='sudo -E /usr/bin/systemctl edit --full'
