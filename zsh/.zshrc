@@ -196,11 +196,17 @@ alias sagenotes='cd ~/Desktop/learning/learning_python3/sage_files && jupyter la
 gvimt(){ command gvim --remote-tab-silent $@ || command gvim $@; }
 
 alias sc='sudo systemctl'
+
 # edit
+# https://bbs.archlinux.org/viewtopic.php?id=240765 edit 要用 /usr/bin/systemctl 绝对路径
 alias sce='sudo -E /usr/bin/systemctl edit --full'
 alias scu='systemctl --user'
 # edit
 alias scue='/usr/bin/systemctl --user edit --full'
+
+## 用法
+# sc l<tab>
+# sc s<tab>
 
 alias ctl='systemctl'
 alias status="systemctl status"
