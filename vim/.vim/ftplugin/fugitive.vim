@@ -4,6 +4,10 @@ nnoremap <buffer> <localleader>p :Git push<CR>
 nnoremap <buffer> <localleader>c<space> :Git commit -m ""<LEFT>
 nnoremap <buffer> <localleader>cc :Git commit -m "update"<cr>
 
+" TODO git checkout $(git_main_branch)
+nnoremap <buffer> com :Git checkout main<cr>
+
+
 " I find the below is unnecessary
 " nmap <buffer> a s
 

@@ -255,6 +255,10 @@ set number								"Let's activate line numbers.
 " 按 F2 快速打开(或关闭)显示行号
 " nnoremap <F2> :set nu! nu?<CR>:set relativenumber! relativenumber?<CR>
 
+" https://www.reddit.com/r/vim/comments/5hynol/vertical_windows_for_fugitive_gdiff/
+" fugitive 
+" Gvdiff
+set diffopt+=vertical
 
 " 按 F2 快速打开(或关闭) ctrl shift v 粘贴
 nnoremap <F2> :set paste! paste?<CR>
