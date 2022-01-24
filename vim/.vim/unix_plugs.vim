@@ -138,6 +138,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 "===========  git ============={{{
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
+Plug 'stsewd/fzf-checkout.vim'
 " 侧栏显示 git 标识
 Plug 'airblade/vim-gitgutter'
     " let g:gitgutter_max_signs=700
@@ -1037,10 +1038,12 @@ let g:gutentags_ctags_exclude = [
 "====================== end ctags ==========================}}}
 endif
 "================== git ============{{{
-nnoremap <leader>gd<SPACE> :Gvdiffsplit<SPACE>
+nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gd<SPACE> :Gdiffsplit<SPACE>
 nnoremap <leader>gdd :Gdiffsplit<cr>
 nnoremap <leader>gdv :Gvdiffsplit<cr>
 nnoremap <leader>gds :Ghdiffsplit<cr>
+nnoremap <leader>gb :GBranches<cr>
 " left 留下左边
 nnoremap <leader>gh :diffget //2<cr>
 " right 留下右边

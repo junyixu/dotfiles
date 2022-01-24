@@ -2,6 +2,8 @@ GPATH
 GTAGS
 GRTAGS
 tags
+tags.lock
+tags.temp
 .ctags
 .notags
 .tasks
