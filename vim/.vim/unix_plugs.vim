@@ -137,6 +137,12 @@ Plug 'tpope/vim-apathy'
 if !g:isPlain && !exists('g:started_by_firenvim')
 "===========  git ============={{{
 Plug 'tpope/vim-fugitive'
+" github
+Plug 'tpope/vim-rhubarb'
+" gitlab
+Plug 'shumphrey/fugitive-gitlab.vim'
+let g:fugitive_gitlab_domains = ['https://gitee.com']
+Plug 'junegunn/gv.vim'
 Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
 Plug 'stsewd/fzf-checkout.vim'
 " 侧栏显示 git 标识
@@ -1560,17 +1566,26 @@ let g:vimtex_view_general_options_latexmk = '--unique'
 " 编译选项 连续编译 preview
 let g:vimtex_compiler_latexmk = {
 			\ 'callback' : 1,
+			\ 'continuous' : 1,
 			\ 'executable' : 'latexmk',
-        \ 'continuous' : 1,
 			\ 'options' : [
-			\ '-pdf',
-			\ '-verbose',
-			\ '-bibtex',
-			\ '-file-line-error',
-			\ '-synctex=1',
-			\ '-interaction=nonstopmode',
+			\	'-file-line-error',
+			\	'-synctex=1',
+			\	'-interaction=nonstopmode',
 			\ ],
 			\}
+
+		
+" -file-line-error 使报错输出文件和行号； 
+" -halt-on-error  使编译遇到错误时立即停止；
+"
+" 打开同步对照跳转模式
+" -synctex=1 
+"
+" 在遇到错误的时候依旧会暂停来等待用户处理, 而使用 -interaction=nonstopmode 的话, latexmk 会一气呵成运行到最后, 哪怕没有文件输出.
+" -interaction=nonstopmode 
+
+" continuous 就是 latexmk with the `-pvc` option
 if $SSH_CONNECTION
 	let g:vimtex_compiler_latexmk['continuous']=0
 endif
