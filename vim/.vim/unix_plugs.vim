@@ -45,6 +45,11 @@ if g:isNVIM
 else
     call plug#begin('~/.vim/plugged')
 
+" airline
+let g:airline_detect_spell=0
+let g:airline_detect_spelllang=0
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#whitespace#enabled = 0
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'voldikss/vim-mma'
 	let g:mma_candy = 2
@@ -306,7 +311,6 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     " nnoremap <silent> g :WhichKey 'g'<CR>
     "}}}
 
-Plug 'tpope/vim-repeat'
 
 if !g:isPlain && !exists('g:started_by_firenvim')
 "========================= format ==============================={{{
@@ -589,6 +593,7 @@ else
 	  xmap gs  <Plug>VgSurround
 	Plug 'chrisbra/matchit'
 endif
+Plug 'tpope/vim-repeat'
 
 Plug 'vimwiki/vimwiki'
 
