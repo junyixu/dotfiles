@@ -1,4 +1,5 @@
 let $PYTHONUNBUFFERED=1
+" =================== jupyter vim ========================={{{
 " Run current file
 "nnoremap <buffer> <silent> <localleader>R :JupyterRunFile<CR>
 "nnoremap <buffer> <silent> <localleader>I :PythonImportThisFile<CR>
@@ -23,8 +24,8 @@ let $PYTHONUNBUFFERED=1
 
 "" Debugging maps
 "nnoremap <buffer> <silent> <localleader>b :PythonSetBreak<CR>
+" =================== end jupyter vim =========================}}}
 
-let g:slime_cell_delimiter = "##"
 
 command! PythonNormalModeCreateCell :execute 'normal! :set paste<CR>m`O##<ESC>``:set nopaste<CR>'
 command! PythonVisualModeCreateCell :execute 'normal! gvD:set paste<CR>O##<CR>##<ESC>P:set nopaste<CR>'
@@ -33,5 +34,30 @@ command! PythonInsertModeCreateCell :execute 'normal! I## '
 nnoremap <buffer><silent> <M-c> :PythonNormalModeCreateCell<CR>
 vnoremap <buffer><silent> <M-c> :<C-u>PythonVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:PythonInsertModeCreateCell<CR>
+
+" ===================== slime ======================{{{
+let g:slime_cell_delimiter = "##"
+if !exists("g:slime_dispatch_ipython_pause")
+  let g:slime_dispatch_ipython_pause = 100
+end
+
+function! _EscapeText_python(text)
+  if exists('g:slime_python_ipython') && len(split(a:text,"\n")) > 1
+    return ["%cpaste -q\n", g:slime_dispatch_ipython_pause, a:text, "--\n"]
+  else
+    let empty_lines_pat = '\(^\|\n\)\zs\(\s*\n\+\)\+'
+    let no_empty_lines = substitute(a:text, empty_lines_pat, "", "g")
+    let dedent_pat = '\(^\|\n\)\zs'.matchstr(no_empty_lines, '^\s*')
+    let dedented_lines = substitute(no_empty_lines, dedent_pat, "", "g")
+    let except_pat = '\(elif\|else\|except\|finally\)\@!'
+    let add_eol_pat = '\n\s[^\n]\+\n\zs\ze\('.except_pat.'\S\|$\)'
+    return substitute(dedented_lines, add_eol_pat, "\n", "g")
+  end
+endfunction
+
+
+noremap <localleader>d :call slime#send("doc(" . expand("<cword>").")")<CR>
+
+" ===================== end slime ======================}}}
 
 source $HOME/.vim/ycmMaps.vim
