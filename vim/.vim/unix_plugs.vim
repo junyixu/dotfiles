@@ -445,6 +445,8 @@ Plug 'skywind3000/asyncrun.vim'
 
     " nnoremap <silent> <F4> :AsyncRun -cwd=<root>/build cmake .. <cr>
 
+	command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
 	" https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
 	" 不会更新当前的 Git Status
 	command! -bang -bar -nargs=* Gpush execute 'AsyncRun<bang> -cwd=' .
