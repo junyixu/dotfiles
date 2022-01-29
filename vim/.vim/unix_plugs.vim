@@ -50,6 +50,7 @@ let g:airline_detect_spell=0
 let g:airline_detect_spelllang=0
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#whitespace#enabled = 0
+
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'voldikss/vim-mma'
 	let g:mma_candy = 2
@@ -438,11 +439,18 @@ Plug 'skywind3000/asyncrun.vim'
     " 任务结束时候是否响铃提醒
     let g:asyncrun_bell = 0
 
+
     let g:asyncrun_rootmarks = ['.svn', '.git', '.root','.project', '_darcs', 'build.xml', '.tasks']
 	" let g:asynctasks_term_pos = 'tab' " vim, bottom
 
     " nnoremap <silent> <F4> :AsyncRun -cwd=<root>/build cmake .. <cr>
 
+	" https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
+	" 不会更新当前的 Git Status
+	command! -bang -bar -nargs=* Gpush execute 'AsyncRun<bang> -cwd=' .
+			  \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+	command! -bang -bar -nargs=* Gfetch execute 'AsyncRun<bang> -cwd=' .
+			  \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
     " " 设置 F10 打开 / 关闭 Quickfix 窗口
     " nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
     "}}}
