@@ -1,3 +1,6 @@
+" :help fo-table
+set formatoptions-=o
+
 " https://vim.fandom.com/wiki/Completion_using_a_syntax_file
 " :help ft-syntax-omni
 " setlocal omnifunc=syntaxcomplete#Complete
