@@ -1483,7 +1483,7 @@ let g:ale_linters = {
             \   'markdown': ['languagetool', 'textidote'],
 			\   'lua': ['luac'], 
             \   'vimwiki': ['textidote'],
-            \   'tex': ['textidote', 'lty'],
+            \   'tex': ['textidote'],
             \   'sh': ['shellcheck'],
 		\   'bash': ['shellcheck'],
 		\   'zsh': ['shellcheck'],
