@@ -1271,6 +1271,139 @@ if g:juliaLSP
 endif
 
 "=================== YCM | you complete me========================================}}}
+if !g:isPlain && !exists('g:started_by_firenvim')
+"================= VimTeX ==============================={{{
+
+" VimTeX sets the 'omnifunc' to provide omni completion
+let g:vimtex_complete_enabled=1
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+
+augroup VimTeX
+  autocmd!
+  autocmd BufReadPre debug.tex
+		\ let b:vimtex_main = 'debug.tex'
+augroup END
+
+let g:vimtex_syntax_nospell_comments=1
+
+" " 英文语法检查
+" let g:vimtex_grammar_vlty = {
+" 	\ 'lt_command': 'languagetool',
+" 	\ 'lt_disable': 'WHITESPACE_RULE',
+" 	\ 'lt_enable': '',
+" 	\ 'lt_disablecategories': '',
+" 	\ 'lt_enablecategories': '',
+" 	\ 'server': 'no',
+" 	\ 'shell_options': '',
+" 	\ 'show_suggestions': 0,
+" 	\ 'encoding': 'auto',
+" \}
+
+let g:vimtex_grammar_vlty = {}
+let g:vimtex_grammar_vlty.lt_command = 'languagetool'
+" let g:vimtex_grammar_vlty.server = 'my'
+let g:vimtex_grammar_vlty.show_suggestions = 1
+let g:vimtex_grammar_vlty.shell_options =
+        \  ' --packages "*"'
+        \ . ' --equation-punctuation display'
+        \ . ' --single-letters "I\|i.\,A.\|z.\,B.\|\|"'
+        \ . " --lt-options '~--language en-US'"
+
+let g:ale_tex_lty_command = 'languagetool'
+" default place of LT installation: '~/lib/LanguageTool'
+let g:ale_tex_lty_ltdirectory = '~/lib/LanguageTool-4.7'
+" uncomment the following assignment, if LT has been installed via package
+" manager; in this case, g:ale_tex_lty_ltdirectory hasn't to be specified
+let g:ale_tex_lty_server = 'my'
+" default language: 'en-GB'
+let g:ale_tex_lty_language = 'en-GB'
+" default disabled LT rules: 'WHITESPACE_RULE'
+let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
+let g:ale_tex_lty_shelloptions = '--single-letters "A|a|d|t|m|I|e.g.|i.e.||"'
+				\. ' --simple-equations'
+                " \ . ' --equation-punctuation display'
+
+" fold 造成 vimtex 相当卡顿
+let g:vimtex_fold_enabled=0
+
+" 在这里需要注意一下, 如果用了自动补全的插件, 需要设置:
+let g:vimtex_fold_manual=1
+" 不然会变得好慢.
+
+" 默认的还有 itemize
+let g:vimtex_indent_lists = ['thebibliography']
+
+" let  g:vimtex_fold_types = {
+" 	   \ 'preamble' : {'enabled' : 1},
+" 	   \ 'envs' : {
+" 	   \	'whitelist' : ['figure', 'table'],
+" 	   \},
+" 	   \ 'sections' : {
+" 	   \   'parse_levels' : 2,
+" 	   \   'sections' : [      
+" 	   \     'part',
+" 	   \     'chapter',
+" 	   \     'section',
+" 	   \   ],
+" 	   \   'parts' : [     
+" 	   \     'appendix',
+" 	   \     'frontmatter',
+" 	   \     'mainmatter',
+" 	   \     'backmatter',
+" 	   \   ],
+" 	   \ },
+" 	   \}
+
+let g:vimtex_doc_handlers = ['MyHandler']
+function! MyHandler(context)
+  call vimtex#doc#make_selection(a:context)
+  if !empty(a:context.selected)
+	execute '!texdoc' a:context.selected '&'
+	" let myjob=job_start('texdoc '+a:context.selected)
+  endif
+  return 1
+endfunction
+
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
+" https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
+
+" 编译选项 连续编译 preview
+let g:vimtex_compiler_latexmk = {
+			\ 'callback' : 1,
+			\ 'continuous' : 1,
+			\ 'executable' : 'latexmk',
+			\ 'options' : [
+			\	'-file-line-error',
+			\	'-synctex=1',
+			\	'-interaction=nonstopmode',
+			\ ],
+			\}
+
+		
+" -file-line-error 使报错输出文件和行号； 
+" -halt-on-error  使编译遇到错误时立即停止；
+"
+" 打开同步对照跳转模式
+" -synctex=1 
+"
+" 在遇到错误的时候依旧会暂停来等待用户处理, 而使用 -interaction=nonstopmode 的话, latexmk 会一气呵成运行到最后, 哪怕没有文件输出.
+" -interaction=nonstopmode 
+
+" continuous 就是 latexmk with the `-pvc` option
+if $SSH_CONNECTION
+	let g:vimtex_compiler_latexmk['continuous']=0
+endif
+
+let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+
+"=================== end VimTex ===============================}}}
+endif
 "==================== w0rp/ale ============================={{{
 " <https://www.zhihu.com/question/47691414/answer/373700711>
 let g:ale_linters_explicit = 1
@@ -1350,7 +1483,7 @@ let g:ale_linters = {
             \   'markdown': ['languagetool', 'textidote'],
 			\   'lua': ['luac'], 
             \   'vimwiki': ['textidote'],
-            \   'tex': ['textidote'],
+            \   'tex': ['textidote', 'lty'],
             \   'sh': ['shellcheck'],
 		\   'bash': ['shellcheck'],
 		\   'zsh': ['shellcheck'],
@@ -1512,105 +1645,6 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_table_mappings=0
 
 "=================== end vimwiki ===============================}}}
-
-if !g:isPlain && !exists('g:started_by_firenvim')
-"================= VimTeX ==============================={{{
-
-" VimTeX sets the 'omnifunc' to provide omni completion
-let g:vimtex_complete_enabled=1
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-
-augroup VimTeX
-  autocmd!
-  autocmd BufReadPre debug.tex
-		\ let b:vimtex_main = 'debug.tex'
-augroup END
-
-
-" 英文语法检查
-let g:vimtex_grammar_vlty = {'lt_command': 'languagetool'}
-
-" fold 造成 vimtex 相当卡顿
-let g:vimtex_fold_enabled=0
-
-" 在这里需要注意一下, 如果用了自动补全的插件, 需要设置:
-let g:vimtex_fold_manual=1
-" 不然会变得好慢.
-
-" 默认的还有 itemize
-let g:vimtex_indent_lists = ['thebibliography']
-
-" let  g:vimtex_fold_types = {
-" 	   \ 'preamble' : {'enabled' : 1},
-" 	   \ 'envs' : {
-" 	   \	'whitelist' : ['figure', 'table'],
-" 	   \},
-" 	   \ 'sections' : {
-" 	   \   'parse_levels' : 2,
-" 	   \   'sections' : [      
-" 	   \     'part',
-" 	   \     'chapter',
-" 	   \     'section',
-" 	   \   ],
-" 	   \   'parts' : [     
-" 	   \     'appendix',
-" 	   \     'frontmatter',
-" 	   \     'mainmatter',
-" 	   \     'backmatter',
-" 	   \   ],
-" 	   \ },
-" 	   \}
-
-let g:vimtex_doc_handlers = ['MyHandler']
-function! MyHandler(context)
-  call vimtex#doc#make_selection(a:context)
-  if !empty(a:context.selected)
-	execute '!texdoc' a:context.selected '&'
-	" let myjob=job_start('texdoc '+a:context.selected)
-  endif
-  return 1
-endfunction
-
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
-" https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
-
-" 编译选项 连续编译 preview
-let g:vimtex_compiler_latexmk = {
-			\ 'callback' : 1,
-			\ 'continuous' : 1,
-			\ 'executable' : 'latexmk',
-			\ 'options' : [
-			\	'-file-line-error',
-			\	'-synctex=1',
-			\	'-interaction=nonstopmode',
-			\ ],
-			\}
-
-		
-" -file-line-error 使报错输出文件和行号； 
-" -halt-on-error  使编译遇到错误时立即停止；
-"
-" 打开同步对照跳转模式
-" -synctex=1 
-"
-" 在遇到错误的时候依旧会暂停来等待用户处理, 而使用 -interaction=nonstopmode 的话, latexmk 会一气呵成运行到最后, 哪怕没有文件输出.
-" -interaction=nonstopmode 
-
-" continuous 就是 latexmk with the `-pvc` option
-if $SSH_CONNECTION
-	let g:vimtex_compiler_latexmk['continuous']=0
-endif
-
-let g:tex_flavor='latex'
-let g:vimtex_quickfix_mode=0
-
-"=================== end VimTex ===============================}}}
-endif
 
 "=================== fzf ==============================={{{
 nnoremap <leader>ft :BTags<space>

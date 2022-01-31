@@ -86,6 +86,7 @@ endfunction
 nnoremap <buffer> <space><space> :call g:PreviewEq4LaTeX()<cr>
 vnoremap <buffer> <CR> :call g:VisualPreviewEq4LaTeX()<cr>
 
+nnoremap <buffer> <F8> :compiler vlty<CR>
 
 " 设置格式化时制表符占用空格数
 setlocal shiftwidth=2
