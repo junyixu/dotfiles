@@ -532,7 +532,7 @@ endif
 
 
 " export isWSL=1 in ~/.zprofile
-if SUDO!=1 && g:isPlain!=1 && $isWSL!='1'
+if SUDO!=1 && g:isPlain!=1 && $SSH_CONNECTION == '' && $isWSL!='1'
 " if SUDO!=1
 	" fcitx.vim 共需要 30 毫秒左右
 	Plug 'lilydjwg/fcitx.vim'
@@ -646,6 +646,7 @@ let g:gruvbox_italicize_comments = 0
 Plug 'joshdick/onedark.vim'
 "================== colorscheme ======================}}}
 
+Plug 'untitled-ai/jupyter_ascending.vim'
 " Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
     " let g:jupyter_mapkeys = 0
 Plug 'mattn/calendar-vim'

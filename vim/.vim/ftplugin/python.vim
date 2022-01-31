@@ -1,3 +1,6 @@
+nmap <space>x <Plug>JupyterExecute
+nmap <space>X <Plug>JupyterExecuteAll
+
 let $PYTHONUNBUFFERED=1
 " =================== jupyter vim ========================={{{
 " Run current file
@@ -27,16 +30,16 @@ let $PYTHONUNBUFFERED=1
 " =================== end jupyter vim =========================}}}
 
 
-command! PythonNormalModeCreateCell :execute 'normal! :set paste<CR>m`O##<ESC>``:set nopaste<CR>'
-command! PythonVisualModeCreateCell :execute 'normal! gvD:set paste<CR>O##<CR>##<ESC>P:set nopaste<CR>'
-command! PythonInsertModeCreateCell :execute 'normal! I## '
+command! PythonNormalModeCreateCell :execute 'normal! :set paste<CR>m`O# %%<ESC>``:set nopaste<CR>'
+command! PythonVisualModeCreateCell :execute 'normal! gvD:set paste<CR>O# %%<CR># %%<ESC>P:set nopaste<CR>'
+command! PythonInsertModeCreateCell :execute 'normal! I# %% '
 
 nnoremap <buffer><silent> <M-c> :PythonNormalModeCreateCell<CR>
 vnoremap <buffer><silent> <M-c> :<C-u>PythonVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:PythonInsertModeCreateCell<CR>
 
 " ===================== slime ======================{{{
-let g:slime_cell_delimiter = "##"
+let g:slime_cell_delimiter = "# %%"
 if !exists("g:slime_dispatch_ipython_pause")
   let g:slime_dispatch_ipython_pause = 100
 end
