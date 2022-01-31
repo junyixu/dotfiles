@@ -1369,7 +1369,6 @@ endfunction
 
 let g:vimtex_view_general_viewer = 'okular'
 let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
 " https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
 
 " 编译选项 连续编译 preview
