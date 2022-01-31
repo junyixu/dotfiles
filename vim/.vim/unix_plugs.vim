@@ -1317,12 +1317,12 @@ let g:ale_tex_lty_command = 'languagetool'
 let g:ale_tex_lty_ltdirectory = '~/lib/LanguageTool-4.7'
 " uncomment the following assignment, if LT has been installed via package
 " manager; in this case, g:ale_tex_lty_ltdirectory hasn't to be specified
-let g:ale_tex_lty_server = 'my'
+let g:ale_tex_lty_server = 'lt'
 " default language: 'en-GB'
 let g:ale_tex_lty_language = 'en-GB'
 " default disabled LT rules: 'WHITESPACE_RULE'
 let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
-let g:ale_tex_lty_shelloptions = '--single-letters "A|a|d|t|m|I|e.g.|i.e.||"'
+let g:ale_tex_lty_shelloptions = '--single-letters "A|a|d|t|m|s|I|e.g.|i.e.||"'
 				\. ' --simple-equations'
                 " \ . ' --equation-punctuation display'
 
@@ -1490,6 +1490,7 @@ let g:ale_linters = {
             \   'vue': ['eslint'],
             \   'json': ['jsonlint'],
             \ }
+
 " let g:ale_languagetool_options='--autoDetect --mothertongue zh-CN'
 " alias 好像不起作用
 " let g:ale_linter_aliases = {
