@@ -1314,7 +1314,7 @@ let g:vimtex_grammar_vlty.shell_options =
 
 let g:ale_tex_lty_command = 'languagetool'
 " default place of LT installation: '~/lib/LanguageTool'
-let g:ale_tex_lty_ltdirectory = '~/lib/LanguageTool-4.7'
+" let g:ale_tex_lty_ltdirectory = '~/lib/LanguageTool-4.7'
 " uncomment the following assignment, if LT has been installed via package
 " manager; in this case, g:ale_tex_lty_ltdirectory hasn't to be specified
 let g:ale_tex_lty_server = 'lt'
@@ -1417,7 +1417,7 @@ let g:ale_lint_on_insert_leave = 1
 " 在 vim 自带的状态栏中整合 ale
 " let g:ale_statusline_format = ['⨉ %d', '⚡ %d', '✔ OK']
 " let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+" let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:airline#extensions#ale#enabled = 1
 
 " let g:ale_completion_enabled=1
@@ -1482,7 +1482,7 @@ let g:ale_linters = {
             \   'markdown': ['languagetool', 'textidote'],
 			\   'lua': ['luac'], 
             \   'vimwiki': ['textidote'],
-            \   'tex': ['textidote'],
+            \   'tex': ['textidote', 'lty'],
             \   'sh': ['shellcheck'],
 		\   'bash': ['shellcheck'],
 		\   'zsh': ['shellcheck'],
