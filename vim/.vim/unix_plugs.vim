@@ -159,7 +159,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 "=========== end git =============}}}
 Plug 'zackhsi/fzf-tags'
-nmap <C-]> <Plug>(fzf_tags)
+nmap <space><C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
 
 Plug 'dyng/ctrlsf.vim'
