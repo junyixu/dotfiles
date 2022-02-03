@@ -425,8 +425,43 @@ nmap daa mzggVG"+dZ
 nmap Y y$
 
 "在一行有居多字的时候可以跳转
-nnoremap <C-j> gj
-nnoremap <C-k> gk
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k 
+
+" key maps from thePrime the youtuber
+" Jumplist mutations
+" :help m'
+" 会打断 :<num><CR>
+" 不好用
+" nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+" nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+" Moving text
+" :help move
+" :help '>
+vnoremap J :move '>+1<CR>gv=gv
+vnoremap K :move '<-2<CR>gv=gv
+" inoremap <C-j> <ESC>:m .+1<CR>==
+" inoremap <C-k> <ESC>:m .-2<CR>==
+" nnoremap <leader>k :m .-2<CR>==
+" nnoremap <leader>j :m .+1<CR>==
+
+" Keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" nmap J mzJ`z
+"" 已经有了 ]g 和 ]l 了，不过按两个字母确实不好用
+" nnoremap <C-j> :cnext<CR>zzzv
+" nnoremap <C-K> :cprevious<CR>zzzv
+
+" Undo break points
+" :help i_u
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
 
 " for goldendict
 " vnoremap <C-c> "+ygv
