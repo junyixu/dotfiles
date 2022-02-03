@@ -65,12 +65,12 @@ function g:PreviewEq4LaTeX()
 	" if !isdirectory("/tmp/latex_img")
 	" 	call mkdir("/tmp/latex_img", "p", 0700)
 	" endif
-	execute 'normal "xyie'
+	normal "xyie
 	" TODO latex_img 目录由 ueberzug_latex.py 创建，导致第一次 writefile
 	" 无法写入 formula.txt，紧接着 ueberzug_latex.py 无法 cat formula.txt
 	call writefile(getreg('x',1,1), '/tmp/latex_img/formula.txt')
 	" call system('~/scripts/ueberzug_latex.py')
-	execute 'AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py'
+	AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py
 	" let job = job_start('~/scripts/ueberzug_latex.py')
 	" let job = job_start(["/bin/python", "~/scripts/ueberzug_latex.py"])
 	" echo job_status(job)
@@ -81,7 +81,7 @@ function g:PreviewEq4LaTeX()
 endfunction
 function g:VisualPreviewEq4LaTeX()
 	call writefile(getreg('*',1,1), '/tmp/latex_img/formula.txt')
-	execute 'AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py'
+	AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py
 endfunction
 nnoremap <buffer> <space><space> :call g:PreviewEq4LaTeX()<cr>
 vnoremap <buffer> <CR> :call g:VisualPreviewEq4LaTeX()<cr>
