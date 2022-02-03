@@ -109,24 +109,24 @@ setlocal fo+=B
 setlocal spellcapcheck=""
 
 
-" 锚点
-" 定义人工锚点 
-inoremap <buffer> <silent> ,, <++>
-" 切换到下一个锚点  
-inoremap <buffer> <silent> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
-
-" 加粗 
-inoremap <buffer> <silent> ,b **** <++><Esc>F*hi
-" 行内代码引用
-inoremap <buffer> <silent> ,q `` <++><Esc>F`i
-" 代码块引用
-inoremap <buffer> <silent> ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA  
-" 下划线
-inoremap <buffer> <silent> ,u <u></u><++><Esc>F/hi
-" 图片
-inoremap <buffer> <silent> ,p ![](<++>) <++><Esc>F[a
-" 链接
-inoremap <buffer> <silent> ,a [](<++>) <++><Esc>F[a
+" TODO 需要把 , 换 成 <M->
+" " 锚点
+" " 定义人工锚点 
+" inoremap <buffer> <silent> ,, <++>
+" " 切换到下一个锚点  
+" inoremap <buffer> <silent> ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+" " 加粗 
+" inoremap <buffer> <silent> ,b **** <++><Esc>F*hi
+" " 行内代码引用
+" inoremap <buffer> <silent> ,q `` <++><Esc>F`i
+" " 代码块引用
+" inoremap <buffer> <silent> ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA  
+" " 下划线
+" inoremap <buffer> <silent> ,u <u></u><++><Esc>F/hi
+" " 图片
+" inoremap <buffer> <silent> ,p ![](<++>) <++><Esc>F[a
+" " 链接
+" inoremap <buffer> <silent> ,a [](<++>) <++><Esc>F[a
 
 imap <M-L><C-J> <Plug>VimwikiListNextSymbol
 imap <M-L><C-K> <Plug>VimwikiListPrevSymbol

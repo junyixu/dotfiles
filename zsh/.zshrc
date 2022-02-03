@@ -878,7 +878,7 @@ export GTAGSLABEL=native-pygments
 # 已经写入 ~/.zprofile 不再需要在 ~/.zshrc 中写入
 
 
-[ "$TERM" == alacritty ] && unset LSCOLORS && unset LS_COLORS && export TERM="xterm-256color"
+[[ "$TERM" == alacritty ]] && unset LSCOLORS && unset LS_COLORS && export TERM="xterm-256color"
 
 # 按空格键时自动进行历史扩展
 bindkey " " magic-space

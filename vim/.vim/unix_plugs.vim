@@ -45,6 +45,12 @@ if g:isNVIM
 else
     call plug#begin('~/.vim/plugged')
 
+" airline
+let g:airline_detect_spell=0
+let g:airline_detect_spelllang=0
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#whitespace#enabled = 0
+
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'voldikss/vim-mma'
 	let g:mma_candy = 2
@@ -137,6 +143,12 @@ Plug 'tpope/vim-apathy'
 if !g:isPlain && !exists('g:started_by_firenvim')
 "===========  git ============={{{
 Plug 'tpope/vim-fugitive'
+" github
+Plug 'tpope/vim-rhubarb'
+" gitlab
+Plug 'shumphrey/fugitive-gitlab.vim'
+let g:fugitive_gitlab_domains = ['https://gitee.com']
+Plug 'junegunn/gv.vim'
 Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
 Plug 'stsewd/fzf-checkout.vim'
 " 侧栏显示 git 标识
@@ -147,7 +159,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 "=========== end git =============}}}
 Plug 'zackhsi/fzf-tags'
-nmap <C-]> <Plug>(fzf_tags)
+nmap <space><C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
 
 Plug 'dyng/ctrlsf.vim'
@@ -300,7 +312,6 @@ Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
     " nnoremap <silent> g :WhichKey 'g'<CR>
     "}}}
 
-Plug 'tpope/vim-repeat'
 
 if !g:isPlain && !exists('g:started_by_firenvim')
 "========================= format ==============================={{{
@@ -428,11 +439,20 @@ Plug 'skywind3000/asyncrun.vim'
     " 任务结束时候是否响铃提醒
     let g:asyncrun_bell = 0
 
+
     let g:asyncrun_rootmarks = ['.svn', '.git', '.root','.project', '_darcs', 'build.xml', '.tasks']
 	" let g:asynctasks_term_pos = 'tab' " vim, bottom
 
     " nnoremap <silent> <F4> :AsyncRun -cwd=<root>/build cmake .. <cr>
 
+	command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+
+	" https://github.com/skywind3000/asyncrun.vim/wiki/Cooperate-with-famous-plugins#fugitive
+	" 不会更新当前的 Git Status
+	command! -bang -bar -nargs=* Gpush execute 'AsyncRun<bang> -cwd=' .
+			  \ fnameescape(FugitiveGitDir()) 'git push' <q-args>
+	command! -bang -bar -nargs=* Gfetch execute 'AsyncRun<bang> -cwd=' .
+			  \ fnameescape(FugitiveGitDir()) 'git fetch' <q-args>
     " " 设置 F10 打开 / 关闭 Quickfix 窗口
     " nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
     "}}}
@@ -512,7 +532,7 @@ endif
 
 
 " export isWSL=1 in ~/.zprofile
-if SUDO!=1 && g:isPlain!=1 && $isWSL!='1'
+if SUDO!=1 && g:isPlain!=1 && $SSH_CONNECTION == '' && $isWSL!='1'
 " if SUDO!=1
 	" fcitx.vim 共需要 30 毫秒左右
 	Plug 'lilydjwg/fcitx.vim'
@@ -583,6 +603,7 @@ else
 	  xmap gs  <Plug>VgSurround
 	Plug 'chrisbra/matchit'
 endif
+Plug 'tpope/vim-repeat'
 
 Plug 'vimwiki/vimwiki'
 
@@ -625,6 +646,7 @@ let g:gruvbox_italicize_comments = 0
 Plug 'joshdick/onedark.vim'
 "================== colorscheme ======================}}}
 
+Plug 'untitled-ai/jupyter_ascending.vim'
 " Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
     " let g:jupyter_mapkeys = 0
 Plug 'mattn/calendar-vim'
@@ -1039,7 +1061,7 @@ let g:gutentags_ctags_exclude = [
 endif
 "================== git ============{{{
 nnoremap <leader>gs :Git<cr>
-nnoremap <leader>gd<SPACE> :Gvdiffsplit<SPACE>
+nnoremap <leader>gd<SPACE> :Gdiffsplit<SPACE>
 nnoremap <leader>gdd :Gdiffsplit<cr>
 nnoremap <leader>gdv :Gvdiffsplit<cr>
 nnoremap <leader>gds :Ghdiffsplit<cr>
@@ -1249,6 +1271,138 @@ if g:juliaLSP
 endif
 
 "=================== YCM | you complete me========================================}}}
+if !g:isPlain && !exists('g:started_by_firenvim')
+"================= VimTeX ==============================={{{
+
+" VimTeX sets the 'omnifunc' to provide omni completion
+let g:vimtex_complete_enabled=1
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+
+augroup VimTeX
+  autocmd!
+  autocmd BufReadPre debug.tex
+		\ let b:vimtex_main = 'debug.tex'
+augroup END
+
+let g:vimtex_syntax_nospell_comments=1
+
+" " 英文语法检查
+" let g:vimtex_grammar_vlty = {
+" 	\ 'lt_command': 'languagetool',
+" 	\ 'lt_disable': 'WHITESPACE_RULE',
+" 	\ 'lt_enable': '',
+" 	\ 'lt_disablecategories': '',
+" 	\ 'lt_enablecategories': '',
+" 	\ 'server': 'no',
+" 	\ 'shell_options': '',
+" 	\ 'show_suggestions': 0,
+" 	\ 'encoding': 'auto',
+" \}
+
+let g:vimtex_grammar_vlty = {}
+let g:vimtex_grammar_vlty.lt_command = 'languagetool'
+" let g:vimtex_grammar_vlty.server = 'my'
+let g:vimtex_grammar_vlty.show_suggestions = 1
+let g:vimtex_grammar_vlty.shell_options =
+        \  ' --packages "*"'
+        \ . ' --equation-punctuation display'
+        \ . ' --single-letters "I\|i.\,A.\|z.\,B.\|\|"'
+        \ . " --lt-options '~--language en-US'"
+
+let g:ale_tex_lty_command = 'languagetool'
+" default place of LT installation: '~/lib/LanguageTool'
+" let g:ale_tex_lty_ltdirectory = '~/lib/LanguageTool-4.7'
+" uncomment the following assignment, if LT has been installed via package
+" manager; in this case, g:ale_tex_lty_ltdirectory hasn't to be specified
+let g:ale_tex_lty_server = 'lt'
+" default language: 'en-GB'
+let g:ale_tex_lty_language = 'en-GB'
+" default disabled LT rules: 'WHITESPACE_RULE'
+let g:ale_tex_lty_disable = 'WHITESPACE_RULE'
+let g:ale_tex_lty_shelloptions = '--single-letters "A|a|d|t|m|s|I|e.g.|i.e.||"'
+				\. ' --simple-equations'
+                " \ . ' --equation-punctuation display'
+
+" fold 造成 vimtex 相当卡顿
+let g:vimtex_fold_enabled=0
+
+" 在这里需要注意一下, 如果用了自动补全的插件, 需要设置:
+let g:vimtex_fold_manual=1
+" 不然会变得好慢.
+
+" 默认的还有 itemize
+let g:vimtex_indent_lists = ['thebibliography']
+
+" let  g:vimtex_fold_types = {
+" 	   \ 'preamble' : {'enabled' : 1},
+" 	   \ 'envs' : {
+" 	   \	'whitelist' : ['figure', 'table'],
+" 	   \},
+" 	   \ 'sections' : {
+" 	   \   'parse_levels' : 2,
+" 	   \   'sections' : [      
+" 	   \     'part',
+" 	   \     'chapter',
+" 	   \     'section',
+" 	   \   ],
+" 	   \   'parts' : [     
+" 	   \     'appendix',
+" 	   \     'frontmatter',
+" 	   \     'mainmatter',
+" 	   \     'backmatter',
+" 	   \   ],
+" 	   \ },
+" 	   \}
+
+let g:vimtex_doc_handlers = ['MyHandler']
+function! MyHandler(context)
+  call vimtex#doc#make_selection(a:context)
+  if !empty(a:context.selected)
+	execute '!texdoc' a:context.selected '&'
+	" let myjob=job_start('texdoc '+a:context.selected)
+  endif
+  return 1
+endfunction
+
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+" https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
+
+" 编译选项 连续编译 preview
+let g:vimtex_compiler_latexmk = {
+			\ 'callback' : 1,
+			\ 'continuous' : 1,
+			\ 'executable' : 'latexmk',
+			\ 'options' : [
+			\	'-file-line-error',
+			\	'-synctex=1',
+			\	'-interaction=nonstopmode',
+			\ ],
+			\}
+
+		
+" -file-line-error 使报错输出文件和行号； 
+" -halt-on-error  使编译遇到错误时立即停止；
+"
+" 打开同步对照跳转模式
+" -synctex=1 
+"
+" 在遇到错误的时候依旧会暂停来等待用户处理, 而使用 -interaction=nonstopmode 的话, latexmk 会一气呵成运行到最后, 哪怕没有文件输出.
+" -interaction=nonstopmode 
+
+" continuous 就是 latexmk with the `-pvc` option
+if $SSH_CONNECTION
+	let g:vimtex_compiler_latexmk['continuous']=0
+endif
+
+let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+
+"=================== end VimTex ===============================}}}
+endif
 "==================== w0rp/ale ============================={{{
 " <https://www.zhihu.com/question/47691414/answer/373700711>
 let g:ale_linters_explicit = 1
@@ -1263,7 +1417,7 @@ let g:ale_lint_on_insert_leave = 1
 " 在 vim 自带的状态栏中整合 ale
 " let g:ale_statusline_format = ['⨉ %d', '⚡ %d', '✔ OK']
 " let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+" let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:airline#extensions#ale#enabled = 1
 
 " let g:ale_completion_enabled=1
@@ -1335,6 +1489,7 @@ let g:ale_linters = {
             \   'vue': ['eslint'],
             \   'json': ['jsonlint'],
             \ }
+
 " let g:ale_languagetool_options='--autoDetect --mothertongue zh-CN'
 " alias 好像不起作用
 " let g:ale_linter_aliases = {
@@ -1490,96 +1645,6 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_table_mappings=0
 
 "=================== end vimwiki ===============================}}}
-
-if !g:isPlain && !exists('g:started_by_firenvim')
-"================= VimTeX ==============================={{{
-
-" VimTeX sets the 'omnifunc' to provide omni completion
-let g:vimtex_complete_enabled=1
-if !exists('g:ycm_semantic_triggers')
-  let g:ycm_semantic_triggers = {}
-endif
-au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-
-augroup VimTeX
-  autocmd!
-  autocmd BufReadPre debug.tex
-		\ let b:vimtex_main = 'debug.tex'
-augroup END
-
-
-" 英文语法检查
-let g:vimtex_grammar_vlty = {'lt_command': 'languagetool'}
-
-" fold 造成 vimtex 相当卡顿
-let g:vimtex_fold_enabled=0
-
-" 在这里需要注意一下, 如果用了自动补全的插件, 需要设置:
-let g:vimtex_fold_manual=1
-" 不然会变得好慢.
-
-" 默认的还有 itemize
-let g:vimtex_indent_lists = ['thebibliography']
-
-" let  g:vimtex_fold_types = {
-" 	   \ 'preamble' : {'enabled' : 1},
-" 	   \ 'envs' : {
-" 	   \	'whitelist' : ['figure', 'table'],
-" 	   \},
-" 	   \ 'sections' : {
-" 	   \   'parse_levels' : 2,
-" 	   \   'sections' : [      
-" 	   \     'part',
-" 	   \     'chapter',
-" 	   \     'section',
-" 	   \   ],
-" 	   \   'parts' : [     
-" 	   \     'appendix',
-" 	   \     'frontmatter',
-" 	   \     'mainmatter',
-" 	   \     'backmatter',
-" 	   \   ],
-" 	   \ },
-" 	   \}
-
-let g:vimtex_doc_handlers = ['MyHandler']
-function! MyHandler(context)
-  call vimtex#doc#make_selection(a:context)
-  if !empty(a:context.selected)
-	execute '!texdoc' a:context.selected '&'
-	" let myjob=job_start('texdoc '+a:context.selected)
-  endif
-  return 1
-endfunction
-
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
-" https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
-
-" 编译选项 连续编译 preview
-let g:vimtex_compiler_latexmk = {
-			\ 'callback' : 1,
-			\ 'executable' : 'latexmk',
-        \ 'continuous' : 1,
-			\ 'options' : [
-			\ '-pdf',
-			\ '-verbose',
-			\ '-bibtex',
-			\ '-file-line-error',
-			\ '-synctex=1',
-			\ '-interaction=nonstopmode',
-			\ ],
-			\}
-if $SSH_CONNECTION
-	let g:vimtex_compiler_latexmk['continuous']=0
-endif
-
-let g:tex_flavor='latex'
-let g:vimtex_quickfix_mode=0
-
-"=================== end VimTex ===============================}}}
-endif
 
 "=================== fzf ==============================={{{
 nnoremap <leader>ft :BTags<space>

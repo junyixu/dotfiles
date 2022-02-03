@@ -26,7 +26,7 @@ snippet op "options" b
 endsnippet
 
 snippet sub "Section"
-\subsection{$1}%
+\subsection{$1}
 $0
 endsnippet
 
@@ -39,6 +39,11 @@ endsnippet
 snippet ! "%! TEX root = ./debug.tex" b
 %!TEX program=xelatex
 %! TEX root = debug.tex
+endsnippet
+
+# eg: % vim: spelllang=en_us:
+snippet % "vim option" b
+%%% vim: spelllang=en_us: $1
 endsnippet
 
 snippet fontset "使用方正字体" b
