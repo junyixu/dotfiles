@@ -449,8 +449,6 @@ vnoremap K :move '<-2<CR>gv=gv
 " nnoremap <leader>j :m .+1<CR>==
 
 " Keeping it centered
-nnoremap n nzzzv
-nnoremap N Nzzzv
 " nmap J mzJ`z
 "" 已经有了 ]g 和 ]l 了，不过按两个字母确实不好用
 " nnoremap <C-j> :cnext<CR>zzzv

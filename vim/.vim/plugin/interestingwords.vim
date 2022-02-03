@@ -119,9 +119,9 @@ call search(pat, searchFlag)
 else
 try
   if (a:direction)
-    normal! n
+    normal! nzzzv
   else
-    normal! N
+    normal! Nzzzv
   endif
 catch /E486/
   echohl WarningMsg | echomsg "E486: Pattern not found: " . @/
