@@ -15,6 +15,7 @@ syn match texMathSymbol '\\phi\>' contained conceal cchar=Φ
 syn match texMathSymbol '\\langle\>\s*' contained conceal cchar=⟨
 syn match texMathSymbol '\s*\\rangle\>' contained conceal cchar=⟩
 syn match texMathSymbol '\\\\' contained conceal cchar=⏎
+syn match texMathSymbol '\\pdv' contained conceal cchar=∂
 
 " 微分
 " 会把 \ddot  映射成为 dot
