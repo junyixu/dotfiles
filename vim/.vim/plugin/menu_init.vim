@@ -239,7 +239,7 @@ if has('gui_running') || has('nvim')
 	noremap <c-f10> :call MenuHelp_TaskList()<cr>
 endif
 
-let g:quickui_color_scheme = 'papercol dark'
+let g:quickui_color_scheme = 'gruvbox'
 
 "----------------------------------------------------------------------
 " Help Content

@@ -68,6 +68,7 @@ syntax sync fromstart                   " 不然有时候高亮会出错
 set smarttab
 set foldcolumn=2
 
+" set previewheight=50
 
 " 设置格式化时制表符占用空格数
 set shiftwidth=4

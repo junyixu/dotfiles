@@ -116,12 +116,6 @@ Plug 'junegunn/vim-peekaboo'
 
 " Plug 'tyru/open-browser.vim'
 
-if version < 800
-	echom '您的 vim 版本低于 8.2，你需要通过升级才能正常使用 skywind3000/quickui 等插件'
-else
-	Plug 'skywind3000/vim-quickui'
-endif
-
 " json comment
 Plug 'neoclide/jsonc.vim'
 
@@ -498,21 +492,46 @@ endif
 " 启动时间
 " Plug 'dstein64/vim-startuptime'
 
+if version < 800
+	echom '您的 vim 版本低于 8.2，你需要通过升级才能正常使用 skywind3000/quickui 等插件'
+else
+	Plug 'skywind3000/vim-quickui'
+	nnoremap <localleader>] :call quickui#tools#preview_tag('')<cr>
+	" Alt 键前缀的只在 GUI 有效，在终端无效
+	" noremap <silent><C-j> :call quickui#preview#scroll('DOWN')<CR>
+	" noremap <silent><C-k> :call quickui#preview#scroll('UP')<CR>
+	noremap <silent><C-j> :call quickui#preview#scroll(1)<cr>
+	noremap <silent><C-k> :call quickui#preview#scroll(-1)<cr>
+endif
+
+augroup MyQuickfixPreview
+  au!
+  au FileType qf noremap <silent><buffer> p :call quickui#tools#preview_quickfix()<cr>
+augroup END
+
+
+" 预览窗口向下滚半屏
+noremap <M-d> <Cmd>wincmd P \| execute "normal! \<C-d>\<C-y>" \| wincmd p<CR>
+" 预览窗口向上滚半屏
+noremap <M-u> <Cmd>wincmd P \| execute "normal! \<C-u>" \| wincmd p<CR>
+
 if !g:isPlain && !exists('g:started_by_firenvim')
 " ----------------- ctags and gtags ------------------{{{
 Plug 'ludovicchabant/vim-gutentags'
+
+
 " Plug 'skywind3000/gutentags_plus'
-Plug 'skywind3000/vim-preview'
+" Plug 'skywind3000/vim-preview'
 " Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab', 'fortran', 'tex', 'mma']}
     "{{{
-    autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
-    autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
-    noremap <m-u> :PreviewScroll -1<cr>
-    noremap <m-d> :PreviewScroll +1<cr>
-    " inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
-    " inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
-    noremap <m-b> :PreviewScroll -2<cr>
-    noremap <m-f> :PreviewScroll +2<cr>
+    " autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
+    " autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
+    " noremap <m-u> :PreviewScroll -1<cr>
+    " noremap <m-d> :PreviewScroll +1<cr>
+    " " inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
+    " " inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
+    " noremap <m-b> :PreviewScroll -2<cr>
+    " noremap <m-f> :PreviewScroll +2<cr>
     " inoremap <m-b> <c-\><c-o>:PreviewScroll -2<cr>
     " inoremap <m-f> <c-\><c-o>:PreviewScroll +2<cr>
     "}}}
@@ -628,7 +647,7 @@ Plug 'francoiscabrol/ranger.vim'
 
 if !g:isPlain && !exists('g:started_by_firenvim')
     let g:ranger_map_keys = 0
-    map <M-e> :RangerWorkingDirectoryNewTab<CR>
+	map <M-E> :RangerWorkingDirectoryNewTab<CR>
     " let g:ranger_replace_netrw = 1 " open ranger when vim open a directory
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 endif
@@ -1074,6 +1093,16 @@ nnoremap <leader>g<space> :Git
 "================== git ============}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================== youcompleteme ============{{{
+" GetHover and GetDoc
+
+augroup MyYCMCustom
+autocmd!
+autocmd FileType c,cpp let b:ycm_hover = {
+  \ 'command': 'GetDoc',
+  \ 'syntax': &filetype
+  \ }
+augroup END
+
 " 错误标记
  " let g:ycm_log_level = 'debug'
 " let g:ycm_error_symbol = '✗'  "set error or warning signs
@@ -1470,7 +1499,6 @@ let g:ale_lint_on_enter = 0
 " let g:ale_completion_enabled = 1
 
 let g:ale_linters = {
-            \   'asm': ['gcc'],
             \   'nasm': ['nasm'],
             \   'cmake': ['cmakeformat', 'cmakelint'],
             \   'python': ['pyflakes'],
@@ -1479,9 +1507,7 @@ let g:ale_linters = {
             \   'javascript': ['eslint'],
             \   'matlab': ['mlint'],
             \   'yaml': ['prettier'],
-            \   'markdown': ['languagetool', 'textidote'],
 			\   'lua': ['luac'], 
-            \   'vimwiki': ['textidote'],
             \   'tex': ['textidote'],
             \   'sh': ['shellcheck'],
 		\   'bash': ['shellcheck'],
