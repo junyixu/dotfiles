@@ -86,10 +86,6 @@ let g:juliaLSP = get(g:, 'juliaLSP', 0)
 let g:vimLSP = get(g:, 'vimLSP', 0)
 let g:CoC = get(g:, 'CoC', 0)
 
-"如果只想在 Python 文件中将 Tab 展开成空格，就改换成下面这句
-autocmd FileType python set expandtab
-" set expandtab
-
 " alacritty on windows has a rendering issue when using showcmd
 " you'd better not set showcmd on WSL
 " Windows sucks
