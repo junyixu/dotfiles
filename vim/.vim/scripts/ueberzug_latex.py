@@ -19,7 +19,7 @@ ueberzug
 
 import ueberzug.lib.v0 as ueberzug
 import time
-import os
+import os, sys
 import shutil
 import subprocess
 
@@ -29,6 +29,7 @@ DST = '/tmp/latex_img'
 main_filename = 'main'
 main_tex = main_filename + '.tex'
 main_png = main_filename + '.png'
+TIME = 8
 
 
 def concatenate(main_tex):
@@ -75,6 +76,11 @@ if __name__ == '__main__':
         ['latex', '-shell-escape', 'main.tex'],
         shell=False)  # shell should be set to False
     if latex_compiling.returncode == 0:  # succeed!
-        present(main_png, 8)
+        if len(sys.argv) > 1:
+            x = int(sys.argv[1])
+            y = int(sys.argv[2])
+            present(main_png, TIME, [x, y])
+        else:
+            present(main_png, TIME)
     else:  # failed!
         present('error.png', 1)

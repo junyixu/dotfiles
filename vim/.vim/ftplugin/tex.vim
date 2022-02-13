@@ -80,9 +80,19 @@ function g:PreviewEq4LaTeX()
 	" 	echom job_status(job)
 	" endif
 endfunction
+function ScreenLine()
+	" 当前行
+	let a=line(".")
+	" 屏幕首行
+	let b=line("w0")
+ return a - b - 2
+endfunction
+function ScreenColumn()
+ return col(".") + 20
+endfunction
 function g:VisualPreviewEq4LaTeX()
 	call writefile(getreg('*',1,1), '/tmp/latex_img/formula.txt')
-	AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py
+	execute 'AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py '.. ScreenColumn() .. ' ' .. ScreenLine()
 endfunction
 nnoremap <silent><buffer> <space><space> :call g:PreviewEq4LaTeX()<cr>
 vnoremap <silent><buffer> <CR> :call g:VisualPreviewEq4LaTeX()<cr>
