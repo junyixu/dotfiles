@@ -92,7 +92,7 @@ function ScreenColumn()
 endfunction
 function g:VisualPreviewEq4LaTeX()
 	call writefile(getreg('*',1,1), '/tmp/latex_img/formula.txt')
-	execute 'AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py '.. ScreenColumn() .. ' ' .. ScreenLine()
+	AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py
 endfunction
 nnoremap <silent><buffer> <space><space> :call g:PreviewEq4LaTeX()<cr>
 vnoremap <silent><buffer> <CR> :call g:VisualPreviewEq4LaTeX()<cr>
