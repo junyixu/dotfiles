@@ -38,3 +38,7 @@ test.tex
 run.sh
 .python-version
 t.js
+
+# LaTeX
+indent.log
+*.tex_bak
