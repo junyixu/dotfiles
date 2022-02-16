@@ -895,6 +895,33 @@ export SYSTEMD_LESS=FRXMK journalctl
 
 # export TEXINPUTS="/usr/share/texmf//:"
 
+if grep -q "archlinux" /proc/version
+    then
+	alias Syu='sudo pacman -Syu'
+	alias S='sudo pacman -S'
+	alias Si='pacman -Si'
+	alias Ss='pacman -Ss'
+	alias R='sudo pacman -Rs'
+	alias Qi='pacman -Qi'
+	alias Ql='pacman -Ql'
+	alias Qs='pacman -Qs'
+	alias Qsq='pacman -Qsq'
+	alias Qm='pacman -Qm'
+	alias Qmq='pacman -Qmq'
+	alias Qk='pacman -Qk'
+	alias Qkk='pacman -Qkk'
+	alias Qo='pacman -Qo'
+	alias F='pacman -F'
+	alias Fl='pacman -Fl'
+elif grep -q "debian" /proc/version
+then
+	alias Syu='sudo apt update && apt upgrade'
+	alias S='sudo apt install'
+	alias Si='apt show'
+	alias Ss='apt search'
+	alias R='sudo apt remove'
+fi
+
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 
 # >>> conda initialize >>>
