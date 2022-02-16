@@ -134,7 +134,7 @@ Plug 'tpope/vim-apathy'
     noremap <leader>gm :GitMessenger<CR>
     "}}}
 
-if !g:isPlain && !exists('g:started_by_firenvim')
+if !g:isPlain && !exists('g:started_by_firenvim') || g:usingGit
 "===========  git ============={{{
 Plug 'tpope/vim-fugitive'
 " github
@@ -151,7 +151,9 @@ Plug 'airblade/vim-gitgutter'
 
 " 确定插件仓库中的分支或者 tag
 Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+endif
 "=========== end git =============}}}
+if !g:isPlain && !exists('g:started_by_firenvim')
 Plug 'zackhsi/fzf-tags'
 nmap <space><C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'

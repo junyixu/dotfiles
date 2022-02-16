@@ -85,6 +85,7 @@ let g:isPlain = get(g:, 'isPlain', 1)
 let g:juliaLSP = get(g:, 'juliaLSP', 0)
 let g:vimLSP = get(g:, 'vimLSP', 0)
 let g:CoC = get(g:, 'CoC', 0)
+let g:usingGit = get(g:, 'usingGit', 0)
 
 " alacritty on windows has a rendering issue when using showcmd
 " you'd better not set showcmd on WSL
