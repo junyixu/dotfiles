@@ -242,7 +242,7 @@ alias vim='vim --cmd "let g:isPlain=0"'
 alias lvi='vi -c "normal '\''0"'
 
 # For git front-end: vim-fugitive
-alias vig='vim -c "G" -c "only"'
+alias vig='vi --cmd "let g:usingGit=1" -c "G" -c "only"'
 alias vit='vim --servername TEX'
 alias gvit='gvim --servername TEX --cmd "let g:isPlain=0"'
 alias vitv='vim --servername TEX -c 'VimtexView''
@@ -253,7 +253,9 @@ alias jvi="vim -c JupyterConnect"
 # alias jvi="jupyter qtconsole& ; vim -c JupyterConnect"
 
 # Show open ports
-alias ports='netstat -tulanp'
+# alias ports='netstat -tulanp'
+alias ports='netstat -lntp'
+
 # alias ssh='ssh -Y'
 alias sshphone='ssh -p8022 _gateway'
 alias pb='curl -F sunset=1200 -F "c=@-" "http://8.140.148.238:10002"'
