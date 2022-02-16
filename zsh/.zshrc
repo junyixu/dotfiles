@@ -162,9 +162,6 @@ alias mrun="env MESA_LOADER_DRIVER_OVERRIDE=i965 matlab -nodesktop -nosplash -lo
 
 alias clc='clear'
 
-alias socks5='ALL_PROXY=socks5://localhost:1080 HTTP_PROXY=socks5://localhost:1080 HTTPS_PROXY=socks5://localhost:1080 '
-alias proxy='ALL_PROXY=http://localhost:1081 HTTP_PROXY=http://localhost:1081 HTTPS_PROXY=http://localhost:1081 '
-
 # 虚拟机
 # sudo virsh list
 # sudo virsh start archlinux
