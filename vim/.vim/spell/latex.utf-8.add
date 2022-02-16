@@ -32,3 +32,8 @@ formatoptions
 subitem
 includegraphics
 #rac
+tikzmark
+calc
+boxrule
+boxsep
+colback

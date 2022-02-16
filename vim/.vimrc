@@ -104,7 +104,7 @@ set noautochdir							"在打开多个文件的时候不要自动切换目录
 set wildmenu
 set wildmode=longest:list,full
 "命令模式下，底部操作指令按下 Tab 键自动补全。第一次按下 Tab，会显示所有匹配的操作指令的清单；第二次按下 Tab，会依次选择各个指令。
-"=============================begin list ===========================
+"=============================begin list ==========================={{{
 " 说明  Plug 'Yggdroot/indentLine' 只适用于空格，以下适用于 tab
 "
 "方案一
@@ -119,7 +119,8 @@ set wildmode=longest:list,full
 "set listchars=tab:»■,trail:■
 "set list								"如果行尾有多余的空格（包括 tab 键）, 该配置将让这些空格显示成可见的小方块。
 "============================= end list===========================
-"----------------------Fold--------------------------------------"
+"----------------------Fold--------------------------------------}}}
+
 "set foldenable
 set foldmethod=marker
 "set foldcolumn=0			"设置折叠宽度
