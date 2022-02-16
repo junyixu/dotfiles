@@ -517,10 +517,12 @@ noremap <M-u> <Cmd>wincmd P \| execute "normal! \<C-u>" \| wincmd p<CR>
 
 if !g:isPlain && !exists('g:started_by_firenvim')
 " ----------------- ctags and gtags ------------------{{{
+if executable('ctags')
 Plug 'ludovicchabant/vim-gutentags'
-
-
 " Plug 'skywind3000/gutentags_plus'
+endif
+
+
 " Plug 'skywind3000/vim-preview'
 " Plug 'skywind3000/vim-preview', { 'for': ['c', 'cpp', 'cuda', 'tex', 'julia', 'python', 'cmake', 'go', 'matlab', 'fortran', 'tex', 'mma']}
     "{{{
@@ -662,7 +664,7 @@ Plug 'morhetz/gruvbox'
 " 斜体让 ~/.vim/after/syntax/git.vim 很难看
 let g:gruvbox_italicize_comments = 0
 
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 "================== colorscheme ======================}}}
 
 Plug 'untitled-ai/jupyter_ascending.vim'
@@ -814,7 +816,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	" matlab
 	Plug 'andymass/vim-matlab', {'for': 'matlab'}
 
-	Plug 'ryanoasis/vim-devicons'
+	Plug 'ryanoasis/vim-devicons', {'on': []}
 	Plug 'petRUShka/vim-sage', {'for': 'sage'}
 endif
 
@@ -981,6 +983,7 @@ endtry
 " let g:gruvbox_contrast_dark='hard'
 "}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
+if executable('ctags')
 "====================== ctags =========================={{{
 " https://www.zhihu.com/question/47691414/answer/373700711
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件 / 目录名
@@ -999,9 +1002,6 @@ let g:gutentags_plus_switch = 0
 
 " 同时开启 ctags 和 gtags 支持：
 let g:gutentags_modules = ['ctags']
-if executable('ctags')
-	let g:gutentags_modules += ['ctags']
-endif
 " TODO 不起作用，我想在 写 tex 的时候不用 gtags
 " if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
 
@@ -1078,6 +1078,7 @@ let g:gutentags_ctags_exclude = [
       \ ]
 "====================== end ctags ==========================}}}
 endif
+endif
 "================== git ============{{{
 nnoremap <leader>gs :Git<cr>
 nnoremap <leader>gd<SPACE> :Gdiffsplit<SPACE>
@@ -1110,7 +1111,7 @@ augroup END
 let g:ycm_error_symbol = "\ue009\ue009"  "set error or warning signs
 " let g:ycm_clangd_binary_path = '/usr/bin/clangd'
 let g:ale_sign_error = "\ue009\ue009"
-let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+" let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 " let g:ale_sign_error = '⨉'
 " let g:ale_sign_error = '✗'
 " let g:ale_sign_warning = '⚡'
@@ -1140,7 +1141,6 @@ let g:ycm_warning_symbol                                = '--'
 let g:ycm_max_num_candidates                            = 10
 let g:ycm_autoclose_preview_window_after_completion     = 0
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
-let g:ycm_python_sys_path                               = ['/usr/lib/python3.9/site-packages/numpy']
 let g:ycm_add_preview_to_completeopt                    = 0
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_complete_in_strings                           = 0
