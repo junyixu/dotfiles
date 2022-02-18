@@ -9,4 +9,7 @@ vnoremap <buffer><silent> <M-c> :<C-u>MatlabVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:MatlabInsertModeCreateCell<CR>
 
 
+" mlint停止报错
+nnoremap <buffer><silent> <localleader>a A %#ok<ESC>
+
 source $HOME/.vim/ycmMaps.vim

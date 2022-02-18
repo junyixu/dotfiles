@@ -1333,6 +1333,8 @@ let g:vimtex_syntax_nospell_comments=1
 " 	\ 'encoding': 'auto',
 " \}
 
+let g:ale_matlab_mlint_options='-config=~/.vim/matlab_config/mlintSettings'
+
 let g:vimtex_grammar_vlty = {}
 let g:vimtex_grammar_vlty.lt_command = 'languagetool'
 " let g:vimtex_grammar_vlty.server = 'my'
