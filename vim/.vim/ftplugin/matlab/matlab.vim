@@ -12,4 +12,8 @@ inoremap <buffer><silent> <M-c> <C-o>:MatlabInsertModeCreateCell<CR>
 " mlint停止报错
 nnoremap <buffer><silent> <localleader>a A %#ok<ESC>
 
+command! MatlabFix :!mh_style --fix %
+nnoremap <buffer> <localleader>f :MatlabFix<CR>
+
+" command! MatlabFix :execute '!mh_style --fix '. expand('%')<CR>
 source $HOME/.vim/ycmMaps.vim
