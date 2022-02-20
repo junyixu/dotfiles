@@ -29,7 +29,7 @@ DST = '/tmp/latex_img'
 main_filename = 'main'
 main_tex = main_filename + '.tex'
 main_png = main_filename + '.png'
-TIME = 8
+TIME = 10
 
 
 def concatenate(main_tex):

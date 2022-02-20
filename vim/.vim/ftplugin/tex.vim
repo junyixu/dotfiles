@@ -61,6 +61,7 @@ call vimtex#imaps#add_map({
 " TODO
 " 部分公式预览
 function g:PreviewEq4LaTeX()
+if g:asyncrun_status!='running'
 	" 复制 env 中的内容到 x 剪贴板
 	" if !isdirectory("/tmp/latex_img")
 	" 	call mkdir("/tmp/latex_img", "p", 0700)
@@ -79,6 +80,9 @@ function g:PreviewEq4LaTeX()
 	" if job_status(job) != 'fail'
 	" 	echom job_status(job)
 	" endif
+else
+	AsyncStop
+endif
 endfunction
 function ScreenLine()
 	" 当前行
