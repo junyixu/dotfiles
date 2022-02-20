@@ -32,7 +32,7 @@ UltiSnips
 numpy
 Jupyter
 jupyter
-Eq
+#q
 cn
 Sarasa
 Hiragino
@@ -208,3 +208,5 @@ photoshop
 XMind
 edu
 unroot
+#q
+#igvalue
