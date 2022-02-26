@@ -540,10 +540,10 @@ searchnotes() {
 	okular $(rga $@ ~/Sync/uni_pdf | fzf | awk -F: '{print $2, $1}' | sed s/Page/--page/) --find $@
 }
 
-# 搜索考研英语真题中的内容
+# 搜索Latex笔记的内容
 searche() {
 	# 让 awk 用 冒号 : 分隔
-	what_i_got=$(rga $@ ~/Documents/Sync/考研英语真题 | fzf)
+	what_i_got=$(rga $@ ~/Documents/Sync/uni_pdf/*.pdf | fzf)
 	if [ ! -z $what_i_got  ]; then # 判断字符串是否为空，若不为空，则：
 		okular $(echo $what_i_got | awk -F: '{print $2, $1}' | sed s/Page/--page/) --find $@
 	fi
