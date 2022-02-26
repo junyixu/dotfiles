@@ -669,7 +669,7 @@ let g:gruvbox_italicize_comments = 0
 " Plug 'joshdick/onedark.vim'
 "================== colorscheme ======================}}}
 
-Plug 'untitled-ai/jupyter_ascending.vim'
+Plug 'untitled-ai/jupyter_ascending.vim', {'for': ['python', 'julia']}
 " Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
     " let g:jupyter_mapkeys = 0
 Plug 'mattn/calendar-vim'
