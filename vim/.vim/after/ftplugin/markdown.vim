@@ -6,7 +6,7 @@
 " VimTeX: latexmk is not executable
 " VimTeX: Compiler was not initialized!
 " Press ENTER or type command to continue
-if $isWSL!='1'
+if !$SSH_CONNECTION && $isWSL!='1'
 	call vimtex#init()
 	call vimtex#text_obj#init_buffer()
 	call vimtex#options#init()
