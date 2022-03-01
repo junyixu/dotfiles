@@ -622,14 +622,7 @@ else " 是 windows
     so $HOME\.vim\windows_plugs.vim
 endif
 
-" https://vi.stackexchange.com/questions/5531/how-to-remap-i-in-netrw
-augroup netrw_mapping
-    autocmd!
-    autocmd filetype netrw call NetrwMapping()
-augroup END
-function! NetrwMapping()
-    noremap <buffer> s <C-W>
-endfunction
+command! BufOnly execute '%bdelete|edit #|normal `"'
 
 " git log 语法高亮
 " https://dpwright.com/posts/2018/04/06/graphical-log-with-vimfugitive/
