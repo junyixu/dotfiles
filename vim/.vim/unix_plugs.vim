@@ -214,7 +214,8 @@ endif
 Plug 'jpalardy/vim-slime', {'on': ['<Plug>SlimeRegionSend',
             \ '<Plug>SlimeParagraphSend', '<Plug>SlimeConfig']}
 " {{{ slime 发送文本
-let g:slime_default_config = {"socket_name": "default", "target_pane": "{right-of}"}
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{bottom-right}"}
+let g:slime_dont_ask_default=1
 let g:slime_python_ipython = 1
 let g:slime_target = 'tmux'
 " let g:slime_target = 'vimterminal'
@@ -637,6 +638,7 @@ Plug 'Raimondi/delimitMate'
     let delimitMate_expand_cr = 1
     let delimitMate_expand_space = 1
 	au FileType python let b:delimitMate_nesting_quotes = ['"']
+	au FileType matlab let b:delimitMate_quotes = "\""
 	" imap <S-Tab> <Plug>delimitMateS-Tab
     "}}}
 
@@ -1717,15 +1719,34 @@ endfunction
 
 command! -bar -bang Snippets call fzf#vim#snippets({'options': '-n ..'}, <bang>0)
 imap <silent> <M-k> <ESC>:Snippets<cr>
+
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
   copen
   cc
 endfunction
 
+function! s:list_buffers()
+  redir => list
+  silent ls
+  redir END
+  return split(list, "\n")
+endfunction
+
+" https://github.com/junegunn/fzf.vim/pull/733
+function! s:delete_buffers(lines)
+  execute 'bwipeout' join(map(a:lines, {_, line -> split(line)[0]}))
+endfunction
+
+command! BD call fzf#run(fzf#wrap({
+  \ 'source': s:list_buffers(),
+  \ 'sink*': { lines -> s:delete_buffers(lines) },
+  \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
+\ }))
+
 let g:fzf_action = {
   \ 'TAB': function('s:build_quickfix_list'),
-  \ 'ctrl-t': 'tab split',
+\ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
@@ -1740,6 +1761,8 @@ endif
 
 " let $FZF_PREVIEW_COMMAND = 'bat --color=always --style=plain --theme=TwoDark -n -- {} || cat {}'
 let $FZF_PREVIEW_COMMAND = 'bat --color=always --style=plain --theme=gruvbox-dark -n -- {} || cat {}'
+" TODO
+" 当 tar 解压后，莫名其妙 user 和 gropp 会是 root
 let g:fzf_history_dir = '~/.local/share/fzf-history'
     " function! s:update_fzf_colors()
   " let rules =
