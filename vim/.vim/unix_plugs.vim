@@ -158,55 +158,6 @@ Plug 'zackhsi/fzf-tags'
 nmap <space><C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
 
-Plug 'dyng/ctrlsf.vim'
-""{{{ ctrlsf
-highlight link ctrlsfFilename Underlined
-let g:ctrlsf_ackprg = 'rg'
-let g:ctrlsf_auto_focus = {'at': 'start'}
-let g:ctrlsf_auto_preview = 1
-let g:ctrlsf_default_root = 'project'
-let g:ctrlsf_debug_mode = 0
-let g:ctrlsf_follow_symlinks = 1
-let g:ctrlsf_mapping = {
-            \ 'open': ['<CR>', 'o'],
-            \ 'openb': 'O',
-            \ 'split': '<C-x>',
-            \ 'vsplit': '<C-v>',
-            \ 'tab': 't',
-            \ 'tabb': 'T',
-            \ 'popen': 'p',
-            \ 'popenf': 'P',
-            \ 'quit': 'sq',
-            \ 'next': '<C-j>',
-            \ 'prev': '<C-k>',
-            \ 'pquit': 'sq',
-            \ 'loclist': '',
-            \ 'chgmode': '<M-m>',
-            \ 'stop': '<C-c>',
-            \ }
-let g:ctrlsf_extra_root_markers = ['.root', '.project']
-nmap     <leader>/f <Plug>CtrlSFPrompt
-vmap     <leader>/f <Plug>CtrlSFVwordPath
-nmap     <leader>/n <Plug>CtrlSFCwordPath
-nmap     <leader>/p <Plug>CtrlSFPwordPath
-nnoremap <leader>/o :CtrlSFOpen<CR>
-nnoremap <leader>/v :CtrlSFToggle<CR>
-nnoremap <leader>/<space> :CtrlSF<space>
-nnoremap <leader>/r :CtrlSF<Space>-R<space>
-nnoremap <leader>// :CtrlSF
-let g:ctrlsf_confirm_save=0
-nnoremap <silent> <leader>/v <Esc>:CtrlSFToggle<CR>
-nmap <leader>* <Plug>CtrlSFCwordExec
-xmap <leader>* <Plug>CtrlSFVwordExec
-vmap <leader>* <Plug>CtrlSFVwordExec
-
-" 没有-regex 选项时候，只有空格用加 `\` 括号不用加, CtrlSF 真奇怪
-nnoremap <localleader>todo :CtrlSF TODO<CR>
-
-" cabbrev rg CtrlSF
-" cabbrev rgt CtrlSF -T
-" cabbrev rgr CtrlSF -R
-""}}}
 Plug 'majutsushi/tagbar'
 	nmap <leader>tb :TagbarToggle<CR>
 endif
@@ -248,6 +199,24 @@ autocmd filetype sh,mma,python,matlab,julia,sage.python nmap <silent><buffer> <C
 " TODO
 "
 " Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'mhinz/vim-grepper'
+	nmap gs  <plug>(GrepperOperator)
+	xmap gs  <plug>(GrepperOperator)
+	let g:grepper = {
+      \ 'tools':         ['rg', 'git'],
+      \ 'rg':            { 'grepprg':    'rg -H --no-heading --vimgrep' . (has('win32') ? ' $* .' : ''),
+      \                    'grepformat': '%f:%l:%c:%m,%f',
+      \                    'escape':     '\^$.*+?()[]{}|' },
+      \ 'git':           { 'grepprg':    'git grep -nGI',
+      \                    'grepformat': '%f:%l:%c:%m,%f:%l:%m,%f',
+      \                    'escape':     '\^$.*[]' },
+      \ }
+    " let g:grepper.open = 1
+    " let g:grepper.jump = 1
+    " let g:grepper.prompt_mapping_tool = '<leader>g'
+	let g:grepper.searchreg = 1
+	nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
+	command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
 
 Plug 'easymotion/vim-easymotion'
 " ================================= easymotion =============================={{{
@@ -1857,40 +1826,40 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 " let GtagsCscope_Quiet = 1
 
 nnoremap <space>/<space> :cs find<space>
-    " Gtags 映射 {{{
-    " 查找C语言符号，即查找函数名、宏、枚举值等出现的地方 symbol
-	nmap g<space> :Gtags<space>
+    " " Gtags 映射 {{{
+    " " 查找C语言符号，即查找函数名、宏、枚举值等出现的地方 symbol
+	" nmap g<space> :Gtags<space>
 
-	nmap ga<space> :Gtagsa<space>
-	nmap gr<space> :Gtags -r<space>
-	nmap gar<space> :Gtagsa -r<space>
-	nmap t<space> :tjump<space>
-	nmap t* :tjump <C-R>=expand("<cword>")<CR>
-    nmap g} :GtagsCursor<CR>
+	" nmap ga<space> :Gtagsa<space>
+	" nmap gr<space> :Gtags -r<space>
+	" nmap gar<space> :Gtagsa -r<space>
+	" nmap t<space> :tjump<space>
+	" nmap t* :tjump <C-R>=expand("<cword>")<CR>
+    " nmap g} :GtagsCursor<CR>
 
-    nmap gss :Gtags <C-R>=expand("<cword>")<CR>
-    " 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能 def
-    nmap gsd :Gtags -d <C-R>=expand("<cword>")<CR>
-    " 查找调用本函数的函数 ref
-    nmap gsr :Gtags -r <C-R>=expand("<cword>")<CR>
-    " 查找指定的字符串 string
-    nmap gst :Gtags -s <C-R>=expand("<cword>")<CR>
-    " 查找egrep模式，相当于egrep功能，但查找速度快多了
-    nmap gse :Gtags -e <C-R>=expand("<cword>")<CR>
-    " 查找并打开文件，类似vim的find功能
-    nmap gsf :Gtags -P <C-R>=expand("<cfile>")<CR>
-    " 查找包含本文件的文件 include
-    nmap gsi :Gtags -i ^<C-R>=expand("<cfile>")<CR>$
-	" 查找此符号被赋值的位置, a: arguments
-    nmap gsa :Gtags -a <C-R>=expand("<cword>")<CR>
-    " 自己来输入命令
-    nmap gs<Space> :Gtags find<Space>
+    " nmap gss :Gtags <C-R>=expand("<cword>")<CR>
+    " " 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能 def
+    " nmap gsd :Gtags -d <C-R>=expand("<cword>")<CR>
+    " " 查找调用本函数的函数 ref
+    " nmap gsr :Gtags -r <C-R>=expand("<cword>")<CR>
+    " " 查找指定的字符串 string
+    " nmap gst :Gtags -s <C-R>=expand("<cword>")<CR>
+    " " 查找egrep模式，相当于egrep功能，但查找速度快多了
+    " nmap gse :Gtags -e <C-R>=expand("<cword>")<CR>
+    " " 查找并打开文件，类似vim的find功能
+    " nmap gsf :Gtags -P <C-R>=expand("<cfile>")<CR>
+    " " 查找包含本文件的文件 include
+    " nmap gsi :Gtags -i ^<C-R>=expand("<cfile>")<CR>$
+	" " 查找此符号被赋值的位置, a: arguments
+    " nmap gsa :Gtags -a <C-R>=expand("<cword>")<CR>
+    " " 自己来输入命令
+    " nmap gs<Space> :Gtags find<Space>
 
-	" # 水平分屏
-	" :scs find f block_builder.cc
-	" " # 垂直分屏
-	" " :vert scs find f table_builder.cc
-	" }}}
+	" " # 水平分屏
+	" " :scs find f block_builder.cc
+	" " " # 垂直分屏
+	" " " :vert scs find f table_builder.cc
+	" " }}}
 
 " 定义
 nnoremap <space>/d :cscope find g<space> 

@@ -18,7 +18,7 @@ nmap <buffer> <localleader>vsp <Plug>VimwikiVSplitLink
 nmap <buffer> <localleader>sp <Plug>VimwikiSplitLink
 
 " 没有-regex 选项时候，只有空格用加 `\` 括号不用加, CtrlSF 真奇怪
-nnoremap <buffer> <localleader>todo :CtrlSF \ [\ ]\ <CR>
+nnoremap <buffer> <localleader>todo :Grepper -tool rg -noprompt -query ' \[ \]'<CR>
 " nnoremap <buffer> <localleader>todo :CtrlSF -R -- [\*\-]\ \[\ \]\ <CR>
 
 " nnoremap <buffer> <C-F> :VimwikiSearch  
