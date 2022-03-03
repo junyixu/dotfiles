@@ -812,6 +812,11 @@ Plug 'junegunn/vim-easy-align'
 	"}}}
 	"
 if !g:isPlain && !exists('g:started_by_firenvim')
+	Plug 'yssl/QFEnter'
+		let g:qfenter_keymap = {}
+		let g:qfenter_keymap.vopen = ['<C-v>']
+		let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+		let g:qfenter_keymap.topen = ['<C-t>']
 	Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 
 	" vim 中文文档
