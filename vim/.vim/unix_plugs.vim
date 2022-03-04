@@ -1090,11 +1090,9 @@ augroup END
 
 " 错误标记
  " let g:ycm_log_level = 'debug'
-" let g:ycm_error_symbol = '✗'  "set error or warning signs
-" let g:ycm_error_symbol = '⨉'  "set error or warning signs
-let g:ycm_error_symbol = "\ue009\ue009"  "set error or warning signs
 " let g:ycm_clangd_binary_path = '/usr/bin/clangd'
-let g:ale_sign_error = "\ue009\ue009"
+" let g:ale_sign_error = "\ue009\ue009"
+let g:ale_sign_error = ""
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 " let g:ale_sign_error = '⨉'
 " let g:ale_sign_error = '✗'
@@ -1121,7 +1119,10 @@ let g:ale_sign_error = "\ue009\ue009"
 " if has('patch-8.0.1000')
 " 	set completeopt+=noselect
 " endif
-let g:ycm_warning_symbol                                = '--'
+" let g:ycm_error_symbol                                  = '✗'  "set error or warning signs
+" let g:ycm_error_symbol                                  = '⨉'  "set error or warning signs
+let g:ycm_error_symbol                                  = ""  "set error or warning signs
+let g:ycm_warning_symbol                                = ''
 let g:ycm_max_num_candidates                            = 10
 let g:ycm_autoclose_preview_window_after_completion     = 0
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
