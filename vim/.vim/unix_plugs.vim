@@ -214,6 +214,7 @@ Plug 'mhinz/vim-grepper'
     " let g:grepper.open = 1
     " let g:grepper.jump = 1
     " let g:grepper.prompt_mapping_tool = '<leader>g'
+	let g:grepper.repo = ['.git', '.hg', '.svn', '.root']
 	let g:grepper.searchreg = 1
 	nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
 	command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
