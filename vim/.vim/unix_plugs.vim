@@ -980,6 +980,10 @@ let g:gutentags_project_root = ['.root', '.project', '.git', '.tasks']
 
 
 
+" 将自动生成的 tags 文件全部放入.gittags 目录中，避免污染工程目录
+let s:vim_tags = '.git'
+let g:gutentags_cache_dir = s:vim_tags
+
 let g:gitgutter_max_signs=1200
 
 " change focus to quickfix window after search (optional).
