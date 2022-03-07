@@ -400,12 +400,6 @@ Plug 'tpope/vim-abolish'
 " Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop'] }
 Plug 'skywind3000/asyncrun.vim'
     "{{{ asyncrun
-	
-	  augroup local-asyncrun
-		au!
-		au User AsyncRunStop copen | wincmd p
-	  augroup END
-
     " 自动打开 quickfix window ，高度为 6
     let g:asyncrun_open = 6
 
