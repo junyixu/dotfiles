@@ -200,6 +200,7 @@ autocmd filetype sh,mma,python,matlab,julia,sage.python nmap <silent><buffer> <C
 "
 " Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'mhinz/vim-grepper'
+	" global search
 	nmap gs  <plug>(GrepperOperator)
 	xmap gs  <plug>(GrepperOperator)
 	let g:grepper = {
@@ -218,6 +219,21 @@ Plug 'mhinz/vim-grepper'
 	let g:grepper.searchreg = 1
 	nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
 	command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
+
+" global substitute
+nnoremap <Leader>S
+			\ :cfdo %s///g \| update
+			\<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" local substitute
+nnoremap <Leader>s
+			\ :%s///g
+			\<Left><Left>
+
+" local substitute
+vnoremap <Leader>s
+			\ :s///g
+			\<Left><Left>
 
 Plug 'easymotion/vim-easymotion'
 " ================================= easymotion =============================={{{
