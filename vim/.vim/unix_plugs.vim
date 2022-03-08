@@ -1725,7 +1725,6 @@ command! BD call fzf#run(fzf#wrap({
 \ }))
 
 let g:fzf_action = {
-  \ 'TAB': function('s:build_quickfix_list'),
 \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
@@ -1768,9 +1767,10 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
     "   endif
     " endfor
   " endfor
-  " let s:orig_fzf_default_opts = get(s:, 'orig_fzf_default_opts', $FZF_DEFAULT_OPTS)
+  let s:orig_fzf_default_opts = get(s:, 'orig_fzf_default_opts', $FZF_DEFAULT_OPTS)
+  let $FZF_DEFAULT_OPTS = s:orig_fzf_default_opts . ' --bind ctrl-a:select-all'
   " let $FZF_DEFAULT_OPTS = s:orig_fzf_default_opts .
-    "     \ empty(cols) ? '' : (' --color='.join(cols, ','))
+  "       \ empty(cols) ? '' : (' --color='.join(cols, ',')) 
 " endfunction
 " autocmd VimEnter,ColorScheme * call s:update_fzf_colors()
 " augroup _fzf
