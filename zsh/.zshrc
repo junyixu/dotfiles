@@ -895,6 +895,8 @@ export SYSTEMD_LESS=FRXMK journalctl
 
 # export TEXINPUTS="/usr/share/texmf//:"
 
+if [[ -f /proc/version ]]
+then
 if grep -q "archlinux" /proc/version
     then
 	alias Syu='sudo pacman -Syu'
@@ -920,6 +922,11 @@ then
 	alias Si='apt show'
 	alias Ss='apt search'
 	alias R='sudo apt remove'
+fi
+else
+	# for termux
+	alias S='pkg install'
+	alias Ss='pkg search'
 fi
 
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
