@@ -27,11 +27,9 @@ augroup filetypedetect
   au BufRead		lilydjwg.is-programmer.com_edit*		setf html
   au BufNewFile,BufRead	*.mw,*wpTextbox*.txt,*wiki__text*.txt		setf wiki
   au BufRead		/tmp/segmentfault.com_*-input*	setf markdown
-  " autocmd BufEnter localhost_lab_*.txt set filetype=markdown
 " http://localhost:8888/lab
-  autocmd BufEnter *localhost* set filetype=python
-  " autocmd BufEnter localhost_lab_*.txt set filetype=python.sage
-  autocmd BufEnter mail.google.com_mail-u*.txt set filetype=markdown
-  autocmd BufEnter chaoli.club_index-php-*.txt set filetype=markdown
+  autocmd BufEnter *localhost* setf python
+  autocmd BufEnter mail.google.com_mail-u*.txt setf markdown
+  autocmd BufEnter chaoli.club_index-php-*.txt setf markdown
   autocmd BufNewFile chaoli.club_index-php-*.txt	0r ~/.vim/templates/test.chaoli
 augroup END
