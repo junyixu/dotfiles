@@ -1,3 +1,5 @@
+setlocal foldmethod=syntax
+
 nnoremap <buffer> <localleader>l :Git pull<CR>
 nnoremap <buffer> <localleader>f :Git fetch<CR>
 nnoremap <buffer> <localleader>p :Git push<CR>
