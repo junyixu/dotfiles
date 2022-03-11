@@ -473,7 +473,7 @@ if !g:isPlain && !exists('g:started_by_firenvim') && g:hasPython3
 		 Plug 'neoclide/coc.nvim'
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
-		set completeopt=menu
+	set completeopt=menu,popup
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		Plug 'ycm-core/lsp-examples'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
@@ -1131,7 +1131,6 @@ let g:ale_sign_error = ""
 " let g:ycm_warning_symbol = '⚠'
 " au filetype cuda let g:ycm_show_diagnostics_ui = 0
 " let g:ycm_server_log_level = 'info'
-" let g:ycm_min_num_identifier_candidate_chars = 2
 "let g:ycm_add_preview_to_completeopt = 0
 " let g:ycm_goto_buffer_command = 'vertical-split'
 " if has('patch-8.0.1000')
@@ -1140,6 +1139,7 @@ let g:ale_sign_error = ""
 " let g:ycm_error_symbol                                  = '✗'  "set error or warning signs
 " let g:ycm_error_symbol                                  = '⨉'  "set error or warning signs
 let g:ycm_error_symbol                                  = ""  "set error or warning signs
+let g:ycm_show_diagnostics_ui = 0
 let g:ycm_warning_symbol                                = ''
 let g:ycm_max_num_candidates                            = 10
 let g:ycm_autoclose_preview_window_after_completion     = 0
@@ -1203,7 +1203,6 @@ let g:ycm_semantic_triggers = {
 			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
 			\ 'python': ['re!\w{4}', '.'],
 			\ 'julia': ['re!\w{4}'],
-			\ 'matlab': ['re!\w{4}'],
 			\ 'ruby,rust': ['.', '::'],
 			\ }
 
