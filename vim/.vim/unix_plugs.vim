@@ -1020,7 +1020,7 @@ let g:gutentags_modules = ['ctags']
 " let g:gutentags_ctags_extra_args = ['--fields=+nliazS', '--extras=+q']
 let g:gutentags_ctags_extra_args = ['--fields=+nliaz', '--extras=+q']
 
-let g:gutentags_exclude_filetypes=['vim', 'sh', 'css', 'html', 'pdf', 'eps', 'svg']
+let g:gutentags_exclude_filetypes=['vim', 'sh', 'css', 'html', 'pdf', 'eps', 'svg', 'text']
 " let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 " ctags识别很多元素，但未必全都记录，例如“函数声明”这一语法元素默认是不记录的，可以控制ctags记录的语法元素的种类。如下命令要求ctags记录c++文件中的函数声明和各种外部和前向声明
 " let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
@@ -1174,14 +1174,16 @@ let g:ycm_filetype_blacklist = {
 			\ 'notes':        1,
 			\ 'netrw':        1,
 			\ 'unite':        1,
+			\ 'floggraph':    1,
+			\ 'git':          1,
 			\ 'pandoc':       1,
 			\ 'infolog':      1,
 			\ 'mail':         1,
 			\ 'coc-explorer': 1,
 			\ 'tagbar':       1,
 			\ 'vista':        1,
-			\ 'vimwiki':        1,
-			\ 'markdown':        1,
+			\ 'vimwiki':      1,
+			\ 'markdown':     1,
 			\ 'leaderf':      1,
 			\ 'fzf':          1,
 			\ 'gitcommit':    1,
