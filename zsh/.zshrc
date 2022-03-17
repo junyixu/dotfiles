@@ -190,6 +190,8 @@ alias u='chevereto_upload.py -c ~/.config/chevereto/config.json -s'
 
 alias sagenotes='cd ~/Desktop/learning/learning_python3/sage_files && jupyter lab --no-browser'
 
+alias jl='julia --startup-file=no --quiet'
+
 gvimt(){ command gvim --remote-tab-silent $@ || command gvim $@; }
 
 alias jc='journalctl'

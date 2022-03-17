@@ -163,8 +163,8 @@ Plug 'majutsushi/tagbar'
 	nmap <leader>tb :TagbarToggle<CR>
 endif
 
-Plug 'jpalardy/vim-slime', {'on': ['<Plug>SlimeRegionSend',
-            \ '<Plug>SlimeParagraphSend', '<Plug>SlimeConfig']}
+Plug 'jpalardy/vim-slime'
+Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
 " {{{ slime 发送文本
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{bottom-right}"}
 let g:slime_dont_ask_default=1
@@ -178,24 +178,20 @@ let g:slime_target = 'tmux'
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-autocmd filetype sh,mma,python,matlab,julia,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+autocmd filetype sh,mma,python,matlab,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
-autocmd filetype sh,mma,python,matlab,julia,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
+autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
 
-autocmd filetype sh,mma,python,matlab,julia,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
+autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
 " autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
-autocmd filetype sh,mma,matlab,julia,sage.python nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
-" autocmd filetype matlab,julia,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
-
-autocmd filetype sh,mma,python,matlab,julia,sage.python nmap <M-CR> <Plug>SlimeSendCell
-" autocmd filetype python,matlab,julia,sage.python nnoremap <C-CR> <Plug>SlimeSendCell
-" nnoremap <s-cr> :w
-
-autocmd filetype sh,mma,python nmap <localleader>r <Plug>SlimeSendCell
+autocmd filetype sh,mma,matlab,sage.python nmap <silent><buffer> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
+" autocmd filetype matlab,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
+autocmd filetype sh,mma,python,matlab,sage.python nmap <M-CR> <Plug>SlimeSendCell
+" autocmd filetype sh,mma,python nmap <buffer> <localleader>r <Plug>SlimeSendCell
 " autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
 " autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
-autocmd filetype sh,mma,python,matlab,julia,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
+autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
 " }}}
 " TODO
 "
@@ -1138,10 +1134,11 @@ let g:ale_sign_error = ""
 let g:ycm_error_symbol                                  = ""  "set error or warning signs
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_warning_symbol                                = ''
-let g:ycm_max_num_candidates                            = 10
+let g:ycm_max_num_candidates                            = 20
 let g:ycm_autoclose_preview_window_after_completion     = 0
 let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
 let g:ycm_add_preview_to_completeopt                    = 0
+let g:ycm_key_list_stop_completion = ['<M-e>']
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_complete_in_strings                           = 0
 " let g:ycm_global_ycm_extra_conf = '~/.local/share/nvim/.ycm_extra_conf.py'
@@ -1201,7 +1198,6 @@ let g:ycm_semantic_triggers = {
 			\ 'c': ['re!\w{4}', '->', '.'],
 			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
 			\ 'python': ['re!\w{4}', '.'],
-			\ 'julia': ['re!\w{4}'],
 			\ 'ruby,rust': ['.', '::'],
 			\ }
 
@@ -1210,18 +1206,6 @@ let g:ycm_semantic_triggers = {
 " https://github.com/lervag/ vimtex/issues/168#issuecomment-108019496
 " let g:tex_fast = "bMpr"
 
-
-" let s:julia_cmdline = ['julia-1.0', '--startup-file=no', '--history-file=no', '-e', '
-" 			\       using LanguageServer;
-" 			\       using Pkg;
-" 			\       import StaticLint;
-" 			\       import SymbolServer;
-" 			\       env_path = dirname(Pkg.Types.Context().env.project_file);
-" 			\       
-" 			\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
-" 			\       server.runlinter = true;
-" 			\       run(server);
-" \   ']
 
 
 let s:lsp = $HOME.'.vim/plugged/lsp-examples'
@@ -1266,18 +1250,7 @@ if g:vimLSP
 				\ ]
 endif
 
-let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
-			\       using LanguageServer;
-			\       using Pkg;
-			\       import StaticLint;
-			\       import SymbolServer;
-			\		depot_path = get(ENV, "JULIA_DEPOT_PATH", "");
-			\       env_path = dirname(Pkg.Types.Context().env.project_file);
-			\
-			\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
-			\       server.runlinter = false;
-			\       run(server);
-			\   ']
+let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', expand('~/.vim/lsp-julia/run.jl')]
 let g:ycm_language_server += [
 			\   { 'name': 'julia',
 			\     'filetypes': [ 'julia' ],
