@@ -628,6 +628,39 @@ command! BufOnly execute '%bdelete|edit #|normal `"'
 " https://dpwright.com/posts/2018/04/06/graphical-log-with-vimfugitive/
 command -nargs=* Glg Git! log --graph --pretty=format:'\%h - (\%ad)\%d \%s <\%an>' --abbrev-commit --date=local <args>
 
+
+" nnoremap <C-e> :call MyScrollPopup(1)<CR>
+" nnoremap <C-y> :call MyScrollPopup(0)<CR>
+
+function! MyScrollPopup(down)
+    let winid = popup_findinfo()
+    if winid == 0
+        return 0
+    endif
+
+    " if the popup window is hidden, bypass the keystrokes
+    let pp = popup_getpos(winid)
+    if pp.visible != 1
+        return 0
+    endif
+
+    let firstline = pp.firstline + a:down
+    let buf_lastline = str2nr(trim(win_execute(winid, "echo line('$')")))
+    if firstline < 1
+        let firstline = 1
+    elseif pp.lastline + a:down > buf_lastline
+        let firstline = firstline - a:down + buf_lastline - pp.lastline
+    endif
+
+    " The appear of scrollbar will change the layout of the content which will cause inconsistent height.
+    call popup_setoptions( winid,
+                \ {'scrollbar': 0, 'firstline' : firstline } )
+
+    return 1
+endfunction
+
+inoremap <expr> <C-e> MyScrollPopup(3) ? '' : '<C-e>'
+inoremap <expr> <C-y> MyScrollPopup(-3) ? '' : '<C-y>'
 " if has('win32') || has('win64') ||has('win95') ||has('win16')
 " 	so ~/.vim/windows.vim
 "     " 插件
