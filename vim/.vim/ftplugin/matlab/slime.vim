@@ -19,4 +19,4 @@ endfunction
 " julia 需要加 \r
 " 不知为什么
 " noremap <localleader>d :call slime#send("help " . expand("<cword>") . "\r")<CR>
-noremap <localleader>d :call slime#send("help " . expand("<cword>"))<CR>
+noremap <buffer> <localleader>d :call slime#send("help " . expand("<cword>"))<CR>

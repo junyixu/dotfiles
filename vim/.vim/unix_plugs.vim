@@ -625,7 +625,6 @@ Plug 'Raimondi/delimitMate'
     let delimitMate_expand_cr = 1
     let delimitMate_expand_space = 1
 	au FileType python let b:delimitMate_nesting_quotes = ['"']
-	au FileType matlab let b:delimitMate_quotes = "\""
 	" imap <S-Tab> <Plug>delimitMateS-Tab
     "}}}
 
@@ -1267,39 +1266,25 @@ if g:vimLSP
 				\ ]
 endif
 
-" let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
-" \       using LanguageServer;
-" \       using Pkg;
-" \       import StaticLint;
-" \       import SymbolServer;
-" \       env_path = dirname(Pkg.Types.Context().env.project_file);
-" \       debug = false;
-" \
-" \       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, "", Dict());
-" \       server.runlinter = true;
-" \       run(server);
-" \   ']
-
-if g:juliaLSP
-	let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
-				\       using LanguageServer;
-				\       using Pkg;
-				\       import StaticLint;
-				\       import SymbolServer;
-				\       env_path = dirname(Pkg.Types.Context().env.project_file);
-				\
-				\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
-				\       server.runlinter = true;
-				\       run(server);
-				\   ']
-	let g:ycm_language_server += [
-				\   { 'name': 'julia',
-				\     'filetypes': [ 'julia' ],
-				\     'project_root_files': [ 'Project.toml' ],
-				\     'cmdline': s:julia_cmdline
-				\   },
-				\ ]
-endif
+let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', '-e', '
+			\       using LanguageServer;
+			\       using Pkg;
+			\       import StaticLint;
+			\       import SymbolServer;
+			\		depot_path = get(ENV, "JULIA_DEPOT_PATH", "");
+			\       env_path = dirname(Pkg.Types.Context().env.project_file);
+			\
+			\       server = LanguageServer.LanguageServerInstance(stdin, stdout, env_path, "");
+			\       server.runlinter = false;
+			\       run(server);
+			\   ']
+let g:ycm_language_server += [
+			\   { 'name': 'julia',
+			\     'filetypes': [ 'julia' ],
+			\     'project_root_files': [ 'Project.toml' ],
+			\     'cmdline': s:julia_cmdline
+			\   },
+			\ ]
 
 "=================== YCM | you complete me========================================}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
