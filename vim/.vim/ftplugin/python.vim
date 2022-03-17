@@ -1,6 +1,11 @@
 " 在 Python 文件中将 Tab 展开成空格
 setlocal expandtab
 
+let b:ycm_hover = {
+  \ 'command': 'GetDoc',
+  \ 'syntax': 'markdown'
+  \ }
+
 nmap <space>x <Plug>JupyterExecute
 nmap <space>X <Plug>JupyterExecuteAll
 

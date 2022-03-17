@@ -467,7 +467,7 @@ if !g:isPlain && !exists('g:started_by_firenvim') && g:hasPython3
 		 Plug 'neoclide/coc.nvim'
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
-	set completeopt=menu,popup
+	set completeopt=menu
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		Plug 'ycm-core/lsp-examples'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
@@ -1090,14 +1090,6 @@ nnoremap <leader>g<space> :Git
 if !g:isPlain && !exists('g:started_by_firenvim')
 "================== youcompleteme ============{{{
 " GetHover and GetDoc
-
-augroup MyYCMCustom
-autocmd!
-autocmd FileType c,cpp let b:ycm_hover = {
-  \ 'command': 'GetDoc',
-  \ 'syntax': &filetype
-  \ }
-augroup END
 
 " 错误标记
  " let g:ycm_log_level = 'debug'
