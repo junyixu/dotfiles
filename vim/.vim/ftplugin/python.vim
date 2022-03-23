@@ -6,8 +6,8 @@ let b:ycm_hover = {
   \ 'syntax': 'markdown'
   \ }
 
-nmap <space>x <Plug>JupyterExecute
-nmap <space>X <Plug>JupyterExecuteAll
+" nmap <space>x <Plug>JupyterExecute
+" nmap <space>X <Plug>JupyterExecuteAll
 
 let $PYTHONUNBUFFERED=1
 " =================== jupyter vim ========================={{{
@@ -67,7 +67,7 @@ function! _EscapeText_python(text)
 endfunction
 
 
-noremap <localleader>d :call slime#send("doc(" . expand("<cword>").")")<CR>
+noremap <localleader>d :call slime#send("help(" . expand("<cword>").")\r")<CR>
 
 " ===================== end slime ======================}}}
 

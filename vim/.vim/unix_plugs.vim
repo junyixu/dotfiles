@@ -187,8 +187,8 @@ autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <localle
 " autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
 autocmd filetype sh,mma,matlab,sage.python nmap <silent><buffer> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
 " autocmd filetype matlab,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
-autocmd filetype sh,mma,python,matlab,sage.python nmap <M-CR> <Plug>SlimeSendCell
-" autocmd filetype sh,mma,python nmap <buffer> <localleader>r <Plug>SlimeSendCell
+" autocmd filetype sh,mma,python,matlab,sage.python nmap <M-CR> <Plug>SlimeSendCell
+autocmd filetype sh,mma,python nmap <buffer> <localleader>r <Plug>SlimeSendCell
 " autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
 " autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
 autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
