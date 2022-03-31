@@ -24,6 +24,7 @@ $xdvipdfmx = "xdvipdfmx -E -o %D %O %S";
 # $bibtex_use = 2; 等同于 -bibtex 选项。
 # $bibtex_use = 0; 等同于 -bibtex- 选项。表示： Never run bibtex or biber. 
 # 通常 bbl 文件是由 BibTeX 编译 bib 文件生成的，在清理辅助文件时可以删掉； 但是有时并没由提供 bib 文件，只有 bbl（比如 arxiv 上的 TeX 源码），$bibtex_use = 1.5 可以自动检测根据条件清理 bbl 文件（需要 TeX Live 2018 以上）。
+# 注意：$bibtex_use = 1.5 导致 biblatex 失败!!! 
 $bibtex_use = 1.5;
 
 # 编译时将所有生成文件（包括辅助文件）写到 latex.out 目录下。注意这个配置虽然可以使目录更加整洁，但是可能导致一些软件的功能受影响，建议谨慎选择。
