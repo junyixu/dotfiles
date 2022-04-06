@@ -20,6 +20,8 @@
 	dump = cat-file -
 	lg = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
 
+[http "https://github.com"]
+	  proxy = http://127.0.0.1:1081
 [diff]
     tool = vim
     ignoreSubmodules = dirty
