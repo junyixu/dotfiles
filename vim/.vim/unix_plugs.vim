@@ -74,23 +74,6 @@ endif
 endif
 
 if !g:isPlain && !exists('g:started_by_firenvim')
-	Plug 'voldikss/vim-mma'
-	Plug 'voldikss/vim-translator'
-	"{{{ translator
-	" let g:translator_target_lang='en'
-	" let g:translator_source_lang='zh'
-	" let g:translator_default_engines=['google']
-	" nmap <silent> <localLeader>t <Plug>Translate
-	vmap <silent> <localLeader>t <Plug>TranslateV
-	" Display translation in a window
-	" nmap <silent> <localLeader>w <Plug>TranslateW
-	vmap <silent> <localLeader>w <Plug>TranslateWV
-	" Replace the text with translation
-	" nmap <silent> <localLeader>r <Plug>TranslateR
-	vmap <silent> <localLeader>r <Plug>TranslateRV
-	" Translate the text in clipboard
-	nmap <silent> <localLeader>x <Plug>TranslateX
-	"}}}
 	if version > 800 || isNVIM
 		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json', 'bash', 'sh'] }
 	endif
