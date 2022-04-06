@@ -47,6 +47,14 @@ call vimtex#imaps#add_map({
   \ 'context' : ["itemize", "enumerate"],
   \})
 
+  call vimtex#imaps#add_map({
+        \ 'lhs' : 'b',
+        \ 'rhs' : 'vimtex#imaps#style_math("vb")',
+        \ 'expr' : 1,
+        \ 'leader' : '#',
+        \ 'wrapper' : 'vimtex#imaps#wrap_math'
+        \})
+
 " call vimtex#imaps#add_map({
 "   \ 'lhs' : '<C-L>',
 "   \ 'rhs' : '\item ',
@@ -74,6 +82,7 @@ if g:asyncrun_status!='running'
 	normal mz
 	" call system('~/scripts/ueberzug_latex.py')
 	AsyncRun -silent ~/.vim/scripts/ueberzug_latex.py
+	" let l:jobID=job_start('~/.vim/scripts/ueberzug_latex.py')
 	" let job = job_start('~/scripts/ueberzug_latex.py')
 	" let job = job_start(["/bin/python", "~/scripts/ueberzug_latex.py"])
 	" echo job_status(job)
