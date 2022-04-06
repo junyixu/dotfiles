@@ -71,4 +71,7 @@ noremap <localleader>d :call slime#send("help(" . expand("<cword>").")\r")<CR>
 
 " ===================== end slime ======================}}}
 
+let g:jupyter_ascending_default_mappings=0
+nmap <buffer> <localLeader>x <Plug>JupyterExecute
+nmap <buffer> <localLeader>X <Plug>JupyterExecuteAll
 source $HOME/.vim/ycmMaps.vim

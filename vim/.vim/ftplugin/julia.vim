@@ -62,3 +62,10 @@ nnoremap <buffer> <localLeader><c-l> :JuliaCellClear<CR>
 " map <Leader>jp and <Leader>jn to jump to the previous and next cell header
 nnoremap <buffer> [d :JuliaCellPrevCell<CR>
 nnoremap <buffer> ]d :JuliaCellNextCell<CR>
+
+
+" jupyter_ascending
+let g:jupyter_ascending_match_pattern     = '.sync.jl'
+let g:jupyter_ascending_default_mappings=0
+nmap <buffer> <localLeader>x <Plug>JupyterExecute
+nmap <buffer> <localLeader>X <Plug>JupyterExecuteAll
