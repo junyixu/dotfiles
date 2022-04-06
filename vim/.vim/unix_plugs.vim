@@ -91,13 +91,9 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	" Translate the text in clipboard
 	nmap <silent> <localLeader>x <Plug>TranslateX
 	"}}}
-
-	if version < 800
-		echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
-	else
+	if version > 800 || isNVIM
 		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json', 'bash', 'sh'] }
 	endif
-
 " 下划线
 " Plug 'itchyny/vim-cursorword'
 " Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }

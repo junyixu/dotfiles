@@ -369,21 +369,23 @@ nnoremap S <C-w>w
 "
 "Use tab split to open the current window in a new tab, then <C-W><C-Q> to go back. You can map the command, for example:
 nnoremap sO :tab split<CR>
-tnoremap <M-o> <C-\><C-n>:tab split<CR>a
 nnoremap so <c-w>o
 
 nnoremap <C-g> <C-w>
-tnoremap <M-q> <C-\><C-n>
 
-tnoremap <M-h> <C-g>h
-tnoremap <M-j> <C-g>j
-tnoremap <M-k> <C-g>k
-tnoremap <M-l> <C-g>l
+if version > 800 || isNVIM
+	tnoremap <M-q> <C-\><C-n>
+	tnoremap <M-o> <C-\><C-n>:tab split<CR>a
+	tnoremap <M-h> <C-g>h
+	tnoremap <M-j> <C-g>j
+	tnoremap <M-k> <C-g>k
+	tnoremap <M-l> <C-g>l
 
-tnoremap <M-H> <C-g>H
-tnoremap <M-J> <C-g>J
-tnoremap <M-K> <C-g>K
-tnoremap <M-L> <C-g>L
+	tnoremap <M-H> <C-g>H
+	tnoremap <M-J> <C-g>J
+	tnoremap <M-K> <C-g>K
+	tnoremap <M-L> <C-g>L
+endif
 
 nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
