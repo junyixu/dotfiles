@@ -453,13 +453,6 @@ vnoremap K :move '<-2<CR>gv=gv
 " nnoremap <C-j> :cnext<CR>zzzv
 " nnoremap <C-K> :cprevious<CR>zzzv
 
-" Undo break points
-" :help i_u
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
-
 " for goldendict
 " vnoremap <C-c> "+ygv
 vnoremap <C-c> "+y
