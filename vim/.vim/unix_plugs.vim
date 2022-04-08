@@ -786,7 +786,6 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'andymass/vim-matlab', {'for': 'matlab'}
 
 	Plug 'ryanoasis/vim-devicons', {'on': []}
-	Plug 'petRUShka/vim-sage', {'for': 'sage'}
 endif
 
 call plug#end()
