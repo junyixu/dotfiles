@@ -442,8 +442,8 @@ nnoremap gk k
 " Moving text
 " :help move
 " :help '>
-vnoremap J :move '>+1<CR>gv=gv
-vnoremap K :move '<-2<CR>gv=gv
+" vnoremap J :move '>+1<CR>gv=gv
+" vnoremap K :move '<-2<CR>gv=gv
 " inoremap <C-j> <ESC>:m .+1<CR>==
 " inoremap <C-k> <ESC>:m .-2<CR>==
 " nnoremap <leader>k :m .-2<CR>==
