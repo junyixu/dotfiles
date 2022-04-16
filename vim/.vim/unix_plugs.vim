@@ -121,7 +121,9 @@ Plug 'tpope/vim-rhubarb'
 " gitlab
 Plug 'shumphrey/fugitive-gitlab.vim'
 let g:fugitive_gitlab_domains = ['https://gitee.com']
+if !g:isNVIM
 Plug 'rbong/vim-flog'
+endif
 Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
 Plug 'stsewd/fzf-checkout.vim'
 " 侧栏显示 git 标识
