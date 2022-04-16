@@ -540,7 +540,7 @@ Plug 'inkarkat/vim-SyntaxRange'
 
 " 缩进插件
 " Plug 'Yggdroot/indentLine', {'for': ['python', 'fortran']}
-Plug 'Yggdroot/indentLine', {'for': ['python']}
+" Plug 'Yggdroot/indentLine', {'for': ['python']}
     "{{{
 	let g:indentLine_char = '¦'
     " 和 tex 共用的时候 conceal 颜色会被覆盖
