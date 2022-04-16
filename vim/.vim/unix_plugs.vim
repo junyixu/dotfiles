@@ -447,7 +447,7 @@ if !g:isPlain && !exists('g:started_by_firenvim') && g:hasPython3
 		 Plug 'neoclide/coc.nvim'
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
-	set completeopt=menu
+		set completeopt=menu
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		Plug 'ycm-core/lsp-examples'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
@@ -462,7 +462,7 @@ if version < 800
 	echom '您的 vim 版本低于 8.2，你需要通过升级才能正常使用 skywind3000/quickui 等插件'
 else
 	Plug 'skywind3000/vim-quickui'
-	nnoremap <localleader>] :call quickui#tools#preview_tag('')<cr>
+	nnoremap <silent><localleader>] :call quickui#tools#preview_tag('')<cr>
 	" Alt 键前缀的只在 GUI 有效，在终端无效
 	" noremap <silent><C-j> :call quickui#preview#scroll('DOWN')<CR>
 	" noremap <silent><C-k> :call quickui#preview#scroll('UP')<CR>
@@ -966,8 +966,8 @@ let g:gutentags_project_root = ['.root', '.project', '.git', '.tasks']
 
 
 " 将自动生成的 tags 文件全部放入.gittags 目录中，避免污染工程目录
-" let s:vim_tags = expand('~/.cache/tags')
-" let g:gutentags_cache_dir = s:vim_tags
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
 
 let g:gitgutter_max_signs=1200
 
@@ -1441,7 +1441,6 @@ let g:ale_linters = {
             \   'matlab': ['mlint'],
             \   'yaml': ['prettier'],
 			\   'lua': ['luac'], 
-            \   'tex': ['textidote'],
             \   'sh': ['shellcheck'],
 		\   'bash': ['shellcheck'],
 		\   'zsh': ['shellcheck'],
