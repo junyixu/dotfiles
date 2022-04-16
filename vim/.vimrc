@@ -16,6 +16,11 @@ if has("python3")
 else
 	let g:hasPython3=0
 endif
+if has("python")
+	let g:hasPython2=1
+else
+	let g:hasPython2=0
+endif
 
 if has('gui_running')
 	let g:gui_running=1
@@ -155,19 +160,21 @@ set t_ut=""
 
 " 让 vim 在 tmux 中也能使用鼠标调整窗口大小
 " 具体看 :h ttymouse 或者自行谷歌
-if !g:isNVIM
+if !g:isNVIM 
 	set ttymouse=sgr
-	set balloonevalterm
+	if version > 802
+		set balloonevalterm
+	endif
 endif
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" " Always show the signcolumn, otherwise it would shift the text each time
+" " diagnostics appear/become resolved.
+" if has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
 
 " 暂时没找到好的调整窗口大小的方法
 " 用鼠标调整窗口最自然
@@ -239,10 +246,6 @@ if exists('+termguicolors')
 else
 	set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
 endif
-" if &term =~# '^screen'
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" endif
 
 " https://github.com/microsoft/terminal/issues/832
 " if (&term =~ '^xterm')
@@ -301,11 +304,11 @@ nnoremap s} <C-W>]
 nnoremap sg] <C-W>g}
 
 " 内置终端
-if !g:isNVIM
-set termwinkey=<C-G>
+if !g:isNVIM && version > 800
+	set termwinkey=<C-G>
+	nnoremap <C-G>v :vertical term<CR>
+	nnoremap <C-G>s :term<CR>
 endif
-nnoremap <C-G>v :vertical term<CR>
-nnoremap <C-G>s :term<CR>
 
 "Add simple highlight removal.
 " nmap <Leader><space> :nohlsearch<cr>

@@ -74,9 +74,29 @@ endif
 endif
 
 if !g:isPlain && !exists('g:started_by_firenvim')
-	if version > 800 || isNVIM
+	Plug 'voldikss/vim-mma'
+	Plug 'voldikss/vim-translator'
+	"{{{ translator
+	" let g:translator_target_lang='en'
+	" let g:translator_source_lang='zh'
+	" let g:translator_default_engines=['google']
+	" nmap <silent> <localLeader>t <Plug>Translate
+	vmap <silent> <localLeader>t <Plug>TranslateV
+	" Display translation in a window
+	" nmap <silent> <localLeader>w <Plug>TranslateW
+	vmap <silent> <localLeader>w <Plug>TranslateWV
+	" Replace the text with translation
+	" nmap <silent> <localLeader>r <Plug>TranslateR
+	vmap <silent> <localLeader>r <Plug>TranslateRV
+	" Translate the text in clipboard
+	nmap <silent> <localLeader>x <Plug>TranslateX
+	"}}}
+
+	if version > 800
 		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json', 'bash', 'sh'] }
+		Plug 'untitled-ai/jupyter_ascending.vim', {'for': ['python', 'julia']}
 	endif
+
 " 下划线
 " Plug 'itchyny/vim-cursorword'
 " Plug 'itchyny/vim-cursorword', { 'for': ['c', 'cpp', 'java', 'python', 'julia', 'matlab', 'cuda'] }
@@ -458,11 +478,9 @@ endif
 " 启动时间
 " Plug 'dstein64/vim-startuptime'
 
-if version < 800
-	echom '您的 vim 版本低于 8.2，你需要通过升级才能正常使用 skywind3000/quickui 等插件'
-else
+if version > 800
 	Plug 'skywind3000/vim-quickui'
-	nnoremap <silent><localleader>] :call quickui#tools#preview_tag('')<cr>
+	nnoremap <localleader>] :call quickui#tools#preview_tag('')<cr>
 	" Alt 键前缀的只在 GUI 有效，在终端无效
 	" noremap <silent><C-j> :call quickui#preview#scroll('DOWN')<CR>
 	" noremap <silent><C-k> :call quickui#preview#scroll('UP')<CR>
@@ -633,7 +651,6 @@ let g:gruvbox_italicize_comments = 0
 " Plug 'joshdick/onedark.vim'
 "================== colorscheme ======================}}}
 
-Plug 'untitled-ai/jupyter_ascending.vim', {'for': ['python', 'julia']}
 " Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
     " let g:jupyter_mapkeys = 0
 Plug 'mattn/calendar-vim'
@@ -644,8 +661,10 @@ Plug 'mattn/calendar-vim'
 	let g:calendar_no_mappings=0
 	  let g:calendar_keys = { 'goto_next_month': '<C-Right>', 'goto_prev_month': '<C-Left>', 'close': '<M-q>', 'goto_next_year': '<C-Down>', 'goto_prev_year': '<C-Up>', 'goto_today': 'td'}
 "=============== Markdown ==============={{{
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
-let g:mkdp_filetypes = ['markdown', 'vimwiki']
+if version > 800
+	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
+	let g:mkdp_filetypes = ['markdown', 'vimwiki']
+endif
 Plug 'hotoo/pangu.vim', {'for': 'markdown'}
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'

@@ -24,11 +24,11 @@ if $SSH_CONNECTION != '' && !g:isNVIM
 endif
 "把 vim 插入状态的光标改为竖线 For VTE compatible terminals (urxvt, st, xterm,
 "gnome-terminal 3.x, Konsole KDE5 and others)
-" if exists('+termguicolors') && $SSH_CONNECTION == '' && !has('nvim')
-	let &t_SI = "\<Esc>[6 q"
-	let &t_SR = "\<Esc>[4 q"
 	let &t_EI = "\<Esc>[2 q"
-" endif
+	let &t_SI = "\<Esc>[6 q"
+if exists('+termguicolors') && $SSH_CONNECTION == '' && !has('nvim')
+	let &t_SR = "\<Esc>[4 q"
+endif
 
 au FileType cmake set keywordprg=~/bin/cmake-help
 
