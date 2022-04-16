@@ -218,12 +218,12 @@ vnoremap <F8> :call ChineseCount()<cr>
 
 "---------------------Auto-Command---------------------------------"
 "Automatically source the .vimrc file on save.
-augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
-	autocmd BufWritePost unix_plugs.vim source %
-	autocmd BufWritePost unix.vim source %
-augroup END
+" augroup autosourcing
+" 	autocmd!
+" 	autocmd BufWritePost .vimrc source %
+" 	autocmd BufWritePost unix_plugs.vim source %
+" 	autocmd BufWritePost unix.vim source %
+" augroup END
 " 如果是 Windows 则用
 " autocmd! bufwritepost _vimrc source %
 " 如果是 neovim 只要把 .vimrc 改成 init.vim 就可以了
