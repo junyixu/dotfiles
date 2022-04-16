@@ -1,3 +1,7 @@
+if &omnifunc == "" 
+	setlocal omnifunc=syntaxcomplete#Complete
+endif
+
 setlocal commentstring=%\ %s
 
 command! MatlabNormalModeCreateCell :execute 'normal! :set paste<CR>m`O%%<ESC>``:set nopaste<CR>'

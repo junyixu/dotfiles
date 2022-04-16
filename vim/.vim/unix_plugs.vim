@@ -1119,7 +1119,7 @@ let g:ycm_key_list_select_completion                    = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
 let g:ycm_cache_omnifunc                                = 1  " 缓存匹配项，不然每次都重新生成匹配项
 let g:ycm_min_num_of_chars_for_completion               = 3
-let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语法自动补全
+let g:ycm_seed_identifiers_with_syntax                  = 0 " 开启语法自动补全
 let g:ycm_complete_in_comments                          = 0  "在注释输入中也能补全
 let g:ycm_always_populate_location_list                 = 0
 " let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
@@ -1162,6 +1162,8 @@ let g:ycm_filepath_blacklist = {
 	\ 'jsx': 1,
 	\ 'xml': 1,
 	\ 'matlab': 1,
+	\ 'julia': 1,
+	\ 'python': 1,
 	\ 'mma': 1,
 	\}
 
