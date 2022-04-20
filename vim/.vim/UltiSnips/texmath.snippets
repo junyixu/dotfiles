@@ -84,7 +84,7 @@ endsnippet
 # 导数(流数)
 context "isMath()"
 snippet "(\\?\w+)(\.\.)" "二阶导" ri
-\ddot{`!p snip.rv=match.group(1)`} 
+\ddot{`!p snip.rv=match.group(1)`}
 endsnippet 
 
 context "isMath()"
@@ -100,7 +100,7 @@ endsnippet
 
 context "isMath()"
 snippet "(\\?[A-Za-z]+)(\.)" "一阶导" ri
-\dot{`!p snip.rv=match.group(1)`} 
+\dot{`!p snip.rv=match.group(1)`}
 endsnippet 
 
 context "isMath()"
@@ -226,6 +226,10 @@ endsnippet
 
 snippet >= "not equals" iA
 \geq 
+endsnippet
+
+snippet >> "not equals" A
+\gg 
 endsnippet
 
 snippet >~ "not equals" iA
