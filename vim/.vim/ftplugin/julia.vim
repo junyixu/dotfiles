@@ -6,9 +6,9 @@ setlocal tags+=$HOME/.julia/packages/Symbolics/1OrKJ/tags
 " }}}
 
 " let b:delimitMate_quotes = "\""
-nnoremap <buffer> <localleader>d :call slime#send("@doc " . expand("<cword>") . "\r")<CR>
-vnoremap <buffer> <localleader>d :<c-u>call slime#send("@doc " . @* . "\r")<CR>
-vnoremap <buffer> <localleader>l :<c-u>call slime#send("@less " . @* . "\r")<CR>
+nnoremap <silent><buffer> <localleader>d :call slime#send("@doc " . expand("<cword>") . "\r")<CR>
+vnoremap <silent><buffer> <localleader>d :<c-u>call slime#send("@doc " . @* . "\r")<CR>
+vnoremap <silent><buffer> <localleader>l :<c-u>call slime#send("@less " . @* . "\r")<CR>
 noremap <buffer> <localleader>sm :call slime#send("methods(" . expand("<cword>") . ")\r")<cr>
 noremap <buffer> <localleader>t :call slime#send("typeof(" . expand("<cword>") . ")\r")<cr>
 noremap <buffer> <localleader>si :call slime#send(expand("<cword>") . "\r")<cr>
