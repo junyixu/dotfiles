@@ -1,8 +1,8 @@
 " tags {{{
-setlocal tags+=$HOME/packages/julias/julia-1.7/share/julia/stdlib/v1.7/LinearAlgebra/tags
-setlocal tags+=$HOME/packages/julias/julia-1.7/share/julia/stdlib/v1.7/Statistics/tags
-setlocal tags+=$HOME/packages/julias/julia-1.7/share/julia/base/tags
-setlocal tags+=$HOME/.julia/packages/Symbolics/1OrKJ/tags
+setlocal tags+=$HOME/.vim/julia/julia-tags/LinearAlgebra_tags
+setlocal tags+=$HOME/.vim/julia/julia-tags/Statistics_tags
+setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
+setlocal tags+=$HOME/.julia/packages/Symbolics/tags
 " }}}
 
 " let b:delimitMate_quotes = "\""
@@ -28,6 +28,8 @@ let g:julia_cell_delimit_cells_by = "tags"
 let g:julia_cell_tag = "# %%"
 setlocal omnifunc=syntaxcomplete#Complete
 
+" 不要在 ] 的后面按'自动拓展为 ''
+let b:delimitMate_smart_quotes = '\%(\w\|[^[:punct:][:space:]]\|\]\|\%(\\\\\)*\\\)\%#\|\%#\%(\w\|[^[:space:][:punct:]]\)'
 
 command! JuliaNormalModeCreateCell :execute 'normal! :set paste<CR>m`O# %%<ESC>``:set nopaste<CR>'
 command! JuliaVisualModeCreateCell :execute 'normal! gvD:set paste<CR>O# %%<CR># %%<ESC>P:set nopaste<CR>'

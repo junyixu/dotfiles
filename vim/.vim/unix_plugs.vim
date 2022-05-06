@@ -1247,7 +1247,7 @@ if g:vimLSP
 				\ ]
 endif
 
-let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', expand('~/.vim/lsp-julia/run.jl')]
+let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', expand('~/.vim/julia/lsp-julia/run.jl')]
 let g:ycm_language_server += [
 			\   { 'name': 'julia',
 			\     'filetypes': [ 'julia' ],
