@@ -4,6 +4,9 @@ let $GTAGSLABEL = 'native-pygments'
 " 下面还有个 nvim light
 set background=dark
 
+" vim-slime 反应慢 " https://github.com/jpalardy/vim-slime/issues/204
+set shell=/bin/sh
+
 "=========== vim-plug ============={{{
 if g:isNVIM
 	" nvim 的 py 默认是 py2，把它改成 py3
