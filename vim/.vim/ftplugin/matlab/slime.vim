@@ -8,6 +8,7 @@ function! s:Remove_line_comments(lines)
   return filter(copy(a:lines), "!s:Is_comment(v:val)")
 endfunction
 
+let b:slime_cell_delimiter = "%%"
 " vim slime handler
 function! _EscapeText_matlab(text)
   let l:lines = slime#common#lines(slime#common#tab_to_spaces(a:text))
@@ -20,3 +21,4 @@ endfunction
 " 不知为什么
 " noremap <localleader>d :call slime#send("help " . expand("<cword>") . "\r")<CR>
 noremap <buffer> <localleader>d :call slime#send("help " . expand("<cword>"))<CR>
+noremap <buffer> <localleader>s :call slime#send("size(" . expand("<cword>").")")<CR>
