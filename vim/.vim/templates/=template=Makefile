@@ -1,49 +1,52 @@
 #
 # %FFILE%
-# %USER%, %FDATE%
-#
+# https://stackoverflow.com/questions/30573481/how-to-write-a-makefile-with-separate-source-and-header-directories
 
 #vpath %.h ./inc
-HEADER_DIR = -I. -I./inc
-CC=gcc
-LIBS=-lm
-CFLAGS=-Wall
-CFLAGS+=-O2
-TAR=main
-OBJ=grep.o strindex.o mygetline.o
-RMRF:=rm -rf
+
+SRC_DIR := src
+OBJ_DIR := obj
+BIN_DIR := bin
+
+EXE := $(BIN_DIR)/a.out
+SRC := $(wildcard $(SRC_DIR)/*.c)
+# patsubst 函数用于将文件模式进行替换。
+# 用法: $(patsubst 原模式， 目标模式， 文件列表)
+OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+
+CPPFLAGS := -Iinclude # -I is a preprocessor flag, not a compiler flag
+#  Note: (CPP stands for C PreProcessor here, not CPlusPlus! Use CXXFLAGS for C++ flags and CXX for C++ compiler.)
+CFLAGS   = -Wall
+CFLAGS   += -O2
+LDFLAGS  := -Llib       # -L is a linker flag
+LDLIBS   := -lm         # Left empty if no libs are needed
 
 # 解释： = 替换 += 追加:= 恒等于
 
-all: $(TAR)
+.PHONY: all clean
+
+all: $(EXE)
 	%HERE%@echo "%FFILE% needs your attention!"
 
-
-$(TAR): $(OBJ)
+$(EXE): $(OBJ) | $(BIN_DIR) 
 	@# 生成可执行程序, OBJ->TAR
-	@echo "生成可执行程序..."
-	$(CC) -o $@ $(HEADER_DIR) $(LIBS) $^
+	@echo "生成可执行程序:"
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
-# % 表示文件名(去除扩展名)
-%.o: %.c
-	@echo "生成目标文件..."
-	$(CC) $(HEADER_DIR) -c $^
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) 
+	@echo "生成目标文件:"
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-# 在命令的前面加上 @,就可以关闭回声(echoing)：即：就不会有任何输出。
-# grep.o: grep.c mygetline.h strindex.h
-# 	$(CC) $(HEADER_DIR) -c grep.c
-# mygetline.o: mygetline.c mygetline.h
-# 	$(CC) $(HEADER_DIR) -c mygetline.c
-# strindex.o: strindex.c strindex.h
-# 	$(CC) $(HEADER_DIR) -c strindex.c
+# Note: 在命令的前面加上 @,就可以关闭回声(echoing)：即：就不会有任何输出。
 
-.PHONY: clean run
-run:
-	./$(TAR)
-clean:
-	@echo "删除目标文件和可执行程序..."
-	$(RMRF) *.o $(TAR)
+$(BIN_DIR) $(OBJ_DIR): 
+	mkdir -p $@
+
+clean: 
+	@echo "删除目标文件和可执行程序:"
+	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
+
+-include $(OBJ:.o=.d)
 
 
 # vim:ft=make
-#

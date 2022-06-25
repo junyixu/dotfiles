@@ -33,7 +33,7 @@ endif
 au FileType cmake set keywordprg=~/bin/cmake-help
 
 
-if has("nvim")
+if g:isNVIM
     " Make it easy to edit the .vimrc file.
     nmap <Leader>ev :tabedit ~/.local/share/nvim/unix.vim<cr>
     " Make it easy to edit the plugs file.
@@ -55,3 +55,5 @@ endif
 command! Ocr :r! ocr ~/Downloads/test.png
 " vnoremap <C-h> :s/
 
+" vim-slime 反应慢 " https://github.com/jpalardy/vim-slime/issues/204
+set shell=/bin/sh

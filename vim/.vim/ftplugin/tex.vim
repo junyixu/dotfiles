@@ -47,13 +47,20 @@ call vimtex#imaps#add_map({
   \ 'context' : ["itemize", "enumerate"],
   \})
 
-  call vimtex#imaps#add_map({
-        \ 'lhs' : 'b',
-        \ 'rhs' : 'vimtex#imaps#style_math("vb")',
-        \ 'expr' : 1,
-        \ 'leader' : '#',
-        \ 'wrapper' : 'vimtex#imaps#wrap_math'
-        \})
+call vimtex#imaps#add_map({
+	\ 'lhs' : 'b',
+	\ 'rhs' : 'vimtex#imaps#style_math("vb")',
+	\ 'expr' : 1,
+	\ 'leader' : '#',
+	\ 'wrapper' : 'vimtex#imaps#wrap_math'
+	\})
+
+call vimtex#imaps#add_map({
+	\ 'lhs' : '(',
+	\ 'rhs' : '\left(',
+	\ 'leader' : '#',
+	\ 'wrapper' : 'vimtex#imaps#wrap_math'
+	\})
 
 " call vimtex#imaps#add_map({
 "   \ 'lhs' : '<C-L>',

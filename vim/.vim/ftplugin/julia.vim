@@ -39,7 +39,6 @@ nnoremap <buffer><silent> <M-c> :JuliaNormalModeCreateCell<CR>
 vnoremap <buffer><silent> <M-c> :<C-u>JuliaVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:JuliaInsertModeCreateCell<CR>
 
-let g:ycm_disable_signature_help = 1
 source $HOME/.vim/ycmMaps.vim
 
 xmap <silent><buffer> <CR> <Plug>SlimeRegionSend

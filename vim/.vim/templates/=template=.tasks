@@ -10,4 +10,4 @@ output=terminal
 
 
 
-# vim:ft=toml:
+# vim:ft=dosini:
