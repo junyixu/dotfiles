@@ -1,14 +1,14 @@
 " tags {{{
-setlocal tags+=$HOME/packages/julias/julia-1.7/share/julia/stdlib/v1.7/LinearAlgebra/tags
-setlocal tags+=$HOME/packages/julias/julia-1.7/share/julia/stdlib/v1.7/Statistics/tags
-setlocal tags+=$HOME/packages/julias/julia-1.7/share/julia/base/tags
-setlocal tags+=$HOME/.julia/packages/Symbolics/1OrKJ/tags
+setlocal tags+=$HOME/.vim/julia/julia-tags/LinearAlgebra_tags
+setlocal tags+=$HOME/.vim/julia/julia-tags/Statistics_tags
+setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
+setlocal tags+=$HOME/.julia/packages/Symbolics/tags
 " }}}
 
 " let b:delimitMate_quotes = "\""
-nnoremap <buffer> <localleader>d :call slime#send("@doc " . expand("<cword>") . "\r")<CR>
-vnoremap <buffer> <localleader>d :<c-u>call slime#send("@doc " . @* . "\r")<CR>
-vnoremap <buffer> <localleader>l :<c-u>call slime#send("@less " . @* . "\r")<CR>
+nnoremap <silent><buffer> <localleader>d :call slime#send("@doc " . expand("<cword>") . "\r")<CR>
+vnoremap <silent><buffer> <localleader>d :<c-u>call slime#send("@doc " . @* . "\r")<CR>
+vnoremap <silent><buffer> <localleader>l :<c-u>call slime#send("@less " . @* . "\r")<CR>
 noremap <buffer> <localleader>sm :call slime#send("methods(" . expand("<cword>") . ")\r")<cr>
 noremap <buffer> <localleader>t :call slime#send("typeof(" . expand("<cword>") . ")\r")<cr>
 noremap <buffer> <localleader>si :call slime#send(expand("<cword>") . "\r")<cr>
@@ -28,6 +28,8 @@ let g:julia_cell_delimit_cells_by = "tags"
 let g:julia_cell_tag = "# %%"
 setlocal omnifunc=syntaxcomplete#Complete
 
+" 不要在 ] 的后面按'自动拓展为 ''
+let b:delimitMate_smart_quotes = '\%(\w\|[^[:punct:][:space:]]\|\]\|\%(\\\\\)*\\\)\%#\|\%#\%(\w\|[^[:space:][:punct:]]\)'
 
 command! JuliaNormalModeCreateCell :execute 'normal! :set paste<CR>m`O# %%<ESC>``:set nopaste<CR>'
 command! JuliaVisualModeCreateCell :execute 'normal! gvD:set paste<CR>O# %%<CR># %%<ESC>P:set nopaste<CR>'
@@ -62,3 +64,10 @@ nnoremap <buffer> <localLeader><c-l> :JuliaCellClear<CR>
 " map <Leader>jp and <Leader>jn to jump to the previous and next cell header
 nnoremap <buffer> [d :JuliaCellPrevCell<CR>
 nnoremap <buffer> ]d :JuliaCellNextCell<CR>
+
+
+" jupyter_ascending
+let g:jupyter_ascending_match_pattern     = '.sync.jl'
+let g:jupyter_ascending_default_mappings=0
+nmap <buffer> <localLeader>x <Plug>JupyterExecute
+nmap <buffer> <localLeader>X <Plug>JupyterExecuteAll

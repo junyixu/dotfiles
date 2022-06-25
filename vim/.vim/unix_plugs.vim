@@ -4,6 +4,9 @@ let $GTAGSLABEL = 'native-pygments'
 " 下面还有个 nvim light
 set background=dark
 
+" vim-slime 反应慢 " https://github.com/jpalardy/vim-slime/issues/204
+set shell=/bin/sh
+
 "=========== vim-plug ============={{{
 if g:isNVIM
 	" nvim 的 py 默认是 py2，把它改成 py3
@@ -92,10 +95,9 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	nmap <silent> <localLeader>x <Plug>TranslateX
 	"}}}
 
-	if version < 800
-		echom '您的 vim 版本低于 8.0，你需要通过升级才能正常使用 w0rp/ale 等插件'
-	else
+	if version > 800
 		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json', 'bash', 'sh'] }
+		Plug 'untitled-ai/jupyter_ascending.vim', {'for': ['python', 'julia']}
 	endif
 
 " 下划线
@@ -142,8 +144,9 @@ Plug 'tpope/vim-rhubarb'
 " gitlab
 Plug 'shumphrey/fugitive-gitlab.vim'
 let g:fugitive_gitlab_domains = ['https://gitee.com']
-Plug 'junegunn/gv.vim'
+if !g:isNVIM
 Plug 'rbong/vim-flog'
+endif
 Plug 'rhysd/git-messenger.vim', {'on': 'GitMessenger'}
 Plug 'stsewd/fzf-checkout.vim'
 " 侧栏显示 git 标识
@@ -467,7 +470,7 @@ if !g:isPlain && !exists('g:started_by_firenvim') && g:hasPython3
 		 Plug 'neoclide/coc.nvim'
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
-	set completeopt=menu
+		set completeopt=menu
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		Plug 'ycm-core/lsp-examples'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
@@ -478,9 +481,7 @@ endif
 " 启动时间
 " Plug 'dstein64/vim-startuptime'
 
-if version < 800
-	echom '您的 vim 版本低于 8.2，你需要通过升级才能正常使用 skywind3000/quickui 等插件'
-else
+if version > 800
 	Plug 'skywind3000/vim-quickui'
 	nnoremap <localleader>] :call quickui#tools#preview_tag('')<cr>
 	" Alt 键前缀的只在 GUI 有效，在终端无效
@@ -560,7 +561,7 @@ Plug 'inkarkat/vim-SyntaxRange'
 
 " 缩进插件
 " Plug 'Yggdroot/indentLine', {'for': ['python', 'fortran']}
-Plug 'Yggdroot/indentLine', {'for': ['python']}
+" Plug 'Yggdroot/indentLine', {'for': ['python']}
     "{{{
 	let g:indentLine_char = '¦'
     " 和 tex 共用的时候 conceal 颜色会被覆盖
@@ -653,7 +654,6 @@ let g:gruvbox_italicize_comments = 0
 " Plug 'joshdick/onedark.vim'
 "================== colorscheme ======================}}}
 
-Plug 'untitled-ai/jupyter_ascending.vim', {'for': ['python', 'julia']}
 " Plug 'jupyter-vim/jupyter-vim', {'for': ['python', 'julia']}
     " let g:jupyter_mapkeys = 0
 Plug 'mattn/calendar-vim'
@@ -664,8 +664,10 @@ Plug 'mattn/calendar-vim'
 	let g:calendar_no_mappings=0
 	  let g:calendar_keys = { 'goto_next_month': '<C-Right>', 'goto_prev_month': '<C-Left>', 'close': '<M-q>', 'goto_next_year': '<C-Down>', 'goto_prev_year': '<C-Up>', 'goto_today': 'td'}
 "=============== Markdown ==============={{{
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
-let g:mkdp_filetypes = ['markdown', 'vimwiki']
+if version > 800
+	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['vimwiki', 'markdown', 'vim-plug']}
+	let g:mkdp_filetypes = ['markdown', 'vimwiki']
+endif
 Plug 'hotoo/pangu.vim', {'for': 'markdown'}
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
@@ -808,7 +810,6 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'andymass/vim-matlab', {'for': 'matlab'}
 
 	Plug 'ryanoasis/vim-devicons', {'on': []}
-	Plug 'petRUShka/vim-sage', {'for': 'sage'}
 endif
 
 call plug#end()
@@ -987,8 +988,8 @@ let g:gutentags_project_root = ['.root', '.project', '.git', '.tasks']
 
 
 " 将自动生成的 tags 文件全部放入.gittags 目录中，避免污染工程目录
-" let s:vim_tags = expand('~/.cache/tags')
-" let g:gutentags_cache_dir = s:vim_tags
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
 
 let g:gitgutter_max_signs=1200
 
@@ -1093,7 +1094,9 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 
 " 错误标记
  " let g:ycm_log_level = 'debug'
-let g:ycm_clangd_binary_path = '/es01/home/liujky/miniconda3/envs/JunyisBase/bin/clangd'
+if $YCM_CLANGD_BINARY_PATH != ''
+	let g:ycm_clangd_binary_path = $YCM_CLANGD_BINARY_PATH
+endif
 " let g:ale_sign_error = "\ue009\ue009"
 let g:ale_sign_error = ""
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
@@ -1140,7 +1143,7 @@ let g:ycm_key_list_select_completion                    = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
 let g:ycm_cache_omnifunc                                = 1  " 缓存匹配项，不然每次都重新生成匹配项
 let g:ycm_min_num_of_chars_for_completion               = 3
-let g:ycm_seed_identifiers_with_syntax                  = 1 " 开启语法自动补全
+let g:ycm_seed_identifiers_with_syntax                  = 0 " 开启语法自动补全
 let g:ycm_complete_in_comments                          = 0  "在注释输入中也能补全
 let g:ycm_always_populate_location_list                 = 0
 " let g:ycm_python_sys_path = ['/usr/lib/python3.9/site-packages/numpy']
@@ -1183,6 +1186,8 @@ let g:ycm_filepath_blacklist = {
 	\ 'jsx': 1,
 	\ 'xml': 1,
 	\ 'matlab': 1,
+	\ 'julia': 1,
+	\ 'python': 1,
 	\ 'mma': 1,
 	\}
 
@@ -1242,7 +1247,7 @@ if g:vimLSP
 				\ ]
 endif
 
-let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', expand('~/.vim/lsp-julia/run.jl')]
+let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', expand('~/.vim/julia/lsp-julia/run.jl')]
 let g:ycm_language_server += [
 			\   { 'name': 'julia',
 			\     'filetypes': [ 'julia' ],
@@ -1462,7 +1467,6 @@ let g:ale_linters = {
             \   'matlab': ['mlint'],
             \   'yaml': ['prettier'],
 			\   'lua': ['luac'], 
-            \   'tex': ['textidote'],
             \   'sh': ['shellcheck'],
 		\   'bash': ['shellcheck'],
 		\   'zsh': ['shellcheck'],

@@ -227,11 +227,18 @@ snippet wf "wrapfigure" b
 endsnippet
 
 snippet svg "Figure environment" b
-\begin{figure}[${2:htpb}]
+\begin{figure}[${1:htpb}]
 	\centering
-	\includesvg[width=0.8\linewidth]{${3:name.ext}}
-	\caption{${3/(\w+)\.\w+/\u$1/}$0}%
-	\label{fig:${3/(\w+)\.\w+/$1/}}
+	\includesvg[width=0.8\linewidth]{figures/$2}
+	\caption{`!p
+sentence=t[2].replace('_', ' ')
+dot_num=sentence.find('.')
+if dot_num != -1:
+	result=sentence[0:dot_num]
+else:
+	result=sentence
+snip.rv = result.title()`.$3}%
+	\label{fig:${2/(\w+)\.\w+/$1/}}
 \end{figure}
 endsnippet
 
@@ -490,6 +497,9 @@ code = 'ToString[' + code + ', TeXForm]'
 snip.rv = subprocess.check_output(['wolframscript', '-code', code])
 `
 endsnippet
+
+
+
 
 # snippet table "Table environment" b
 # \begin{table}[${1:htpb}]

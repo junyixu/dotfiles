@@ -16,6 +16,11 @@ if has("python3")
 else
 	let g:hasPython3=0
 endif
+if has("python")
+	let g:hasPython2=1
+else
+	let g:hasPython2=0
+endif
 
 if has('gui_running')
 	let g:gui_running=1
@@ -155,19 +160,21 @@ set t_ut=""
 
 " 让 vim 在 tmux 中也能使用鼠标调整窗口大小
 " 具体看 :h ttymouse 或者自行谷歌
-if !g:isNVIM
+if !g:isNVIM 
 	set ttymouse=sgr
-	set balloonevalterm
+	if version > 802
+		set balloonevalterm
+	endif
 endif
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" " Always show the signcolumn, otherwise it would shift the text each time
+" " diagnostics appear/become resolved.
+" if has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
 
 " 暂时没找到好的调整窗口大小的方法
 " 用鼠标调整窗口最自然
@@ -218,12 +225,12 @@ vnoremap <F8> :call ChineseCount()<cr>
 
 "---------------------Auto-Command---------------------------------"
 "Automatically source the .vimrc file on save.
-augroup autosourcing
-	autocmd!
-	autocmd BufWritePost .vimrc source %
-	autocmd BufWritePost unix_plugs.vim source %
-	autocmd BufWritePost unix.vim source %
-augroup END
+" augroup autosourcing
+" 	autocmd!
+" 	autocmd BufWritePost .vimrc source %
+" 	autocmd BufWritePost unix_plugs.vim source %
+" 	autocmd BufWritePost unix.vim source %
+" augroup END
 " 如果是 Windows 则用
 " autocmd! bufwritepost _vimrc source %
 " 如果是 neovim 只要把 .vimrc 改成 init.vim 就可以了
@@ -236,13 +243,11 @@ if exists('+termguicolors')
   set termguicolors
   set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 else
 	set t_Co=256 " 记着注释或者删除这一行 我们用 24 bit 真彩色，不用256
 endif
-" if &term =~# '^screen'
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" endif
 
 " https://github.com/microsoft/terminal/issues/832
 " if (&term =~ '^xterm')
@@ -301,11 +306,11 @@ nnoremap s} <C-W>]
 nnoremap sg] <C-W>g}
 
 " 内置终端
-if !g:isNVIM
-set termwinkey=<C-G>
+if !g:isNVIM && version > 800
+	set termwinkey=<C-G>
+	nnoremap <C-G>v :vertical term<CR>
+	nnoremap <C-G>s :term<CR>
 endif
-nnoremap <C-G>v :vertical term<CR>
-nnoremap <C-G>s :term<CR>
 
 "Add simple highlight removal.
 " nmap <Leader><space> :nohlsearch<cr>
@@ -369,21 +374,23 @@ nnoremap S <C-w>w
 "
 "Use tab split to open the current window in a new tab, then <C-W><C-Q> to go back. You can map the command, for example:
 nnoremap sO :tab split<CR>
-tnoremap <M-o> <C-\><C-n>:tab split<CR>a
 nnoremap so <c-w>o
 
 nnoremap <C-g> <C-w>
-tnoremap <M-q> <C-\><C-n>
 
-tnoremap <M-h> <C-g>h
-tnoremap <M-j> <C-g>j
-tnoremap <M-k> <C-g>k
-tnoremap <M-l> <C-g>l
+if version > 800 || isNVIM
+	tnoremap <M-q> <C-\><C-n>
+	tnoremap <M-o> <C-\><C-n>:tab split<CR>a
+	tnoremap <M-h> <C-g>h
+	tnoremap <M-j> <C-g>j
+	tnoremap <M-k> <C-g>k
+	tnoremap <M-l> <C-g>l
 
-tnoremap <M-H> <C-g>H
-tnoremap <M-J> <C-g>J
-tnoremap <M-K> <C-g>K
-tnoremap <M-L> <C-g>L
+	tnoremap <M-H> <C-g>H
+	tnoremap <M-J> <C-g>J
+	tnoremap <M-K> <C-g>K
+	tnoremap <M-L> <C-g>L
+endif
 
 nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
@@ -440,8 +447,8 @@ nnoremap gk k
 " Moving text
 " :help move
 " :help '>
-vnoremap J :move '>+1<CR>gv=gv
-vnoremap K :move '<-2<CR>gv=gv
+" vnoremap J :move '>+1<CR>gv=gv
+" vnoremap K :move '<-2<CR>gv=gv
 " inoremap <C-j> <ESC>:m .+1<CR>==
 " inoremap <C-k> <ESC>:m .-2<CR>==
 " nnoremap <leader>k :m .-2<CR>==
@@ -452,13 +459,6 @@ vnoremap K :move '<-2<CR>gv=gv
 "" 已经有了 ]g 和 ]l 了，不过按两个字母确实不好用
 " nnoremap <C-j> :cnext<CR>zzzv
 " nnoremap <C-K> :cprevious<CR>zzzv
-
-" Undo break points
-" :help i_u
-inoremap , ,<c-g>u
-inoremap . .<c-g>u
-inoremap ! !<c-g>u
-inoremap ? ?<c-g>u
 
 " for goldendict
 " vnoremap <C-c> "+ygv

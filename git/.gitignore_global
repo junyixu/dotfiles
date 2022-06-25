@@ -43,3 +43,4 @@ t.js
 # LaTeX
 indent.log
 *.tex_bak
+pac_minted.tex
