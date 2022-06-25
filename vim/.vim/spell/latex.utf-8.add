@@ -39,3 +39,6 @@ boxsep
 colback
 Eq
 svg
+labelfont
+labelsep
+labelformat

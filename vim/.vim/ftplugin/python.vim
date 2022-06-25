@@ -47,7 +47,7 @@ vnoremap <buffer><silent> <M-c> :<C-u>PythonVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:PythonInsertModeCreateCell<CR>
 
 " ===================== slime ======================{{{
-let g:slime_cell_delimiter = "# %%"
+let b:slime_cell_delimiter = "# %%"
 if !exists("g:slime_dispatch_ipython_pause")
   let g:slime_dispatch_ipython_pause = 100
 end

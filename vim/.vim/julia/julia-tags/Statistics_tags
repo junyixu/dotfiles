@@ -1,0 +1,129 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/junyi/.dotfiles/vim/.vim/julia/julia-tags/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210905.0/
+A	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^    struct A$/;"	s	line:72	language:Julia
+BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:785	language:Julia
+Statistics	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^module Statistics$/;"	n	line:8	language:Julia
+_conj	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_conj(x::AbstractArray) = conj(x)$/;"	f	line:502	language:Julia	module:Statistics
+_conj	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_conj(x::AbstractArray{<:Real}) = x$/;"	f	line:501	language:Julia	module:Statistics
+_getnobs	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_getnobs(x::AbstractMatrix, vardim::Int) = size(x, vardim)$/;"	f	line:505	language:Julia	module:Statistics
+_getnobs	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_getnobs(x::AbstractVector, vardim::Int) = length(x)$/;"	f	line:504	language:Julia	module:Statistics
+_getnobs	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function _getnobs(x::AbstractVecOrMat, y::AbstractVecOrMat, vardim::Int)$/;"	f	line:507	language:Julia	module:Statistics
+_mean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function _mean(f, A::AbstractArray, dims::Dims=:) where Dims$/;"	f	line:169	language:Julia	module:Statistics
+_mean_promote	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_mean_promote(x::T, y::S) where {T,S} = convert(promote_type(T, S), y)$/;"	f	line:166	language:Julia	module:Statistics
+_median	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_median(v::AbstractArray, dims) = mapslices(median!, v, dims = dims)$/;"	f	line:873	language:Julia	module:Statistics
+_median	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_median(v::AbstractArray{T}, ::Colon) where {T} = median!(copyto!(Array{T,1}(undef, length(v)), /;"	f	line:875	language:Julia	module:Statistics
+_quantile	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^@inline function _quantile(v::AbstractVector, p::Real; alpha::Real=1.0, beta::Real=alpha)$/;"	f	line:986	language:Julia	module:Statistics
+_quantilesort!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function _quantilesort!(v::AbstractArray, sorted::Bool, minp::Real, maxp::Real)$/;"	f	line:966	language:Julia	module:Statistics
+_std	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_std(A::AbstractArray, corrected::Bool, mean, ::Colon) =$/;"	f	line:457	language:Julia	module:Statistics
+_std	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_std(A::AbstractArray, corrected::Bool, mean, dims) =$/;"	f	line:454	language:Julia	module:Statistics
+_std	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_std(A::AbstractArray{<:AbstractFloat}, corrected::Bool, mean, ::Colon) =$/;"	f	line:463	language:Julia	module:Statistics
+_std	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_std(A::AbstractArray{<:AbstractFloat}, corrected::Bool, mean, dims) =$/;"	f	line:460	language:Julia	module:Statistics
+_var	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function _var(A::AbstractArray, corrected::Bool, mean, ::Colon)$/;"	f	line:377	language:Julia	module:Statistics
+_var	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function _var(A::AbstractArray, corrected::Bool, mean, dims)$/;"	f	line:370	language:Julia	module:Statistics
+_var	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function _var(iterable, corrected::Bool, mean)$/;"	f	line:200	language:Julia	module:Statistics
+_varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_varm(A::AbstractArray{T}, m, corrected::Bool, region) where {T} =$/;"	f	line:329	language:Julia	module:Statistics
+_varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function _varm(A::AbstractArray{T}, m, corrected::Bool, ::Colon) where T$/;"	f	line:334	language:Julia	module:Statistics
+_vmean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_vmean(x::AbstractMatrix, vardim::Int) = mean(x, dims=vardim)$/;"	f	line:514	language:Julia	module:Statistics
+_vmean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^_vmean(x::AbstractVector, vardim::Int) = mean(x)$/;"	f	line:513	language:Julia	module:Statistics
+centralize_sumabs2	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^centralize_sumabs2(A::AbstractArray, m) =$/;"	f	line:243	language:Julia	module:Statistics
+centralize_sumabs2	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^centralize_sumabs2(A::AbstractArray, m, ifirst::Int, ilast::Int) =$/;"	f	line:245	language:Julia	module:Statistics
+centralize_sumabs2!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function centralize_sumabs2!(R::AbstractArray{S}, A::AbstractArray, means::AbstractArray) where /;"	f	line:248	language:Julia	module:Statistics
+centralize_sumabs2!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function centralize_sumabs2!(R::AbstractArray{S}, A::SparseMatrixCSC{Tv,Ti}, means::AbstractArra/;"	f	line:1104	language:Julia	module:Statistics
+centralizedabs2fun	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^centralizedabs2fun(m) = x -> abs2.(x - m)$/;"	f	line:242	language:Julia	module:Statistics
+clampcor	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^clampcor(x) = x$/;"	f	line:616	language:Julia	module:Statistics
+clampcor	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^clampcor(x::Real) = clamp(x, -1, 1)$/;"	f	line:615	language:Julia	module:Statistics
+cor	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cor(X::AbstractMatrix; dims::Int=1) = corm(X, _vmean(X, dims), dims)$/;"	f	line:730	language:Julia	module:Statistics
+cor	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cor(x::AbstractVecOrMat, y::AbstractVecOrMat; dims::Int=1) =$/;"	f	line:744	language:Julia	module:Statistics
+cor	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cor(x::AbstractVector, y::AbstractVector) = corm(x, mean(x), y, mean(y))$/;"	f	line:737	language:Julia	module:Statistics
+cor	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cor(x::AbstractVector{T}) where {T} =$/;"	f	line:722	language:Julia	module:Statistics
+corm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^corm(x::AbstractMatrix, xmean, vardim::Int=1) = corzm(x .- xmean, vardim)$/;"	f	line:689	language:Julia	module:Statistics
+corm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^corm(x::AbstractVecOrMat, xmean, y::AbstractVecOrMat, ymean, vardim::Int=1) =$/;"	f	line:713	language:Julia	module:Statistics
+corm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^corm(x::AbstractVector{T}, xmean) where {T} =$/;"	f	line:687	language:Julia	module:Statistics
+corm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function corm(x::AbstractVector, mx, y::AbstractVector, my)$/;"	f	line:690	language:Julia	module:Statistics
+corzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^corzm(x::AbstractMatrix, y::AbstractMatrix, vardim::Int=1) =$/;"	f	line:682	language:Julia	module:Statistics
+corzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^corzm(x::AbstractMatrix, y::AbstractVector, vardim::Int=1) =$/;"	f	line:680	language:Julia	module:Statistics
+corzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^corzm(x::AbstractVector, y::AbstractMatrix, vardim::Int=1) =$/;"	f	line:678	language:Julia	module:Statistics
+corzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^corzm(x::AbstractVector{T}) where {T} =$/;"	f	line:672	language:Julia	module:Statistics
+corzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function corzm(x::AbstractMatrix, vardim::Int=1)$/;"	f	line:674	language:Julia	module:Statistics
+cov	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cov(X::AbstractMatrix; dims::Int=1, corrected::Bool=true) =$/;"	f	line:584	language:Julia	module:Statistics
+cov	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cov(X::AbstractVecOrMat, Y::AbstractVecOrMat; dims::Int=1, corrected::Bool=true) =$/;"	f	line:605	language:Julia	module:Statistics
+cov	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cov(x::AbstractVector, y::AbstractVector; corrected::Bool=true) =$/;"	f	line:595	language:Julia	module:Statistics
+cov	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^cov(x::AbstractVector; corrected::Bool=true) = covm(x, mean(x); corrected=corrected)$/;"	f	line:575	language:Julia	module:Statistics
+cov	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function cov(X::SparseMatrixCSC; dims::Int=1, corrected::Bool=true)$/;"	f	line:1079	language:Julia	module:Statistics
+cov2cor!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function cov2cor!(C::AbstractMatrix, xsd, ysd::AbstractArray)$/;"	f	line:635	language:Julia	module:Statistics
+cov2cor!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function cov2cor!(C::AbstractMatrix, xsd::AbstractArray, ysd)$/;"	f	line:646	language:Julia	module:Statistics
+cov2cor!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function cov2cor!(C::AbstractMatrix, xsd::AbstractArray, ysd::AbstractArray)$/;"	f	line:657	language:Julia	module:Statistics
+cov2cor!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function cov2cor!(C::AbstractMatrix{T}, xsd::AbstractArray) where T$/;"	f	line:620	language:Julia	module:Statistics
+covm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^covm(x::AbstractMatrix, xmean, vardim::Int=1; corrected::Bool=true) =$/;"	f	line:561	language:Julia	module:Statistics
+covm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^covm(x::AbstractVecOrMat, xmean, y::AbstractVecOrMat, ymean, vardim::Int=1; corrected::Bool=true/;"	f	line:565	language:Julia	module:Statistics
+covm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^covm(x::AbstractVector, xmean, y::AbstractVector, ymean; corrected::Bool=true) =$/;"	f	line:563	language:Julia	module:Statistics
+covm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^covm(x::AbstractVector, xmean; corrected::Bool=true) =$/;"	f	line:559	language:Julia	module:Statistics
+covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^covzm(x::AbstractVector, y::AbstractVector; corrected::Bool=true) =$/;"	f	line:545	language:Julia	module:Statistics
+covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^covzm(x::AbstractVector; corrected::Bool=true) = unscaled_covzm(x) \/ (length(x) - Int(corrected/;"	f	line:536	language:Julia	module:Statistics
+covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function covzm(x::AbstractMatrix, vardim::Int=1; corrected::Bool=true)$/;"	f	line:537	language:Julia	module:Statistics
+covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function covzm(x::AbstractVecOrMat, y::AbstractVecOrMat, vardim::Int=1; corrected::Bool=true)$/;"	f	line:547	language:Julia	module:Statistics
+isless	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^    Base.isless(x::A, y::A) = isless(x.x, y.x)$/;"	f	line:76	language:Julia	module:Base
+mean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function mean(f, itr)$/;"	f	line:61	language:Julia	module:Statistics
+mean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function mean(r::AbstractRange{<:Real})$/;"	f	line:185	language:Julia	module:Statistics
+mean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^mean(A::AbstractArray; dims=:) = _mean(identity, A, dims)$/;"	f	line:164	language:Julia	module:Statistics
+mean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^mean(f, A::AbstractArray; dims=:) = _mean(f, A, dims)$/;"	f	line:104	language:Julia	module:Statistics
+mean	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^mean(itr) = mean(identity, itr)$/;"	f	line:44	language:Julia	module:Statistics
+mean!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function mean!(R::AbstractArray, A::AbstractArray)$/;"	f	line:130	language:Julia	module:Statistics
+median	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^median(itr) = median!(collect(itr))$/;"	f	line:855	language:Julia	module:Statistics
+median	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^median(r::AbstractRange{<:Real}) = mean(r)$/;"	f	line:190	language:Julia	module:Statistics
+median	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^median(v::AbstractArray; dims=:) = _median(v, dims)$/;"	f	line:871	language:Julia	module:Statistics
+median!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function median!(v::AbstractVector)$/;"	f	line:809	language:Julia	module:Statistics
+median!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^median!(v::AbstractArray) = median!(vec(v))$/;"	f	line:823	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^middle(a::AbstractArray) = ((v1, v2) = extrema(a); middle(v1, v2))$/;"	f	line:802	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^middle(a::AbstractRange) = middle(a[1], a[end])$/;"	f	line:780	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^middle(x::AbstractFloat) = x$/;"	f	line:756	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^middle(x::Number) = (x + zero(x)) \/ 1$/;"	f	line:757	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^middle(x::Number, y::Number) = x\/2 + y\/2$/;"	f	line:765	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^middle(x::Union{Bool,Int8,Int16,Int32,Int64,Int128,UInt8,UInt16,UInt32,UInt64,UInt128}) = Float6/;"	f	line:754	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^    Statistics.middle(x::A, y::A) = A(middle(x.x, y.x))$/;"	f	line:75	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^Statistics.middle(x::Furlong{p}) where {p} = Furlong{p}(middle(x.val))$/;"	f	line:789	language:Julia	module:Statistics
+middle	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^Statistics.middle(x::Furlong{p}, y::Furlong{p}) where {p} = Furlong{p}(middle(x.val, y.val))$/;"	f	line:790	language:Julia	module:Statistics
+new_uuid	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/.ci/test_and_change_uuid.jl	/^const new_uuid      = "20745b16-79ce-11e8-11f9-7d13ad32a3b2"$/;"	c	line:11	language:Julia
+original_uuid	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/.ci/test_and_change_uuid.jl	/^const original_uuid = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"$/;"	c	line:10	language:Julia
+project_filename	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/.ci/test_and_change_uuid.jl	/^const project_filename = joinpath(dirname(@__DIR__), "Project.toml")$/;"	c	line:15	language:Julia
+quantile	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^quantile(itr, p; sorted::Bool=false, alpha::Real=1.0, beta::Real=alpha) =$/;"	f	line:1070	language:Julia	module:Statistics
+quantile	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^quantile(v::AbstractVector, p; sorted::Bool=false, alpha::Real=1.0, beta::Real=alpha) =$/;"	f	line:1073	language:Julia	module:Statistics
+quantile!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function quantile!(q::AbstractArray, v::AbstractVector, p::AbstractArray;$/;"	f	line:936	language:Julia	module:Statistics
+quantile!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function quantile!(v::AbstractVector, p::Union{AbstractArray, Tuple{Vararg{Real}}};$/;"	f	line:953	language:Julia	module:Statistics
+quantile!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^quantile!(v::AbstractVector, p::Real; sorted::Bool=false, alpha::Real=1., beta::Real=alpha) =$/;"	f	line:962	language:Julia	module:Statistics
+range_varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function range_varm(v::AbstractRange, m)$/;"	f	line:391	language:Julia	module:Statistics
+realXcY	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^realXcY(x::Complex, y::Complex) = real(x)*real(y) + imag(x)*imag(y)$/;"	f	line:196	language:Julia	module:Statistics
+realXcY	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^realXcY(x::Real, y::Real) = x*y$/;"	f	line:195	language:Julia	module:Statistics
+safe_cor	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^function safe_cor(x, y, zm::Bool)$/;"	f	line:463	language:Julia
+safe_cov	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^function safe_cov(x, y, zm::Bool, cr::Bool)$/;"	f	line:347	language:Julia
+sqrt!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function sqrt!(A::AbstractArray)$/;"	f	line:415	language:Julia	module:Statistics
+std	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^std(A::AbstractArray; corrected::Bool=true, mean=nothing, dims=:) = _std(A, corrected, mean, dim/;"	f	line:452	language:Julia	module:Statistics
+std	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^std(iterable; corrected::Bool=true, mean=nothing) =$/;"	f	line:466	language:Julia	module:Statistics
+stdm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^stdm(A::AbstractArray, m; corrected::Bool=true) =$/;"	f	line:422	language:Julia	module:Statistics
+stdm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^stdm(iterable, m; corrected::Bool=true) =$/;"	f	line:493	language:Julia	module:Statistics
+unscaled_covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function unscaled_covzm(x::AbstractVector, y::AbstractVector)$/;"	f	line:522	language:Julia	module:Statistics
+unscaled_covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^unscaled_covzm(x::AbstractMatrix, vardim::Int) = (vardim == 1 ? _conj(x'x) : x * x')$/;"	f	line:520	language:Julia	module:Statistics
+unscaled_covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^unscaled_covzm(x::AbstractMatrix, y::AbstractMatrix, vardim::Int) =$/;"	f	line:531	language:Julia	module:Statistics
+unscaled_covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^unscaled_covzm(x::AbstractMatrix, y::AbstractVector, vardim::Int) =$/;"	f	line:529	language:Julia	module:Statistics
+unscaled_covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^unscaled_covzm(x::AbstractVector)              = sum(t -> t*t', x)$/;"	f	line:519	language:Julia	module:Statistics
+unscaled_covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^unscaled_covzm(x::AbstractVector, y::AbstractMatrix, vardim::Int) =$/;"	f	line:527	language:Julia	module:Statistics
+unscaled_covzm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^unscaled_covzm(x::AbstractVector{<:Number})    = sum(abs2, x)$/;"	f	line:518	language:Julia	module:Statistics
+var	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function var(v::AbstractRange)$/;"	f	line:402	language:Julia	module:Statistics
+var	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^var(A::AbstractArray; corrected::Bool=true, mean=nothing, dims=:) = _var(A, corrected, mean, dim/;"	f	line:368	language:Julia	module:Statistics
+var	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^var(iterable; corrected::Bool=true, mean=nothing) = _var(iterable, corrected, mean)$/;"	f	line:198	language:Julia	module:Statistics
+varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^varm(A::AbstractArray, m::AbstractArray; corrected::Bool=true, dims=:) = _varm(A, m, corrected, /;"	f	line:327	language:Julia	module:Statistics
+varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^varm(A::AbstractArray, m; corrected::Bool=true) = _varm(A, m, corrected, :)$/;"	f	line:332	language:Julia	module:Statistics
+varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^varm(iterable, m; corrected::Bool=true) = _var(iterable, corrected, m)$/;"	f	line:384	language:Julia	module:Statistics
+varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^varm(v::AbstractRange, m) = range_varm(v, m)$/;"	f	line:389	language:Julia	module:Statistics
+varm	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^varm(v::AbstractRange, m::AbstractArray) = range_varm(v, m)$/;"	f	line:388	language:Julia	module:Statistics
+varm!	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/src/Statistics.jl	/^function varm!(R::AbstractArray{S}, A::AbstractArray, m::AbstractArray; corrected::Bool=true) wh/;"	f	line:292	language:Julia	module:Statistics
+x	/home/junyi/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/Statistics/test/runtests.jl	/^    end$/;"	g	line:74	language:Julia	struct:A
