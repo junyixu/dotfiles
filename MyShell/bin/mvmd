@@ -1,10 +1,12 @@
 #! /bin/sh
 #
-# mvmd.sh
+# 用法：
+# mvmd 名字 (不用加 .md)
+# eg: mvmd localbitcoins_privacy_policy
+#
 # Copyright (C) 2022 junyi <junyi@Junix>
-#
 # Distributed under terms of the MIT license.
-#
+
 
 # TODO 加引号就不行
 # mv $(/bin/ls -dt ~/Downloads/* | head -1) "~/Notes/WebClipper/$@.md"
