@@ -448,7 +448,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	noremap <silent><leader>r :AsyncTask file-run<cr>
 	" noremap <silent><f5> :AsyncTask file-run<cr>
 	" noremap <silent><leader>r :AsyncTask file-run<cr>
-	noremap <silent><f9> :AsyncTask project-build<cr>
+	noremap <silent><Leader>b :AsyncTask project-build<cr>
 	" noremap <silent><S-f5> :AsyncTask project-run<cr>
 	" noremap <silent><S-f9> :AsyncTask project-run<cr>
 	" noremap <silent><S-f9> :AsyncTask project-build<cr>
@@ -1190,9 +1190,9 @@ let g:ycm_filepath_blacklist = {
 	\}
 
 let g:ycm_semantic_triggers = {
-			\ 'c': ['re!\w{4}', '->', '.'],
+			\ 'c': ['->', '.'],
 			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
-			\ 'python': ['re!\w{4}', '.'],
+			\ 'python': ['.'],
 			\ 'ruby,rust': ['.', '::'],
 			\ }
 
