@@ -70,3 +70,5 @@ let g:jupyter_ascending_match_pattern     = '.sync.jl'
 let g:jupyter_ascending_default_mappings=0
 nmap <buffer> <localLeader>x <Plug>JupyterExecute
 nmap <buffer> <localLeader>X <Plug>JupyterExecuteAll
+
+source $HOME/.vim/my_maps/GreekLetter4Programming.vim 
