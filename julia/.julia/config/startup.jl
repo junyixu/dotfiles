@@ -19,3 +19,5 @@
 macro paste()
 	include_string(Main, read(pipeline(`xclip -quiet -out -selection`, stderr=stderr), String));
 end
+
+ϵ0=8.8541878128e−12
