@@ -136,7 +136,7 @@ nnoremap <leader>z @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "---------------------tex---------------------------------"
 "autocmd BufReadPost *.md setlocal spell spelllang=en_us,cjk		"忽略中文对英文进行拼写检查
 " 语法检查 更改拼写错误; CTRL-G u	打断撤销序列，开始新的改变
-inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+inoremap <M-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 "set spell spelllang=en_us				"打开英语单词的拼写检查
 "set 和 setlocal 的区别：set 可以对新开的窗口和标签生效？

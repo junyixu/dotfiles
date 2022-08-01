@@ -93,8 +93,13 @@ snippet lims "lim substack"
 endsnippet 
 
 
-# 把小数如 5.5 0.5 也包括进来
-snippet '(\d\.\d+|\d+)si' "unit" rA
+context "isMath()"
+snippet '([\de\.]+)MeV' "MeV" r
+\SI{`!p snip.rv=match.group(1)`}{\MeV}
+endsnippet 
+
+context "isMath()"
+snippet '([\de\.]+)si' "unit" r
 \SI{`!p snip.rv=match.group(1)`}{$1}$0
 endsnippet
 
@@ -121,10 +126,13 @@ snippet "(\\[A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
 \va{`!p snip.rv=match.group(1)`}
 endsnippet 
 
+# in latex.ltx, \ldots is equated (\let) to \dots. so in text, it's the same, and you can use either.
+# with amsmath, the situation is more complicated; \dots tries to determine by context (only in math mode) whether to use \ldots or \cdots, with several more options for the author if amsmath doesn't get it right.
+# so in general, it's easier to just use \dots and not have to remember the details. but if the alternative chosen by amsmath isn't appropriate, the original commands can still be used explicitly.
 priority 100
 context "isMath()"
-snippet ... "ldots" iA
-\ldots
+snippet ... "\dots: \ldots or \cdots" iA
+\dots
 endsnippet
 
 context "isMath()"
@@ -228,9 +236,15 @@ snippet >= "not equals" iA
 \geq 
 endsnippet
 
-snippet >> "not equals" A
+snippet >> "greater" A
 \gg 
 endsnippet
+ 
+snippet << "less" A
+\ll 
+endsnippet
+ 
+
 
 snippet >~ "not equals" iA
 \gtrsim  

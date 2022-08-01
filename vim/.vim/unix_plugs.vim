@@ -4,9 +4,6 @@ let $GTAGSLABEL = 'native-pygments'
 " 下面还有个 nvim light
 set background=dark
 
-" vim-slime 反应慢 " https://github.com/jpalardy/vim-slime/issues/204
-set shell=/bin/sh
-
 "=========== vim-plug ============={{{
 if g:isNVIM
 	" nvim 的 py 默认是 py2，把它改成 py3
@@ -371,7 +368,7 @@ endif
 if !g:isPlain && !exists('g:started_by_firenvim')
 " ===========  tmux ============={{{
 " Plug 'tmux-plugins/vim-tmux'
-    Plug 'tmux-plugins/vim-tmux-focus-events'
+    " Plug 'tmux-plugins/vim-tmux-focus-events'
 
     Plug 'roxma/vim-tmux-clipboard'
 
@@ -451,7 +448,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	noremap <silent><leader>r :AsyncTask file-run<cr>
 	" noremap <silent><f5> :AsyncTask file-run<cr>
 	" noremap <silent><leader>r :AsyncTask file-run<cr>
-	" noremap <silent><f9> :AsyncTask file-build<cr>
+	noremap <silent><Leader>b :AsyncTask project-build<cr>
 	" noremap <silent><S-f5> :AsyncTask project-run<cr>
 	" noremap <silent><S-f9> :AsyncTask project-run<cr>
 	" noremap <silent><S-f9> :AsyncTask project-build<cr>
@@ -880,6 +877,7 @@ let g:sandwich#magicchar#f#patterns = [
         let g:sandwich#recipes += [
         \   {'buns': ['*',     '*'],           'nesting': 0, 'input': [ '*' ],    'filetype': ['markdown', 'vimwiki'] },
         \   {'buns': ['**',     '**'],           'nesting': 0, 'input': [ 'b' ],    'filetype': ['markdown', 'vimwiki'] },
+		\   {'buns': ['\textbf{',     '}'],           'nesting': 0, 'input': [ 'b' ],    'filetype': ['tex', 'plaintex'] },
         \   {'buns': ['“',     '”'],           'nesting': 0, 'input': [ 'U"' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki', 'text'] },
         \   {'buns': ['\(',           '\)'],           'nesting': 1, 'input': [ 'mk' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
         \   {'buns': ['\[',           '\]'],           'nesting': 1, 'input': [ 'dm' ],    'filetype': ['tex', 'plaintex', 'markdown', 'vimwiki'] },
@@ -1097,6 +1095,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 if $YCM_CLANGD_BINARY_PATH != ''
 	let g:ycm_clangd_binary_path = $YCM_CLANGD_BINARY_PATH
 endif
+" let g:ycm_clangd_binary_path = '/usr/bin/clangd'
 " let g:ale_sign_error = "\ue009\ue009"
 let g:ale_sign_error = ""
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
@@ -1192,9 +1191,9 @@ let g:ycm_filepath_blacklist = {
 	\}
 
 let g:ycm_semantic_triggers = {
-			\ 'c': ['re!\w{4}', '->', '.'],
+			\ 'c': ['->', '.'],
 			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
-			\ 'python': ['re!\w{4}', '.'],
+			\ 'python': ['.'],
 			\ 'ruby,rust': ['.', '::'],
 			\ }
 

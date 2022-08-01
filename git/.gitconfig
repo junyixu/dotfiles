@@ -1,5 +1,5 @@
 [user]
-	name = jy0x0
+	name = Junyi Xu
 	email = junyixu0@gmail.com
 	signingkey = D275031A139EE901
 [color]
@@ -20,8 +20,6 @@
 	dump = cat-file -
 	lg = log --graph --pretty=format:'%Cred%h%Creset - %Cgreen(%ad)%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=local
 
-[http "https://github.com"]
-	  proxy = http://127.0.0.1:1081
 [diff]
     tool = vim
     ignoreSubmodules = dirty
@@ -41,3 +39,7 @@
 	defaultBranch = main
 [pull]
 	rebase = true
+[safe]
+	directory = /home/junyi/sshfs/fuyun/apt
+[credential]
+	helper = store

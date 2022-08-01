@@ -24,3 +24,9 @@ FILE *${1:fp} = fopen("${2:./test.txt}","${3:w+}");
 fclose(fp);
 	$0
 endsnippet
+
+snippet typedefs "typedef struct" b
+typedef struct {
+	$1
+} $0;
+endsnippet

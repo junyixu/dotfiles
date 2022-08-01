@@ -36,6 +36,13 @@ snippet b "begin" b
 \end{$1}
 endsnippet
 
+priority -200
+snippet '([A-Za-z]+\*?)' "begin" rb
+\begin{`!p snip.rv=match.group(1)`}
+	$1
+\end{`!p snip.rv=match.group(1)`}
+endsnippet
+
 snippet ! "%! TEX root = ./debug.tex" b
 %!TEX program=xelatex
 % !TEX root = main.tex
@@ -191,6 +198,11 @@ snippet 图 "ref" i
 图~\ref{fig:$1} $0
 endsnippet
 
+snippet }所示 "ref" iA
+}~所示
+endsnippet
+
+
 # snippet visual "Math"
 # \[
 # 	${1:${VISUAL}}
@@ -211,20 +223,47 @@ snippet 式 "方程引用" i
 式~\eqref{eq:$1} $0
 endsnippet
 
+snippet 方程 "方程引用" i
+方程~\eqref{eq:$1} $0
+endsnippet
+
+
 snippet bib "bibliography" b
 \bibliography{myLibrary}
 endsnippet
 
+snippet subfig "subfig" b
+\begin{figure} 
+\centering
+\begin{subfigure}{.48\linewidth}
+  \includegraphics[width=\linewidth]{figures/2022-05-20T212232+0800.png}
+  \caption{电子在三维空间的运动轨迹}
+  \label{fig:电子在三维空间的运动轨迹}
+\end{subfigure}
+\begin{subfigure}{.48\linewidth}
+  \includegraphics[width=\linewidth]{figures/2022-05-20T212014+0800.png}
+  \caption{xoy面上投影}
+  \label{fig:xoy面上投影}
+\end{subfigure}
+  \caption{高能逃逸电子在托卡马克中的运动轨迹}%
+  \label{fig:高能逃逸电子在托卡马克中的运动轨迹}%
+\end{figure}
+endsnippet
+
+snippet \includegraphics "graphics width" b
+\includegraphics[width=$1\linewidth]
+endsnippet
 
 snippet ig "includegraphics" b
-\includegraphics[width=0.5\textwidth]{figures/$1}
+\includegraphics[width=0.9\textwidth]{figures/$1}
 endsnippet
 
 snippet wf "wrapfigure" b
 \begin{wrapfigure}{r}{0.30\textwidth}
-	\includesvg[width=0.28\textwidth]{figures/$1.svg}
+	\includegraphics[width=1\linewidth]{figures/$1}
 \end{wrapfigure}
 endsnippet
+
 
 snippet svg "Figure environment" b
 \begin{figure}[${1:htpb}]
@@ -243,11 +282,18 @@ snip.rv = result.title()`.$3}%
 endsnippet
 
 snippet fig "Figure environment" b
-\begin{figure}[${2:htpb}]
+\begin{figure}[${1:htpb}]
 	\centering
-	\includegraphics[width=0.8\linewidth]{${3:name.ext}}
-	\caption{${3/(\w+)\.\w+/\u$1/}$0}%
-	\label{fig:${3/\w+\/(\w+)\.\w+/$1/}}
+	\includegraphics[width=0.8\linewidth]{figures/$2}
+	\caption{`!p
+sentence=t[2].replace('_', ' ')
+dot_num=sentence.find('.')
+if dot_num != -1:
+	result=sentence[0:dot_num]
+else:
+	result=sentence
+snip.rv = result.title()`.$3}%
+	\label{fig:${2/(\w+)\.\w+/$1/}}
 \end{figure}
 endsnippet
 
@@ -256,38 +302,6 @@ endsnippet
 # b：bottom，将图形放置在页面的底部。
 # p：page，浮动页，将图形放置在只允许有浮动对象的页面上。
 # H：表示固定图片位置，需要加入\usepackage{float} ；
-
-snippet subfig "\usepackage{subcation}" b
-\begin{figure} \centering    
-\subfigure[Flowchart of fungal decomposition rate model] {  % 子图的 caption
-	\includegraphics[width=0.4\linewidth]{figures/framework1.esp} % 调节 width=0.25\linewidth能在一行放入更多的图片
-	% \label{fig:fig_a} % 子图a的标签，便于后面引用
-}     
- % \quad  % 不知道为什么要加这个，好像不加也行？
-\subfigure[Flowchart of interaction model between species under environmental impact] { % 子图的 caption
-	\includegraphics[width=0.4\linewidth]{figures/framework2.esp}
-	% \label{fig:fig_b} % 子图b的标签，便于后面引用
-}    
-	\caption{write your caption} % 整张图的 caption
-	% \label{fig:whole} % 整张图的标签，便于后面引用
-\end{figure}
-endsnippet
-
-# snippet subfig "\usepackage{subcation}" b
-# \begin{figure} % figure加上*，变成figure*, 如果是双栏会合并成单栏显示图片
-# \captionsetup[subfigure]{margin=12pt} % 设置子标题编号的位置是12pt
-# \subfloat[比例环节]{ % 子图的 caption
-# 	% \label{fig:fig_a} % 子图a的标签，便于后面引用
-# 	\includegraphics[width=0.4\textwidth]{./figures/${1:name1}}
-# }
-# \hspace{.4in} % 两图之间的横向距离，纵向距离使用vspace
-# \subfloat[]{ % 子图的 caption
-# 	% \label{fig:fig_b} % 子图b的标签，便于后面引用
-# 	\includegraphics[width=0.4\textwidth]{./figures/${2:name2}}
-# }
-# \end{figure}
-# endsnippet
-
 
 #snippet * "Individual item" bA
 #\item$0
@@ -343,7 +357,7 @@ snippet prop "proposition 命题" b
 $0
 endsnippet
 
-snippet Prop "proposition 命题" bA
+snippet Prop "proposition 命题" b
 \begin{proposition}[$1]
 	$2
 \end{proposition}
@@ -415,13 +429,18 @@ endsnippet
 
 snippet columns "columns" b
 \begin{columns}
-	\column{.5\textwidth}
+	\begin{column}{.45\textwidth}
 	${1:${VISUAL:text}}
-	\column{.5\textwidth}
+	\end{column}
+	\begin{column}{.45\textwidth}
 	${2:${VISUAL:text}}
+	\end{column}
 \end{columns}
 endsnippet
 
+snippet pac "usepackage" b
+\usepackage{$1}
+endsnippet
 snippet template "Basic template" b
 \documentclass[geye,fontset=windows,color=green,device=normal,lang=cn]{elegantnote}
 \graphicspath{{fig/}}
@@ -444,12 +463,6 @@ endsnippet
 
 snippet elegantnote "elegantnote" b
 \documentclass[fontset=windows,color=green,device=normal,lang=cn]{elegantnote}
-endsnippet
-
-snippet gather "gahter" bA
-\begin{gather*}
-	${1:${VISUAL}}
-.\end{gather*}
 endsnippet
 
 
