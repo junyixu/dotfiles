@@ -1095,6 +1095,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 if $YCM_CLANGD_BINARY_PATH != ''
 	let g:ycm_clangd_binary_path = $YCM_CLANGD_BINARY_PATH
 endif
+" let g:ycm_clangd_binary_path = '/usr/bin/clangd'
 " let g:ale_sign_error = "\ue009\ue009"
 let g:ale_sign_error = ""
 " let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
