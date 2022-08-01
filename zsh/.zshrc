@@ -1,8 +1,8 @@
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-    SESSION_NAME="test"
-    tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
-fi
+#if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+#    SESSION_NAME="test"
+#    tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
+#fi
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
@@ -231,12 +231,12 @@ alias plasmashellrestart='kquitapp5 plasmashell ; kstart5 plasmashell'
 alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex makefile.md'
 
 alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
-alias vitodo='vi ~/Notes/todolist.md'
+alias vitodo='vi -u ~/.dotfiles/vim/.init.vim ~/Notes/todolist.md'
 
 alias svi='sudo -E vim --cmd "let g:SUDO=1" --cmd "let g:isPlain=1" '
 # 088.987  000.001: --- VIM STARTED --- 启动 只需要 88 毫秒
-alias vi='vim --cmd "let g:isPlain=1"'
-alias vim='vim --cmd "let g:isPlain=0"'
+alias vi='vim -u ~/.dotfiles/vim/.init.vim --cmd "let g:isPlain=1"'
+alias vim='vim -u ~/.dotfiles/vim/.init.vim --cmd "let g:isPlain=0"'
 # 打开到 上一次 打开的地方
 alias lvi='vi -c "normal '\''0"'
 
@@ -933,4 +933,6 @@ fi
 
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 
+conda activate --stack JunyisBase
 export -U PATH
+
