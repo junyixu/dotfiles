@@ -2,11 +2,6 @@
 " This plugin was inspired and based on Steve Losh's interesting words
 " .vimrc config https://www.youtube.com/watch?v=xZuy4gBghho
 " --------------------------------------------------------------------
-
-if has('patch-8.1.2292') == 0 && exists('*nvim_open_win') == 0
-	finish
-endif
-
 if g:isPlain || exists('g:started_by_firenvim')
   finish
 endif

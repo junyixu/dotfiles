@@ -1,8 +1,8 @@
 # 这个必须放在 p10k 的 instant prompt 之前，不然会报错
-if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
-    SESSION_NAME="test"
-    tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
-fi
+# if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ]; then
+#     SESSION_NAME="test"
+#     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
+# fi
 
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
@@ -934,3 +934,11 @@ fi
 export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 
 export -U PATH
+
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+
+# https://stackoverflow.com/questions/7561509/how-to-add-include-and-lib-paths-to-configure-make-cycle
+export C_INCLUDE_PATH=$HOME/.local/include
+export CPLUS_INCLUDE_PATH=$HOME/local/include
+
+umask 002

@@ -11,3 +11,5 @@ ranger/.config/ranger/bookmarks
 ranger/.config/ranger/history
 ranger/.config/ranger/tagged
 fontconfigbak
+# vim 拼写
+*.spl
