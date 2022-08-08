@@ -57,4 +57,25 @@ snippet savecsv "numpy save csv 保留小数点后一位"
 np.loadtxt('${1:FileName}.csv', fmt='%.1f', delimiter=',')$0 # 浮点型 0.0
 endsnippet
 
+snippet fig "figure" b
+fig = plt.figure(1)
+ax = fig.add_subplot()
+ax.plot($1)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+az.set_title("my plot")
+fig.show()
+endsnippet
+
+snippet fig3d "figure 3D" b
+fig = plt.figure(1)
+ax = fig.add_subplot(projection="3d")
+ax.plot($1)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('z')
+az.set_title("my plot")
+fig.show()
+endsnippet
+
 # extends texmath
