@@ -179,7 +179,6 @@ alias psmem="ps axch -o cmd:15,%mem --sort=-%mem | head"
 alias pscpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
 
 alias weather='curl wttr.in'
-alias wget="wget --quiet --show-progress"
 # youtube-dl and you-get
 alias yd='youtube-dl --write-auto-sub --sub-lang en'
 alias yden='youtube-dl --write-sub --sub-lang en'
@@ -931,7 +930,6 @@ else
 	alias Ss='pkg search'
 fi
 
-export JULIA_PKG_SERVER=https://mirrors.tuna.tsinghua.edu.cn/julia/static
 
 export -U PATH
 
@@ -942,3 +940,5 @@ export C_INCLUDE_PATH=$HOME/.local/include
 export CPLUS_INCLUDE_PATH=$HOME/local/include
 
 umask 002
+
+export CONDA_JL_HOME=/gpfs/home/xujunyi/myPackages/envs/
