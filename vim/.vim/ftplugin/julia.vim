@@ -4,6 +4,7 @@ setlocal tags+=$HOME/.vim/julia/julia-tags/Statistics_tags
 setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
 setlocal tags+=$HOME/.julia/packages/Symbolics/tags
 " }}}
+setlocal iskeyword+=!
 
 " let b:delimitMate_quotes = "\""
 nnoremap <silent><buffer> <localleader>d :call slime#send("@doc " . expand("<cword>") . "\r")<CR>
