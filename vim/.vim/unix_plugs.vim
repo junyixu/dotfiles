@@ -890,6 +890,7 @@ let g:sandwich#magicchar#f#patterns = [
         \   {'buns': ['\mqty[',        ']'],        'nesting': 1, 'input': [ 'M[' ,'M]' ],    'filetype': ['tex',       'plaintex'] },
         \   {'buns': ['\mqty|',        '|'],        'nesting': 1, 'input': ['M|' ],           'filetype': ['tex',       'plaintex'] },
 		\   {'buns': ['\mqty\{',       '\}'],       'nesting': 1, 'input': [ 'M{' ,'M}' ],    'filetype': ['tex',       'plaintex'] },
+		\   {'buns': ['begin',       'end'],       'nesting': 1, 'input': ['g'],    'filetype': ['julia'] },
         \ ]
 "}}}
 "
