@@ -3,6 +3,8 @@ setlocal tags+=$HOME/.vim/julia/julia-tags/LinearAlgebra_tags
 setlocal tags+=$HOME/.vim/julia/julia-tags/Statistics_tags
 setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
 setlocal tags+=$HOME/.julia/packages/Symbolics/tags
+setlocal tags+=$HOME/.julia/packages/HDF5/tags
+setlocal tags+=$HOME/.julia/packages/PyPlot/tags
 " }}}
 setlocal iskeyword+=!
 

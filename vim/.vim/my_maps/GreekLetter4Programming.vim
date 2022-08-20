@@ -15,3 +15,4 @@ inoremap <buffer> <M-v><M-e> ε
 inoremap <buffer> <M-v>e ε
 inoremap <buffer> <M-d> δ
 inoremap <buffer> <M-D> Δ
+inoremap <buffer> <M-q> θ
