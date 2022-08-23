@@ -57,7 +57,9 @@ nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
 nnoremap <buffer> <Leader>r :JuliaCellRun<CR>
 
 " map <Leader>jc to execute the current cell
-nmap <silent><buffer> <localleader>r :JuliaCellExecuteCell<CR>
+
+" nmap <silent><buffer> <localleader>r :JuliaCellExecuteCell<CR>
+nnoremap <silent><buffer> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
 
 " map <Leader>jC to execute the current cell and jump to the next cell
 nnoremap <buffer> <localLeader>R :JuliaCellExecuteCellJump<CR>
