@@ -45,12 +45,6 @@ if g:isNVIM
 else
     call plug#begin('~/.vim/plugged')
 
-" airline
-let g:airline_detect_spell=0
-let g:airline_detect_spelllang=0
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#whitespace#enabled = 0
-
 if !g:isPlain && !exists('g:started_by_firenvim')
 	Plug 'voldikss/vim-mma'
 	let g:mma_candy = 2
@@ -465,6 +459,57 @@ endif
 if !g:isPlain && !exists('g:started_by_firenvim') && g:hasPython3
 	if g:isNVIM || g:CoC
 		 Plug 'neoclide/coc.nvim'
+
+" inoremap <silent><expr> <TAB>
+"       \ coc#pum#visible() ? coc#pum#next(1):
+"       \ CheckBackspace() ? "\<Tab>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" function! CheckBackspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+
+set pumheight=10
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+"                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocActionAsync('format')
+
+ " Use `[g` and `]g` to navigate diagnostics
+ " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+ nmap <silent> [g <Plug>(coc-diagnostic-prev)
+ nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+ " GoTo code navigation.
+ nmap <silent> <localleader>gd <Plug>(coc-definition)
+ nmap <silent> <localleader>gy <Plug>(coc-type-definition)
+ nmap <silent> <localleader>gi <Plug>(coc-implementation)
+ nmap <silent> <localleader>gr <Plug>(coc-references)
+""
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
 	else
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		set completeopt=menu
@@ -1562,6 +1607,12 @@ endif
 	"nmap <silent> <Leader>oJ :FSSplitBelow<cr>
 "==================== mappings for vim-fswitch ================}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
+" airline
+let g:airline_detect_spell=0
+let g:airline_detect_spelllang=0
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#whitespace#enabled = 0
+
 "==================== nerdtree ======================{{{
 " Close nerdtree
 "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
