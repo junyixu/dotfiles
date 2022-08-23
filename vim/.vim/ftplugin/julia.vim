@@ -5,6 +5,7 @@ setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
 setlocal tags+=$HOME/.julia/packages/Symbolics/tags
 setlocal tags+=$HOME/.julia/packages/HDF5/tags
 setlocal tags+=$HOME/.julia/packages/PyPlot/tags
+setlocal tags+=$HOME/.julia/packages/RowEchelon/tags
 " }}}
 setlocal iskeyword+=!
 
@@ -45,6 +46,7 @@ inoremap <buffer><silent> <M-c> <C-o>:JuliaInsertModeCreateCell<CR>
 source $HOME/.vim/ycmMaps.vim
 
 xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+let g:latex_to_unicode_tab = "command"
 xmap <silent><buffer> <localleader>r :<c-u>call slime#send("@paste" . "\r")<CR>
 nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
 nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
