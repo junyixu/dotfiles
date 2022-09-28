@@ -42,3 +42,9 @@ svg
 labelfont
 labelsep
 labelformat
+colorlinks
+linkcolor
+filecolor
+urlcolor
+pdfpagemode
+FullScreen

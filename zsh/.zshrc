@@ -106,17 +106,17 @@ plugins=(
 	tmux
 	extract
 	z
-	colored-man-pages
+	# colored-man-pages
 	systemd
-	git-auto-fetch
+	# git-auto-fetch
 	zsh-autosuggestions
 	fast-syntax-highlighting
-	mosh
-	gcloud
-	fd
-	ripgrep
+	# mosh
+	# gcloud
+	# fd
+	# ripgrep
 	rsync
-	alias-finder # 参数 -l (longer) ; -e (exact)
+	# alias-finder # 参数 -l (longer) ; -e (exact)
 	git
 	fzf-tab
 	# dotbare
@@ -158,7 +158,7 @@ alias tmuxcfg="vi ~/.tmux.conf"
 # export MATLAB_JAVA=/usr/lib/jvm/java-7-openjdk/jre
 # alias matlab='unset GTK_MODULES && env MESA_LOADER_DRIVER_OVERRIDE=i965 && matlab'
 # alias matlab='screen -S matlab -m sh -c "/opt/MATLAB/R2018a/bin/matlab -nodesktop -nosplash"'
-alias mrun="env MESA_LOADER_DRIVER_OVERRIDE=i965 matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -r"
+alias mrun="env MESA_LOADER_DRIVER_OVERRIDE=iHD matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -r"
 
 alias clc='clear'
 
@@ -196,7 +196,7 @@ gvimt(){ command gvim --remote-tab-silent $@ || command gvim $@; }
 alias jc='journalctl'
 alias jcu='journalctl --user'
 
-alias sc='sudo systemctl'
+alias sc='systemctl'
 
 # edit
 # https://bbs.archlinux.org/viewtopic.php?id=240765 edit 要用 /usr/bin/systemctl 绝对路径
@@ -208,9 +208,6 @@ alias scue='/usr/bin/systemctl --user edit --full'
 ## 用法
 # sc l<tab>
 # sc s<tab>
-
-alias ctl='systemctl'
-alias status="systemctl status"
 
 alias reboot='systemctl reboot'
 alias poweroff='systemctl poweroff'
@@ -235,7 +232,10 @@ alias vitodo='vi ~/Notes/todolist.md'
 alias svi='sudo -E vim --cmd "let g:SUDO=1" --cmd "let g:isPlain=1" '
 # 088.987  000.001: --- VIM STARTED --- 启动 只需要 88 毫秒
 alias vi='vim --cmd "let g:isPlain=1"'
+# alias vim='vim --cmd "let g:CoC=1" --cmd "let g:isPlain=0"'
 alias vim='vim --cmd "let g:isPlain=0"'
+alias nvim='vim --cmd "let g:CoC=1" --cmd "let g:isPlain=0"'
+# alias nvim='nvim --cmd "let g:isPlain=0"'
 # 打开到 上一次 打开的地方
 alias lvi='vi -c "normal '\''0"'
 
@@ -842,18 +842,6 @@ if hash exa 2> /dev/null; then
 	zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 fi
 
-# lazygit
-lg()
-{
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
-    lazygit "$@"
-
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
-}
 export GTAGSLABEL=native-pygments
 
 # 让 gtags 把 *.h 视为 cpp 文件
@@ -940,5 +928,3 @@ export C_INCLUDE_PATH=$HOME/.local/include
 export CPLUS_INCLUDE_PATH=$HOME/local/include
 
 umask 002
-
-export CONDA_JL_HOME=/gpfs/home/xujunyi/myPackages/envs/

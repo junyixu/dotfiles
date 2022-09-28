@@ -5,6 +5,6 @@
 # 1080P：服务器带宽要求3Mbps～9.5Mbps，建议5Mbps及以上
 # 2k：服务器带宽要求3Mbps～10Mbps，建议6Mbps及以上
 # 4k：服务器带宽要求13Mbps～38Mbps，建议25Mbps及以上
+# –-cookies=~/Videos/youtube-dl/youtube_cookies.txt \
 
-
-yt-dlp -o - $@ | mpv -
+all_proxy="http://127.0.0.1:1081" yt-dlp --cookies-from-browser chromium  -o - $@  | mpv -

@@ -164,6 +164,7 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": "{bottom-
 let g:slime_dont_ask_default=1
 let g:slime_python_ipython = 1
 let g:slime_target = 'tmux'
+let g:slime_julia=1
 " let g:slime_target = 'vimterminal'
 " let g:slime_default_config = {
 "             \ 'socket_name': get(split($TMUX, ','), 0),
@@ -451,6 +452,41 @@ if !g:isPlain && !exists('g:started_by_firenvim')
     " nnoremap <silent> <F7> :AsyncRun -cwd=<root>/build make <cr>
     " nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
 	" }}}
+  
+
+"===================== AsyncTaskFzf ================={{{
+function! s:fzf_sink(what)
+	let p1 = stridx(a:what, '<')
+	if p1 >= 0
+		let name = strpart(a:what, 0, p1)
+		let name = substitute(name, '^\s*\(.\{-}\)\s*$', '\1', '')
+		if name != ''
+			exec "AsyncTask ". fnameescape(name)
+		endif
+	endif
+endfunction
+
+function! s:fzf_task()
+	let rows = asynctasks#source(&columns * 48 / 100)
+	let source = []
+	for row in rows
+		let name = row[0]
+		let source += [name . '  ' . row[1] . '  : ' . row[2]]
+	endfor
+	let opts = { 'source': source, 'sink': function('s:fzf_sink'),
+				\ 'options': '+m --nth 1 --inline-info --tac' }
+	if exists('g:fzf_layout')
+		for key in keys(g:fzf_layout)
+			let opts[key] = deepcopy(g:fzf_layout[key])
+		endfor
+	endif
+	call fzf#run(opts)
+endfunction
+
+command! -nargs=0 AsyncTaskFzf call s:fzf_task()
+
+"===================== end AsyncTaskFzf =================}}}
+
 endif
 "===================== end 异步任务 =================}}}
 
@@ -514,7 +550,7 @@ endfunction
 		 Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
 		set completeopt=menu
 		" Plug 'ycm-core/YouCompleteMe', {'frozen': 1, 'do': './install.py --clangd-completer'}
-		Plug 'ycm-core/lsp-examples'
+		" Plug 'ycm-core/lsp-examples'
 		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' , 'on': 'YcmGenerateConfig'}
 	endif
 endif
@@ -1223,6 +1259,7 @@ let g:ycm_filetype_blacklist = {
 			\ 'markdown':     1,
 			\ 'leaderf':      1,
 			\ 'fzf':          1,
+	\ 'julia': 1,
 			\ 'gitcommit':    1,
 			\ 'text':         1,
 			\ }
@@ -1240,7 +1277,6 @@ let g:ycm_filepath_blacklist = {
 let g:ycm_semantic_triggers = {
 			\ 'c': ['->', '.'],
 			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
-			\ 'python': ['.'],
 			\ 'ruby,rust': ['.', '::'],
 			\ }
 
@@ -1293,14 +1329,14 @@ if g:vimLSP
 				\ ]
 endif
 
-let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', expand('~/.vim/julia/lsp-julia/run.jl')]
-let g:ycm_language_server += [
-			\   { 'name': 'julia',
-			\     'filetypes': [ 'julia' ],
-			\     'project_root_files': [ 'Project.toml' ],
-			\     'cmdline': s:julia_cmdline
-			\   },
-			\ ]
+" let s:julia_cmdline = ['julia', '--startup-file=no', '--history-file=no', expand('~/.vim/julia/lsp-julia/run.jl')]
+" let g:ycm_language_server += [
+" 			\   { 'name': 'julia',
+" 			\     'filetypes': [ 'julia' ],
+" 			\     'project_root_files': [ 'Project.toml' ],
+" 			\     'cmdline': s:julia_cmdline
+" 			\   },
+" 			\ ]
 
 "=================== YCM | you complete me========================================}}}
 if !g:isPlain && !exists('g:started_by_firenvim')
@@ -1333,6 +1369,15 @@ let g:vimtex_syntax_nospell_comments=1
 " 	\ 'show_suggestions': 0,
 " 	\ 'encoding': 'auto',
 " \}
+
+let g:vimtex_quickfix_ignore_filters = [
+      \ 'Underfull \\hbox',
+      \ 'Overfull \\hbox',
+      \ 'LaTeX Warning: .\+ float specifier changed to',
+      \ 'LaTeX hooks Warning',
+      \ 'Package siunitx Warning: Detected the "physics" package:',
+      \ 'Package hyperref Warning: Token not allowed in a PDF string',
+      \]
 
 let g:ale_matlab_mlint_options='-config=~/.vim/matlab_config/mlintSettings'
 
@@ -1969,3 +2014,4 @@ endif
 " 	set cursorlineopt=number
 " 	" set cursorlineopt=number cursorline
 " endif
+"

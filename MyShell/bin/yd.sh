@@ -1,4 +1,4 @@
 #! /bin/sh
 
 
-yt-dlp  $@
+yt-dlp  –-format bestvideo+bestaudio "$@"

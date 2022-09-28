@@ -183,4 +183,5 @@ inoremap <buffer> <silent> <M-j> <Esc>/<++><CR>c4l
 
 nnoremap <buffer><silent> <localleader>f :call Sec2File4LaTeX()<CR>
 
+source $HOME/.vim/my_maps/GreekLetter4Writting.vim 
 source $HOME/.vim/ycmMaps.vim

@@ -24,7 +24,7 @@ noremap <buffer> <localleader>si :call slime#send(expand("<cword>") . "\r")<cr>
 noremap <buffer> <localleader>so :call slime#send("using OhMyREPL" . "\r")<cr>
 
 let g:latex_to_unicode_auto=0	
-let g:latex_to_unicode_cmd_mapping=['<C-j>']
+let g:latex_to_unicode_cmd_mapping=['<Tab>']
 
 let g:julia_cell_use_primary_selection=1
 let g:julia_cell_cmd='@paste'
@@ -42,12 +42,11 @@ command! JuliaInsertModeCreateCell :execute 'normal! I# %% '
 
 nnoremap <buffer><silent> <M-c> :JuliaNormalModeCreateCell<CR>
 vnoremap <buffer><silent> <M-c> :<C-u>JuliaVisualModeCreateCell<CR>
-inoremap <buffer><silent> <M-c> <C-o>:JuliaInsertModeCreateCell<CR>
 
 source $HOME/.vim/ycmMaps.vim
 
 xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
-let g:latex_to_unicode_tab = "command"
+let g:latex_to_unicode_tab = "insert"
 xmap <silent><buffer> <localleader>r :<c-u>call slime#send("@paste" . "\r")<CR>
 nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
 nmap <silent><buffer> <localleader>C <Plug>SlimeConfig

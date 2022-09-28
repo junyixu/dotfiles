@@ -1,5 +1,5 @@
 #!/bin/sh
-deviesname="ELAN1200:00 04F3:3090 Touchpad"
+deviesname="Microsoft Surface Type Cover Touchpad"
 echo $deviesname
 if (xinput --list --long | grep -A 1 "$deviesname" | grep -q "disabled" );
     then
