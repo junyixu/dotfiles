@@ -35,3 +35,6 @@ syntax keyword juliaFunction add_subplot set_data set_3d_properties
 
 " HDF5
 syntax keyword juliaFunction h5open create_group create_dataset attributes delete_object delete_attribute
+
+" DelimitedFiles
+syntax keyword juliaFunction writedlm readdlm
