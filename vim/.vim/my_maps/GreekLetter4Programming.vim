@@ -2,12 +2,20 @@ inoremap <buffer> <M-a> α
 inoremap <buffer> <M-b> β
 inoremap <buffer> <M-g> γ
 inoremap <buffer> <M-p> ρ
-" inoremap <buffer> <M-c> \chi
-" inoremap <buffer> <M-x> \xi
+inoremap <buffer> <M-h> η
+inoremap <buffer> <M-y> ψ
+inoremap <buffer> <M-Y> Ψ
+inoremap <buffer> <M-c> χ
+inoremap <buffer> <M-n> ν
+inoremap <buffer> <M-z> ζ
+inoremap <buffer> <M-x> ξ
+inoremap <buffer> <M-s> σ
+inoremap <buffer> <M-S> Σ
 inoremap <buffer> <M-r> ρ
 inoremap <buffer> <M-P> π
 inoremap <buffer> <M-w> ω
 inoremap <buffer> <M-o> ω
+inoremap <buffer> <M-t> τ
 inoremap <buffer> <M-f> ϕ
 inoremap <buffer> <M-v><M-f> φ
 inoremap <buffer> <M-v>f φ
