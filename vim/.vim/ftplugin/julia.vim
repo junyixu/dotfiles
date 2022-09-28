@@ -6,6 +6,7 @@ setlocal tags+=$HOME/.julia/packages/Symbolics/tags
 setlocal tags+=$HOME/.julia/packages/HDF5/tags
 setlocal tags+=$HOME/.julia/packages/PyPlot/tags
 setlocal tags+=$HOME/.julia/packages/RowEchelon/tags
+setlocal tags+=$HOME/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/tags
 " }}}
 setlocal iskeyword+=!
 
@@ -23,7 +24,7 @@ noremap <buffer> <localleader>si :call slime#send(expand("<cword>") . "\r")<cr>
 noremap <buffer> <localleader>so :call slime#send("using OhMyREPL" . "\r")<cr>
 
 let g:latex_to_unicode_auto=0	
-let g:latex_to_unicode_cmd_mapping=['<M-g>']
+let g:latex_to_unicode_cmd_mapping=['<C-j>']
 
 let g:julia_cell_use_primary_selection=1
 let g:julia_cell_cmd='@paste'
