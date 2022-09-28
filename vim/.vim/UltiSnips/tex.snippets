@@ -186,8 +186,20 @@ snippet eq "Math" b
 \end{equation}
 endsnippet
 
-snippet ref "ref" w
-\ref{${1:reference}} $0
+snippet ref "reference" w
+\cref{$1} $0
+endsnippet
+
+snippet refeq "equation reference" w
+\cref{eq:$1} $0
+endsnippet
+
+snippet refsec "section reference" w
+\cref{sec:$1} $0
+endsnippet
+
+snippet reffig "figure reference" w
+\cref{fig:$1} $0
 endsnippet
 
 snippet fref "ref" w
@@ -255,7 +267,7 @@ snippet \includegraphics "graphics width" b
 endsnippet
 
 snippet ig "includegraphics" b
-\includegraphics[width=0.9\textwidth]{figures/$1}
+\\\\ \includegraphics[width=0.5\textwidth]{figures/$1} \\\\
 endsnippet
 
 snippet wf "wrapfigure" b
@@ -315,6 +327,53 @@ endsnippet
 snippet ct "colortext"
 {\color{${1:red}}${2:text}} $0
 endsnippet
+
+snippet - "item" b
+\begin{itemize}
+  \item $1
+\end{itemize}
+endsnippet
+
+snippet 1. "enumerate" b
+\begin{enumerate}
+  \item $1
+\end{enumerate}
+endsnippet
+
+snippet '1. ' "enumerate" brA
+\begin{enumerate}
+  \item $1
+\end{enumerate}
+endsnippet
+
+snippet '# ' "section" brA
+\section{$1}
+endsnippet
+
+snippet # "section" b
+\section{$1}
+endsnippet
+
+priority 1000
+snippet '## ' "subsection" brA
+\subsection{$1}
+endsnippet
+
+priority 1000
+snippet ## "subsection" b
+\subsection{$1}
+endsnippet
+
+priority 10000
+snippet '### ' "subsubsection" brA
+\subsubsection{$1}
+endsnippet
+
+priority 10000
+snippet ### "subsubsection" b
+\subsubsection{$1}
+endsnippet
+
 
 # 注解
 snippet remark "remark" bA

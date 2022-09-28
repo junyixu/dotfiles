@@ -27,14 +27,4 @@ fun LaTeXMath2MarkdownMath()
 	silent! normal 
 endf
 
-inoremap <buffer> <M-a> \alpha
-inoremap <buffer> <M-b> \beta
-inoremap <buffer> <M-g> \gamma
-inoremap <buffer> <M-o> \omega
-inoremap <buffer> <M-w> \omega
-inoremap <buffer> <M-q> \theta
-inoremap <buffer> <M-f> \varphi
-inoremap <buffer> <M-F> \Phi
-inoremap <buffer> <M-e> \epsilon
-inoremap <buffer> <M-l> \lambda
-inoremap <buffer> <M-l> \Lambda
+source $HOME/.vim/my_maps/GreekLetter4Writting.vim 
