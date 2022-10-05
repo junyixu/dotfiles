@@ -9,10 +9,10 @@ tool_Internet_school
 tool_Internet_normal
 tool_Windows
 waiting
-4_important_urgent
-4_not_important_urgent
-4_important_not_urgent
-4_not_important_not_urgent
+4_urgent_important
+4_urgent_not_important
+4_not_urgent_important
+4_not_urgent_not_important
 time_2minutes
 time_10minutes
 time_30minutes
