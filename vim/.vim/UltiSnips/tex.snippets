@@ -248,17 +248,36 @@ snippet subfig "subfig" b
 \begin{figure} 
 \centering
 \begin{subfigure}{.48\linewidth}
-  \includegraphics[width=\linewidth]{figures/2022-05-20T212232+0800.png}
-  \caption{电子在三维空间的运动轨迹}
-  \label{fig:电子在三维空间的运动轨迹}
+  \includegraphics[width=0.9\textwidth]{figures/example-image-a} % first figure itself
+  \caption{first figure}
+  \label{fig:1}
 \end{subfigure}
 \begin{subfigure}{.48\linewidth}
-  \includegraphics[width=\linewidth]{figures/2022-05-20T212014+0800.png}
-  \caption{xoy面上投影}
-  \label{fig:xoy面上投影}
+  \includegraphics[width=0.9\textwidth]{figures/example-image-b} % second figure itself
+  \caption{second figure}
+  \label{fig:2}
 \end{subfigure}
-  \caption{高能逃逸电子在托卡马克中的运动轨迹}%
-  \label{fig:高能逃逸电子在托卡马克中的运动轨迹}%
+  \caption{summary}%
+  \label{fig:summary}%
+\end{figure}
+endsnippet
+
+# 第一个 minipage 环境结束后的百分号,这个百分号是必不可少的，百分号的意思就是两个 minipage 环境之间不要有空隙，紧密相连，如果没有百分号，编译以后的文档中，两个图片是上下排放的，并不是左右并列。
+# 也可以用 \hfill 代替这个 % 
+# 参见 https://tex.stackexchange.com/questions/5769/two-figures-side-by-side
+snippet minifig "subfig" b
+\begin{figure}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/example-image-a} % first figure itself
+        \caption{first figure}
+    \end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{figures/example-image-b} % second figure itself
+        \caption{second figure}
+    \end{minipage}
 \end{figure}
 endsnippet
 
