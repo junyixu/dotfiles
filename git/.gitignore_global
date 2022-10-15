@@ -45,3 +45,4 @@ t.js
 indent.log
 *.tex_bak
 pac_minted.tex
+.ipynb_checkpoints/
