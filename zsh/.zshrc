@@ -401,6 +401,15 @@ searchpdf() {
 }
 
 
+# 打印历史目录
+function pd () {
+  if [[ -n $1 ]]; then
+    dirs "$@"
+  else
+    dirs -v | head -n 10
+  fi
+}
+
 # 不行，-- 的作用
 # s() {
 # 	local __note_page_name
