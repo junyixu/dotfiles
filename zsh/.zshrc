@@ -4,6 +4,7 @@
 #     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
 # fi
 
+_zdir=${ZDOTDIR:-$HOME}
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -12,6 +13,66 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+
+### Begin Zinit's Config {{{
+# p10k 主题 
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# 加载 OMZ 框架及部分插件
+zinit snippet OMZ::lib/completion.zsh
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZ::plugins/vi-mode/vi-mode.plugin.zsh
+zinit snippet OMZ::plugins/extract/extract.plugin.zsh
+zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
+
+# 补全
+zinit ice lucid wait='0'; zinit light zsh-users/zsh-completions
+
+zpcompinit; zpcdreplay; zinit light Aloxaf/fzf-tab
+
+# 自动建议
+zinit ice lucid wait="0" atload='_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
+
+# 语法高亮
+# TODO 加上下面这条后就报错
+# zinit ice lucid wait='0' atinit='zpcompinit'
+zinit light zdharma/fast-syntax-highlighting
+
+# 快速目录跳转
+zinit ice lucid wait='1'; zinit light skywind3000/z.lua
+eval "$(lua $HOME/.local/share/zinit/plugins/skywind3000---z.lua/z.lua --init zsh)"
+
+# 加载 OMZ 的 git 库
+# zinit snippet OMZ::lib/git.zsh
+# 加载 OMZ 的 git 插件
+zinit ice lucid wait='1'
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+### END Zinit's Config }}}
 
 #export C_INCLUDE_PATH=/home/junyi/.HHD/MyResource/C_Programming_Language/my_grep:$C_INCLUDE_PATH
 # powerline-daemon -q
@@ -35,231 +96,56 @@ fi
 #export INCLUDE=$HOME/.local/mpich/include:$INCLUDE
 #export INCLUDE=$HOME/.local/mpich/include
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # ssh
 export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=powerlevel10k/powerlevel10k
-
 export GPG_TTY=$TTY
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+unsetopt beep # 不需要打 cd，直接进入目录
+setopt autocd # 自动记住已访问目录栈
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_minus
+# rm * 时不要提示
+setopt rm_star_silent
+# 允许在交互模式中使用注释
+setopt interactive_comments
+# disown 后自动继续进程
+setopt auto_continue
+setopt extended_glob
+# 单引号中的 '' 表示一个 ' （如同 Vimscript 中者）
+setopt rc_quotes
+# 补全列表不同列可以使用不同的列宽
+setopt listpacked
+# 补全 identifier=path 形式的参数
+setopt magic_equal_subst
+# 为方便复制，右边的提示符只在最新的提示符上显示
+setopt transient_rprompt
+# setopt 的输出显示选项的开关状态
+setopt ksh_option_print
+setopt no_bg_nice
+setopt noflowcontrol
+# stty -ixon # 上一行在 tmux 中时常不起作用
+# 历史记录
+# 不保存重复的历史记录项
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+# setopt hist_ignore_all_dups
+# 在命令前添加空格，不将此命令添加到记录文件中
+setopt hist_ignore_space
+# zsh 4.3.6 doesn't have this option
+setopt hist_fcntl_lock 2>/dev/null
+if [[ $_has_re -eq 1 && 
+  ! ( $ZSH_VERSION =~ '^[0-4]\.' || $ZSH_VERSION =~ '^5\.0\.[0-4]' ) ]]; then
+  setopt hist_reduce_blanks
+else
+  # This may cause the command messed up due to a memcpy bug
+fi
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+[ -f ~/.config/zsh/alias.sh ] && source ~/.config/zsh/alias.sh
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=500
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	vi-mode
-	tmux
-	extract
-	z
-	# colored-man-pages
-	systemd
-	# git-auto-fetch
-	zsh-autosuggestions
-	fast-syntax-highlighting
-	# mosh
-	# gcloud
-	# fd
-	# ripgrep
-	rsync
-	# alias-finder # 参数 -l (longer) ; -e (exact)
-	git
-	fzf-tab
-	# dotbare
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=zh_CN.UTF-8
-
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-
-# z
-# export _Z_CMD=j
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshcfg="vi ~/.zshrc"
-alias tmuxcfg="vi ~/.tmux.conf"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# alias okular='XDG_CONFIG_HOME=/home/junyi/okularconfig okular'
-# alias inkscape='XDG_CONFIG_HOME=/home/junyi/ankiconfig inkscape'
-
-# matlab
-# for GNOME's bug
-# export J2D_D3D=false
-# export MATLAB_JAVA=/usr/lib/jvm/java-7-openjdk/jre
-# alias matlab='unset GTK_MODULES && env MESA_LOADER_DRIVER_OVERRIDE=i965 && matlab'
-# alias matlab='screen -S matlab -m sh -c "/opt/MATLAB/R2018a/bin/matlab -nodesktop -nosplash"'
-alias mrun="env MESA_LOADER_DRIVER_OVERRIDE=iHD matlab -nodesktop -nosplash -logfile `date +%Y_%m_%d-%H_%M_%S`.log -r"
-
-alias clc='clear'
-
-# 虚拟机
-# sudo virsh list
-# sudo virsh start archlinux
-# sudo virsh shutdown archlinux
-alias v='sudo -E virsh'
-
-alias search='baloosearch'
-
-# 查询 ip
-alias myip='curl https://ip.cn'
-alias proxyip='proxychains -q curl https://ip.cn'
-
-alias cpuf='cat /proc/cpuinfo | grep MHz | cut -f2 -d: | uniq -'
-alias psmem="ps axch -o cmd:15,%mem --sort=-%mem | head"
-alias pscpu="ps axch -o cmd:15,%cpu --sort=-%cpu | head"
-
-alias weather='curl wttr.in'
-# youtube-dl and you-get
-alias yd='youtube-dl --write-auto-sub --sub-lang en'
-alias yden='youtube-dl --write-sub --sub-lang en'
-alias ydcn='youtube-dl --write-sub --sub-lang zh-CN'
-
-alias mkcd='foo(){ mkdir -p "$1"; cd "$1"  }; foo '
-alias u='chevereto_upload.py -c ~/.config/chevereto/config.json -s'
-
-alias sagenotes='cd ~/Desktop/learning/learning_python3/sage_files && jupyter lab --no-browser'
-
-alias jl='julia --startup-file=no --quiet'
-
-gvimt(){ command gvim --remote-tab-silent $@ || command gvim $@; }
-
-alias jc='journalctl'
-alias jcu='journalctl --user'
-
-alias sc='systemctl'
-
-# edit
-# https://bbs.archlinux.org/viewtopic.php?id=240765 edit 要用 /usr/bin/systemctl 绝对路径
-alias sce='sudo -E /usr/bin/systemctl edit --full'
-alias scu='systemctl --user'
-# edit
-alias scue='/usr/bin/systemctl --user edit --full'
-
-## 用法
-# sc l<tab>
-# sc s<tab>
-
-alias reboot='systemctl reboot'
-alias poweroff='systemctl poweroff'
-
-
-# alias vim='vim --cmd "let g:isProgramming=1" '
-# alias vim='vim --cmd "let g:isProgramming=1" '
-alias nvi='nvim'
-alias wiki='vi -c "cd %:h" ~/Notes/index.md'
-alias diary='vi -c "cd %:h" ~/Notes/diary/$(date +"%F").md'  # date +"%F" 的意思：eg: 2020-08-05
-
-
-# plasmashell cpu占用过高，重启解决
-alias restartplasmashell='kquitapp5 plasmashell ; kstart5 plasmashell'
-alias plasmashellrestart='kquitapp5 plasmashell ; kstart5 plasmashell'
-
-alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex makefile.md'
-
-alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
-alias vitodo='vi ~/Notes/todolist.md'
-
-alias svi='sudo -E vim --cmd "let g:SUDO=1" --cmd "let g:isPlain=1" '
-# 088.987  000.001: --- VIM STARTED --- 启动 只需要 88 毫秒
-alias vi='vim --cmd "let g:isPlain=1"'
-# alias vim='vim --cmd "let g:CoC=1" --cmd "let g:isPlain=0"'
-alias vim='vim --cmd "let g:isPlain=0"'
-alias nvim='vim --cmd "let g:CoC=1" --cmd "let g:isPlain=0"'
-# alias nvim='nvim --cmd "let g:isPlain=0"'
-# 打开到 上一次 打开的地方
-alias lvi='vi -c "normal '\''0"'
-
-# For git front-end: vim-fugitive
-alias vig='vi --cmd "let g:usingGit=1" -c "G" -c "only"'
-alias vit='vim --servername TEX'
-alias gvit='gvim --servername TEX --cmd "let g:isPlain=0"'
-alias vitv='vim --servername TEX -c 'VimtexView''
-alias gvitv='gvim --servername TEX --cmd "let g:isPlain=0" -c 'VimtexView''
-alias testtex="cd ~/Desktop/university/testtex && gvim --servername TEX --cmd "let g:isPlain=0" -c 'VimtexView' main.tex"
-# 打开 jupyter qtconsole
-alias jvi="vim -c JupyterConnect"
-# alias jvi="jupyter qtconsole& ; vim -c JupyterConnect"
-
-# Show open ports
-# alias ports='netstat -tulanp'
-alias ports='netstat -lntp'
-
-# alias ssh='ssh -Y'
-alias sshphone='ssh -p8022 _gateway'
-alias pb='curl -F sunset=1200 -F "c=@-" "http://8.140.148.238:10002"'
-
-# matlab tmux 布局
-alias tmatlab='tmux -f ~/.tmux/scripting/matlab.conf attach'
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # note
 # find -name *.java -print0 | xargs -0 p4 add
@@ -283,39 +169,13 @@ ztar(){
 	# 去除第一个参数的拓展名  $1:r
 	# 如果是隐藏文件则去掉开头的 .
 	# 并且防止 ./*
-	
+   
 	tar --no-same-owner -I zstd -cvf $__tar_name.tar.zst $@
 }
 
 alias unztar='tar -I zstd -xvf'
 alias 7tar="7z a -mmt"
 
-
-#alias rsync='myrsync.sh'
-alias vicmake='$EDITOR CMakeLists.txt'
-alias vimcmake='$EDITOR CMakeLists.txt'
-
-(( $+commands[you-get] )) && alias you-getp="you-get -p mpv"
-#alias cat='bat'
-alias turbo='sudo sh -c "echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
-alias no_turbo='sudo sh -c "echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo"'
-alias top='htop'
-alias anki='XDG_CONFIG_HOME=/home/junyi/lightconfig anki'
-# alias sudo='sudo -E'
-# alias pacman='powerpill'
-
-alias -s php=vim
-alias -s rb=vim
-alias -s c=vim
-alias -s cpp=vim
-alias -s md=vim
-alias -s tex='vim --servername TEX'
-alias -s pdf=okular
-
-# winecfg
-# 生成 32 位 Wine 环境
-# export WINEARCH=win32
-export WINEPREFIX=~/.deepinwine/BookxNote/
 
 # time 命令格式
 # export TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S'
@@ -326,23 +186,6 @@ export WINEPREFIX=~/.deepinwine/BookxNote/
 #export all_proxy="socks5h://127.0.0.1:1080"
 # export all_proxy="http://127.0.0.1:1081"
 # export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
-
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# if [ "$SSH_CONNECTION" != "" ]; then
-	# powerline-daemon -q
-	# . /usr/lib/python3.8/site-packages/powerline/bindings/zsh/powerline.zsh
-	[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-# else
-	# [[ -f ~/.p10k_Junix.zsh ]] && source ~/.p10k_Junix.zsh
-# fi
-
-#tmux
-# if [[ -z "$TMUX" ]] && [ "$SSH_CONNECTION" != "" ] && [ "$HOST" != "Junix" ]; then
-#     SESSION_NAME="test"
-#     tmux attach-session -t $SESSION_NAME || tmux new-session -s $SESSION_NAME
-# fi
 
 todo() {
  echo "$2" | /usr/bin/mail -s "$1" $TICKTICKEMAIL
@@ -362,10 +205,11 @@ switch_window() {
 
 alias s=switch_window
 
-
-
 if hash lsd 2> /dev/null; then
 	alias ls='lsd'
+	alias la='lsd -a'
+	alias ll='lsd -l'
+	alias l1='lsd -1'
 fi
 
 r() {
@@ -513,15 +357,15 @@ fkill() {
 # unalias j
 j() {
   if [[ -z "$*" ]]; then
-    cd "$(_z -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
+    cd "$(_zlua -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
   else
-    _last_z_args="$@"
-    _z "$@"
+    last_z_args="$@"
+    z "$@"
   fi
 }
 
 jj() {
-  cd "$(_z -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
+  cd "$(_zlua -l 2>&1 | sed 's/^[0-9,.]* *//' | fzf -q "$_last_z_args")"
 }
 
 d() {
@@ -760,20 +604,30 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/ripgreprc
 unsetopt nomatch
 
 
-# git
-alias gpp='git add . && git commit -m "update" && git push'
-alias gc1='git clone --depth=1 '
-alias gtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ad)%Creset''
-alias gxtree='git log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%an%Creset: %s %Cblue(%ar)%Creset''
-alias greftree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=iso'
-alias grefxtree='git reflog --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %Cgreen%gn%Creset: %gs %Cblue(%gd)%Creset' --date=relative'
-alias gfetched-xtree='git xtree @{1}..'
+# https://archive.zhimingwang.org/blog/2015-09-21-zsh-51-and-bracketed-paste.html
+autoload -Uz bracketed-paste-url-magic
+zle -N bracketed-paste bracketed-paste-url-magic
 
-alias y='yt-dlp'
+# zsh 5.1+ uses bracketed-paste-url-magic
+if [[ $ZSH_VERSION =~ '^[0-4]\.' || $ZSH_VERSION =~ '^5\.0\.[0-9]' ]]; then
+  autoload -Uz url-quote-magic
+  zle -N self-insert url-quote-magic
+  toggle-uqm () {
+    if zle -l self-insert; then
+      zle -A .self-insert self-insert && zle -M "switched to self-insert"
+    else
+      zle -N self-insert url-quote-magic && zle -M "switched to url-quote-magic"
+    fi
+  }
+  zle -N toggle-uqm
+  bindkey '^X$' toggle-uqm
+fi
 
 # plugins/vi-mode/vi-mode.plugin.zsh
-# alt v 进入vim
+# 可视模式 alt v 进入vim
 bindkey -M vicmd 'v' edit-command-line
+# 插入模式 ctrl F 进入vim
+bindkey '^F' edit-command-line
 
 #
 # 与 Powerlevel10k instant prompt 一起使用会报错
@@ -806,7 +660,7 @@ _fix_cursor() {
 precmd_functions+=(_fix_cursor)
 
 
-zle -N zle-line-init
+# zle -N zle-line-init
 zle -N zle-keymap-select
 
 KEYTIMEOUT=1
@@ -884,40 +738,8 @@ export SYSTEMD_LESS=FRXMK journalctl
 
 # export TEXINPUTS="/usr/share/texmf//:"
 
-if [[ -f /proc/version ]]
-then
-if grep -q "archlinux" /proc/version
-    then
-	alias Syu='sudo pacman -Syu'
-	alias S='sudo pacman -S'
-	alias Si='pacman -Si'
-	alias Ss='pacman -Ss'
-	alias R='sudo pacman -Rs'
-	alias Qi='pacman -Qi'
-	alias Ql='pacman -Ql'
-	alias Qs='pacman -Qs'
-	alias Qsq='pacman -Qsq'
-	alias Qm='pacman -Qm'
-	alias Qmq='pacman -Qmq'
-	alias Qk='pacman -Qk'
-	alias Qkk='pacman -Qkk'
-	alias Qo='pacman -Qo'
-	alias F='pacman -F'
-	alias Fl='pacman -Fl'
-elif grep -q "debian" /proc/version
-then
-	alias Syu='sudo apt update && apt upgrade'
-	alias S='sudo apt install'
-	alias Si='apt show'
-	alias Ss='apt search'
-	alias R='sudo apt remove'
-fi
-else
-	# for termux
-	alias S='pkg install'
-	alias Ss='pkg search'
-fi
-
+# 不需要花里胡哨的 ls，我们有更花里胡哨的 exa
+DISABLE_LS_COLORS=true
 
 export -U PATH
 
