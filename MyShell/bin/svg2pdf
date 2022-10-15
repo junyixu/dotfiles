@@ -1,0 +1,13 @@
+#! /bin/sh
+#
+# test.sh
+# Copyright (C) 2021 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+for fullfile in ./*.svg;do
+	filename=$(basename -- "$fullfile")
+	filename="${filename%.*}"
+	inkscape $filename.svg -o $filename.pdf
+done

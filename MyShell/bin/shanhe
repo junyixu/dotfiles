@@ -1,0 +1,11 @@
+#! /bin/sh
+#
+# shanhe.sh
+# Copyright (C) 2022 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+
+sed -i '/^10\.100\.19\.41.*/d' ~/.ssh/known_hosts
+ssh shanhe

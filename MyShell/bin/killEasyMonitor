@@ -1,0 +1,12 @@
+#! /bin/sh
+#
+# killEasyMonitor.sh
+# Copyright (C) 2022 junyi <junyi@Junix>
+#
+# Distributed under terms of the MIT license.
+#
+
+
+sudo systemctl stop EasyMonitor
+sudo pkill -9 ECAgent
+sudo pkill -9 ECAgentProxy
