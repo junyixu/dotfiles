@@ -288,7 +288,8 @@ snippet \includegraphics "graphics width" b
 endsnippet
 
 snippet ig "includegraphics" b
-\\\\ \includegraphics[width=0.5\textwidth]{figures/$1} \\\\
+\includegraphics[width=0.5\textwidth]{figures/$1}
+\captionof{figure}{}
 endsnippet
 
 snippet wf "wrapfigure" b
