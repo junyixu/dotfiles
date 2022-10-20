@@ -16,6 +16,8 @@
 # using LinearAlgebra
 # using Statistics
 
+import Base:*
+*(v::AbstractVector, m::AbstractMatrix)=(v'*m)'
 macro paste()
 	include_string(Main, read(pipeline(`xclip -quiet -out -selection`, stderr=stderr), String));
 end
