@@ -6,7 +6,6 @@
 	ui = auto
 [core]
 	editor = vim
-	excludesfile = ~/.gitignore_global
 [commit]
 	gpgsign = false
 
