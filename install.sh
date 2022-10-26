@@ -13,8 +13,7 @@
 stow zsh
 stow vim
 stow tmux
-[ ! -d "$HOME/.config/git/" ] && mkdir -p $HOME/.config/git
-stow git
+[ ! -d "$HOME/.config/git/" ] && mkdir -p $HOME/.config/git && stow git
 stow ripgrep
 stow fd
 stow pip
