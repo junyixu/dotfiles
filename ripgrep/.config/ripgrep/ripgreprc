@@ -16,6 +16,9 @@ web
 
 --glob=!plugin/*
 
+--glob=!*.m
+--glob=!*.nb
+
 # or
 --glob=!{tags,GRTAGS,GTAGS,GPATH}
 # latex
