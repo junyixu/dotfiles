@@ -13,10 +13,11 @@
 stow zsh
 stow vim
 stow tmux
+[ ! -d "$HOME/.config/git/" ] && mkdir -p $HOME/.config/git
 stow git
 stow ripgrep
 stow fd
 stow pip
 stow ranger
 stow MyShell
-mkdir -p ~/.cache/vim/undo
+[ ! -d "$HOME/.cache/vim/undo" ] && mkdir -p $HOME/.cache/vim/undo
