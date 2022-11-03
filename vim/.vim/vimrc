@@ -628,6 +628,27 @@ command! BufOnly execute '%bdelete|edit #|normal `"'
 " https://dpwright.com/posts/2018/04/06/graphical-log-with-vimfugitive/
 command -nargs=* Glg Git! log --graph --pretty=format:'\%h - (\%ad)\%d \%s <\%an>' --abbrev-commit --date=local <args>
 
+" c 语言的 .h 和 .c 之间的切换
+function Switch2HeadOrSrc()
+  let filename=expand("%:t")
+  if filename[-2:-1]==".c"
+    let filename=filename[0:-3]..".h"
+     if filereadable(filename)
+       execute 'edit ' .. filename
+     else
+       let filepath="include/"..filename
+        execute 'e ' . filepath
+    endif
+  else
+    let filename=filename[0:-3]..".c"
+     if filereadable(filename)
+       execute 'edit ' .. filename
+     else
+       let filepath="src/"..filename
+        execute 'edit ' . filepath
+    endif
+  endif
+endfunction
 
 " nnoremap <C-e> :call MyScrollPopup(1)<CR>
 " nnoremap <C-y> :call MyScrollPopup(0)<CR>

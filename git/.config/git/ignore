@@ -10,7 +10,6 @@ tags.temp
 .tasks
 compile_commands.json
 .cache
-*.h5
 
 *.o
 

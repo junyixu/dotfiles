@@ -74,6 +74,8 @@ alias makebeamer='pandoc -t beamer -o makefile_demo.pdf --pdf-engine=xelatex mak
 alias notes='cd ~/Desktop/university/current_course && $EDITOR main.tex'
 alias vitodo='vi ~/Notes/todolist.md'
 
+alias unzip='unzip -O GBK'
+
 alias svi='sudo -E vim --cmd "let g:SUDO=1" --cmd "let g:isPlain=1" '
 # 088.987  000.001: --- VIM STARTED --- 启动 只需要 88 毫秒
 alias vi='vim --cmd "let g:isPlain=1"'
