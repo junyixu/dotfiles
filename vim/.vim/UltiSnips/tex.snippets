@@ -288,8 +288,10 @@ snippet \includegraphics "graphics width" b
 endsnippet
 
 snippet ig "includegraphics" b
+\begin{center}
 \includegraphics[width=0.5\textwidth]{figures/$1}
 \captionof{figure}{}
+\end{center}
 endsnippet
 
 snippet wf "wrapfigure" b
@@ -509,6 +511,14 @@ ${2:${VISUAL:code}}
 $0
 endsnippet
 
+priority 100
+snippet subeq "subequations" b
+\begin{subequations}
+\begin{align}
+  $1
+\end{align}
+\end{subequations}
+endsnippet
 snippet columns "columns" b
 \begin{columns}
 	\begin{column}{.45\textwidth}
