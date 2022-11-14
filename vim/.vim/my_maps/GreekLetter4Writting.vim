@@ -9,6 +9,8 @@ inoremap <buffer> <M-x> \xi
 inoremap <buffer> <M-s> \sigma
 inoremap <buffer> <M-t> \tau
 inoremap <buffer> <M-o> \omega
+inoremap <buffer> <M-w> \omega
+inoremap <buffer> <M-W> \Omega
 inoremap <buffer> <M-m> \mu
 inoremap <buffer> <M-n> \nu
 inoremap <buffer> <M-w> \omega
