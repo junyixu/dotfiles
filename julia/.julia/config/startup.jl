@@ -23,3 +23,12 @@ macro paste()
 end
 
 ϵ0=8.8541878128e−12
+
+using DelimitedFiles
+macro csv(A)
+	return quote
+		local filename=$(string(A))*".csv"
+		writedlm(filename, A, ",")
+		run(`xdg-open $filename`)
+	end
+end
