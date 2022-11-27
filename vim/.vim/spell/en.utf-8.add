@@ -10,7 +10,6 @@ usepackage
 #lem/!
 #lem/!
 pacman
-#exlive
 LaTeX
 beamer
 linux
@@ -237,16 +236,9 @@ CUDA
 svg
 mma
 Von
-#eumannn
 ar
 Neumann
 Saha
-<<<<<<< Updated upstream
 Plasmas
-=======
->>>>>>> Stashed changes
-<<<<<<< HEAD
 Makefile
-=======
 MPI
->>>>>>> ea2917c (拼写)
