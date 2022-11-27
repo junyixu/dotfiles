@@ -734,6 +734,20 @@ export GTAGSLABEL=native-pygments
 # 自动在项目目录的 .venv 目录创建虚拟环境
 # export PIPENV_VENV_IN_PROJECT=1
 
+# Zsh 可以通过 hash -d short=long 来设置一个 shortcut ，之后就可以用 ~short 的语法访问 long 路径，算是 home 目录 tilde 语法的延伸，非常方便。
+# 不仅如此，在 powerlevel10k 等一些 theme 里，如果你的当前路径有对应 shortcut，那么它就会使用 shortcut 显示。
+# 同时你自己也可以实现这个功能，通过 ${(D)path_var} 获取 $path_var 变量里所存路径的 shortcut。
+# 注意 Zsh 在这里的 for 可以省略 do 和 done 。后面还会用到更多可选写法，详情可见 Zsh 文档。
+
+hash -d config=$XDG_CONFIG_HOME
+hash -d cache=$XDG_CACHE_HOME
+hash -d data=$XDG_DATA_HOME
+hash -d zdot=$ZDOTDIR
+
+hash -d OneDrive=~/OneDrive
+hash -d Downloads=~/Downloads
+hash -d WorkSpace=~/WorkSpace
+for p in ~/WorkSpace*; hash -d $(basename $p)=$p
 
  #Load pyenv automatically by appending
 # the following to ~/.zshrc:
