@@ -31,7 +31,6 @@ textwidth
 formatoptions
 subitem
 includegraphics
-#rac
 tikzmark
 calc
 boxrule
@@ -49,3 +48,6 @@ urlcolor
 pdfpagemode
 FullScreen
 colorlinks
+AnnArbor
+CambridgeUS
+professionalfonts
