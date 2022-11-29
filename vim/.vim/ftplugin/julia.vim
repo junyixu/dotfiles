@@ -14,14 +14,12 @@ setlocal iskeyword+=!
 nnoremap <silent><buffer> <localleader>d :call slime#send("@doc " . expand("<cword>") . "\r")<CR>
 vnoremap <silent><buffer> <localleader>d :<c-u>call slime#send("@doc " . @* . "\r")<CR>
 vnoremap <silent><buffer> <localleader>l :<c-u>call slime#send("@less " . @* . "\r")<CR>
-noremap <buffer> <localleader>sm :call slime#send("methods(" . expand("<cword>") . ")\r")<cr>
+noremap <buffer> <localleader>lm :call slime#send("methods(" . expand("<cword>") . ")\r")<cr>
 noremap <buffer> <localleader>t :call slime#send("typeof(" . expand("<cword>") . ")\r")<cr>
-noremap <buffer> <localleader>si :call slime#send(expand("<cword>") . "\r")<cr>
+noremap <buffer> <localleader>s :call slime#send("size(" . expand("<cword>") . ")\r")<cr>
+noremap <buffer> <localleader>li :call slime#send(expand("<cword>") . "\r")<cr>
 " noremap <leader>sje :call slime#send("@edit " . expand("<cword>") . "\r")<cr>
 
-" send OhMyREPL
-" 放在 ~/.julia/config/startup.jl 里会拖慢 julia 的加载
-noremap <buffer> <localleader>so :call slime#send("using OhMyREPL" . "\r")<cr>
 
 let g:latex_to_unicode_auto=0	
 let g:latex_to_unicode_cmd_mapping=['<Tab>']
