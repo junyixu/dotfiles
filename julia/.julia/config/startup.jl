@@ -25,10 +25,11 @@ end
 ϵ0=8.8541878128e−12
 
 using DelimitedFiles
-macro csv(A)
+macro csv(mat)
+	data=esc(mat)
 	return quote
-		local filename=$(string(A))*".csv"
-		writedlm(filename, A, ",")
+		local filename=$(string(mat))*".csv"
+		writedlm(filename, $data, ",")
 		run(`xdg-open $filename`)
 	end
 end
