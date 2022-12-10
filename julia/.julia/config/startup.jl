@@ -26,10 +26,9 @@ end
 
 using DelimitedFiles
 macro csv(mat)
-	data=esc(mat)
-	return quote
+	quote
 		local filename=$(string(mat))*".csv"
-		writedlm(filename, $data, ",")
+		writedlm(filename, $(esc(mat)), ",")
 		run(`xdg-open $filename`)
 	end
 end

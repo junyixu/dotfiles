@@ -104,6 +104,13 @@ snippet '([\de\.]+)si' "unit" r
 endsnippet
 
 context "isMath()"
+snippet si "unit"
+\si{$1} $0
+endsnippet
+
+
+
+context "isMath()"
 snippet "(\\?[A-Za-z]+)(\.)" "一阶导" ri
 \dot{`!p snip.rv=match.group(1)`}
 endsnippet 
@@ -215,17 +222,6 @@ while True:
 	i-=1   # 到此为止获取所有 () 内的字符串
 snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
 `{$1}$0
-endsnippet
-
-# 角标
-context "isMath()"
-snippet '\b([A-Za-z])(\d)' "auto subscript 角标" wrA
-`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
-endsnippet
-
-context "isMath()"
-snippet '([A-Za-z])_(\d\d)' "auto subscript2 角标" wrA
-`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
 context "isMath()"
