@@ -360,7 +360,7 @@ j() {
     cd "$(_zlua -l 2>&1 | fzf +s --tac | sed 's/^[0-9,.]* *//')"
   else
     last_z_args="$@"
-    z "$@"
+    _zlua "$@"
   fi
 }
 
@@ -450,7 +450,7 @@ tt() {
 	if [ ! -z $__note_name ]; then  # 判断字符串是否为空，若不为空，则：
 	# 用 sed 去掉 开头的     数字 , . /
 	# 用 sed 去掉末尾的      .jpg
-	_z "$(echo $__note_name | sed 's/^[0-9,.\/]* *//' | sed 's/\.jpg$//')" && gvim --servername TEX --cmd "let g:isPlain=0" -c 'VimtexView' ./main.tex || echo '没有这个目录'
+	_zlua "$(echo $__note_name | sed 's/^[0-9,.\/]* *//' | sed 's/\.jpg$//')" && gvim --servername TEX --cmd "let g:isPlain=0" -c 'VimtexView' ./main.tex || echo '没有这个目录'
 	else # 若字符串为空，则
 		cd $__current_working_dir
 		echo '字符串为空，没有选择任何pdf文件'
