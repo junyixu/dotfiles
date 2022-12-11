@@ -33,7 +33,6 @@ inoremap <buffer> <M-k> κ
 inoremap <buffer> <M-D> Δ
 inoremap <buffer> <M-q> θ
 
-
 cnoremap <buffer> <M-a> α
 cnoremap <buffer> <M-b> β
 cnoremap <buffer> <M-g> γ
