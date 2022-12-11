@@ -36,11 +36,18 @@ snippet b "begin" b
 \end{$1}
 endsnippet
 
-priority -200
+priority -1000
 snippet '([A-Za-z]+\*?)' "begin" rb
 \begin{`!p snip.rv=match.group(1)`}
 	$1
 \end{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 1
+snippet fc "begin" b
+\begin{frame}[label=c]
+	$1
+\end{frame}
 endsnippet
 
 snippet ! "%! TEX root = ./debug.tex" b
