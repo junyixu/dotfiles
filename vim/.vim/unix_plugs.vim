@@ -1446,8 +1446,12 @@ function! MyHandler(context)
   return 1
 endfunction
 
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+" Viewer options: One may configure the viewer either by specifying a built-in
+" viewer method:
+let g:vimtex_view_method = 'zathura'
+
+" let g:vimtex_view_general_viewer = 'okular'
+" let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " https://github.com/lervag/vimtex/issues/1233#issuecomment-627959240
 
 " 编译选项 连续编译 preview
