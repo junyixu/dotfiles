@@ -153,8 +153,8 @@ Plug 'zackhsi/fzf-tags'
 nmap <space><C-]> <Plug>(fzf_tags)
 " noreabbrev <expr> ts getcmdtype() == ":" && getcmdline() == 'ts' ? 'FZFTselect' : 'ts'
 
-Plug 'majutsushi/tagbar'
-	nmap <leader>tb :TagbarToggle<CR>
+" Plug 'majutsushi/tagbar'
+" 	nmap <leader>tb :TagbarToggle<CR>
 endif
 
 Plug 'jpalardy/vim-slime'
@@ -1957,17 +1957,17 @@ nnoremap <space>/* :<C-U><C-R>=printf("cscope find g %s ", expand("<cword>"))<CR
 
 "=================== Gtags ===============================}}}
 
-if !g:isPlain && !exists('g:started_by_firenvim')
-" ========================= tagbar ==================================={{{
-let g:tagbar_type_julia = {
-    \ 'ctagstype' : 'julia',
-    \ 'kinds'     : [
-        \ 't:struct', 'f:function', 'm:macro', 'c:const']
-    \ }
-let g:tagbar_map_togglesort='S'
-let g:tagbar_map_close='<M-q>'
-" ========================= tagbar ===================================}}}
-endif
+" if !g:isPlain && !exists('g:started_by_firenvim')
+" " ========================= tagbar ==================================={{{
+" let g:tagbar_type_julia = {
+"     \ 'ctagstype' : 'julia',
+"     \ 'kinds'     : [
+"         \ 't:struct', 'f:function', 'm:macro', 'c:const']
+"     \ }
+" let g:tagbar_map_togglesort='S'
+" let g:tagbar_map_close='<M-q>'
+" " ========================= tagbar ===================================}}}
+" endif
 
 " " 使用 wolfram 计算 {{{
 " " jobstart 和 jobwait 只有 nvim 可用
