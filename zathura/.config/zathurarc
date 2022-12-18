@@ -1,0 +1,5 @@
+set highlight-transparency 0.1
+map <A-Left> jumplist backward
+map <A-Right> jumplist foreward
+map <C--> zoom out
+map <C-=> zoom in
