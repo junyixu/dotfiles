@@ -25,3 +25,5 @@ inoremap <buffer> <M-L> \Lambda
 inoremap <buffer> <M-y> \psi
 inoremap <buffer> <M-Y> \Psi
 inoremap <buffer> <M-6> \partial
+inoremap <buffer> <M-p> \pi
+inoremap <buffer> <M-k> \kappa

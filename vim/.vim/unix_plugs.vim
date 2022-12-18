@@ -1771,7 +1771,6 @@ endfunction
 " An action can be a reference to a function that processes selected lines
 
 command! -bar -bang Snippets call fzf#vim#snippets({'options': '-n ..'}, <bang>0)
-imap <silent> <M-k> <ESC>:Snippets<cr>
 
 function! s:build_quickfix_list(lines)
   call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
