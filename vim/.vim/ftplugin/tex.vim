@@ -40,14 +40,6 @@ call textobj#user#plugin('tex', {
 
 
 call vimtex#imaps#add_map({
-  \ 'lhs' : '<CR>',
-  \ 'rhs' : '\item ',
-  \ 'leader' : '',
-  \ 'wrapper' : 'vimtex#imaps#wrap_environment',
-  \ 'context' : ["itemize", "enumerate"],
-  \})
-
-call vimtex#imaps#add_map({
 	\ 'lhs' : 'b',
 	\ 'rhs' : 'vimtex#imaps#style_math("vb")',
 	\ 'expr' : 1,
