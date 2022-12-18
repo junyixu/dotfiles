@@ -140,7 +140,7 @@ syn match texMathSymbol '\\mathfrak{\s*Z\s*}' contained conceal cchar=ℨ
 " \vu characters or \vector unit characters 
 syn match texMathSymbol '\\vu{\s*i\s*}' contained conceal cchar=î
 syn match texMathSymbol '\\vu{\s*j\s*}' contained conceal cchar=ĵ
-syn match texMathSymbol '\\vu{\s*k\s*}' contained conceal cchar=k̂
+" syn match texMathSymbol '\\vu{\s*k\s*}' contained conceal cchar=k̂
 syn match texMathSymbol '\\vu{\s*H\s*}' contained conceal cchar=Ĥ
 
 
