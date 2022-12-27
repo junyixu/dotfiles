@@ -141,7 +141,7 @@ inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 "set spell spelllang=en_us				"打开英语单词的拼写检查
 "set 和 setlocal 的区别：set 可以对新开的窗口和标签生效？
 "---------------------------------------------------------"
-set magic
+" set magic
 set backspace=indent,eol,start			"Make backspace behave like every other editor
 
 
