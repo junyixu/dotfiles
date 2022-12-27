@@ -79,8 +79,8 @@ endsnippet
 
 snippet newenv "new environment" b
 \newenvironment{${1:new environment name}}[1]{%
-	${2:begin} #1}{%
-${3:end}}
+	\begin{${2:envname}}}{%
+\end{${2:envname}}}
 endsnippet
 
 snippet ql "quad" 
