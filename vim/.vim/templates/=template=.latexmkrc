@@ -31,12 +31,12 @@ $bibtex_use = 1.5;
 # 如使用 minted 宏包，需要添加 \usepackage[outputdir=latex.out]{minted}
 # 参见 https://github.com/gpoore/minted/issues/159
 # .latexmkrc 的优先级比 .vimrc 的配置 更高
-$out_dir = "latex.out";
+# $out_dir = "latex.out";
 
 # 如果你希望编译完成后清理无关的中间文件，则注意把清理模式 $cleanup_mode 打开
 # $cleanup_mode = 1;
 
-$clean_ext = "hd nav snm synctex.gz xdv";
+$clean_ext = "hd nav snm synctex.gz xdv fls";
 
 # $preview_mode = 0; # 编译完成后自动打开 pdf；
 # $preview_mode = 1; # 这个似乎和 “$preview_continuous_mode = 1” 冲突

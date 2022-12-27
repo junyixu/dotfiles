@@ -42,6 +42,11 @@ t.js
 
 # LaTeX
 indent.log
-*.tex_bak
 pac_minted.tex
 .ipynb_checkpoints/
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.xdv
