@@ -652,15 +652,23 @@ endfunction
 
 
 function Rename(newfilename)
+  if (a:newfilename=="")
+    let thenewfilename=input("Name: ")
+  else
+    let thenewfilename=a:newfilename
+  endif
+  if (thenewfilename=="")
+    return
+  endif
   execute "normal! di{"
   let filepath = @"
   let head = fnamemodify(filepath, ":h")
   let ext = fnamemodify(filepath, ":e")
-  let newfilepath = head .. "/" .. a:newfilename .. "." .. ext
+  let newfilepath = head .. "/" .. thenewfilename .. "." .. ext
   call rename(filepath, newfilepath)
   execute "normal! i" .. newfilepath
 endfunction
-command -nargs=1 Rename call Rename(<q-args>)
+command -nargs=? Rename call Rename(<q-args>)
 
 " nnoremap <C-e> :call MyScrollPopup(1)<CR>
 " nnoremap <C-y> :call MyScrollPopup(0)<CR>
