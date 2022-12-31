@@ -50,3 +50,7 @@ pac_minted.tex
 *.log
 *.synctex.gz
 *.xdv
+*.bbl
+*.bcf
+*.blg
+*.run.xml
