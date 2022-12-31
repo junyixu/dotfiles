@@ -177,3 +177,4 @@ nnoremap <buffer><silent> <localleader>f :call Sec2File4LaTeX()<CR>
 
 source $HOME/.vim/my_maps/GreekLetter4Writting.vim 
 source $HOME/.vim/ycmMaps.vim
+vmap <localleader>c c$\ce{"}$<ESC>
