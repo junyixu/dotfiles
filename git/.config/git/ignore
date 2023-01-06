@@ -54,3 +54,10 @@ pac_minted.tex
 *.bcf
 *.blg
 *.run.xml
+
+# apt
+DataAnalysis1
+DataAnalysis2
+DataAnalysis3
+DataAnalysis_bak
+DataAnalysis_bak_new
