@@ -25,5 +25,9 @@ inoremap <buffer> <M-L> \Lambda
 inoremap <buffer> <M-y> \psi
 inoremap <buffer> <M-Y> \Psi
 inoremap <buffer> <M-6> \partial
+inoremap <buffer> <M-8> \infty
+inoremap <buffer> <M-0> \emptyset
 inoremap <buffer> <M-p> \pi
 inoremap <buffer> <M-k> \kappa
+inoremap <buffer> <M-,> \langle
+inoremap <buffer> <M-.> \rangle

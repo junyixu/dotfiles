@@ -168,7 +168,7 @@ endif
 
 " 锚点
 " 定义人工锚点 
-inoremap <buffer> <silent> <M-,> <++>
+" inoremap <buffer> <silent> <C-,> <++>
 " 切换到下一个锚点  
 " inoremap <buffer> <silent> <C-j> <Esc>/<+\w*+><CR>:nohlsearch<CR>cgn
 inoremap <buffer> <silent> <M-j> <Esc>/<++><CR>c4l
