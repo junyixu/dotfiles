@@ -173,20 +173,20 @@ let g:slime_julia=1
 " let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.2"}
 let g:slime_python_ipython = 1
 let g:slime_no_mappings = 1
-autocmd filetype sh,mma,python,matlab,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
+autocmd filetype lua,sh,mma,python,matlab,sage.python xmap <silent><buffer> <CR> <Plug>SlimeRegionSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <CR> <Plug>SlimeParagraphSend
 " autocmd filetype python,matlab,julia nmap <silent><buffer> <space><space> :exec "normal \<Plug>SlimeParagraphSend"<cr>}j
-autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
+autocmd filetype lua,sh,mma,python,matlab,sage.python nmap <silent><buffer> <space><space> <Plug>SlimeParagraphSend
 
-autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
+autocmd filetype lua,sh,mma,python,matlab,sage.python nmap <silent><buffer> <localleader>C <Plug>SlimeConfig
 " autocmd filetype matlab,julia nmap <silent> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>zj
-autocmd filetype sh,mma,matlab,sage.python nmap <silent><buffer> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
+autocmd filetype lua,sh,mma,matlab,sage.python nmap <silent><buffer> <localleader>r :exec "normal \<Plug>SlimeSendCell"<cr>
 " autocmd filetype matlab,sage.python nnoremap <silent> <C-CR> :exec "normal \<Plug>SlimeSendCell"<cr>
 " autocmd filetype sh,mma,python,matlab,sage.python nmap <M-CR> <Plug>SlimeSendCell
-autocmd filetype sh,mma,python nmap <buffer> <localleader>r <Plug>SlimeSendCell
+autocmd filetype lua,sh,mma,python nmap <buffer> <localleader>r <Plug>SlimeSendCell
 " autocmd filetype python,matlab nmap <CR> <Plug>SlimeMotionSend
 " autocmd filetype python,matlab,julia nmap <localleader><localleader> <Plug>SlimeLineSend
-autocmd filetype sh,mma,python,matlab,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
+autocmd filetype lua,sh,mma,python,matlab,sage.python nmap <silent><buffer> <CR> :exec "normal \<Plug>SlimeLineSend"<cr>j
 " }}}
 " TODO
 "
