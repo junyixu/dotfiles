@@ -42,4 +42,10 @@ snippet phyconst "PhysicalConstants" b
 import PhysicalConstants.CODATA2018 as C
 endsnippet
 
+snippet HDF5 "HDF5" b
+using HDF5
+fid=h5open("./Data.h5", "r")
+X=read(fid["X"])
+close(fid)
+endsnippet
 
