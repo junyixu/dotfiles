@@ -807,6 +807,7 @@ Plug 'lervag/vimtex'
 Plug 'bootleq/vim-cycle'
 "=================== vim-cycle ================{{{
 let g:cycle_no_mappings = 1
+let g:cycle_phased_search = 0
 nmap <silent> <c-a> <Plug>CycleNext
 vmap <silent> <c-a> <Plug>CycleNext
 nmap <silent> <c-x> <Plug>CyclePrev
@@ -820,25 +821,12 @@ noremap <silent> <Plug>CycleFallbackPrev <C-X>
 	let g:cycle_default_groups = [
 				\   [['true', 'false']],
 				\   [['True', 'False']],
-				\   [['TODO', 'DONE']],
 				\   [['dark', 'light']],
 				\   [['yes', 'no']],
-				\   [['error', 'warning', 'info', 'debug']],
 				\   [['on', 'off']],
-				\   [['+', '-']],
-				\   [['>', '<']],
-				\   [['==', '!=']],
 				\   [['and', 'or']],
 				\   [["only", "except"]],
-				\   [["new", "delete"]],
-				\   [['是', '否']],
 				\   [['{:}', '[:]', '(:)'], 'sub_pairs'],
-				\   [['（:）', '「:」', '『:』'], 'sub_pairs'],
-				\   [['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-				\     'Friday', 'Saturday'], 'hard_case', {'name': 'Days'}],
-				\   [['January', 'February', 'March', 'April', 'May', 'June', 
-				\     'July', 'August', 'September', 'October', 'November', 
-				\     'December'], 'hard_case', {'name': 'Months'}],
 				\ ]
 
 "=================== vim-cycle ================}}}
