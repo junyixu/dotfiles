@@ -32,3 +32,8 @@ macro csv(mat)
 		run(`xdg-open $filename`)
 	end
 end
+
+using PhysicalConstants
+macro constant(arg)
+	:($(esc(arg))=PhysicalConstants.CODATA2018.$(arg).val)
+end
