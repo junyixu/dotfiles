@@ -133,6 +133,12 @@ snippet "(\\[A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
 \va{`!p snip.rv=match.group(1)`}
 endsnippet 
 
+priority 10
+context "isMath()"
+snippet "([A-Za-z]+)-" "bar postfix" r
+\bar{`!p snip.rv=match.group(1)`}
+endsnippet 
+
 # in latex.ltx, \ldots is equated (\let) to \dots. so in text, it's the same, and you can use either.
 # with amsmath, the situation is more complicated; \dots tries to determine by context (only in math mode) whether to use \ldots or \cdots, with several more options for the author if amsmath doesn't get it right.
 # so in general, it's easier to just use \dots and not have to remember the details. but if the alternative chosen by amsmath isn't appropriate, the original commands can still be used explicitly.
@@ -189,24 +195,49 @@ endsnippet
 #endsnippet
 
 
+
+priority 1
 context "isMath()"
-snippet // "Fraction" i
-\\frac{${1:${VISUAL}}}{$2}$0
+snippet '(\\?\w+)/' "symbol frac 如： \alpha_i \alpha a_i ab" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
-snippet '(\S+)/' "Fraction" r
-\\frac{`!p snip.rv=match.group(1)`}{$1}
+priority 10
+context "isMath()"
+snippet '(\\?\w+\^\w)/' "symbol frac 如： \alpha_i \alpha a_i ab" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 
-# 分式 frac
+priority 1
 context "isMath()"
-snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+snippet '(\\?\w+_{\w+})/' "symbol frac 如：\alpha_{33} a_{3i}" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+priority 10
+context "isMath()"
+snippet '(\\?\w+\^{\w+})/' "symbol frac 如：\alpha_{33} a_{3i}" wrA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 
 
+context "isMath()"
+snippet // "Fraction" i
+\\frac{${1:${VISUAL}}}{$2}$0
+endsnippet
+
+# snippet '(\S+)/' "Fraction" r
+# \\frac{`!p snip.rv=match.group(1)`}{$1}
+# endsnippet
+
+
+# # 分式 frac
+# context "isMath()"
+# snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
+# \\frac{`!p snip.rv = match.group(1)`}{$1}$0
+# endsnippet
 
 # 分数
 context "isMath()"
@@ -285,12 +316,12 @@ endsnippet
 
 context "isMath()"
 snippet ^^ "subscript" Ai
-^{$1} $0
+^{$1}
 endsnippet
 
 context "isMath()"
 snippet __ "sub" Ai
-_{$1} $0
+_{$1}
 endsnippet
 
 
@@ -316,8 +347,20 @@ snippet "\|(.*?)\>" "ket" riA
 endsnippet
 
 context "isMath()"
+snippet "\<(.*?)\>" "ket" riA
+\Braket{`!p snip.rv = match.group(1)`}
+endsnippet
+
+context "isMath()"
 snippet "(.*)\\bra{(.*?)}([^\|]*?)\>" "braket" riA
 `!p snip.rv = match.group(1)`\braket{`!p snip.rv = match.group(2)`}{`!p snip.rv = match.group(3)`}
 endsnippet
+
+
+
+
+
+
+
 
 # vim:ft=snippets
