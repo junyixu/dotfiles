@@ -51,6 +51,7 @@ cnoremap <buffer> <M-p> π
 cnoremap <buffer> <M-w> ω
 cnoremap <buffer> <M-W> Ω
 cnoremap <buffer> <M-O> Ω
+cnoremap <buffer> <M-m> μ
 cnoremap <buffer> <M-o> ω
 cnoremap <buffer> <M-t> τ
 cnoremap <buffer> <M-f> ϕ
