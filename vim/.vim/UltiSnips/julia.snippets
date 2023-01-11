@@ -40,6 +40,10 @@ endsnippet
 
 snippet phyconst "PhysicalConstants" b
 import PhysicalConstants.CODATA2018 as C
+constants=(:c_0, :ε_0, :e)
+for constant in constants
+	eval(:($constant=C.$constant.val))
+end
 endsnippet
 
 snippet HDF5 "HDF5" b
