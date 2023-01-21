@@ -1,4 +1,6 @@
 set highlight-transparency 0.1
+set guioptions none
+
 map <A-Left> jumplist backward
 map <A-Right> jumplist foreward
 map <C--> zoom out
