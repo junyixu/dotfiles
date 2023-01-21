@@ -35,3 +35,11 @@ endsnippet
 snippet pr "printf" b
 printf("$1: %f\n", $1);
 endsnippet
+
+snippet _Generic "function overloading 函数重载" b
+#define test(X,Y,c)  \
+	_Generic((X), \
+		double: test_double, \
+		default: test_int \
+	)(X,Y,c)
+endsnippet
