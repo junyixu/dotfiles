@@ -135,9 +135,32 @@ endsnippet
 
 priority 10
 context "isMath()"
-snippet "([A-Za-z]+)-" "bar postfix" r
+snippet "(\\?[A-Za-z]+)-" "bar postfix" r
 \bar{`!p snip.rv=match.group(1)`}
 endsnippet 
+
+priority 10
+context "isMath()"
+snippet "(\\?[A-Za-z]+)," "bar postfix" r
+\uvec{`!p snip.rv=match.group(1)`}
+endsnippet 
+
+priority 10
+context "isMath()"
+snippet "(\S+)--" "bar postfix" r
+\tensor{`!p snip.rv=match.group(1)`}
+endsnippet 
+
+context "isMath()"
+snippet . "dot product"
+\vdot
+endsnippet 
+
+context "isMath()"
+snippet x "cross product"
+\cross
+endsnippet 
+
 
 # in latex.ltx, \ldots is equated (\let) to \dots. so in text, it's the same, and you can use either.
 # with amsmath, the situation is more complicated; \dots tries to determine by context (only in math mode) whether to use \ldots or \cdots, with several more options for the author if amsmath doesn't get it right.

@@ -53,3 +53,8 @@ X=read(fid["X"])
 close(fid)
 endsnippet
 
+snippet plt "matplotlib.pyplot" b
+using PyCall
+
+@pyimport matplotlib.pyplot as plt
+endsnippet
