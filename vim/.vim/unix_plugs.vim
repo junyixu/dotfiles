@@ -200,14 +200,14 @@ Plug 'mhinz/vim-grepper'
       \ 'rg':            { 'grepprg':    'rg -H --no-heading --vimgrep' . (has('win32') ? ' $* .' : ''),
       \                    'grepformat': '%f:%l:%c:%m,%f',
       \                    'escape':     '\^$.*+?()[]{}|' },
-      \ 'git':           { 'grepprg':    'git grep -nGI',
+      \ 'git':           { 'grepprg':    'git grep -nI',
       \                    'grepformat': '%f:%l:%c:%m,%f:%l:%m,%f',
       \                    'escape':     '\^$.*[]' },
       \ }
     " let g:grepper.open = 1
     " let g:grepper.jump = 1
-    " let g:grepper.prompt_mapping_tool = '<leader>g'
-	let g:grepper.repo = ['.git', '.hg', '.svn', '.root', '.obsidian']
+  let g:grepper.dir = 'repo,cwd'
+	let g:grepper.repo = ['.git', '.hg', '.svn', '.root', ".obsidian"]
 	let g:grepper.searchreg = 1
 	nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
 	command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
@@ -1201,7 +1201,7 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_warning_symbol                                = ''
 let g:ycm_max_num_candidates                            = 20
 let g:ycm_autoclose_preview_window_after_completion     = 0
-let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
+let g:ycm_collect_identifiers_from_tags_files           = 0 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
 let g:ycm_add_preview_to_completeopt                    = 0
 let g:ycm_key_list_stop_completion = ['<M-e>']
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
@@ -1243,11 +1243,8 @@ let g:ycm_filetype_blacklist = {
 			\ 'coc-explorer': 1,
 			\ 'tagbar':       1,
 			\ 'vista':        1,
-			\ 'vimwiki':      1,
-			\ 'markdown':     1,
 			\ 'leaderf':      1,
 			\ 'fzf':          1,
-	\ 'julia': 1,
 			\ 'gitcommit':    1,
 			\ 'text':         1,
 			\ }

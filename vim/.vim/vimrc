@@ -52,7 +52,7 @@ let maplocalleader = "\<Space>"
 
 set mouse=a								"在所有模式开启鼠标
 
-set hidden
+" set hidden
 
 "set mouse=v								"用鼠标选中 string. 用了它就不能在 gvim 中用鼠标调整窗口了
 "set t_ti= t_te=						"退出 vim 后，内容显示在终端屏幕，可以用于查看和复制好处：误删什么的，如果以前屏幕打开，可以找回
@@ -652,6 +652,18 @@ function Switch2HeadOrSrc()
   endif
 endfunction
 
+function Root()
+  for repo in [".git", ".svn", ".obsidian"]
+    let repopath = finddir(repo, expand('%:p:h').';')
+        if empty(repopath)
+          let repopath = findfile(repo, expand('%:p:h').';')
+        endif
+        if !empty(repopath)
+          let repopath = fnamemodify(repopath, ':h')
+          return fnameescape(repopath)
+        endif
+      endfor
+ endfunction
 
 function Rename(newfilename)
   if (a:newfilename=="")

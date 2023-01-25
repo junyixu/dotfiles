@@ -176,8 +176,44 @@ today = datetime.date.today()
 snip.rv=str((finalday - today).days)`天
 endsnippet
 
+priority 1000
+snippet t "hh:mm" b
+`!v strftime("%H:%M")`	
+endsnippet
+
+priority 100
+snippet d "17:32 6小时2分钟"
+`!p import vim
+import time
+time_ago_str = vim.eval("getline(line('.'))[0:5]")
+ago_hour=int(time_ago_str[0:2])
+ago_minute=int(time_ago_str[3:5])
+time_now_str = time.strftime('%H:%M', time.localtime())
+now_hour=int(time_now_str[0:2])
+now_minute=int(time_now_str[3:5])
+delta_hour=now_hour-ago_hour
+delta_minute=now_minute-ago_minute
+if delta_minute < 0 :
+	delta_hour -= 1
+	delta_minute = 60 + delta_minute
+if delta_hour==0 :
+	snip.rv="\t"+time_now_str+"\t"+str(delta_minute)+"分钟"+"\t"
+else:
+	snip.rv="\t"+time_now_str+"\t"+str(delta_hour)+"小时"+str(delta_minute)+"分钟"+"\t"`
+endsnippet
+
 snippet physics "physics宏包 的 mathjax 拓展" b
 $\require{physics}$
+endsnippet
+
+snippet rt "requirement traceability" b
+## 做了后对我有什么用
+
+$1
+
+## 如果我不做会怎么样
+
+
 endsnippet
 
 # snippet ** "bold text" i
