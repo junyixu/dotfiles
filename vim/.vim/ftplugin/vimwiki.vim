@@ -108,6 +108,23 @@ setlocal fo+=B
 setlocal spellcapcheck=""
 
 
+"=============================begin list ==========================={{{
+" 说明  Plug 'Yggdroot/indentLine' 只适用于空格，以下适用于 tab
+"
+"方案一
+"set list                     " 显示 Tab 符，
+"set listchars=tab:\┊\ ,      " 使用一高亮竖线代替 把符号显示为 |
+"""set listchars=tab:>-,trail:-
+"set listchars=tab:\┊\ ,nbsp:%,trail:-
+"highlight LeaderTab guifg=#666666   " 设定行首 tab 为灰色
+"match LeaderTab /\t/        " 匹配行首 tab
+
+"方案二
+setlocal listchars=tab:»■,trail:■
+setlocal list								"如果行尾有多余的空格（包括 tab 键）, 该配置将让这些空格显示成可见的小方块。
+"============================= end list===========================
+"----------------------Fold--------------------------------------}}}
+
 " TODO 需要把 , 换 成 <M->
 " " 锚点
 " " 定义人工锚点 
@@ -138,4 +155,6 @@ nnoremap <buffer> <C-p> <Plug>VimwikiPrevLink
 nnoremap <buffer> <localleader><localleader> :VimwikiToggleListItem<CR>
 
 source $HOME/.vim/ftplugin/markdownandvimwiki.vim
+
+
 
