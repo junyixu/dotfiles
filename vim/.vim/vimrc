@@ -635,20 +635,10 @@ function Switch2HeadOrSrc()
   let filename=expand("%:t")
   if filename[-2:-1]==".c"
     let filename=filename[0:-3]..".h"
-     if filereadable(filename)
-       execute 'edit ' .. filename
-     else
-       let filepath="include/"..filename
-        execute 'e ' . filepath
-    endif
+    execute 'find include/**/' .. filename
   else
     let filename=filename[0:-3]..".c"
-     if filereadable(filename)
-       execute 'edit ' .. filename
-     else
-       let filepath="src/"..filename
-        execute 'edit ' . filepath
-    endif
+    execute 'find src/**/' .. filename
   endif
 endfunction
 

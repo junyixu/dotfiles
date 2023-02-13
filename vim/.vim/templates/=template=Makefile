@@ -7,23 +7,36 @@
 SRC_DIR := src
 OBJ_DIR := obj
 BIN_DIR := bin
+TEST_DIR := test
 
 EXE := $(BIN_DIR)/a.out
 SRC := $(wildcard $(SRC_DIR)/*.c)
 # patsubst 函数用于将文件模式进行替换。
 # 用法: $(patsubst 原模式， 目标模式， 文件列表)
 OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+TEST_SRC := src/getop.c src/getch.c
+TEST_OBJ := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(TEST_SRC))
+TEST_FULL_OBJ := $(TEST_OBJ) obj/test.o
 
 CPPFLAGS := -Iinclude # -I is a preprocessor flag, not a compiler flag
 #  Note: (CPP stands for C PreProcessor here, not CPlusPlus! Use CXXFLAGS for C++ flags and CXX for C++ compiler.)
 CFLAGS   = -Wall
-CFLAGS   += -O2
+DEBUG=0
+ifdef DEBUG
+CFLAGS += -DDEBUG=$(DEBUG)
+ifneq ($(DEBUG), 0)
+CFLAGS += -g
+endif
+else
+CFLAGS += -O3
+endif
+
 LDFLAGS  := -Llib       # -L is a linker flag
 LDLIBS   := -lm         # Left empty if no libs are needed
 
 # 解释： = 替换 += 追加:= 恒等于
 
-.PHONY: all clean
+.PHONY: all clean test
 
 all: $(EXE)
 	%HERE%@echo "%FFILE% needs your attention!"
@@ -42,11 +55,20 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 $(BIN_DIR) $(OBJ_DIR): 
 	mkdir -p $@
 
+test: $(TEST_FULL_OBJ)
+	$(CC) $(CPPFLAGS) $(LDFLAGS) $(TEST_FULL_OBJ) $(LDLIBS) -o $(TEST_DIR)/a.out
+
+# obj/%.o 只会匹配 $(TEST_OBJ) 里的，而不是匹配 obj/ 下的所有.o文件
+$(TEST_OBJ): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) 
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+obj/test.o: $(TEST_DIR)/test.c | $(OBJ_DIR) 
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
 clean: 
 	@echo "删除目标文件和可执行程序:"
 	@$(RM) -rv $(BIN_DIR) $(OBJ_DIR)
 
 -include $(OBJ:.o=.d)
-
 
 # vim:ft=make
