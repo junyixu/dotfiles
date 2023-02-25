@@ -68,6 +68,7 @@ endfunction
 
 
 noremap <localleader>d :call slime#send("help(" . expand("<cword>").")\r")<CR>
+noremap <buffer> <localleader>s :call slime#send(expand("<cword>").".shape\r")<CR>
 
 " ===================== end slime ======================}}}
 
