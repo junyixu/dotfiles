@@ -33,9 +33,13 @@ snippet in "in"
 ∈
 endsnippet
 
+snippet / "frac" i
+÷
+endsnippet
+
 snippet anim "animate" b
 using PyCall
-anim=pyimport("anim")["animate2D"]
+@pyimport anim.animate2D as anim
 endsnippet
 
 snippet phyconst "PhysicalConstants" b
@@ -50,8 +54,29 @@ snippet HDF5 "HDF5" b
 using HDF5
 fid=h5open("./Data.h5", "r")
 X=read(fid["X"])
+attributes(fid["X"])["X_description"]
+read_attribute(fid["X"],"X_description")
 close(fid)
 endsnippet
+
+snippet 3d "3d plot" b
+ax = plt.axes(projection="3d")
+zline = np.linspace(0, 15, 1000)
+xline = np.sin(zline)
+yline = np.cos(zline)
+ax.plot3D(xline, yline, zline, 'gray')
+endsnippet
+
+snippet HDF5ReadAll "HDF5 Read All " b
+using HDF5
+fid=h5open("./Data.h5", "r")
+for key in keys(fid)
+	sb=Symbol(key)
+	eval(:($sb = read(fid[$key])))
+end
+close(fid)
+endsnippet
+
 
 snippet plt "matplotlib.pyplot" b
 using PyCall

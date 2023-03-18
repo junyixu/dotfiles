@@ -87,7 +87,7 @@ if !g:isPlain && !exists('g:started_by_firenvim')
 	"}}}
 
 	if version > 800
-		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'markdown', 'vimwiki', 'text', 'json', 'bash', 'sh'] }
+		Plug 'dense-analysis/ale', { 'for': ['python', 'sage.python', 'cmake', 'matlab', 'tex', 'go', 'c', 'markdown', 'vimwiki', 'text', 'json', 'bash', 'sh'] }
 		Plug 'untitled-ai/jupyter_ascending.vim', {'for': ['python', 'julia']}
 	endif
 
@@ -305,7 +305,7 @@ augroup autoformat_settings
   autocmd FileType dart AutoFormatBuffer dartfmt
   autocmd FileType go AutoFormatBuffer gofmt
   autocmd FileType gn AutoFormatBuffer gn
-  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  " autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
   autocmd FileType fortran AutoFormatBuffer fprettify
   autocmd FileType java AutoFormatBuffer google-java-format
   autocmd FileType python AutoFormatBuffer yapf
@@ -555,6 +555,9 @@ endfunction
 	endif
 endif
 "  ========================== end 补全 ============================ }}}
+
+" " gcc -fsyntax-only % 的 Ansi 颜色
+"    Plug 'powerman/vim-plugin-AnsiEsc'
 
 " 启动时间
 " Plug 'dstein64/vim-startuptime'
@@ -1542,6 +1545,7 @@ let g:ale_linters = {
             \   'cmake': ['cmakeformat', 'cmakelint'],
             \   'python': ['pyflakes'],
             \   'go': ['gofmt'],
+            \   'c': ['clangd'],
             \   'java': ['javac'],
             \   'javascript': ['eslint'],
             \   'matlab': ['mlint'],

@@ -109,6 +109,7 @@ if __name__ == '__main__':
 endsnippet
 
 snippet HDF5 "HDF5 " b
+import h5py
 f = h5py.File('./Data.h5', 'r')
 X=f["PTC"]
 X=np.array(X)
