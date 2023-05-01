@@ -37,6 +37,15 @@ snippet / "frac" i
 ÷
 endsnippet
 
+snippet main "main" b
+function main()
+	$0
+end
+
+if abspath(PROGRAM_FILE) == @__FILE__
+    main()
+end
+endsnippet
 snippet anim "animate" b
 using PyCall
 @pyimport anim.animate2D as anim
@@ -83,4 +92,9 @@ using PyCall
 using LaTeXStrings
 
 @pyimport matplotlib.pyplot as plt
+endsnippet
+
+snippet font "matplotlib font" b
+rcParams = PyDict(plt.matplotlib."rcParams")
+rcParams["font.size"] = 12
 endsnippet

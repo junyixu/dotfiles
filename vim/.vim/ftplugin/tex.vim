@@ -19,6 +19,7 @@ nnoremap <buffer> <localleader>S :AsyncRun! -mode=hide sleep 3; tex-screenshot<C
 vnoremap <buffer><silent> <localleader>r "zc\red{<C-R>z}<ESC>
 vnoremap <buffer><silent> <localleader>h "zc\hl{<C-R>z}<ESC>
 vnoremap <buffer><silent> <localleader>b "zc\textbf{<C-R>z}<ESC>
+vnoremap <buffer><silent> <localleader>i "zc\textit{<C-R>z}<ESC>
 vnoremap <buffer><silent> <localleader>u "zc\uline{<C-R>z}<ESC>
 vnoremap <buffer><silent> <localleader>e "zc\emph{<C-R>z}<ESC>
 

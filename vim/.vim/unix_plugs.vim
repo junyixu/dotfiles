@@ -1678,11 +1678,8 @@ endif
 
 "==================== vim-templates ======================{{{
 let g:templates_directory = '$HOME/.vim/templates'
-let g:templates_user_variables = [['EMAIL', 'MyEmail'],]
-
-function MyEmail()
-	return 'junyixu0@gmail.com'
-endfunction
+let g:email='jyxu@mail.ustc.edu.cn'
+let g:username='Junyi Xu'
 "==================== end vim-templates ======================}}}
 
 "=================== vimwiki ==============================={{{

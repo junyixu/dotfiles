@@ -34,3 +34,5 @@ using PhysicalConstants
 macro constant(arg)
 	:($(esc(arg))=PhysicalConstants.CODATA2018.$(arg).val)
 end
+
+using Statistics

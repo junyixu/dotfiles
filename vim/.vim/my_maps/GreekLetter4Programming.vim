@@ -10,6 +10,7 @@ inoremap <buffer> <M-n> ν
 inoremap <buffer> <M-z> ζ
 inoremap <buffer> <M-x> ξ
 inoremap <buffer> <M-s> σ
+inoremap <buffer> <M-6> ∂
 inoremap <buffer> <M-S> Σ
 inoremap <buffer> <M-r> ρ
 inoremap <buffer> <M-p> π
@@ -53,6 +54,7 @@ cnoremap <buffer> <M-W> Ω
 cnoremap <buffer> <M-O> Ω
 cnoremap <buffer> <M-m> μ
 cnoremap <buffer> <M-o> ω
+cnoremap <buffer> <M-6> ∂
 cnoremap <buffer> <M-t> τ
 cnoremap <buffer> <M-f> ϕ
 cnoremap <buffer> <M-v><M-f> φ
