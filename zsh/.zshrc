@@ -721,6 +721,8 @@ if hash exa 2> /dev/null; then
 fi
 
 export GTAGSLABEL=native-pygments
+# export GTAGSLABEL=native
+# export CSCOPE_DB=GTAGS
 
 # 让 gtags 把 *.h 视为 cpp 文件
 # export GTAGSFORCECPP=

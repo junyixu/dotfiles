@@ -1,6 +1,13 @@
 ###########################
 # Sections and Paragraphs #
 ###########################
+
+global !p
+def isMath():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+
 # snippet ,1 "Section" bA
 # # ${1:Section Name}
 # $0
@@ -73,6 +80,9 @@ endsnippet
 # *${1:${VISUAL}}*$0
 # endsnippet
 
+snippet mathjax "使用 mathjax" b
+mathjax: true
+endsnippet
 
 snippet blue "blue font"
 <span style="color:blue">$1</span>$0
@@ -169,6 +179,14 @@ $0
 END
 endsnippet
 
+snippet ^ "上标" i
+<sup>$1</sup>
+endsnippet
+
+snippet _ "下标" i
+<sub>$1</sub>
+endsnippet
+
 snippet d "离考研天数" b
 # 离组会还有`!p import datetime
 finalday = datetime.date(2023, 2, 1)
@@ -220,6 +238,12 @@ snippet . "cdot"
 \cdot
 endsnippet
 
+snippet b "begin" b
+\begin{$1}
+$2
+\end{$1}
+endsnippet
+
 # snippet ** "bold text" i
 # **${1:${VISUAL}}**
 # endsnippet
@@ -234,16 +258,77 @@ endsnippet
 
 priority 1000
 snippet dm "Math" wA
-$$
-	${1:${VISUAL}}
-$$
-$0
+$$${1:${VISUAL}}$$
 endsnippet
 priority 1000
 snippet mk "Math" wA
 $$1$
 endsnippet
+context "isMath()"
+snippet op "cross product" i
+\operatorname{$1} 
+endsnippet 
+priority 100
+context "isMath()"
+snippet x "cross product"
+\times 
+endsnippet 
+priority 100
+context "isMath()"
+snippet d "diff" i
+\mathrm{d} 
+endsnippet 
+priority 1000
+context "isMath()"
+snippet dv "diff" i
+\frac{\mathrm{d} $1}{\mathrm{d} $2}
+endsnippet 
+priority 10000
+context "isMath()"
+snippet pdv "diff" i
+\frac{\partial $1}{\partial $2}
+endsnippet 
+priority 100
+context "isMath()"
+snippet curl "Math" wA
+\boldsymbol{\nabla} \times 
+endsnippet
+context "isMath()"
+snippet div "Math" wA
+\boldsymbol{\nabla} \cdot 
+endsnippet
+context "isMath()"
+snippet lap "Math" wA
+\nabla^2 
+endsnippet
+context "isMath()"
+snippet grad "Math" wA
+\boldsymbol{\nabla}
+endsnippet
+context "isMath()"
+snippet "(\\\w+|\w)u" "Vector postfix" r
+\boldsymbol{e}_{`!p snip.rv=match.group(1)`}
+endsnippet 
+priority 1000
+context "isMath()"
+snippet "([A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
+\mathbf{`!p snip.rv=match.group(1)`}
+endsnippet 
+priority 10000
+context "isMath()"
+snippet "(\\[A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
+\boldsymbol{`!p snip.rv=match.group(1)`}
+endsnippet 
 
+priority 100
+context "isMath()"
+snippet O "mathcal" i
+\mathcal{O}
+endsnippet 
+context "isMath()"
+snippet O' "mathcal" i
+\mathcal{O}'
+endsnippet 
 
 # priority 1000
 # snippet dd "diff" wA

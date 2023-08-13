@@ -13,7 +13,6 @@ def isMath():
     return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 endglobal
 
-
 context "isMath()"
 snippet q "quad"
 \quad 
@@ -124,7 +123,7 @@ endsnippet
 priority 10
 context "isMath()"
 snippet "([A-Za-z]+)(,\.|\.,)" "Vector postfix" rA
-\vb{`!p snip.rv=match.group(1)`}
+\mathbf{`!p snip.rv=match.group(1)`}
 endsnippet 
 
 priority 100
@@ -158,7 +157,7 @@ endsnippet
 
 context "isMath()"
 snippet x "cross product"
-\cross
+\times
 endsnippet 
 
 
@@ -288,34 +287,47 @@ snippet <= "not equals" iA
 \leq 
 endsnippet
 
+context "isMath()"
 snippet >= "not equals" iA
 \geq 
 endsnippet
 
+context "isMath()"
 snippet >> "greater" A
 \gg 
 endsnippet
  
+context "isMath()"
 snippet << "less" A
 \ll 
 endsnippet
  
-
-
+context "isMath()"
 snippet >~ "not equals" iA
 \gtrsim  
 endsnippet
 
+context "isMath()"
 snippet <~ "not equals" iA
 \lesssim  
 endsnippet
 
 
 # # 用imap `= 
-# context "isMath()"
-# snippet == "equals" iA
-# \equiv 
-# endsnippet
+context "isMath()"
+snippet === "equals" iA
+\equiv 
+endsnippet
+
+context "isMath()"
+snippet -> "equals" A
+\to 
+endsnippet
+
+context "isMath()"
+snippet o "equals"
+\circ 
+endsnippet
 
 context "isMath()"
 snippet ceil "ceil" iA

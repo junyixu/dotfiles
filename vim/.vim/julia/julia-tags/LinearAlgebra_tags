@@ -100,19 +100,6 @@ Array{T}	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgeb
 Array{T}	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/uniformscaling.jl	/^Array{T}(s::UniformScaling, dims::Dims{2}) where {T} = Matrix{T}(s, dims)$/;"	f	line:507	language:Julia
 Array{T}	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/uniformscaling.jl	/^Array{T}(s::UniformScaling, m::Integer, n::Integer) where {T} = Matrix{T}(s, m, n)$/;"	f	line:508	language:Julia
 B	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/trickyarithmetic.jl	/^    struct B$/;"	s	line:11	language:Julia
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/adjtrans.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:7	language:Julia	module:TestAdjointTranspose
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/bidiag.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:8	language:Julia	module:TestBidiagonal
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/diagonal.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:8	language:Julia	module:TestDiagonal
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/diagonal.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:964	language:Julia
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/generic.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:7	language:Julia	module:TestGeneric
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/givens.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:75	language:Julia	module:TestGivens
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/hessenberg.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:7	language:Julia	module:TestHessenberg
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/lu.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:331	language:Julia	module:TestLU
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/special.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:353	language:Julia
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/symmetric.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:552	language:Julia	module:TestSymmetric
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/triangular.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:684	language:Julia	module:TestTriangular
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/tridiag.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:7	language:Julia	module:TestTridiagonal
-BASE_TEST_PATH	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/uniformscaling.jl	/^const BASE_TEST_PATH = joinpath(Sys.BINDIR, "..", "share", "julia", "test")$/;"	c	line:7	language:Julia	module:TestUniformscaling
 BLAS	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/blas.jl	/^module BLAS$/;"	n	line:6	language:Julia
 Base	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/eigen.jl	/^function Base.:(==)(A::Eigen, B::Eigen)$/;"	f	line:630	language:Julia	module:Base
 Base	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^function Base.:(==)(A::QRCompactWY, B::QRCompactWY)$/;"	f	line:161	language:Julia	module:Base
@@ -250,42 +237,11 @@ HessenbergQ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAl
 HessenbergQ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/hessenberg.jl	/^struct HessenbergQ{T,S<:AbstractMatrix,W<:AbstractVector,sym} <: AbstractQ{T}$/;"	s	line:524	language:Julia
 HessenbergQ{T,S,W,sym}	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/hessenberg.jl	/^    function HessenbergQ{T,S,W,sym}(uplo::AbstractChar, factors, τ) where {T,S<:AbstractMatrix,/;"	f	line:528	language:Julia	struct:HessenbergQ
 I	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/uniformscaling.jl	/^const I = UniformScaling(true)$/;"	c	line:59	language:Julia
-ISONE_CUTOFF	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/dense.jl	/^const ISONE_CUTOFF = 2^21 # 2M$/;"	c	line:14	language:Julia
 IndexStyle	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^IndexStyle(::Type{<:AdjOrTransAbsMat}) = IndexCartesian()$/;"	f	line:178	language:Julia
 IndexStyle	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^IndexStyle(::Type{<:AdjOrTransAbsVec}) = IndexLinear()$/;"	f	line:177	language:Julia
 IntegerOrC	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^const IntegerOrC = Union{Integer, Complex{<: Integer}}$/;"	c	line:39	language:Julia	module:TestAddmul
 KronTestArray	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/diagonal.jl	/^    KronTestArray(data::AbstractArray) = KronTestArray{eltype(data), ndims(data), typeof(data)}(/;"	f	line:453	language:Julia	module:TestDiagonal
 KronTestArray	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/diagonal.jl	/^    struct KronTestArray{T, N, AT} <: AbstractArray{T, N}$/;"	s	line:450	language:Julia	module:TestDiagonal
-LAPACK	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lapack.jl	/^module LAPACK$/;"	n	line:3	language:Julia
-LAPACKException	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/exceptions.jl	/^struct LAPACKException <: Exception$/;"	s	line:9	language:Julia
-LAPACKFactorizations	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^const LAPACKFactorizations{T,S} = Union{$/;"	c	line:459	language:Julia
-LBTConfig	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^    function LBTConfig(config::lbt_config_t)$/;"	f	line:98	language:Julia	struct:LBTConfig
-LBTConfig	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^struct LBTConfig$/;"	s	line:93	language:Julia
-LBTLibraryInfo	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^    function LBTLibraryInfo(lib_info::lbt_library_info_t, num_exported_symbols::UInt32)$/;"	f	line:66	language:Julia	struct:LBTLibraryInfo
-LBTLibraryInfo	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^struct LBTLibraryInfo$/;"	s	line:56	language:Julia
-LBT_BUILDFLAGS_DEEPBINDLESS	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_BUILDFLAGS_DEEPBINDLESS = 0x01$/;"	c	line:86	language:Julia
-LBT_BUILDFLAGS_F2C_CAPABLE	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_BUILDFLAGS_F2C_CAPABLE  = 0x02$/;"	c	line:87	language:Julia
-LBT_BUILDFLAGS_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_BUILDFLAGS_MAP = Dict($/;"	c	line:88	language:Julia
-LBT_CBLAS_CONFORMANT	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_CBLAS_CONFORMANT =  0$/;"	c	line:46	language:Julia
-LBT_CBLAS_DIVERGENT	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_CBLAS_DIVERGENT  =  1$/;"	c	line:47	language:Julia
-LBT_CBLAS_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_CBLAS_MAP = Dict($/;"	c	line:49	language:Julia
-LBT_CBLAS_UNKNOWN	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_CBLAS_UNKNOWN    = -1$/;"	c	line:48	language:Julia
-LBT_COMPLEX_RETSTYLE_ARGUMENT	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_COMPLEX_RETSTYLE_ARGUMENT =  1$/;"	c	line:37	language:Julia
-LBT_COMPLEX_RETSTYLE_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_COMPLEX_RETSTYLE_MAP = Dict($/;"	c	line:39	language:Julia
-LBT_COMPLEX_RETSTYLE_NORMAL	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_COMPLEX_RETSTYLE_NORMAL   =  0$/;"	c	line:36	language:Julia
-LBT_COMPLEX_RETSTYLE_UNKNOWN	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_COMPLEX_RETSTYLE_UNKNOWN  = -1$/;"	c	line:38	language:Julia
-LBT_F2C_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_F2C_MAP = Dict($/;"	c	line:29	language:Julia
-LBT_F2C_PLAIN	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_F2C_PLAIN         =  0$/;"	c	line:26	language:Julia
-LBT_F2C_REQUIRED	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_F2C_REQUIRED      =  1$/;"	c	line:27	language:Julia
-LBT_F2C_UNKNOWN	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_F2C_UNKNOWN       = -1$/;"	c	line:28	language:Julia
-LBT_INTERFACE_ILP64	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INTERFACE_ILP64   = 64$/;"	c	line:17	language:Julia
-LBT_INTERFACE_LP64	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INTERFACE_LP64    = 32$/;"	c	line:16	language:Julia
-LBT_INTERFACE_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INTERFACE_MAP = Dict($/;"	c	line:19	language:Julia
-LBT_INTERFACE_UNKNOWN	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INTERFACE_UNKNOWN = -1$/;"	c	line:18	language:Julia
-LBT_INV_CBLAS_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INV_CBLAS_MAP = Dict(v => k for (k, v) in LBT_CBLAS_MAP)$/;"	c	line:54	language:Julia
-LBT_INV_COMPLEX_RETSTYLE_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INV_COMPLEX_RETSTYLE_MAP = Dict(v => k for (k, v) in LBT_COMPLEX_RETSTYLE_MAP)$/;"	c	line:44	language:Julia
-LBT_INV_F2C_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INV_F2C_MAP = Dict(v => k for (k, v) in LBT_F2C_MAP)$/;"	c	line:34	language:Julia
-LBT_INV_INTERFACE_MAP	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lbt.jl	/^const LBT_INV_INTERFACE_MAP = Dict(v => k for (k, v) in LBT_INTERFACE_MAP)$/;"	c	line:24	language:Julia
 LD	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bunchkaufman.jl	/^    LD::S$/;"	g	line:67	language:Julia	struct:BunchKaufman
 LDLt	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/ldlt.jl	/^LDLt(data::AbstractMatrix{T}) where {T} = LDLt{T,typeof(data)}(data)$/;"	f	line:51	language:Julia
 LDLt	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/ldlt.jl	/^struct LDLt{T,S<:AbstractMatrix{T}} <: Factorization{T}$/;"	s	line:43	language:Julia
@@ -536,201 +492,6 @@ Z	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/
 Z	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/schur.jl	/^    Z::S$/;"	g	line:52	language:Julia	struct:Schur
 Zero36193	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/structuredbroadcast.jl	/^struct Zero36193 end$/;"	s	line:209	language:Julia	module:TestStructuredBroadcast
 ZeroPivotException	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/exceptions.jl	/^struct ZeroPivotException <: Exception$/;"	s	line:57	language:Julia
-_Annotated_DenseArrays	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _Annotated_DenseArrays = Union{_SpecialArrays, _Triangular_DenseArrays, _Symmetric_DenseAr/;"	c	line:410	language:Julia
-_Annotated_Typed_DenseArrays	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _Annotated_Typed_DenseArrays{T} = Union{_Triangular_DenseArrays{T}, _Symmetric_DenseArrays/;"	c	line:411	language:Julia
-_DenseConcatGroup	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _DenseConcatGroup = Union{Number, Vector, Adjoint{<:Any,<:Vector}, Transpose{<:Any,<:Vecto/;"	c	line:412	language:Julia
-_Hermitian_DenseArrays	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _Hermitian_DenseArrays{T,A<:Matrix} = Hermitian{T,A}$/;"	c	line:408	language:Julia
-_SpecialArrays	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _SpecialArrays = Union{Diagonal, Bidiagonal, Tridiagonal, SymTridiagonal}$/;"	c	line:406	language:Julia
-_Symmetric_DenseArrays	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _Symmetric_DenseArrays{T,A<:Matrix} = Symmetric{T,A}$/;"	c	line:407	language:Julia
-_Triangular_DenseArrays	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _Triangular_DenseArrays{T,A<:Matrix} = AbstractTriangular{T,A}$/;"	c	line:409	language:Julia
-_TypedDenseConcatGroup	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^const _TypedDenseConcatGroup{T} = Union{Vector{T}, Adjoint{T,Vector{T}}, Transpose{T,Vector{T}},/;"	c	line:413	language:Julia
-_UtiAsymUi!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/symmetriceigen.jl	/^function _UtiAsymUi!(uplo, A, U)$/;"	f	line:184	language:Julia
-_UtiAsymUi_diag!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/symmetriceigen.jl	/^function _UtiAsymUi_diag!(uplo, A, U)$/;"	f	line:236	language:Julia
-__init__	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^function __init__()$/;"	f	line:567	language:Julia
-__muldiag!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@inline function __muldiag!(out, A, D::Diagonal, alpha, beta)$/;"	f	line:309	language:Julia
-__muldiag!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@inline function __muldiag!(out, D1::Diagonal, D2::Diagonal, alpha, beta)$/;"	f	line:351	language:Julia
-__muldiag!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@inline function __muldiag!(out, D::Diagonal, B, alpha, beta)$/;"	f	line:287	language:Julia
-__muldiag!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@inline function __muldiag!(out::Diagonal, D1::Diagonal, D2::Diagonal, alpha, beta)$/;"	f	line:333	language:Julia
-__normalize!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/generic.jl	/^@inline function __normalize!(a::AbstractArray, nrm::Real)$/;"	f	line:1721	language:Julia
-_absvecormat_mul_adjrot	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/givens.jl	/^function _absvecormat_mul_adjrot(A::AbstractVecOrMat{T}, adjR::Adjoint{<:Any,<:AbstractRotation{/;"	f	line:15	language:Julia
-_adjoint_hcat	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^_adjoint_hcat(avs::Union{Number,AdjointAbsVec}...) = adjoint(vcat(map(adjoint, avs)...))$/;"	f	line:227	language:Julia
-_all	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._all(f, A::Adjoint, ::Colon) = Base._all(f∘adjoint, parent(A), :)$/;"	f	line:274	language:Julia	module:Base
-_all	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._all(f, A::Transpose, ::Colon) = Base._all(f∘transpose, parent(A), :)$/;"	f	line:273	language:Julia	module:Base
-_any	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._any(f, A::Adjoint, ::Colon) = Base._any(f∘adjoint, parent(A), :)$/;"	f	line:272	language:Julia	module:Base
-_any	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._any(f, A::Transpose, ::Colon) = Base._any(f∘transpose, parent(A), :)$/;"	f	line:271	language:Julia	module:Base
-_apply_inverse_ipiv_cols!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^_apply_inverse_ipiv_cols!(A::LU, B::StridedVecOrMat) = _ipiv_cols!(A, length(A.ipiv) : -1 : 1, B/;"	f	line:377	language:Julia
-_apply_inverse_ipiv_rows!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^_apply_inverse_ipiv_rows!(A::LU, B::StridedVecOrMat) = _ipiv_rows!(A, length(A.ipiv) : -1 : 1, B/;"	f	line:353	language:Julia
-_apply_ipiv_cols!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^_apply_ipiv_cols!(A::LU, B::StridedVecOrMat) = _ipiv_cols!(A, 1 : length(A.ipiv), B)$/;"	f	line:376	language:Julia
-_apply_ipiv_rows!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^_apply_ipiv_rows!(A::LU, B::StridedVecOrMat) = _ipiv_rows!(A, 1 : length(A.ipiv), B)$/;"	f	line:352	language:Julia
-_apply_permutation!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^_apply_permutation!(F::Factorization, B::AbstractVecOrMat) = B$/;"	f	line:1001	language:Julia
-_apply_permutation!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^function _apply_permutation!(F::QRPivoted, B::AbstractVecOrMat)$/;"	f	line:995	language:Julia
-_bidiagdivmultest	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/bidiag.jl	/^                function _bidiagdivmultest(T,$/;"	f	line:312	language:Julia	module:TestBidiagonal
-_cat	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^Base._cat(dims, xs::_DenseConcatGroup...) = Base._cat_t(dims, promote_eltype(xs...), xs...)$/;"	f	line:417	language:Julia	module:Base
-_cat	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^Base._cat(dims, xs::_TypedDenseConcatGroup{T}...) where {T} = Base._cat_t(dims, T, xs...)$/;"	f	line:424	language:Julia	module:Base
-_chkstride1	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^@inline _chkstride1(ok::Bool, A, B...) = _chkstride1(ok & (stride1(A) == 1), B...)$/;"	f	line:214	language:Julia
-_chkstride1	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^@noinline _chkstride1(ok::Bool) = ok || error("matrix does not have contiguous columns")$/;"	f	line:213	language:Julia
-_chol!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/cholesky.jl	/^function _chol!(A::AbstractMatrix, ::Type{LowerTriangular})$/;"	f	line:225	language:Julia
-_chol!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/cholesky.jl	/^function _chol!(A::AbstractMatrix, ::Type{UpperTriangular})$/;"	f	line:198	language:Julia
-_chol!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/cholesky.jl	/^function _chol!(A::StridedMatrix{<:BlasFloat}, ::Type{LowerTriangular})$/;"	f	line:192	language:Julia
-_chol!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/cholesky.jl	/^function _chol!(A::StridedMatrix{<:BlasFloat}, ::Type{UpperTriangular})$/;"	f	line:188	language:Julia
-_chol!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/cholesky.jl	/^function _chol!(x::Number, uplo)$/;"	f	line:256	language:Julia
-_count	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._count(::typeof(identity), A::Adjoint{Bool}, ::Colon, init) = Base._count(identity, parent(/;"	f	line:270	language:Julia	module:Base
-_count	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._count(::typeof(identity), A::Transpose{Bool}, ::Colon, init) = Base._count(identity, paren/;"	f	line:269	language:Julia	module:Base
-_cut_B	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^_cut_B(X::AbstractMatrix, r::UnitRange) = size(X, 1) > length(r) ? X[r,:] : X$/;"	f	line:441	language:Julia
-_cut_B	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^_cut_B(x::AbstractVector, r::UnitRange) = length(x)  > length(r) ? x[r]   : x$/;"	f	line:440	language:Julia
-_det_tau	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^_det_tau(τs) = prod(τ -> iszero(τ) ? one(τ) : -sign(τ)^2, τs)$/;"	f	line:1083	language:Julia
-_det_tau	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^_det_tau(τs::AbstractVector{<:Real}) =$/;"	f	line:1074	language:Julia
-_diag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^_diag(A::SymTridiagonal, k) = k == 0 ? A.dv : A.ev$/;"	f	line:433	language:Julia
-_diag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^_diag(A::Tridiagonal, k) = k == -1 ? A.dl : k == 0 ? A.d : A.du$/;"	f	line:432	language:Julia
-_diag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^function _diag(A::Bidiagonal, k)$/;"	f	line:434	language:Julia
-_diag_or_value	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/uniformscaling.jl	/^_diag_or_value(A::Diagonal) = A.diag$/;"	f	line:529	language:Julia
-_diag_or_value	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/uniformscaling.jl	/^_diag_or_value(A::UniformScaling) = A.λ$/;"	f	line:530	language:Julia
-_diagm	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/dense.jl	/^function _diagm(size, kv::Pair{<:Integer,<:AbstractVector}...)$/;"	f	line:293	language:Julia
-_diagview	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^_diagview(A) = @view A[diagind(A)]$/;"	f	line:1070	language:Julia
-_dot_nonrecursive	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^function _dot_nonrecursive(u, v)$/;"	f	line:296	language:Julia
-_evview	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^_evview(S::SymTridiagonal) = @view S.ev[begin:length(S.dv) - 1]$/;"	f	line:447	language:Julia
-_factorize	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/symmetric.jl	/^function _factorize(A::HermOrSym{T}; check::Bool=true) where T$/;"	f	line:612	language:Julia
-_find_params_log_quasitriu!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _find_params_log_quasitriu!(A)$/;"	f	line:1853	language:Julia
-_generic_matmatmul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^function _generic_matmatmul!(C::AbstractVecOrMat{R}, tA, tB, A::AbstractVecOrMat{T}, B::Abstract/;"	f	line:850	language:Julia
-_getdiag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@propagate_inbounds _getdiag(S::SymTridiagonal, i) = symmetric(S.dv[i], :U)::symmetric_type(elty/;"	f	line:459	language:Julia
-_getdiag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@propagate_inbounds _getdiag(T::Tridiagonal, i) = T.d[i]$/;"	f	line:458	language:Julia
-_getldiag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@propagate_inbounds _getldiag(S::SymTridiagonal, i) = transpose(S.ev[i])$/;"	f	line:461	language:Julia
-_getldiag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@propagate_inbounds _getldiag(T::Tridiagonal, i) = T.dl[i]$/;"	f	line:460	language:Julia
-_getudiag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@propagate_inbounds _getudiag(S::SymTridiagonal, i) = S.ev[i]$/;"	f	line:457	language:Julia
-_getudiag	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@propagate_inbounds _getudiag(T::Tridiagonal, i) = T.du[i]$/;"	f	line:456	language:Julia
-_hvcat	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/uniformscaling.jl	/^function _hvcat(rows::Tuple{Vararg{Int}}, A::Union{AbstractVecOrMat,UniformScaling,Number}...; a/;"	f	line:430	language:Julia
-_init	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^_init(op, A::AbstractArray, B::AbstractArray) = promote_op(op, eltype(A), eltype(B))$/;"	f	line:395	language:Julia
-_init	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^_init(op, A::AbstractArray{<:Number}, B::AbstractArray{<:Number}) =$/;"	f	line:393	language:Julia
-_inner_type_promotion	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^_inner_type_promotion(A,B) = promote_type(eltype(A), eltype(B), typeof(zero(eltype(A))*zero(elty/;"	f	line:1624	language:Julia
-_inv	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/symmetric.jl	/^function _inv(A::HermOrSym)$/;"	f	line:630	language:Julia
-_ipiv2perm_bk	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bunchkaufman.jl	/^function _ipiv2perm_bk(v::AbstractVector{T}, maxi::Integer, uplo::AbstractChar, rook::Bool) wher/;"	f	line:211	language:Julia
-_ipiv_cols!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^function _ipiv_cols!(A::LU, order::OrdinalRange, B::StridedVecOrMat)$/;"	f	line:379	language:Julia
-_ipiv_rows!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^function _ipiv_rows!(A::LU, order::OrdinalRange, B::StridedVecOrMat)$/;"	f	line:355	language:Julia
-_isone_cachefriendly	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/dense.jl	/^@inline function _isone_cachefriendly(A::AbstractMatrix, m::Int)$/;"	f	line:38	language:Julia
-_isone_triacheck	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/dense.jl	/^@inline function _isone_triacheck(A::AbstractMatrix, m::Int)$/;"	f	line:26	language:Julia
-_istril	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/generic.jl	/^@inline function _istril(A::AbstractMatrix, k)$/;"	f	line:1335	language:Julia
-_istriu	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/generic.jl	/^@inline function _istriu(A::AbstractMatrix, k)$/;"	f	line:1291	language:Julia
-_ldiv	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/hessenberg.jl	/^function _ldiv(B::Bidiagonal, H::UpperHessenberg)$/;"	f	line:183	language:Julia
-_log_diag_block_2x2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^Base.@propagate_inbounds function _log_diag_block_2x2!(A, A0)$/;"	f	line:2134	language:Julia
-_log_diag_quasitriu!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _log_diag_quasitriu!(A, A0)$/;"	f	line:2088	language:Julia
-_log_quasitriu!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _log_quasitriu!(A0, A)$/;"	f	line:1802	language:Julia
-_lucopy	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^_lucopy(A::AbstractMatrix, T) = copy_similar(A, T)$/;"	f	line:285	language:Julia
-_lucopy	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^_lucopy(A::HermOrSym, T)      = copy_oftype(A, T)$/;"	f	line:286	language:Julia
-_lucopy	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^_lucopy(A::Tridiagonal, T)    = copy_oftype(A, T)$/;"	f	line:287	language:Julia
-_lucopy	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^_lucopy(A::Bidiagonal, T)     = copy_oftype(Tridiagonal(A), T)$/;"	f	line:53	language:Julia
-_lucopy	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^_lucopy(A::Diagonal, T)       = copy_oftype(Tridiagonal(A), T)$/;"	f	line:54	language:Julia
-_lucopy	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^function _lucopy(A::SymTridiagonal, T)$/;"	f	line:55	language:Julia
-_mapreduce_dim	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._mapreduce_dim(f, op::CommutativeOps, init::Base._InitialValue, A::Adjoint, dims::Colon) =$/;"	f	line:261	language:Julia	module:Base
-_mapreduce_dim	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._mapreduce_dim(f, op::CommutativeOps, init::Base._InitialValue, A::Transpose, dims::Colon) /;"	f	line:259	language:Julia	module:Base
-_mapreduce_dim	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._mapreduce_dim(f::typeof(identity), op::Union{typeof(*),typeof(Base.mul_prod)}, init::Base./;"	f	line:264	language:Julia	module:Base
-_mapreduce_dim	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^Base._mapreduce_dim(f::typeof(identity), op::Union{typeof(*),typeof(Base.mul_prod)}, init::Base./;"	f	line:266	language:Julia	module:Base
-_mapreduce_prod	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function _mapreduce_prod(f, x, D::Diagonal, y)$/;"	f	line:772	language:Julia
-_mat_mat_scalar	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^function _mat_mat_scalar(A, B, γ)$/;"	f	line:1198	language:Julia
-_mat_vec_scalar	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^function _mat_vec_scalar(A, x, γ)$/;"	f	line:1188	language:Julia
-_matmulres	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/matmul.jl	/^    _matmulres(M, v) = [mapreduce(*, +, row, v) for row in eachrow(M)]$/;"	f	line:318	language:Julia
-_modify!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/generic.jl	/^@inline @propagate_inbounds function _modify!(p::MulAddMul{ais1, bis0},$/;"	f	line:83	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::LowerTriangular, B::LowerTriangular, c::Number, _add::MulAddMul)$/;"	f	line:502	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::LowerTriangular, B::UnitLowerTriangular, c::Number, _add::MulAddMul)$/;"	f	line:522	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::LowerTriangular, c::Number, B::LowerTriangular, _add::MulAddMul)$/;"	f	line:512	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::LowerTriangular, c::Number, B::UnitLowerTriangular, _add::MulAddMul)$/;"	f	line:533	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::UpperTriangular, B::UnitUpperTriangular, c::Number, _add::MulAddMul)$/;"	f	line:480	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::UpperTriangular, B::UpperTriangular, c::Number, _add::MulAddMul)$/;"	f	line:460	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::UpperTriangular, c::Number, B::UnitUpperTriangular, _add::MulAddMul)$/;"	f	line:491	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _mul!(A::UpperTriangular, c::Number, B::UpperTriangular, _add::MulAddMul)$/;"	f	line:470	language:Julia
-_mul!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/tridiag.jl	/^@inline function _mul!(C::StridedVecOrMat, S::SymTridiagonal, B::StridedVecOrMat,$/;"	f	line:220	language:Julia
-_mul_cost	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^@inline _mul_cost((A,B)::Tuple) = _mul_cost(A,B)$/;"	f	line:1258	language:Julia
-_mul_cost	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^@inline _mul_cost(A,B) = _mul_cost(A) + _mul_cost(B) + *(_mul_sizes(A)..., last(_mul_sizes(B)))$/;"	f	line:1259	language:Julia
-_mul_cost	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^@inline _mul_cost(A::AbstractMatrix) = 0$/;"	f	line:1257	language:Julia
-_mul_sizes	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^@inline _mul_sizes((A,B)::Tuple) = first(_mul_sizes(A)), last(_mul_sizes(B))$/;"	f	line:1261	language:Julia
-_mul_sizes	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^@inline _mul_sizes(A::AbstractMatrix) = size(A)$/;"	f	line:1260	language:Julia
-_muldiag!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@inline function _muldiag!(out, A, B, alpha, beta)$/;"	f	line:365	language:Julia
-_muldiag_size_check	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function _muldiag_size_check(A, B)$/;"	f	line:213	language:Julia
-_muldiag_size_check	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function _muldiag_size_check(C, A, B)$/;"	f	line:232	language:Julia
-_ordschur	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/schur.jl	/^_ordschur(S::StridedMatrix{Ty}, T::StridedMatrix{Ty}, Q::StridedMatrix{Ty},$/;"	f	line:378	language:Julia
-_ordschur	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/schur.jl	/^_ordschur(T::StridedMatrix{Ty}, Z::StridedMatrix{Ty}, select::Union{Vector{Bool},BitVector}) whe/;"	f	line:271	language:Julia
-_ordschur!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/schur.jl	/^_ordschur!(S::StridedMatrix{Ty}, T::StridedMatrix{Ty}, Q::StridedMatrix{Ty},$/;"	f	line:382	language:Julia
-_ordschur!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/schur.jl	/^_ordschur!(T::StridedMatrix{Ty}, Z::StridedMatrix{Ty}, select::Union{Vector{Bool},BitVector}) wh/;"	f	line:274	language:Julia
-_parent	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^_parent(A) = A$/;"	f	line:122	language:Julia
-_parent	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^_parent(A::Adjoint) = parent(A)$/;"	f	line:123	language:Julia
-_parent	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^_parent(A::Transpose) = parent(A)$/;"	f	line:124	language:Julia
-_pow_superdiag_quasitriu!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _pow_superdiag_quasitriu!(A, A0, p)$/;"	f	line:2047	language:Julia
-_qlmul	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^function _qlmul(Q::AbstractQ, B)$/;"	f	line:300	language:Julia
-_qlmul	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^function _qlmul(adjQ::Adjoint{<:Any,<:AbstractQ}, B)$/;"	f	line:311	language:Julia
-_qreltype	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^_qreltype(::Type{T}) where T = typeof(zero(T)\/sqrt(abs2(one(T))))$/;"	f	line:345	language:Julia
-_qrmul	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^function _qrmul(A, Q::AbstractQ)$/;"	f	line:326	language:Julia
-_qrmul	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^function _qrmul(A, adjQ::Adjoint{<:Any,<:AbstractQ})$/;"	f	line:330	language:Julia
-_quad_matmul	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^function _quad_matmul(A,B,C,D)$/;"	f	line:1238	language:Julia
-_rand	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^_rand(::Type{BigInt}) = BigInt(_rand(Int))$/;"	f	line:15	language:Julia	module:TestAddmul
-_rand	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^_rand(::Type{T}) where {F, T <: Complex{F}} = T(_rand(F), _rand(F))$/;"	f	line:12	language:Julia	module:TestAddmul
-_rand	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^_rand(::Type{T}) where {T <: AbstractFloat} = T(randn())$/;"	f	line:11	language:Julia	module:TestAddmul
-_rand	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^_rand(::Type{T}) where {T <: Integer} =$/;"	f	line:13	language:Julia	module:TestAddmul
-_rand	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^_rand(A::Type{<: SymTridiagonal{T}}, shape) where {T} =$/;"	f	line:35	language:Julia	module:TestAddmul
-_rand	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^function _rand(A::Type{<: AbstractArray}, shape)$/;"	f	line:25	language:Julia	module:TestAddmul
-_rand	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/addmul.jl	/^function _rand(A::Type{<:Array}, shape)$/;"	f	line:17	language:Julia	module:TestAddmul
-_rdiv	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/hessenberg.jl	/^function _rdiv(H::UpperHessenberg, B::Bidiagonal)$/;"	f	line:175	language:Julia
-_rdiv!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^_rdiv!(C::AbstractMatrix, A::AbstractMatrix, B::Adjoint{<:Any,<:Bidiagonal}) =$/;"	f	line:867	language:Julia
-_rdiv!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^_rdiv!(C::AbstractMatrix, A::AbstractMatrix, B::Transpose{<:Any,<:Bidiagonal}) =$/;"	f	line:869	language:Julia
-_rdiv!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^function _rdiv!(C::AbstractMatrix, A::AbstractMatrix, B::Bidiagonal)$/;"	f	line:823	language:Julia
-_rdiv!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function _rdiv!(B::AbstractVecOrMat, A::AbstractVecOrMat, D::Diagonal)$/;"	f	line:400	language:Julia
-_rdiv!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function _rdiv!(Dc::Diagonal, Db::Diagonal, Da::Diagonal)$/;"	f	line:445	language:Julia
-_rdiv!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function _rdiv!(T::Tridiagonal, S::Union{SymTridiagonal,Tridiagonal}, D::Diagonal)$/;"	f	line:508	language:Julia
-_real_sqrt	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^@inline function _real_sqrt(θ, μ)$/;"	f	line:2463	language:Julia
-_ret_size	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^_ret_size(A::Factorization, B::AbstractMatrix) = (max(size(A, 2), size(B, 1)), size(B, 2))$/;"	f	line:1031	language:Julia
-_ret_size	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^_ret_size(A::Factorization, b::AbstractVector) = (max(size(A, 2), length(b)),)$/;"	f	line:1030	language:Julia
-_rightappdimmismatch	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lq.jl	/^_rightappdimmismatch(rowsorcols) =$/;"	f	line:318	language:Julia
-_rmul_or_fill!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/generic.jl	/^@inline function _rmul_or_fill!(C::AbstractArray, beta::Number)$/;"	f	line:98	language:Julia
-_setdiag!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^@inline function _setdiag!(data, f, diag, diag′ = nothing)$/;"	f	line:540	language:Julia
-_size_check_out	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^_size_check_out(C, ::Diagonal, A) = _size_check_out(C, A)$/;"	f	line:223	language:Julia
-_size_check_out	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^_size_check_out(C, A, ::Diagonal) = _size_check_out(C, A)$/;"	f	line:224	language:Julia
-_size_check_out	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^_size_check_out(C, A::Diagonal, ::Diagonal) = _size_check_out(C, A)$/;"	f	line:225	language:Julia
-_size_check_out	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function _size_check_out(C, A)$/;"	f	line:226	language:Julia
-_small_enough	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^_small_enough(A::SymTridiagonal) = size(A, 1) <= 2$/;"	f	line:363	language:Julia
-_small_enough	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^_small_enough(A::Tridiagonal) = size(A, 1) <= 2$/;"	f	line:362	language:Julia
-_small_enough	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/special.jl	/^_small_enough(A::Union{Diagonal, Bidiagonal}) = size(A, 1) <= 1$/;"	f	line:361	language:Julia
-_sqrt_pow	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sqrt_pow(a::Number, s)$/;"	f	line:1986	language:Julia
-_sqrt_pow_diag_block_2x2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^Base.@propagate_inbounds function _sqrt_pow_diag_block_2x2!(A, A0, s)$/;"	f	line:2008	language:Julia
-_sqrt_pow_diag_quasitriu!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sqrt_pow_diag_quasitriu!(A, A0, s)$/;"	f	line:1964	language:Julia
-_sqrt_quasitriu!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sqrt_quasitriu!(R, A; blockwidth=64, n=checksquare(A))$/;"	f	line:2368	language:Julia
-_sqrt_quasitriu_block!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sqrt_quasitriu_block!(R, A)$/;"	f	line:2389	language:Julia
-_sqrt_quasitriu_diag_block!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sqrt_quasitriu_diag_block!(R, A)$/;"	f	line:2395	language:Julia
-_sqrt_quasitriu_offdiag_block!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sqrt_quasitriu_offdiag_block!(R, A)$/;"	f	line:2415	language:Julia
-_sqrt_quasitriu_offdiag_block_1x1!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^Base.@propagate_inbounds function _sqrt_quasitriu_offdiag_block_1x1!(R, A, i, j)$/;"	f	line:2468	language:Julia
-_sqrt_quasitriu_offdiag_block_1x2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^Base.@propagate_inbounds function _sqrt_quasitriu_offdiag_block_1x2!(R, A, i, j)$/;"	f	line:2483	language:Julia
-_sqrt_quasitriu_offdiag_block_2x1!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^Base.@propagate_inbounds function _sqrt_quasitriu_offdiag_block_2x1!(R, A, i, j)$/;"	f	line:2502	language:Julia
-_sqrt_quasitriu_offdiag_block_2x2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^Base.@propagate_inbounds function _sqrt_quasitriu_offdiag_block_2x2!(R, A, i, j)$/;"	f	line:2521	language:Julia
-_sqrt_real_2x2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^Base.@propagate_inbounds function _sqrt_real_2x2!(R, A)$/;"	f	line:2447	language:Julia
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^Base._sum(A::Bidiagonal, ::Colon) = sum(A.dv) + sum(A.ev)$/;"	f	line:971	language:Julia	module:Base
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/bidiag.jl	/^function Base._sum(A::Bidiagonal, dims::Integer)$/;"	f	line:972	language:Julia	module:Base
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^Base._sum(A::Diagonal, ::Colon) = sum(A.diag)$/;"	f	line:812	language:Julia	module:Base
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/diagonal.jl	/^function Base._sum(A::Diagonal, dims::Integer)$/;"	f	line:813	language:Julia	module:Base
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/tridiag.jl	/^Base._sum(A::Tridiagonal, ::Colon) = sum(A.d) + sum(A.dl) + sum(A.du)$/;"	f	line:769	language:Julia	module:Base
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/tridiag.jl	/^function Base._sum(A::SymTridiagonal, ::Colon)$/;"	f	line:770	language:Julia	module:Base
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/tridiag.jl	/^function Base._sum(A::SymTridiagonal, dims::Integer)$/;"	f	line:809	language:Julia	module:Base
-_sum	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/tridiag.jl	/^function Base._sum(A::Tridiagonal, dims::Integer)$/;"	f	line:775	language:Julia	module:Base
-_svd!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/svd.jl	/^_svd!(A::StridedMatrix{T}, full::Bool, alg::Algorithm) where {T<:BlasFloat} =$/;"	f	line:123	language:Julia
-_svd!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/svd.jl	/^_svd!(A::StridedMatrix{T}, full::Bool, alg::DivideAndConquer) where {T<:BlasFloat} =$/;"	f	line:125	language:Julia
-_svd!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/svd.jl	/^function _svd!(A::StridedMatrix{T}, full::Bool, alg::QRIteration) where {T<:BlasFloat}$/;"	f	line:127	language:Julia
-_swap_cols!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^function _swap_cols!(B::StridedMatrix, i::Integer, j::Integer)$/;"	f	line:392	language:Julia
-_swap_cols!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^function _swap_cols!(B::StridedVector, i::Integer, j::Integer)$/;"	f	line:388	language:Julia
-_swap_rows!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^function _swap_rows!(B::StridedMatrix, i::Integer, j::Integer)$/;"	f	line:369	language:Julia
-_swap_rows!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lu.jl	/^function _swap_rows!(B::StridedVector, i::Integer, j::Integer)$/;"	f	line:364	language:Julia
-_sylvester_1x2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/dense.jl	/^Base.@propagate_inbounds function _sylvester_1x2!(A, B, C)$/;"	f	line:1610	language:Julia
-_sylvester_2x1!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/dense.jl	/^Base.@propagate_inbounds function _sylvester_2x1!(A, B, C)$/;"	f	line:1599	language:Julia
-_sylvester_2x2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/dense.jl	/^function _sylvester_2x2!(A, B, C)$/;"	f	line:1621	language:Julia
-_sylvester_quasitriu!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sylvester_quasitriu!(A, B, C; blockwidth=64, nA=checksquare(A), nB=checksquare(B), rai/;"	f	line:2549	language:Julia
-_sylvester_quasitriu_base!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sylvester_quasitriu_base!(A, B, C; raise=true)$/;"	f	line:2561	language:Julia
-_sylvester_quasitriu_split1!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sylvester_quasitriu_split1!(A, B, C; nA=checksquare(A), kwargs...)$/;"	f	line:2572	language:Julia
-_sylvester_quasitriu_split2!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sylvester_quasitriu_split2!(A, B, C; nB=checksquare(B), kwargs...)$/;"	f	line:2584	language:Julia
-_sylvester_quasitriu_splitall!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/triangular.jl	/^function _sylvester_quasitriu_splitall!(A, B, C; nA=checksquare(A), nB=checksquare(B), kwargs.../;"	f	line:2596	language:Julia
-_test_matrix	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/diagonal.jl	/^    function _test_matrix(type)$/;"	f	line:553	language:Julia
-_transpose_hcat	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/adjtrans.jl	/^_transpose_hcat(tvs::Union{Number,TransposeAbsVec}...) = transpose(vcat(map(transpose, tvs)...))$/;"	f	line:228	language:Julia
-_tri_matmul	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/matmul.jl	/^function _tri_matmul(A,B,C,δ=nothing)$/;"	f	line:1169	language:Julia
-_triuppers_qr	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^function _triuppers_qr(T)$/;"	f	line:150	language:Julia
-_tryparse_env_int	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/blas.jl	/^_tryparse_env_int(key) = tryparse(Int, get(ENV, key, ""))$/;"	f	line:113	language:Julia	module:BLAS
-_vectorpinv	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/generic.jl	/^function _vectorpinv(dualfn::Tf, v::AbstractVector{Tv}, tol) where {Tv,Tf}$/;"	f	line:1047	language:Julia
-_wide_qr_ldiv!	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^function _wide_qr_ldiv!(A::QR{T}, B::StridedMatrix{T}) where T$/;"	f	line:922	language:Julia
-_zeros	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^_zeros(::Type{T}, B::AbstractMatrix, n::Integer) where {T} = zeros(T, max(size(B, 1), n), size(B/;"	f	line:451	language:Julia
-_zeros	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^_zeros(::Type{T}, b::AbstractVector, n::Integer) where {T} = zeros(T, max(length(b), n))$/;"	f	line:450	language:Julia
 a	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/svd.jl	/^    a::C$/;"	g	line:366	language:Julia	struct:GeneralizedSVD
 a	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/diagonal.jl	/^       a :: A$/;"	g	line:994	language:Julia	struct:MyArrayWrapper
 abs	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/generic.jl	/^    Base.abs(a::ModInt{n}) where {n} = a$/;"	f	line:418	language:Julia	module:Base
@@ -2808,19 +2569,3 @@ zero	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/t
 zero	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/trickyarithmetic.jl	/^    Base.zero(::Union{A, Type{A}}) = A(0)$/;"	f	line:9	language:Julia	module:Base
 zero	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/trickyarithmetic.jl	/^    Base.zero(::Union{C, Type{C}}) = C(0)$/;"	f	line:18	language:Julia	module:Base
 zero	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/trickyarithmetic.jl	/^    Base.zero(::Union{D{NT, DT}, Type{D{NT, DT}}}) where {NT, DT} = zero(NT) \/ one(DT)$/;"	f	line:33	language:Julia	module:Base
-×	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^const × = cross$/;"	c	line:434	language:Julia
-α	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/schur.jl	/^    α::A$/;"	g	line:310	language:Julia	struct:GeneralizedSchur
-β	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/schur.jl	/^    β::B$/;"	g	line:311	language:Julia	struct:GeneralizedSchur
-λ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/uniformscaling.jl	/^    λ::T$/;"	g	line:40	language:Julia	struct:UniformScaling
-μ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/hessenberg.jl	/^    μ::V # diagonal shift for copy-free (F+μI) \\ b solves and similar$/;"	g	line:412	language:Julia	struct:Hessenberg
-τ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/hessenberg.jl	/^    τ::W # more Q (reflector) data$/;"	g	line:411	language:Julia	struct:Hessenberg
-τ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/hessenberg.jl	/^    τ::W$/;"	g	line:527	language:Julia	struct:HessenbergQ
-τ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lq.jl	/^    τ::C$/;"	g	line:48	language:Julia	struct:LQ
-τ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/lq.jl	/^    τ::C$/;"	g	line:70	language:Julia	struct:LQPackedQ
-τ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^    τ::C$/;"	g	line:205	language:Julia	struct:QRPivoted
-τ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^    τ::C$/;"	g	line:39	language:Julia	struct:QR
-τ	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/qr.jl	/^    τ::C$/;"	g	line:531	language:Julia	struct:QRPackedQ
-≅	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/hessenberg.jl	/^≅(x,y) = all(p -> p[1] ≈ p[2], zip(x,y))$/;"	f	line:12	language:Julia	module:TestHessenberg
-≊	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/svd.jl	/^    ≊(x,y) = isapprox(x,y,rtol=1e-15)$/;"	f	line:171	language:Julia	module:TestSVD
-≊	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/test/svd.jl	/^    ≊(x,y) = isapprox(x,y,rtol=1e-15)$/;"	f	line:9	language:Julia	module:TestSVD
-⋅	/home/junyi/.local/stow/julia-1.8.5/share/julia/stdlib/v1.8/LinearAlgebra/src/LinearAlgebra.jl	/^const ⋅ = dot$/;"	c	line:433	language:Julia

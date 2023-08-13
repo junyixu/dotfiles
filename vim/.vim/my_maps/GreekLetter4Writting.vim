@@ -7,7 +7,9 @@ inoremap <buffer> <M-D> \Delta
 inoremap <buffer> <M-r> \rho
 inoremap <buffer> <M-c> \chi
 inoremap <buffer> <M-x> \xi
+inoremap <buffer> <M-z> \zeta
 inoremap <buffer> <M-s> \sigma
+inoremap <buffer> <M-S> \Sigma
 inoremap <buffer> <M-t> \tau
 inoremap <buffer> <M-o> \omega
 inoremap <buffer> <M-w> \omega

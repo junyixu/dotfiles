@@ -636,7 +636,7 @@ key_bindings:
   #- { key: Minus,    mods: Control,                 action: DecreaseFontSize }
 
   # (Windows only)
-  - { key: F11,              action: ToggleFullscreen }
+  # - { key: F11,              action: ToggleFullscreen }
 
   # (macOS only)
   #- { key: K,      mods: Command, mode: ~Vi, chars: "\x0c"            }

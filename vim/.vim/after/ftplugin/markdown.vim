@@ -19,3 +19,6 @@ if !$SSH_CONNECTION && $isWSL!='1'
 	xmap <silent><buffer> i$ <plug>(vimtex-i$)
 	xmap <silent><buffer> a$ <plug>(vimtex-a$)
 endif
+
+setlocal noexpandtab
+setlocal suffixesadd=.md
