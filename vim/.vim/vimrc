@@ -626,6 +626,21 @@ endif
 
 command! BufOnly execute '%bdelete|edit #|normal `"'
 
+" vimwiki 键位
+nnoremap ,w,w :exec 'e ~/Notes/diary/' .. strftime('%F') .. '.md'<cr>:tcd %:h<cr>:tcd ..<cr>
+nnoremap ,w,t :exec 'tabe ~/Notes/diary/' .. strftime('%F') .. '.md'<cr>:tcd %:h<cr>:tcd ..<cr>
+nnoremap ,ww :e ~/Notes/index.md<cr>:tcd %:h<cr>
+nnoremap ,wt :tabe ~/Notes/index.md<cr>:tcd %:h<cr>
+function MyVimWikiReturn()
+  if !filereadable(expand('<cfile>'))
+    exec "normal \"zciw[\<C-r>z](\<C-r>z.md)"
+    exec "normal h"
+    " 保存，之前修改了
+    exec "w"
+  endif
+  exec "e <cfile>"
+endfunction
+
 " git log 语法高亮
 " https://dpwright.com/posts/2018/04/06/graphical-log-with-vimfugitive/
 command -nargs=* Glg Git! log --graph --pretty=format:'\%h - (\%ad)\%d \%s <\%an>' --abbrev-commit --date=local <args>

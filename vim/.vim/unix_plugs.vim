@@ -270,7 +270,8 @@ map  qp <Plug>(easymotion-prev)
 " ================================= easymotion ==============================}}}
 "
 " must after easymotion plugin
-Plug 'junyixu/vim-easymotion-chs', {'for': ['markdown', 'vimwiki', 'tex', 'text']}
+" Plug 'junyixu/vim-easymotion-chs', {'for': ['markdown', 'tex', 'text']}
+Plug 'junyixu/vim-easymotion-chs'
 
 " archlinux cmake 包自带 cmake syntax and indent
 " Plug 'pboettch/vim-cmake-syntax', {'for': 'cmake'}
@@ -695,7 +696,7 @@ else
 endif
 Plug 'tpope/vim-repeat'
 
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 
   " 自动补全括号
 Plug 'Raimondi/delimitMate'
@@ -754,6 +755,8 @@ Plug 'hotoo/pangu.vim', {'for': 'markdown'}
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 	let g:vim_markdown_folding_disabled = 1
+  let g:vim_markdown_new_list_item_indent = 0
+  let g:vim_markdown_auto_insert_bullets = 0
 	" let g:tex_conceal = ""
 	let g:vim_markdown_math = 1
 	" 代码块不 conceal
