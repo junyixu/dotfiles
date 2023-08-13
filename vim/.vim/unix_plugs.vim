@@ -1,4 +1,4 @@
-let $GTAGSLABEL = 'native-pygments'
+" let $GTAGSLABEL = 'native'
 " 在 Linux 下，不配置 let $GTAGSCONF = '/path/to/share/gtags/gtags.conf'也可以正常工作，好像默认会读这个文件。
 " let $GTAGSCONF = $HOME.'/.globalrc'
 " 下面还有个 nvim light
@@ -1881,13 +1881,27 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 	" }}}
 "gtags.vim 设置项
 
+if !g:isNVIM
+let g:Gtags_OpenQuickfixWindow = 0
+let g:GtagsCscope_Auto_Map=1
+let g:GtagsCscope_Use_Old_Key_Map = 1
+
 " let GtagsCscope_Auto_Load = 1
+" if filereadable("GPATH")
+  " GtagsCscope
+" endif
+
+let g:Gtags_Auto_Map = 0
+
+nmap tn :tn<CR>
+nmap tp :tp<CR>
+set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
 
 " let CtagsCscope_Auto_Map = 1
 
 " let GtagsCscope_Quiet = 1
 
-nnoremap <space>/<space> :cs find<space>
+" nnoremap <space>/<space> :cs find<space>
     " " Gtags 映射 {{{
     " " 查找C语言符号，即查找函数名、宏、枚举值等出现的地方 symbol
 	" nmap g<space> :Gtags<space>
@@ -1895,10 +1909,31 @@ nnoremap <space>/<space> :cs find<space>
 	" nmap ga<space> :Gtagsa<space>
 	" nmap gr<space> :Gtags -r<space>
 	" nmap gar<space> :Gtagsa -r<space>
-	" nmap t<space> :tjump<space>
+	nmap t<space> :tjump<space>
 	" nmap t* :tjump <C-R>=expand("<cword>")<CR>
-    " nmap g} :GtagsCursor<CR>
+    nnoremap <localleader><C-]> :GtagsCursor<CR>
 
+    " 搜索字符串 string 类比 gs
+    nnoremap ts :cs find s <C-R>=expand("<cword>")<CR>
+
+    " 定义
+    nnoremap td :cs find g <C-R>=expand("<cword>")<CR>
+
+    " 引用
+    nnoremap tr :cs find c <C-R>=expand("<cword>")<CR>
+
+    " 这个函数引用了哪些函数
+    nnoremap tR :cs find d <C-R>=expand("<cword>")<CR>
+
+    " grep -E
+    nnoremap tg :cs find e <C-R>=expand("<cword>")<CR>
+
+    " 找文件 Path
+    nnoremap tP :cs find f <C-R>=expand("<cfile>")<CR>
+
+    " 查找哪些文件 include 了本文件
+    nnoremap ti :cs find i <C-R>=expand("%:t")<CR>
+    
     " nmap gss :Gtags <C-R>=expand("<cword>")<CR>
     " " 查找函数、宏、枚举等定义的位置，类似ctags所提供的功能 def
     " nmap gsd :Gtags -d <C-R>=expand("<cword>")<CR>
@@ -1923,28 +1958,29 @@ nnoremap <space>/<space> :cs find<space>
 	" " " :vert scs find f table_builder.cc
 	" " }}}
 
-" 定义
-nnoremap <space>/d :cscope find g<space> 
-" 引用
-nnoremap <space>/r :cscope find c<space>
-" 字符串
-nnoremap <space>/s :cscope find t<space>
+"" 定义
+"nnoremap <space>/d :cscope find g<space> 
+"" 引用
+"nnoremap <space>/r :cscope find c<space>
+"" 字符串
+"nnoremap <space>/s :cscope find t<space>
 
-" regular expression 正则
-nnoremap <space>/e :cscope find e<space>
+"" regular expression 正则
+"nnoremap <space>/e :cscope find e<space>
 
-" include file
-nnoremap <space>/i :cscope find i<space>
+"" include file
+"nnoremap <space>/i :cscope find i<space>
 
-"	Find assignments  :cs find 9 or a
-nnoremap <space>/a :cscope find a<space>
+""	Find assignments  :cs find 9 or a
+"nnoremap <space>/a :cscope find a<space>
 
-nnoremap <space>/* :<C-U><C-R>=printf("cscope find g %s ", expand("<cword>"))<CR>
+"nnoremap <space>/* :<C-U><C-R>=printf("cscope find g %s ", expand("<cword>"))<CR>
 
 " 在写入的时候自动刷新 ctags
 " autocmd BufWritePost * call system("ctags -R")
 
 "=================== Gtags ===============================}}}
+endif
 
 " if !g:isPlain && !exists('g:started_by_firenvim')
 " " ========================= tagbar ==================================={{{
