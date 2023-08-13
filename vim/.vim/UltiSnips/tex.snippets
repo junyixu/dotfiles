@@ -36,6 +36,10 @@ snippet b "begin" b
 \end{$1}
 endsnippet
 
+snippet t "frametitle" b
+\frametitle{$0}
+endsnippet
+
 priority -1000
 snippet '([A-Za-z]+\*?)' "begin" rb
 \begin{`!p snip.rv=match.group(1)`}
@@ -58,6 +62,10 @@ endsnippet
 # eg: % vim: spelllang=en_us:
 snippet % "vim option" b
 %%% vim: spelllang=en_us: $1
+endsnippet
+
+snippet === "等价" A
+\equiv 
 endsnippet
 
 snippet fontset "使用方正字体" b
@@ -566,19 +574,19 @@ snippet elegantnote "elegantnote" b
 endsnippet
 
 
-##代码
-#snippet "mint(ed)?( (\S+))?" "Minted code typeset" br
-#\begin{listing}
-#\begin{minted}[linenos,numbersep=5pt,frame=lines,framesep=2mm]{${1:`!p
-#snip.rv = match.group(3) if match.group(2) is not None else "language"`}}
-#${2:${VISUAL:code}}
-#\end{minted}
-#\caption{${3:caption name}}
-#\label{lst:${4:${3/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
-#\end{listing}
-#
-#$0
-#endsnippet
+#代码
+snippet "mint(ed)?( (\S+))?" "Minted code typeset" br
+\begin{listing}
+\begin{minted}[linenos,numbersep=5pt,frame=lines,framesep=2mm]{${1:`!p
+snip.rv = match.group(3) if match.group(2) is not None else "language"`}}
+${2:${VISUAL:code}}
+\end{minted}
+\caption{${3:caption name}}
+\label{lst:${4:${3/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+\end{listing}
+
+$0
+endsnippet
 
 snippet sympy "sympyblock " w
 sympy $1 sympy$0
