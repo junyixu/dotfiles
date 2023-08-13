@@ -16,6 +16,25 @@ if !g:isNVIM
 	set undofile
 endif
 
+" run command and copy result to clipboard
+function! ExecCmd(expr)
+    if exists('*execute')
+        let @" = execute(a:expr, '')
+    else
+        try
+            redir @"
+            execute a:expr
+        finally
+            redir END
+        endtry
+    endif
+    let result = @"
+    let result = substitute(result, '^\n\(.*\)', '\1', 'g')
+    let result = substitute(result, '^\(.*\)\n', '\1', 'g')
+    " system(result .. ' | xclip -selection clipboard -in')
+    return result
+endfunction
+command! -nargs=+ -complete=command ExecCmd :call ExecCmd(<q-args>)
 
 " 解决 ssh 下 Vim 启动慢的问题 because of clipboard
 " https://stackoverflow.com/questions/14635295/vim-takes-a-very-long-time-to-start-up
@@ -50,10 +69,6 @@ else
     " Make it easy to edit the tex snips
     nmap <Leader>ets :tabedit ~/.vim/plugged/vim-snippets/UltiSnips/tex.snippets<cr>
 endif
-
-" ocr
-command! Ocr :r! ocr ~/Downloads/test.png
-" vnoremap <C-h> :s/
 
 " vim-slime 反应慢 " https://github.com/jpalardy/vim-slime/issues/204
 set shell=/bin/sh
