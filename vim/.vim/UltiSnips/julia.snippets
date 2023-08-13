@@ -20,6 +20,41 @@ snippet o "composition operator"
 ∘ 
 endsnippet
 
+snippet . "tensor dot"
+⋅ 
+endsnippet
+
+snippet savefig "savefig" b
+plt.savefig("./figures/$(bytes2hex(rand(UInt8, 4))).pdf", bbox_inches="tight")
+endsnippet
+
+# subplots subplot_kw 用于 3d
+# 则所有的子图都会用3d
+# 想要混合使用 用 ax=fig.add_subplot(projectin="3d")
+snippet subplots3d "3d subplots" b
+fig, ax = plt.subplots(1,3, figsize(14,4), subplot_kw=Dict(:projection=>"3d"))
+endsnippet
+
+snippet subplots "3d subplots" b
+fig, ax = plt.subplots()
+endsnippet
+
+snippet add_axes "figure in figure" b
+xx=-1:0.01:1
+fig, ax = plt.subplots()
+fig.tight_layout()
+inset_ax = fig.add_axes([0.2, 0.55, 0.35, 0.35]) # X, Y, width, height
+inset_ax.plot(xx, xx.^2, xx, xx.^3)
+inset_ax.set_title("zoom near origin")
+# set axis range
+inset_ax.set_xlim(-.2, .2)
+inset_ax.set_ylim(-.005, .01)
+# set axis tick locations
+inset_ax.set_yticks([0, 0.005, 0.01])
+inset_ax.set_xticks([-0.1,0,.1]);
+plt.show()
+endsnippet
+
 snippet ~= "composition operator" A
 ≈
 endsnippet
@@ -29,8 +64,12 @@ $1
 end
 endsnippet
 
-snippet in "in"
+snippet in "in" i
 ∈
+endsnippet
+
+snippet perp "in" i
+⟂
 endsnippet
 
 snippet / "frac" i
@@ -48,7 +87,7 @@ end
 endsnippet
 snippet anim "animate" b
 using PyCall
-@pyimport anim.animate2D as anim
+anim=pyimport("anim")["animate2D"]
 endsnippet
 
 snippet phyconst "PhysicalConstants" b
@@ -65,15 +104,17 @@ fid=h5open("./Data.h5", "r")
 X=read(fid["X"])
 attributes(fid["X"])["X_description"]
 read_attribute(fid["X"],"X_description")
+delete_object(fid, "X")
 close(fid)
 endsnippet
 
 snippet 3d "3d plot" b
-ax = plt.axes(projection="3d")
-zline = np.linspace(0, 15, 1000)
-xline = np.sin(zline)
-yline = np.cos(zline)
-ax.plot3D(xline, yline, zline, 'gray')
+ax=plt.axes(projection="3d")
+ax.plot3D(x, y, z)
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
+plt.show()
 endsnippet
 
 snippet HDF5ReadAll "HDF5 Read All " b
@@ -92,6 +133,39 @@ using PyCall
 using LaTeXStrings
 
 @pyimport matplotlib.pyplot as plt
+endsnippet
+
+snippet ODE1 "ODEProblem" b
+using DifferentialEquations
+
+f(u, p, t) = 1.01 * u
+u0 = 1 / 2
+tspan = (0.0, 1.0)
+prob = ODEProblem(f, u0, tspan)
+sol = solve(prob, Tsit5(), reltol = 1e-8, abstol = 1e-8)
+
+plt.scatter(sol.t, sol.u)
+plt.show()
+endsnippet
+
+snippet ODE "ODEProblem" b
+using DifferentialEquations
+
+function ff!(dθ, θ, p, t)
+	γ,μ = p
+	# θ[1]: θ; θ[2] = ω
+	dθ[1] = θ[2]
+	dθ[2] = γ * cos(θ[1]) - μ * θ[2]^2
+end
+θ0 = [0.0, 0.0]
+γ = 10
+μ = 0.1
+tspan = (0.0, 1.4/sqrt(5))
+prob = ODEProblem(ff!, θ0, tspan, [γ, μ])
+sol = solve(prob, alg_hints = [:stiff], reltol = 1e-8, abstol = 1e-8)
+
+plt.scatter(sol.t, sol.u[1])
+plt.show()
 endsnippet
 
 snippet font "matplotlib font" b

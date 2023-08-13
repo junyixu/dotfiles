@@ -1208,7 +1208,7 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_warning_symbol                                = ''
 let g:ycm_max_num_candidates                            = 20
 let g:ycm_autoclose_preview_window_after_completion     = 0
-let g:ycm_collect_identifiers_from_tags_files           = 0 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
+let g:ycm_collect_identifiers_from_tags_files           = 1 " 开启 YC基于标签引擎  The only supported tag format is the Exuberant Ctags format
 let g:ycm_add_preview_to_completeopt                    = 0
 let g:ycm_key_list_stop_completion = ['<M-e>']
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
@@ -1219,7 +1219,10 @@ let g:ycm_confirm_extra_conf                            = 0
 let g:ycm_key_list_select_completion                    = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion                  = ['<C-p>', '<Up>']
 let g:ycm_cache_omnifunc                                = 1  " 缓存匹配项，不然每次都重新生成匹配项
-let g:ycm_min_num_of_chars_for_completion               = 3
+let g:ycm_min_num_of_chars_for_completion               = 4
+let g:ycm_min_num_identifier_candidate_chars            = 0
+let g:ycm_auto_trigger                                  = 1
+
 let g:ycm_seed_identifiers_with_syntax                  = 0 " 开启语法自动补全
 let g:ycm_complete_in_comments                          = 0  "在注释输入中也能补全
 let g:ycm_always_populate_location_list                 = 0
@@ -1238,6 +1241,10 @@ let g:ycm_always_populate_location_list                 = 0
 " 			\ "vim":1,
 " 			\ }
 
+let g:ycm_filetype_specific_completion_to_disable = {
+      \ 'gitcommit': 1,
+      \ 'julia': 1
+      \}
 let g:ycm_filetype_blacklist = {
 			\ 'notes':        1,
 			\ 'netrw':        1,
@@ -1268,6 +1275,7 @@ let g:ycm_filepath_blacklist = {
 
 let g:ycm_semantic_triggers = {
 			\ 'c': ['->', '.'],
+			\ 'julia': [],
 			\ 'cpp,cuda,objcpp': ['->', '.', '::'],
 			\ 'ruby,rust': ['.', '::'],
 			\ }

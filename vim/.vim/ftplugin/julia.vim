@@ -1,12 +1,13 @@
 " tags {{{
+setlocal tags+=$HOME/scripts/julia/modules/tags
 setlocal tags+=$HOME/.vim/julia/julia-tags/LinearAlgebra_tags
 setlocal tags+=$HOME/.vim/julia/julia-tags/Statistics_tags
-setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
-setlocal tags+=$HOME/.julia/packages/Symbolics/tags
-setlocal tags+=$HOME/.julia/packages/HDF5/tags
-setlocal tags+=$HOME/.julia/packages/PyPlot/tags
-setlocal tags+=$HOME/.julia/packages/RowEchelon/tags
-setlocal tags+=$HOME/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/tags
+" setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
+" setlocal tags+=$HOME/.julia/packages/Symbolics/tags
+" setlocal tags+=$HOME/.julia/packages/HDF5/tags
+" setlocal tags+=$HOME/.julia/packages/PyPlot/tags
+" setlocal tags+=$HOME/.julia/packages/RowEchelon/tags
+" setlocal tags+=$HOME/.local/stow/julia-1.7.2/share/julia/stdlib/v1.7/tags
 " }}}
 setlocal iskeyword+=!
 

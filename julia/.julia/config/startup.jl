@@ -16,7 +16,9 @@
 # using LinearAlgebra
 # using Statistics
 
+# TODO 如果我用 conda 这句可能造成问题。特别是我用 git 同步
 ENV["PYTHON"]="/usr/bin/python"
+
 macro paste()
 	include_string(Main, read(pipeline(`xclip -quiet -out -selection`, stderr=stderr), String));
 end
@@ -34,5 +36,8 @@ using PhysicalConstants
 macro constant(arg)
 	:($(esc(arg))=PhysicalConstants.CODATA2018.$(arg).val)
 end
+
+# https://discourse.julialang.org/t/how-to-convert-vector-of-vectors-to-matrix/72609/33?u=junix
+Base.Matrix(::AbstractVector{<:AbstractArray}) = throw(ArgumentError("Matrix(vv) does not support vectors of arrays; perhaps you mean stack(vv) or reduce(hcat, vv)?"))
 
 using Statistics
