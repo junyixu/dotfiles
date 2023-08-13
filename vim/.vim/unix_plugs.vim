@@ -197,18 +197,18 @@ Plug 'mhinz/vim-grepper'
 	nmap gs  <plug>(GrepperOperator)
 	xmap gs  <plug>(GrepperOperator)
 	let g:grepper = {
-      \ 'tools':         ['git','rg'],
+      \ 'tools':         ['git','rg','grep'],
+      \ 'git':           { 'grepprg':    'git grep -EnI',
+      \                    'grepformat': '%f:%l:%c:%m,%f:%l:%m,%f',
+      \                    'escape':     '\^$.*[]' },
       \ 'rg':            { 'grepprg':    'rg -H --no-heading --vimgrep' . (has('win32') ? ' $* .' : ''),
       \                    'grepformat': '%f:%l:%c:%m,%f',
       \                    'escape':     '\^$.*+?()[]{}|' },
-      \ 'git':           { 'grepprg':    'git grep -nI',
-      \                    'grepformat': '%f:%l:%c:%m,%f:%l:%m,%f',
-      \                    'escape':     '\^$.*[]' },
       \ }
     " let g:grepper.open = 1
     " let g:grepper.jump = 1
   let g:grepper.dir = 'repo,cwd'
-	let g:grepper.repo = ['.git', '.hg', '.svn', '.root', ".obsidian"]
+	let g:grepper.repo = ['.root', '.project', '.hg', '.svg', '.obsidian', '.git']
 	let g:grepper.searchreg = 1
 	nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
 	command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
