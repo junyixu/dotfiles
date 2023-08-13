@@ -1,0 +1,254 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[[colors.indexed_colors]]
+color = "#202326"
+index = 16
+
+[[colors.indexed_colors]]
+color = "#3e4452"
+index = 17
+
+[[colors.indexed_colors]]
+color = "#636d83"
+index = 60
+
+[[colors.indexed_colors]]
+color = "#528bff"
+index = 69
+
+[[colors.indexed_colors]]
+color = "#56b6c2"
+index = 73
+
+[[colors.indexed_colors]]
+color = "#61afef"
+index = 75
+
+[[colors.indexed_colors]]
+color = "#828997"
+index = 102
+
+[[colors.indexed_colors]]
+color = "#98c379"
+index = 114
+
+[[colors.indexed_colors]]
+color = "#be5046"
+index = 130
+
+[[colors.indexed_colors]]
+color = "#e06c75"
+index = 168
+
+[[colors.indexed_colors]]
+color = "#d19a66"
+index = 173
+
+[[colors.indexed_colors]]
+color = "#c678dd"
+index = 176
+
+[[colors.indexed_colors]]
+color = "#e5c07b"
+index = 180
+
+[[colors.indexed_colors]]
+color = "#202326"
+index = 235
+
+[[colors.indexed_colors]]
+color = "#282c34"
+index = 236
+
+[[colors.indexed_colors]]
+color = "#313640"
+index = 237
+
+[[colors.indexed_colors]]
+color = "#3b4048"
+index = 238
+
+[[colors.indexed_colors]]
+color = "#4b5263"
+index = 239
+
+[[colors.indexed_colors]]
+color = "#5c6370"
+index = 241
+
+[[colors.indexed_colors]]
+color = "#abb2bf"
+index = 249
+
+[colors.bright]
+black = "0x928374"
+blue = "0x7daea3"
+cyan = "0x89b482"
+green = "0xa9b665"
+magenta = "0xd3869b"
+red = "0xea6962"
+white = "0xdfbf8e"
+yellow = "0xe3a84e"
+
+[colors.normal]
+black = "0x665c54"
+blue = "0x7daea3"
+cyan = "0x89b482"
+green = "0xa9b665"
+magenta = "0xd3869b"
+red = "0xea6962"
+white = "0xdfbf8e"
+yellow = "0xe78a4e"
+
+[colors.primary]
+background = "0x282828"
+foreground = "0xdfbf8e"
+
+[font]
+size = 11
+
+[font.normal]
+family = "monospace"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;5P"
+# key = "Key1"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;5Q"
+# key = "Key2"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;5R"
+# key = "Key3"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;5S"
+# key = "Key4"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[15;5~"
+# key = "Key5"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[17;5~"
+# key = "Key6"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[18;5~"
+# key = "Key7"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[19;5~"
+# key = "Key8"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[20;5~"
+# key = "Key9"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[21;5~"
+# key = "Key0"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[13;2u"
+# key = "Return"
+# mods = "Shift"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[13;5u"
+# key = "Return"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;5P"
+# key = "Return"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[24;5~"
+# key = "Apostrophe"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;6P"
+# key = "Key1"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;6Q"
+# key = "Key2"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;6R"
+# key = "Key3"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[1;6S"
+# key = "Key4"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[15;6~"
+# key = "Key5"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[17;6~"
+# key = "Key6"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[18;6~"
+# key = "Key7"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[19;6~"
+# key = "Key8"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[20;6~"
+# key = "Key9"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[21;6~"
+# key = "Key0"
+# mods = "Control|Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[23;6~"
+# key = "Comma"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# chars = "\u001B[24;6~"
+# key = "Period"
+# mods = "Control"
+
+# [[keyboard.bindings]]
+# action = "ResetFontSize"
+# key = "Equals"
+# mods = "Control|Alt"
+
+[window]
+title = "Alacritty"
+
+[window.dimensions]
+columns = 120
+lines = 50
