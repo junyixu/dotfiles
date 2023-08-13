@@ -243,7 +243,7 @@ vnoremap <F8> :call ChineseCount()<cr>
 " if exists('+termguicolors') && $SSH_CONNECTION == ''
 if exists('+termguicolors')
   set termguicolors
-  set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
+  " set guicursor=n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20
 
 	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"

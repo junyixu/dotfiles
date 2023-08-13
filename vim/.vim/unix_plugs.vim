@@ -9,10 +9,11 @@ if g:isNVIM
 	" nvim 的 py 默认是 py2，把它改成 py3
 	let g:python_host_prog  = '/usr/bin/python'
     call plug#begin('~/.local/share/nvim/plugged')
-	Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
     "{{{
 	  if exists('g:started_by_firenvim')
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 		  set laststatus=0
+let g:firenvim_config['localSettings']['.*'] = { 'takeover' : 'never' }
 		  set background=light
 		  nnoremap <leader>i :set lines=20<cr>i
 	  else
