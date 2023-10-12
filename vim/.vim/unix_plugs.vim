@@ -3,7 +3,6 @@
 " let $GTAGSCONF = $HOME.'/.globalrc'
 " 下面还有个 nvim light
 set background=dark
-
 "=========== vim-plug ============={{{
 if g:isNVIM
 	" nvim 的 py 默认是 py2，把它改成 py3
@@ -196,6 +195,10 @@ Plug 'mhinz/vim-grepper'
 	" global search
 	nmap gs  <plug>(GrepperOperator)
 	xmap gs  <plug>(GrepperOperator)
+
+  " Note:
+  " rg 的具体设置用 ~/.config/ripgrep/ripgreprc 
+
 	let g:grepper = {
       \ 'tools':         ['git','rg','grep'],
       \ 'git':           { 'grepprg':    'git grep -EnI',
@@ -204,14 +207,34 @@ Plug 'mhinz/vim-grepper'
       \ 'rg':            { 'grepprg':    'rg -H --no-heading --vimgrep' . (has('win32') ? ' $* .' : ''),
       \                    'grepformat': '%f:%l:%c:%m,%f',
       \                    'escape':     '\^$.*+?()[]{}|' },
+      \ 'grep':           { 'grepprg':    'grep -EnIr --exclude=tags --exclude=\*.ipynb',
+      \                    'grepformat': '%f:%l:%c:%m,%f:%l:%m,%f',
+      \                    'escape':     '\^$.*[]' },
       \ }
     " let g:grepper.open = 1
     " let g:grepper.jump = 1
   let g:grepper.dir = 'repo,cwd'
-	let g:grepper.repo = ['.root', '.project', '.hg', '.svg', '.obsidian', '.git']
+	let g:grepper.repo = ['.root', '.project', '.hg', '.svn', '.obsidian', 'Project.toml', '.git']
 	let g:grepper.searchreg = 1
-	nnoremap <leader>* :Grepper -tool rg -cword -noprompt<cr>
-	command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
+
+	" nnoremap <leader>* :Grepper -tool rg -cword -noprompt<CR>
+	nnoremap <leader>* :Grepper -tool rg -cword<CR>
+
+	command! TODO :Grepper -tool git -query '(TODO|FIXME)'
+  " Note: 如果不加 -E 括号和竖线前面都要加反斜杠
+	" command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
+
+" Note:
+" git grep 排除文件 *.jl *.py *.svg
+" https://stackoverflow.com/questions/10423143/how-to-exclude-certain-directories-files-from-git-grep-search
+" Example:
+" GrepperGit init -- :!*.{jl,py,svg}
+" 不要丢了冒号
+
+" rg 排除文件 *.svg
+" Example:
+" GrepperRg --glob=!*.svg" init 
+" 使用 --glob=! 加通配符
 
 " global substitute
 nnoremap <Leader>S
@@ -1056,7 +1079,7 @@ if executable('ctags')
 " https://www.zhihu.com/question/47691414/answer/373700711
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件 / 目录名
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-let g:gutentags_project_root = ['.root', '.project', '.git', '.tasks']
+let g:gutentags_project_root = ['.root', '.project', '.git', '.tasks', 'Project.toml']
 " note:
 " 不需要这个插件的项目 touch .notags
 " 如果我需要这个插件直接在项目顶层，touch .root
@@ -1064,8 +1087,8 @@ let g:gutentags_project_root = ['.root', '.project', '.git', '.tasks']
 
 
 " 将自动生成的 tags 文件全部放入.gittags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
+" let s:vim_tags = expand('~/.cache/tags')
+" let g:gutentags_cache_dir = s:vim_tags
 
 let g:gitgutter_max_signs=1200
 
@@ -1077,9 +1100,9 @@ let g:gutentags_modules = ['ctags']
 " TODO 不起作用，我想在 写 tex 的时候不用 gtags
 " if executable('gtags-cscope') && executable('gtags') && &filetype!='tex'
 
-" if executable('gtags-cscope') && executable('gtags')
-" 	let g:gutentags_modules += ['gtags_cscope']
-" endif
+if executable('gtags-cscope') && executable('gtags')
+	let g:gutentags_modules += ['gtags_cscope']
+endif
 
 " 配置 ctags 的参数，
 " extra=+q 表示强制要求ctags对同一个语法元素 再记一行(如果某个语法元素是类的一个成员，ctags默认会给其记录一行)，这样可以保证在Vim中多个同名函数可以通过路径不同来区分
@@ -1092,7 +1115,7 @@ let g:gutentags_modules = ['ctags']
 " let g:gutentags_ctags_extra_args = ['--fields=+nliazS', '--extras=+q']
 let g:gutentags_ctags_extra_args = ['--fields=+nliaz', '--extras=+q']
 
-let g:gutentags_exclude_filetypes=['vim', 'sh', 'css', 'html', 'pdf', 'eps', 'svg', 'text']
+let g:gutentags_exclude_filetypes=['vim', 'sh', 'css', 'html', 'pdf', 'eps', 'svg', 'text', 'tex', 'bib', 'pdf', 'bbl', 'blg', 'out', 'fls', 'aux']
 " let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 " ctags识别很多元素，但未必全都记录，例如“函数声明”这一语法元素默认是不记录的，可以控制ctags记录的语法元素的种类。如下命令要求ctags记录c++文件中的函数声明和各种外部和前向声明
 " let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
@@ -1100,7 +1123,7 @@ let g:gutentags_exclude_project_root = [ '/home/junyi/.local/share/nvim', '/home
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为, 由于我一个 vim
 " 只打开一个工程，用 tmux 和 vim 结合的方式，所以这里不需要了.
-let g:gutentags_auto_add_gtags_cscope = 0
+let g:gutentags_auto_add_gtags_cscope = 1
 let g:gutentags_ctags_exclude = [
       \ '*.git', '*.svg', '*.hg',
       \ '*/tests/*',
@@ -1891,23 +1914,21 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 if !g:isNVIM
 let g:Gtags_OpenQuickfixWindow = 0
-let g:GtagsCscope_Auto_Map=1
-let g:GtagsCscope_Use_Old_Key_Map = 1
-
-" let GtagsCscope_Auto_Load = 1
-" if filereadable("GPATH")
-  " GtagsCscope
-" endif
-
+let g:GtagsCscope_Auto_Map=0
+let g:GtagsCscope_Use_Old_Key_Map = 0
 let g:Gtags_Auto_Map = 0
-
-nmap tn :tn<CR>
-nmap tp :tp<CR>
-set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
-
 " let CtagsCscope_Auto_Map = 1
-
 " let GtagsCscope_Quiet = 1
+
+" 正向遍历同名标签
+nmap tn :tn<CR>
+" 反向遍历同名标签
+nmap tp :tp<CR>
+nmap <C-n> :cnext<CR>
+nmap <C-p> :cprevious<CR>
+
+set cscopequickfix=s-,c-,d-,i-,t-,e-,a-,f+
+
 
 " nnoremap <space>/<space> :cs find<space>
     " " Gtags 映射 {{{

@@ -574,12 +574,6 @@ map <M-9> <C-O>9gt
 " alacritty
 " Map Control-([1-9]|[0;']) to Control-[F1-F12] (F25-F36)
 nnoremap <C-F6> <C-^>
-
-" 正向遍历同名标签
-nmap <C-n> :tnext<CR>
-" 反向遍历同名标签
-nmap <C-p> :tprevious<CR>
-
 silent! command -nargs=0 EditFtPlugin execute "vsp ~/.vim/ftplugin/" . &filetype . '.vim'
 nmap <leader>ef :EditFtPlugin<CR>
 
