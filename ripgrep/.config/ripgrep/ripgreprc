@@ -16,7 +16,7 @@ web
 
 --glob=!plugin/*
 
---glob=!*.m
+--glob=!*.ipynb
 --glob=!*.nb
 
 # or
