@@ -145,7 +145,7 @@ fi
 [ -f ~/.config/zsh/alias.sh ] && source ~/.config/zsh/alias.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+[ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 
 # note
 # find -name *.java -print0 | xargs -0 p4 add
