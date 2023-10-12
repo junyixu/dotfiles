@@ -7,3 +7,6 @@ BUILDENV=(!distcc color ccache !check !sign)
 BUILDDIR=/tmp/makepkg
 
 COMPRESSXZ=(xz -c -z - --threads=0)
+
+
+# vim: set ft=confini:

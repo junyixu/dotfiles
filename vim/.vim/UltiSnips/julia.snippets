@@ -20,8 +20,20 @@ snippet o "composition operator"
 ∘ 
 endsnippet
 
-snippet . "tensor dot"
+snippet x "cross product"
+× 
+endsnippet
+
+snippet . "dot product  a ⋅ b = ai bi"
 ⋅ 
+endsnippet
+
+snippet : "Double contraction  B : C = Bij Cij"
+⊡ 
+endsnippet
+
+snippet ox "Tensor product (open product)  b ⊗  c = Aij = bi cj"
+⊗ 
 endsnippet
 
 snippet savefig "savefig" b
@@ -108,9 +120,34 @@ delete_object(fid, "X")
 close(fid)
 endsnippet
 
+snippet mesh "mgrid or meshgrid" b
+x = range(1, 2, length=10)
+y = range(-1, 1, length=30)
+X=repeat(x, 1, length(y))
+Y=repeat(y', length(x))
+Z = @. sin(π*X) * sin(π*Y)
+
+ax=plt.axes(projection="3d")
+ax.plot_surface(X, Y, Z, cmap="autumn_r", lw=0.5, rstride=1, cstride=1)
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
+plt.show()
+endsnippet
+
 snippet 3d "3d plot" b
 ax=plt.axes(projection="3d")
 ax.plot3D(x, y, z)
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
+plt.show()
+endsnippet
+
+snippet bar3d "bar3d" b
+ax=plt.axes(projection="3d")
+# ax.bar3d(x, y, bottom, width, depth, top, shade=true) 
+ax.bar3d(repeat(${1:x}, inner=6), repeat(${2:y}, outer=6), [zeros(size($3))...], 1, 1, [${3:z}...], shade=true)
 ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.set_zlabel("Z")

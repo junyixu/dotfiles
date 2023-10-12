@@ -1,7 +1,8 @@
 " tags {{{
-setlocal tags+=$HOME/scripts/julia/modules/tags
+setlocal tags+=$HOME/scripts/tags
 setlocal tags+=$HOME/.vim/julia/julia-tags/LinearAlgebra_tags
 setlocal tags+=$HOME/.vim/julia/julia-tags/Statistics_tags
+setlocal tags+=$HOME/.vim/julia/julia-tags/MPI_tags
 " setlocal tags+=$HOME/.vim/julia/julia-tags/base_tags
 " setlocal tags+=$HOME/.julia/packages/Symbolics/tags
 " setlocal tags+=$HOME/.julia/packages/HDF5/tags
@@ -15,9 +16,13 @@ setlocal iskeyword+=!
 nnoremap <silent><buffer> <localleader>d :call slime#send("@doc " . expand("<cword>") . "\r")<CR>
 vnoremap <silent><buffer> <localleader>d :<c-u>call slime#send("@doc " . @* . "\r")<CR>
 vnoremap <silent><buffer> <localleader>l :<c-u>call slime#send("@less " . @* . "\r")<CR>
-noremap <buffer> <localleader>lm :call slime#send("methods(" . expand("<cword>") . ")\r")<cr>
+noremap <buffer> <localleader>m :call slime#send("methods(" . expand("<cword>") . ")\r")<cr>
 noremap <buffer> <localleader>t :call slime#send("typeof(" . expand("<cword>") . ")\r")<cr>
 noremap <buffer> <localleader>s :call slime#send("size(" . expand("<cword>") . ")\r")<cr>
+" https://stackoverflow.com/questions/71203241/how-to-see-parameters-of-a-struct-in-julia
+" 查看结构体成员
+nnoremap <buffer> <localleader>f :call slime#send("fieldnames(typeof(" . expand("<cword>") . "))\r")<cr>
+vnoremap <buffer> <localleader>f :call slime#send("fieldnames(typeof(" . @* . "))\r")<cr>
 noremap <buffer> <localleader>li :call slime#send(expand("<cword>") . "\r")<cr>
 " noremap <leader>sje :call slime#send("@edit " . expand("<cword>") . "\r")<cr>
 

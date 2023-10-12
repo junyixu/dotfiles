@@ -41,3 +41,4 @@ end
 Base.Matrix(::AbstractVector{<:AbstractArray}) = throw(ArgumentError("Matrix(vv) does not support vectors of arrays; perhaps you mean stack(vv) or reduce(hcat, vv)?"))
 
 using Statistics
+using Revise

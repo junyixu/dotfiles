@@ -187,6 +187,16 @@ snippet _ "下标" i
 <sub>$1</sub>
 endsnippet
 
+snippet --- "add property" b
+---
+aliases:
+  - $1
+tags:
+  - math/geometry
+---
+
+endsnippet
+
 snippet d "离考研天数" b
 # 离组会还有`!p import datetime
 finalday = datetime.date(2023, 2, 1)
@@ -251,7 +261,7 @@ endsnippet
 # ./texmath.snippets
 extends texmath
 
-priority 1000
+priority 10000
 snippet // "Fraction" i
 \\frac{$1}{$2}$0
 endsnippet
@@ -268,26 +278,44 @@ context "isMath()"
 snippet op "cross product" i
 \operatorname{$1} 
 endsnippet 
-priority 100
+
+priority 1
 context "isMath()"
-snippet x "cross product"
+snippet dd "diff" A
+\,\mathrm{d}
+endsnippet 
+
+priority 10
+context "isMath()"
+snippet x* "cross" A
 \times 
 endsnippet 
+
 priority 100
-context "isMath()"
-snippet d "diff" i
-\mathrm{d} 
-endsnippet 
-priority 1000
 context "isMath()"
 snippet dv "diff" i
 \frac{\mathrm{d} $1}{\mathrm{d} $2}
 endsnippet 
-priority 10000
+
+priority 100
+context "isMath()"
+snippet dv2 "diff" i
+\frac{\mathrm{d}^2 $1}{\mathrm{d} $2^2}
+endsnippet 
+
+priority 1000
 context "isMath()"
 snippet pdv "diff" i
 \frac{\partial $1}{\partial $2}
 endsnippet 
+
+priority 1000
+context "isMath()"
+snippet pdv2 "diff" i
+\frac{\partial^2 $1}{\partial $2^2}
+endsnippet 
+
+
 priority 100
 context "isMath()"
 snippet curl "Math" wA

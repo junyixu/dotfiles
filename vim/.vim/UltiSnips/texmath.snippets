@@ -155,12 +155,6 @@ snippet . "dot product"
 \vdot
 endsnippet 
 
-context "isMath()"
-snippet x "cross product"
-\times
-endsnippet 
-
-
 # in latex.ltx, \ldots is equated (\let) to \dots. so in text, it's the same, and you can use either.
 # with amsmath, the situation is more complicated; \dots tries to determine by context (only in math mode) whether to use \ldots or \cdots, with several more options for the author if amsmath doesn't get it right.
 # so in general, it's easier to just use \dots and not have to remember the details. but if the alternative chosen by amsmath isn't appropriate, the original commands can still be used explicitly.
@@ -344,6 +338,7 @@ snippet .* "点乘" A
 \vdot 
 endsnippet
 
+priority 1
 context "isMath()"
 snippet x* "叉乘" A
 \cross 

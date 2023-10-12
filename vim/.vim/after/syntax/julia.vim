@@ -35,7 +35,7 @@ syntax keyword juliaFunction set_xlabel set_ylabel set_zlabel set_title set_xtic
 syntax keyword juliaFunction add_axes add_subplot tick_params spines
 
 " HDF5
-syntax keyword juliaFunction h5open create_group create_dataset attributes delete_object delete_attribute
+syntax keyword juliaFunction h5open create_group create_dataset attributes delete_object delete_attribute read_attribute
 
 " DelimitedFiles
 syntax keyword juliaFunction writedlm readdlm
