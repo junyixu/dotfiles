@@ -22,7 +22,7 @@
 #    50400 -- 14小时
  
 out_type=7
-exp=14400
+exp=0
 
 curl --data "name=jyxu&password=EB1taoWLm8fU08Y0&cmd=set&type=$out_type&exp=$exp" \
 http://wlt.ustc.edu.cn/cgi-bin/ip
