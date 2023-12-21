@@ -23,6 +23,8 @@ noremap <buffer> <localleader>s :call slime#send("size(" . expand("<cword>") . "
 " 查看结构体成员
 nnoremap <buffer> <localleader>f :call slime#send("fieldnames(typeof(" . expand("<cword>") . "))\r")<cr>
 vnoremap <buffer> <localleader>f :call slime#send("fieldnames(typeof(" . @* . "))\r")<cr>
+nnoremap <buffer> <localleader>ps :call slime#send("plt.show()\r")<cr>
+nnoremap <buffer> <localleader>pw :call slime#send('plt.savefig("./figures/$(bytes2hex(rand(UInt8, 4))).pdf", bbox_inches="tight");plt.show()'.."\r")<cr>
 noremap <buffer> <localleader>li :call slime#send(expand("<cword>") . "\r")<cr>
 " noremap <leader>sje :call slime#send("@edit " . expand("<cword>") . "\r")<cr>
 

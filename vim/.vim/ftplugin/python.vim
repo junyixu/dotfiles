@@ -42,6 +42,8 @@ command! PythonNormalModeCreateCell :execute 'normal! :set paste<CR>m`O# %%<ESC>
 command! PythonVisualModeCreateCell :execute 'normal! gvD:set paste<CR>O# %%<CR># %%<ESC>P:set nopaste<CR>'
 command! PythonInsertModeCreateCell :execute 'normal! I# %% '
 
+nnoremap <buffer> <localleader>ps :call slime#send("plt.show()\r")<cr>
+
 nnoremap <buffer><silent> <M-c> :PythonNormalModeCreateCell<CR>
 vnoremap <buffer><silent> <M-c> :<C-u>PythonVisualModeCreateCell<CR>
 inoremap <buffer><silent> <M-c> <C-o>:PythonInsertModeCreateCell<CR>
