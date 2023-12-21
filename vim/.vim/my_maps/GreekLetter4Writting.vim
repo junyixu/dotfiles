@@ -36,3 +36,4 @@ inoremap <buffer> <M-p> \pi
 inoremap <buffer> <M-k> \kappa
 inoremap <buffer> <M-,> \langle
 inoremap <buffer> <M-.> \rangle
+inoremap <buffer> <M-+> \dagger
