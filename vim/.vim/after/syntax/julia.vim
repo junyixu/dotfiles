@@ -32,7 +32,8 @@ syntax keyword juliaFunction issuccess issymmetric istril istriu iszero iszerode
 syntax keyword juliaFunction acorr annotate arrow autoscale autumn axhline axhspan axis axline axvline axvspan bar barbs barh bone box boxplot broken_barh cla clabel clf clim cohere colorbar colors contour contourf cool copper csd delaxes disconnect draw errorbar eventplot figaspect figimage figlegend figtext figure fill_between fill_betweenx findobj flag gca gcf gci get_current_fig_manager get_figlabels get_fignums get_plot_commands ginput gray grid hexbin hist2D hlines hold hot hsv imread imsave imshow ioff ion ishold jet legend locator_params loglog margins matshow minorticks_off minorticks_on over pause pcolor pcolormesh pie pink plot plot_date plotfile polar prism psd quiver quiverkey rc rc_context rcdefaults rgrids savefig sca scatter sci semilogx semilogy set_cmap setp show specgram spectral spring spy stackplot stem step streamplot subplot subplot2grid subplot_tool subplots subplots_adjust summer suptitle table text thetagrids tick_params ticklabel_format tight_layout title tricontour tricontourf tripcolor triplot twinx twiny vlines waitforbuttonpress winter xkcd xlabel xlim xscale xticks ylabel ylim yscale yticks hist tight_layout 
 " ax.set() add_
 syntax keyword juliaFunction set_xlabel set_ylabel set_zlabel set_title set_xticks set_yticks set_zticks  set_xlim set_ylim set_zlim set_data set_3d_properties set_zorder set_visible set_xmargin set_ymargin  set_xscale set_yscale set_xticklabels set_yticklabels  set_xbound set_ybound set_url set_clip_box set_aspect set_adjustable set_alpha
-syntax keyword juliaFunction add_axes add_subplot tick_params spines
+syntax keyword juliaFunction fill_between
+syntax keyword juliaFunction add_axes add_subplot tick_params tick_right spines tick_left tick_top tick_bottom
 
 " HDF5
 syntax keyword juliaFunction h5open create_group create_dataset attributes delete_object delete_attribute read_attribute
