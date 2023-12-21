@@ -17,7 +17,7 @@
 # using Statistics
 
 # TODO 如果我用 conda 这句可能造成问题。特别是我用 git 同步
-ENV["PYTHON"]="/usr/bin/python"
+ENV["PYTHON"]="/home/junyi/.venv/bin/python"
 
 macro paste()
 	include_string(Main, read(pipeline(`xclip -quiet -out -selection`, stderr=stderr), String));
