@@ -102,6 +102,24 @@ using PyCall
 anim=pyimport("anim")["animate2D"]
 endsnippet
 
+snippet camera "use celluloid.Camera to create animation" b
+@pyimport celluloid
+
+fig = plt.figure(dpi = 300)
+camera = celluloid.Camera(fig)
+
+for i in ${1:${VISUAL:1:length(t)}}
+	plt.plot(x[1:i], y[1:i], c="b")
+	camera.snap()
+end
+
+animation = camera.animate(blit=false, interval=10, repeat=false)
+animation.save("animation_sin.mp4",
+               dpi=300,
+			   savefig_kwargs=Dict("pad_inches"=>"tight"))
+plt.show()
+endsnippet
+
 snippet phyconst "PhysicalConstants" b
 import PhysicalConstants.CODATA2018 as C
 constants=(:c_0, :ε_0, :e)
@@ -118,6 +136,17 @@ attributes(fid["X"])["X_description"]
 read_attribute(fid["X"],"X_description")
 delete_object(fid, "X")
 close(fid)
+endsnippet
+
+snippet cm "cmap" w
+plt.cm.get_cmap("Blues", 6)
+endsnippet
+
+snippet csv "CSV DataFrames" b
+using CSV
+using DataFrames
+
+sheet1=DataFrame(CSV.File("data.csv"))
 endsnippet
 
 snippet mesh "mgrid or meshgrid" b
@@ -164,6 +193,22 @@ end
 close(fid)
 endsnippet
 
+snippet gs "matplotlib add_gridspec" b
+element(i,j) = get(gs, (i,j))
+slice(i::Integer,j::Integer) = pycall(pybuiltin("slice"), PyObject, i,j)
+
+fig = plt.figure()
+gs = fig.add_gridspec(2,2)
+ax = fig.add_subplot(element(0,0))
+ax.plot(sin.(-pi:0.1:pi))
+
+ax = fig.add_subplot(element(0,1))
+ax.plot(cos.(-pi:0.1:pi))
+
+ax = fig.add_subplot(element(1,slice(0,2)))
+ax.plot(-pi:0.1:pi)
+
+endsnippet
 
 snippet plt "matplotlib.pyplot" b
 using PyCall
@@ -206,6 +251,18 @@ plt.show()
 endsnippet
 
 snippet font "matplotlib font" b
+let
 rcParams = PyDict(plt.matplotlib."rcParams")
-rcParams["font.size"] = 12
+
+plt.style.use("default")
+
+rcParams["text.usetex"] = true
+rcParams["font.size"] = 11
+rcParams["legend.fontsize"] = 11
+rcParams["xtick.direction"] = rcParams["ytick.direction"] = "in"
+rcParams["xtick.major.size"] = rcParams["ytick.major.size"] = 5.0
+rcParams["xtick.minor.size"] = rcParams["ytick.minor.size"] = 3.0
+rcParams["axes.linewidth"] = 0.8
+rcParams["legend.handlelength"] = 2.0
+end
 endsnippet
